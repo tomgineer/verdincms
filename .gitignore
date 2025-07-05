@@ -130,3 +130,6 @@ _modules/*
 
 # Allow example environment file
 !.env.example
+
+# Remove Later!
+public/**
