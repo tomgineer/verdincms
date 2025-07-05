@@ -189,7 +189,7 @@ public function getSystemAndDatabaseInfo(): array {
     $maxExec   = ini_get('max_execution_time');
 
     $systemInfo = [
-        'VerdinCMS Version'      => setting('version'),
+        'VerdinCMS Version'      => setting('system.version'),
         'CodeIgniter Version'    => \CodeIgniter\CodeIgniter::CI_VERSION,
         'App Environment'        => ENVIRONMENT,
         'Base URL'               => base_url(),

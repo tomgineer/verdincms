@@ -6,7 +6,7 @@
         <div class="fs-200"><?=block($base_blocks,'footer','footer_copyright','body')?></div>
         <p class="fs-200">Total posts: <span><?=esc($total_posts)?></span></p>
         <p class="fs-200">Public posts: <span><?=esc($public_posts)?></span></p>
-        <p class="fs-200">VerdinCMS version: <span><?=setting('version')?></span></p>
+        <p class="fs-200">VerdinCMS version: <span><?=setting('system.version')?></span></p>
         <p class="fs-200">Rendered in: <span>{elapsed_time} sec</span></p>
 
         <div class="flex flex-wrap pt-075 gap-075">

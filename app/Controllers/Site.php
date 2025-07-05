@@ -31,7 +31,7 @@ public function index() {
 
     // Cache settings
     $cacheName   = 'frontpage' . '_page_' . $page;
-    $shouldCache = setting('caching') == 1 && !session('logged_in');
+    $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
     // Serve from cache if available
     if ($shouldCache && ($cachedView = cache($cacheName))) {
@@ -78,7 +78,7 @@ public function post(int|string $id) {
 
     // Cache settings (cache per post AND per tier)
     $cacheName   = "post_{$id}_tier_{$tier}";
-    $shouldCache = setting('caching') == 1 && !session('logged_in');
+    $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
     // Serve from cache if available
     if ($shouldCache && ($cachedView = cache($cacheName))) {
@@ -168,7 +168,7 @@ public function page(string $slug) {
 
     // Cache settings (cache per page slug)
     $cacheName   = "page_{$slug}";
-    $shouldCache = setting('caching') == 1 && !session('logged_in');
+    $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
     // Serve from cache if available
     if ($shouldCache && ($cachedView = cache($cacheName))) {
@@ -192,7 +192,7 @@ public function page(string $slug) {
 
     // Construct the data array
     $data = array_merge($this->data, [
-        'related'   => $this->content->getPages(amount: setting('no_related'), exclude: $id, section_id: $pageData['section_id']),
+        'related'   => $this->content->getPages(amount: setting('posts.related_count'), exclude: $id, section_id: $pageData['section_id']),
         'page'      => $pageData,
         'can_edit'  => tier() >= 10,
         'highlight' => $pageData['highlight'] == '1',
@@ -227,7 +227,7 @@ public function topic(string $slug) {
 
     // Cache settings
     $cacheKey    = 'topic_' . $slug . '_page_' . $page;
-    $shouldCache = setting('caching') == 1 && !session('logged_in');
+    $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
     // Serve from cache if available
     if ($shouldCache && ($cachedView = cache($cacheKey))) {
@@ -281,7 +281,7 @@ public function author(string $handle) {
 
     // Cache settings
     $cacheKey    = 'author_' . $handle . '_page_' . $page;
-    $shouldCache = setting('caching') == 1 && !session('logged_in');
+    $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
     // Serve from cache if available
     if ($shouldCache && ($cachedView = cache($cacheKey))) {
@@ -333,7 +333,7 @@ public function ranking(string $type) {
 
     // Cache settings
     $cacheKey    = 'ranking_' . $type;
-    $shouldCache = setting('caching') == 1 && !session('logged_in');
+    $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
     // Serve from cache if available
     if ($shouldCache && ($cachedView = cache($cacheKey))) {
@@ -375,7 +375,7 @@ public function ranking(string $type) {
 public function featured() {
     // Cache settings
     $cacheName   = 'featured_posts';
-    $shouldCache = setting('caching') == 1 && !session('logged_in');
+    $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
     // Serve from cache if available
     if ($shouldCache && ($cachedView = cache($cacheName))) {

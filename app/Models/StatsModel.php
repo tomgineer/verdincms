@@ -268,6 +268,10 @@ public function ip2location(string $ip): array {
         'country_code' => 'XX',
     ];
 
+    if (setting('system.ip2location') === false) {
+        return $unknown;
+    }
+
     if (!filter_var($ip, FILTER_VALIDATE_IP)) {
         return $unknown;
     }

@@ -5,7 +5,7 @@
         <svg class="svg-icon svg-icon-lg color-blue-200" aria-hidden="true">
             <use href="#brain"></use>
         </svg>
-        <span>You are currently rocking VerdinCMS v.<?=setting('version')?></span>
+        <span>You are currently rocking VerdinCMS v.<?=setting('system.version')?></span>
     </div>
 
     <nav class="dash-topnav">

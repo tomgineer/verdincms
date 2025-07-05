@@ -5,24 +5,50 @@ namespace Config;
 use CodeIgniter\Config\BaseConfig;
 
 class Settings extends BaseConfig {
-    // Declare an associative array to store settings
+    /**
+     * @var array Loaded settings from JSON
+     */
     protected $settings = [];
 
-    function __construct() {
-        $db = \Config\Database::connect();
-        $q  = "SELECT setting, value FROM settings";
-        $query   = $db->query($q);
-        $results = $query->getResultArray();
+    /**
+     * Constructor: Load settings from ROOTPATH/config/settings.json
+     */
+    public function __construct() {
+        $path = ROOTPATH . 'config/settings.json';
 
-        foreach ($results as $item) {
-            // Store setting-value pairs in the $settings array
-            $this->settings[$item['setting']] = $item['value'];
+        if (file_exists($path)) {
+            $json = file_get_contents($path);
+            $this->settings = json_decode($json, true) ?? [];
         }
     }
 
-    // Getter method to retrieve settings
-    public function getSetting($name) {
-        // Check if the setting exists in the array
-        return isset($this->settings[$name]) ? $this->settings[$name] : null;
+    /**
+     * Get a setting value using dot notation (e.g., 'site.title')
+     *
+     * @param string $key
+     * @param mixed $default
+     * @return mixed|null
+     */
+    public function get(string $key, $default = null) {
+        $keys = explode('.', $key);
+        $value = $this->settings;
+
+        foreach ($keys as $segment) {
+            if (!is_array($value) || !array_key_exists($segment, $value)) {
+                return $default;
+            }
+            $value = $value[$segment];
+        }
+
+        return $value;
+    }
+
+    /**
+     * Get all settings as array
+     *
+     * @return array
+     */
+    public function all(): array {
+        return $this->settings;
     }
 }

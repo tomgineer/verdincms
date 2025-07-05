@@ -16,5 +16,60 @@
     "admin": {
         "email": "tom@tpapatolis.com",
         "login_required": true
+    },
+    "social_media": {
+        "youtube": "#",
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "tiktok": "",
+        "twitter": "",
+        "telegram": "",
+        "reddit": "",
+        "discord": "",
+        "linkedin": "",
+        "threads": "",
+        "github": "",
+        "stackoverflow": "",
+        "patreon": "",
+        "gitlab": "",
+        "vimeo": "",
+        "mastodon": "",
+        "codepen": "",
+        "jsfiddle": "",
+        "buymeacoffee": "",
+        "rumble": "",
+        "odysee": "",
+        "bitchute": "",
+        "gab": "",
+        "brighteon": "",
+        "xing": ""
+    },
+    "posts": {
+        "post_count": 30,
+        "latest_count": 10,
+        "featured_count": 10,
+        "related_count": 8,
+        "trending_count": 30,
+        "popular_count": 30
+    },
+    "system": {
+        "version": 31.11,
+        "logo_height": 32,
+		"trending_range": 24,
+        "ip2location": false
+    },
+    "meta": {
+        "site_name": "TomsNews",
+        "site_title": "TomsNews — Free Speech Oasis",
+        "site_description": "TomsNews — Free Speech Oasis",
+        "twitter": "@tomsnews_blog"
+    },
+    "company": {
+        "name": "TomsNews",
+        "email": "tom@tomsnews.blog",
+        "support_email": "tom@tomsnews.blog"
+
     }
+
 }

@@ -63,7 +63,7 @@ abstract class BaseController extends Controller
         $this->content = new ContentModel();
 
 // Define cache settings
-        $shouldCache = setting('caching') == 1 && !session('logged_in');
+        $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
         // Define cache keys with "arr_" prefix
         $cacheKeys = [

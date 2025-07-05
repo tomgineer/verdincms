@@ -227,7 +227,7 @@ public function getRankingPosts(
             $builder->orderBy('s.hits_per_day', 'DESC');
             break;
         case 'trending':
-            $hours = setting('trending_range') ?? 24;
+            $hours = setting('system.trending_range') ?? 24;
             $builder->join('stats_trending s', 's.post_id = p.id', 'inner')
                     ->where('s.created >=', "DATE_SUB(NOW(), INTERVAL {$hours} HOUR)", false)
                     ->groupBy('s.post_id');
@@ -487,21 +487,25 @@ public function getBlocks(array $groups = []): array {
  */
 public function getSocialsList(): array {
 
-    $results = $this->db->table('settings s')
-                        ->select('s.setting, s.value')
-                        ->join('setting_groups g', 'g.id = s.setting_group_id', 'inner')
-                        ->where('g.title', 'social_media')
-                        ->where('s.value !=', '')
-                        ->orderBy('s.position', 'ASC')
-                        ->get()->getResultArray();
+    $socials = setting('social_media') ?? [];
+    $list = [];
 
-    // Append a static contact link
-    $results[] = [
+    foreach ($socials as $key => $value) {
+        if (!empty($value)) {
+            $list[] = [
+                'setting' => $key,
+                'value'   => $value,
+            ];
+        }
+    }
+
+    // Append the static contact link
+    $list[] = [
         'setting' => 'contact',
         'value'   => site_url('info/contact'),
     ];
 
-    return $results;
+    return $list;
 }
 
 /**

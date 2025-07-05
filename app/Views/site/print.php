@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?=setting('site_language')?>">
+<html lang="<?=setting('site.language')?>">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">

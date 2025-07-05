@@ -1,6 +1,5 @@
 <?php
 use App\Libraries\SystemCore;
-use Config\Settings;
 
 /**
  * ****************************************************
@@ -96,7 +95,11 @@ if(!function_exists('tier')) {
 
 // Setting
 if (!function_exists('setting')) {
-    function setting($key) { return (new Settings())->getSetting($key); }
+    function setting($key) {
+        static $settings;
+        $settings ??= new \Config\Settings(); // Only created once per request
+        return $settings->get($key); // or getSetting($key)
+    }
 }
 
 // Number Format

@@ -403,7 +403,7 @@ public function getOverviewData() {
 
     // System
     $system = [
-        'Version'       => setting('version'),
+        'Version'       => setting('system.version'),
         'Photos'        => $photos,
         'Session Files' => $sessionFilesCnt,
         'Cache Files'   => ($cacheFilesCnt - 1),
