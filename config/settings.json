@@ -1,0 +1,20 @@
+{
+    "site": {
+        "title": "VerdinCMS",
+        "url": "https://verdincms.com",
+        "language": "en",
+        "timezone": "Europe/Berlin"
+    },
+    "theme": {
+        "name": "default",
+        "dark_mode": true
+    },
+    "cache": {
+        "enabled": true,
+        "lifetime": 3600
+    },
+    "admin": {
+        "email": "tom@tpapatolis.com",
+        "login_required": true
+    }
+}

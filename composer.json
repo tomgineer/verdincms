@@ -15,13 +15,11 @@
         "source": "https://github.com/tomgineer/verdincms"
     },
     "require": {
-        "php": "^8.2",
-        "codeigniter4/framework": "^4.6.1"
+        "php": "~8.2.0",
+        "codeigniter4/framework": "4.6.1"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.9",
-        "mikey179/vfsstream": "^1.6",
-        "phpunit/phpunit": "^10.5.16"
+        "fakerphp/faker": "^1.9"
     },
     "autoload": {
         "psr-4": {
@@ -32,17 +30,9 @@
             "**/Database/Migrations/**"
         ]
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\Support\\": "tests/_support"
-        }
-    },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
-    },
-    "scripts": {
-        "test": "phpunit"
     }
 }
