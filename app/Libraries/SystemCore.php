@@ -1,6 +1,6 @@
 <?php namespace App\Libraries;
 
-use App\Libraries\QRCode;
+use splitbrain\phpQRCode\QRCode;
 
 /**
  * ****************************************************
