@@ -246,11 +246,6 @@ public function getRankingPosts(
 
     $postData['posts'] = $builder->get()->getResultArray();
 
-    // If trending and empty, extend the trending range
-    if ( $type==='trending' && empty($postData['posts']) ) {
-        $this->db->table('settings')->where('setting', 'trending_range')->update(['value' => '720']);
-    }
-
     // Add pagination metadata
     if ( $pagination ) {
         $totalRecords = $totalRecordsQuery->countAllResults();
