@@ -131,5 +131,8 @@ _modules/*
 # Allow example environment file
 !.env.example
 
+# Node Modules
+node_modules/
+
 # Remove Later!
 public/**
