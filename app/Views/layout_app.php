@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?=setting('site.language')?>">
+<html lang="<?=setting('site.language')?>" data-theme="dark">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,9 +21,11 @@
             <meta name="description" content="<?= setting('meta.site_description') ?>"/>
         <?php endif; ?>
 
-        <link rel="stylesheet" href="<?=path_assets()?>fonts/fonts.css?v=<?=setting('system.version')?>">
-        <link rel="stylesheet" href="<?=path_css()?>vernito.css?v=<?=setting('system.version')?>">
-        <link rel="stylesheet" href="<?=path_css()?>app.css?v=<?=setting('system.version')?>">
+        <link rel="stylesheet" href="<?=path_css()?>tailwind.css?v=<?=setting('system.version')?>">
+
+<!--        <link rel="stylesheet" href="</?=path_assets()?>fonts/fonts.css?v=</?=setting('system.version')?>">-->
+<!--        <link rel="stylesheet" href="</?=path_css()?>vernito.css?v=</?=setting('system.version')?>">-->
+<!--        <link rel="stylesheet" href="</?=path_css()?>app.css?v=</?=setting('system.version')?>">-->
 
         <?php if ( !empty($highlight) ): ?>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github-dark.min.css">
@@ -39,7 +41,7 @@
     <body class="<?=body_class()?>" id="<?=body_class()?>">
 
         <header>
-            <?= $this->include('nav/nav') ?>
+           <!-- </?= $this->include('nav/nav') ?>-->
             <?= $this->renderSection('header') ?>
         </header>
 
@@ -48,7 +50,7 @@
         </main>
 
         <footer class="mt-auto">
-            <?= $this->include('site/footer') ?>
+            <!--</?= $this->include('site/footer') ?>-->
         </footer>
 
     </body>

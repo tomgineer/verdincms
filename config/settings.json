@@ -10,7 +10,7 @@
         "dark_mode": true
     },
     "cache": {
-        "enabled": true,
+        "enabled": false,
         "lifetime": 3600
     },
     "admin": {

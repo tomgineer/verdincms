@@ -521,49 +521,6 @@ public function getTopicsList(): ?array {
 }
 
 /**
- * Retrieves the latest post for each given alias.
- *
- * For each alias in the provided array, this method returns the most recent
- * associated post from the ai_posts table, joined with its corresponding prompt.
- * The result is an associative array keyed by alias, each containing the post body
- * and a formatted creation date.
- *
- * @param array $aliases An array of alias strings to fetch the latest posts for.
- * @param bool $random If true, returns a random post for each alias instead of the latest.
- *
- * @return array|null An associative array of posts keyed by alias, or null if no aliases provided.
- */
-public function getAiPosts(array $aliases, bool $random = false): ?array {
-    if (empty($aliases)) {
-        return null;
-    }
-
-    $result = [];
-    $emptyArr = ['body' => '', 'f_updated' => ''];
-
-    foreach ($aliases as $alias) {
-        $builder = $this->db->table('ai_posts p')
-                            ->join('ai_prompts pr', 'p.prompt_id = pr.id')
-                            ->select('p.body')
-                            ->select('DATE_FORMAT(p.created, "%b %d, %Y - %H:%i") AS f_updated', false)
-                            ->where('pr.alias', $alias)
-                            ->limit(1);
-
-        $random ? $builder->orderBy('RAND()') : $builder->orderBy('p.created', 'DESC');
-        $row = $builder->get()->getRowArray();
-
-        // If we found a row and $random is true, override the date
-        if ($row && $random) {
-            $row['f_updated'] = 'από το αρχείο';
-        }
-
-        $result[$alias] = $row ?: $emptyArr;
-    }
-
-    return $result;
-}
-
-/**
  * Get the total count of posts, pages, and AI posts.
  *
  * If `$public` is `true`, it counts only the posts and pages with a `status` of 1 (public).
@@ -575,7 +532,7 @@ public function getAiPosts(array $aliases, bool $random = false): ?array {
  * @return int The total count of posts, pages, and AI posts based on the condition.
  */
 public function getTotalPosts(bool $public = false): int {
-    $tables = ['posts', 'pages', 'ai_posts'];
+    $tables = ['posts', 'pages'];
     $total = 0;
 
     foreach ($tables as $table) {

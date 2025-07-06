@@ -46,7 +46,6 @@ public function index() {
         'featured'       => $this->content->getPosts(amount: 10, featured: true),
         'trending'       => $this->content->getRankingPosts(amount: 10, type: 'trending'),
         'popular'        => $this->content->getRankingPosts(amount: 10, type: 'popular'),
-        // 'ai'             => $this->content->getAiPosts(['pythia'])
     ]);
 
     // Render the view
@@ -106,7 +105,6 @@ public function post(int|string $id) {
         'related'   => $this->content->getRelatedPosts(id: $id, topic_id: $postData['topic_id']),
         'can_edit'  => $tier >= 10 || ($tier == 9 && $postData['user_id'] == session('user_id')),
         'highlight' => $postData['highlight'] == '1',
-        // 'ai'        => $this->content->getAiPosts(['invention', 'history'])
     ]);
 
     // Render the view
@@ -248,7 +246,6 @@ public function topic(string $slug) {
         'site_title' => $this->content->getTitleFromId($topic_id, 'topics'),
         'post_data'  => $this->content->getPosts(topic_id: $topic_id, pagination: true, page: $page),
         'trending'   => $this->content->getRankingPosts(amount: 10, type: 'trending'),
-        // 'ai'         => $this->content->getAiPosts(['invention', 'history'], true)
     ]);
 
     // Render view
@@ -301,7 +298,6 @@ public function author(string $handle) {
     $data = array_merge($this->data, [
         'site_title' => $this->content->getFullnameFromId($user_id, true),
         'post_data'  => $this->content->getPosts(user_id: $user_id, pagination: true, page: $page),
-        // 'ai'        => $this->content->getAiPosts(['invention', 'history'], true)
     ]);
 
     // Render view
@@ -348,7 +344,6 @@ public function ranking(string $type) {
         'site_title' => ucfirst($type),
         'post_data'  => $this->content->getRankingPosts(type: $type),
         'ranked'     => true,
-        // 'ai'         => $this->content->getAiPosts(['invention', 'history'], true),
     ];
 
     // Render view
@@ -389,7 +384,6 @@ public function featured() {
         'site_title' => 'Featured',
         'post_data'  => $this->content->getPosts(featured: true),
         'trending'   => $this->content->getRankingPosts(amount: 10, type: 'trending'),
-        // 'ai'         => $this->content->getAiPosts(['invention', 'history'], true),
     ]);
 
     // Render the view

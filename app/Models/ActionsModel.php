@@ -115,9 +115,6 @@ class ActionsModel extends Model {
             case 'removeOrphanAvatars':
                $this->removeOrphanAvatars();
                 break;
-            case 'runAI':
-               $this->runAI();
-                break;
             default:
                 break;
         }
@@ -646,90 +643,6 @@ private function removeOrphanAvatars(): void {
     } catch (\Throwable $e) { // better to catch all errors, not only Exception
         log_message('error', 'An error occurred while deleting unused avatar pics: ' . $e->getMessage());
     }
-}
-
-/**
- * Runs the AI generation process for all prompts in the database.
- *
- * Retrieves all prompts from the ai_prompts table and processes each one
- * using the OpenAIService. The generated responses are stored in the ai_posts
- * table using a batch insert. Errors during processing are logged with the
- * corresponding prompt ID. A success log is recorded in the cron_log table.
- *
- * @return void
- */
-public function runAI(): void {
-    // Get the prompts from the database
-    $result = $this->db->table('ai_prompts')
-                       ->select('id, alias, prompt')
-                       ->get()->getResultArray();
-
-    if (empty($result)) {
-        log_message('error', 'No AI prompts found in the database.');
-        return;
-    }
-
-    $responses = [];
-
-    foreach ($result as $row) {
-        $id     = $row['id'];
-        $alias  = $row['alias'];
-        $prompt = $row['prompt'];
-        $output = "Default response"; // fallback/default output
-
-        // Inject Subject
-        if($alias === 'invention' || $alias === 'history') {
-            $subject = $this->db->table('ai_subjects')
-                                ->select('id, title')
-                                ->where('prompt_id', $id)
-                                ->where('used', 0)
-                                ->orderBy('RAND()', '', false)
-                                ->limit(1)
-                                ->get()->getRowArray();
-            if ($subject) {
-                $prompt = str_replace('{subject}', $subject['title'], $prompt);
-
-                // Mark the subject as used
-                $this->db->table('ai_subjects')->where('id', $subject['id'])->update(['used' => 1]);
-            } else {
-                $prompt = str_replace('{subject}', 'Κάποιο τυχαίο θέμα', $prompt);
-            }
-        }
-
-        // Inject Date
-        if ($alias === 'news' || $alias === 'pythia') {
-            $fmt = new \IntlDateFormatter('el_GR', \IntlDateFormatter::LONG, \IntlDateFormatter::NONE);
-
-            // Format today's date
-            $today = $fmt->format(new \DateTime());
-
-            // Format yesterday's date
-            $yesterdayDate = new \DateTime('-30 day');
-            $yesterday = $fmt->format($yesterdayDate);
-
-            // Replace both {date} and {yesterday} in the prompt
-            $prompt = str_replace(['{date}', '{yesterday}'], [$today, $yesterday], $prompt);
-        }
-
-        try {
-            $output = OpenAIService::chat($prompt);
-        } catch (\Throwable $e) {
-            log_message('error', "AI Error for prompt->'$id': " . $e->getMessage());
-        }
-
-        $responses[] = [
-            'prompt_id' => $id,
-            'body'      => $this->sanitizeResponse($output)
-        ];
-    }
-
-    // Batch update responses
-    if (!empty($responses)) {
-        $this->db->table('ai_posts')->insertBatch($responses);
-    }
-
-    // Log successful AI run
-    $this->db->table('cron_log')->insert(['type' => 'AI', 'log' => 'Success']);
 }
 
 /**
