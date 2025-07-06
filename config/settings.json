@@ -54,22 +54,20 @@
         "popular_count": 30
     },
     "system": {
-        "version": 31.11,
+        "version": "1.7.34",
         "logo_height": 32,
-		"trending_range": 24,
+        "trending_range": 24,
         "ip2location": false
     },
     "meta": {
         "site_name": "TomsNews",
-        "site_title": "TomsNews — Free Speech Oasis",
-        "site_description": "TomsNews — Free Speech Oasis",
+        "site_title": "TomsNews \u2014 Free Speech Oasis",
+        "site_description": "TomsNews \u2014 Free Speech Oasis",
         "twitter": "@tomsnews_blog"
     },
     "company": {
         "name": "TomsNews",
         "email": "tom@tomsnews.blog",
         "support_email": "tom@tomsnews.blog"
-
     }
-
 }

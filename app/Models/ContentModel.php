@@ -46,7 +46,7 @@ class ContentModel extends Model {
  * @return array            ['posts' => array, 'pagination' => array (optional)]
  */
 public function getPosts(
-    int $amount = MAX_POSTS,
+    ?int $amount = null,
     int $topic_id = 0,
     int $user_id = 0,
     int $page = 1,
@@ -57,6 +57,7 @@ public function getPosts(
     bool $review = false
 ) : array {
     $tier = tier(); // Access level of the current session user
+    $amount = $amount ?? setting('posts.post_count', 30);
     $builder = $this->db->table('posts p');
     $builder->join('users u', 'u.id = p.user_id');
     $builder->join('topics t', 't.id = p.topic_id');
@@ -198,12 +199,13 @@ public function getSinglePost(int $id): ?array {
  * @return array Ranked posts and pagination metadata (if applicable).
  */
 public function getRankingPosts(
-    int $amount = MAX_POSTS,
+    ?int $amount = null,
     string $type = 'popular',
     int $page = 1,
     bool $pagination = true
 ): array {
     $tier = tier();
+    $amount = $amount ?? setting('posts.post_count', 30);
     $builder = $this->db->table('posts p');
 
     // Select core fields

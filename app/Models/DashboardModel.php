@@ -612,32 +612,6 @@ public function getBlocks(): array {
 }
 
 /**
- * Retrieves settings grouped by their setting group title.
- *
- * This method fetches all settings from the database along with their setting group titles,
- * and returns them grouped by setting group in an associative array.
- *
- * @return array<string, array> An associative array where each key is a setting group title,
- *                              and each value is an array of settings with keys:
- *                              - (all original columns from settings table)
- *                              - setting_group (string|null) The setting group title, or null if none.
- */
-public function getSettings(): array {
-    $results = $this->db->table('settings s')
-                        ->select('s.*, g.title AS setting_group')
-                        ->join('setting_groups g', 'g.id = s.setting_group_id', 'left')
-                        ->orderBy('g.position', 'ASC')
-                        ->orderBy('s.position', 'ASC')
-                        ->get()
-                        ->getResultArray();
-
-    return array_reduce($results, function (array $groups, array $setting): array {
-        $groups[$setting['setting_group']][] = $setting;
-        return $groups;
-    }, []);
-}
-
-/**
  * Retrieves a list of predefined admin links.
  *
  * This method returns an array of admin link definitions used for navigation or shortcuts

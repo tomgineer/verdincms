@@ -54,7 +54,7 @@ public function index() {
 
     // Store in cache if applicable (Cached is enabled && !logged_in)
     if ($shouldCache) {
-        cache()->save($cacheName, $output, CACHE_TIMEOUT); // 1 Hour
+        cache()->save($cacheName, $output, setting("cache.lifetime")); // 1 Hour
     }
 
     echo $output;
@@ -114,7 +114,7 @@ public function post(int|string $id) {
 
     // Store in cache if applicable (cache different versions per tier)
     if ($shouldCache) {
-        cache()->save($cacheName, $output, CACHE_TIMEOUT); // 1 Hour
+        cache()->save($cacheName, $output, setting("cache.lifetime")); // 1 Hour
     }
 
     echo $output;
@@ -204,7 +204,7 @@ public function page(string $slug) {
 
     // Store in cache if applicable (cache by page slug)
     if ($shouldCache) {
-        cache()->save($cacheName, $output, CACHE_TIMEOUT);
+        cache()->save($cacheName, $output, setting("cache.lifetime"));
     }
 
     echo $output;
@@ -256,7 +256,7 @@ public function topic(string $slug) {
 
     // Store in cache if applicable
     if ($shouldCache) {
-        cache()->save($cacheKey, $output, CACHE_TIMEOUT);
+        cache()->save($cacheKey, $output, setting("cache.lifetime"));
     }
 
     echo $output;
@@ -309,7 +309,7 @@ public function author(string $handle) {
 
     // Store in cache if applicable
     if ($shouldCache) {
-        cache()->save($cacheKey, $output, CACHE_TIMEOUT);
+        cache()->save($cacheKey, $output, setting("cache.lifetime"));
     }
 
     echo $output;
@@ -356,7 +356,7 @@ public function ranking(string $type) {
 
     // Store in cache if applicable
     if ($shouldCache) {
-        cache()->save($cacheKey, $output, CACHE_TIMEOUT);
+        cache()->save($cacheKey, $output, setting("cache.lifetime"));
     }
 
     echo $output;
@@ -397,7 +397,7 @@ public function featured() {
 
     // Store in cache if applicable
     if ($shouldCache) {
-        cache()->save($cacheName, $output, CACHE_TIMEOUT);
+        cache()->save($cacheName, $output, setting("cache.lifetime"));
     }
 
     echo $output;

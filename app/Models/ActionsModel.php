@@ -247,29 +247,43 @@ public function getActionsArray() {
 }
 
 /**
- * Increments the system version by 0.01.
+ * Increments the system version by 1 on the patch segment (e.g., 7.1.31 → 7.1.32).
  *
- * Reads the current version from the settings table,
- * increments it, and updates the value in place.
- *
- * @return void
+ * @return bool True on success, false on failure
  */
-private function updateVersion():void {
-    $row = $this->db->table('settings')
-                    ->select('value')
-                    ->where('setting', 'version')
-                    ->get()->getRow();
+function updateVersion(): bool {
+    $path = ROOTPATH . 'config/settings.json';
 
-    if ($row) {
-        $currentVersion = floatval($row->value);
-        $newVersion     = $currentVersion + 0.01;
-
-        $this->db->table('settings')
-                 ->set('value', number_format($newVersion, 2, '.', ''))
-                 ->where('setting', 'version')
-                 ->update();
+    if (!is_file($path)) {
+        return false;
     }
+
+    $json = file_get_contents($path);
+    $settings = json_decode($json, true);
+
+    if (!isset($settings['system']['version'])) {
+        return false;
+    }
+
+    $version = $settings['system']['version'];
+    $segments = explode('.', $version);
+
+    // Ensure it has at least 3 segments (major.minor.patch)
+    while (count($segments) < 3) {
+        $segments[] = '0';
+    }
+
+    // Increment the patch segment
+    $segments[2] = (string)((int)$segments[2] + 1);
+
+    $settings['system']['version'] = implode('.', $segments);
+
+    // Encode JSON with pretty-print and write it back
+    $encoded = json_encode($settings, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+
+    return file_put_contents($path, $encoded) !== false;
 }
+
 
 /**
  * Generates or overwrites the robots.txt file.

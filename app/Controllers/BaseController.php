@@ -108,7 +108,7 @@ abstract class BaseController extends Controller
 
                 // Store in cache
                 if ($shouldCache) {
-                    cache()->save($cacheKey, $this->data[$key], CACHE_TIMEOUT);
+                    cache()->save($cacheKey, $this->data[$key], setting("cache.lifetime"));
                 }
             }
         }

@@ -414,7 +414,7 @@ public function getOverviewData() {
     // Return
     $result = compact('averages', 'growth', 'content', 'users', 'system');
 
-    cache()->save($cacheKey, $result, CACHE_TIMEOUT);
+    cache()->save($cacheKey, $result, setting("cache.lifetime"));
 
     return $result;
 }

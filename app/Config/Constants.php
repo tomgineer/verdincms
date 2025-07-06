@@ -88,5 +88,3 @@ defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125);    // highest a
  | settings such as timeouts, paths, limits, or flags.
  |
  */
-defined('CACHE_TIMEOUT') || define('CACHE_TIMEOUT', 7200); // 1 Hour = 3600
-defined('MAX_POSTS') || define('MAX_POSTS', 30);

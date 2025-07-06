@@ -96,13 +96,4 @@
         </svg>
         <span>Info</span>
     </a>
-
-    <a href="<?=site_url('admin/dashboard/settings/settings')?>"
-        data-match="admin/dashboard/settings/settings"
-        class="dash-sidenav__item">
-        <svg class="svg-icon" aria-hidden="true">
-            <use href="#settings"></use>
-        </svg>
-        <span>Settings</span>
-    </a>
 </nav>
