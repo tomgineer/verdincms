@@ -32,8 +32,8 @@ VerdinCMS is built for developers who value control and transparency. It avoids 
 
 It is intended to be understandable, customizable, and ready to deploy on modern PHP servers with minimal setup. Developers are encouraged to fork, modify, and adapt VerdinCMS to their specific needs without being locked into a proprietary ecosystem.
 
-![PHP 8](https://img.shields.io/badge/PHP-8.0-8892BF?logo=php&logoColor=white)
-![CodeIgniter 4](https://img.shields.io/badge/CodeIgniter-4-EF4223?logo=codeigniter&logoColor=white)
-![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwind-css&logoColor=white)
+![PHP 8.2](https://img.shields.io/badge/PHP-8.2-8892BF?logo=php&logoColor=white)
+![CodeIgniter 4.6](https://img.shields.io/badge/CodeIgniter-4.6-EF4223?logo=codeigniter&logoColor=white)
+![Tailwind CSS 4.1](https://img.shields.io/badge/Tailwind_CSS-4.1-06B6D4?logo=tailwind-css&logoColor=white)
 ![ECMAScript](https://img.shields.io/badge/ECMAScript-2024-F7DF1E?logo=javascript&logoColor=black)
 ![SASS](https://img.shields.io/badge/SASS-1.6.0-CC6699?logo=sass&logoColor=white)
