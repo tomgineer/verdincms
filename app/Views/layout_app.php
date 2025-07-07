@@ -47,9 +47,9 @@
             <?= $this->renderSection('main') ?>
         </main>
 
-        <footer class="mt-auto">
+        <section>
             <?= $this->include('site/footer') ?>
-        </footer>
+        </section>
 
     </body>
 </html>
