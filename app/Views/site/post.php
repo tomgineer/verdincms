@@ -19,8 +19,6 @@
         </div>
     <?php endif;?>
 
-    <?= $this->include('components/audio') ?>
-
     <div class="container container--xl">
 
         <?php if ($post['review']==1):?>

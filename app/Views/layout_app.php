@@ -48,7 +48,7 @@
         </main>
 
         <footer class="mt-auto">
-            <!--</?= $this->include('site/footer') ?>-->
+            <?= $this->include('site/footer') ?>
         </footer>
 
     </body>

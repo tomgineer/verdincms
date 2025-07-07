@@ -1,16 +1,23 @@
 <section>
-    <ul class="plain-list <?= $style ?? '' ?>">
+    <ul>
         <?php foreach ($posts as $post):?>
-            <li class="plain-list__item">
-                <a class="plain-list__link" href="<?=site_url('post/'. esc($post['id']))?>">
-                    <h4 class="plain-list__title"><?=esc($post['title'])?></h4>
-                </a>
+            <li class="mb-4">
 
-                <p class="plain-list__info">
-                    <a href="<?=site_url('author/'. esc($post['author_handle']))?>"><?=esc($post['author'])?></a>
-                    / <?=esc($post['f_created'])?> in
-                    <a href="<?=site_url('topic/'. esc($post['topic_slug']))?>"><?=esc($post['topic'])?></a>
-                </p>
+                <div class="card bg-base-200 card-md">
+                    <div class="card-body">
+                        <a class="mb-1 hover:underline" href="<?=site_url('post/'. esc($post['id']))?>">
+                            <h2 class="card-title font-medium"><?=esc($post['title'])?></h2>
+                        </a>
+                        <p><?=esc($post['subtitle'])?></p>
+
+                        <div class="card-actions justify-end">
+                            <a class="text-secondary hover:underline" href="<?=site_url('author/'. esc($post['author_handle']))?>"><?=esc($post['author'])?></a>
+                            <span class="text-base-content/50">/ <?=esc($post['ago'])?> in</span>
+                            <a class="text-secondary hover:underline" href="<?=site_url('topic/'. esc($post['topic_slug']))?>"><?=esc($post['topic'])?></a>
+                        </div>
+                    </div>
+                </div>
+
             </li>
         <?php endforeach;?>
     </ul>

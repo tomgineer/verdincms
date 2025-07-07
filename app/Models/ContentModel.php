@@ -216,7 +216,7 @@ public function getRankingPosts(
     $builder = $this->db->table('posts p');
 
     // Select core fields
-    $builder->select('p.id, p.title, p.subtitle, p.photo')
+    $builder->select('p.id, p.title, p.subtitle, p.photo, p.created')
             ->select('DATE_FORMAT(p.created, "%b %d, %Y") AS f_created', false)
             ->select('CONCAT(u.first_name, " ", u.last_name) AS author', false)
             ->select('u.author AS author_handle')
@@ -252,6 +252,11 @@ public function getRankingPosts(
     $builder->limit($amount, $offset);
 
     $postData['posts'] = $builder->get()->getResultArray();
+
+    // Add human readable ago column
+    array_walk($postData['posts'], static function (&$row) {
+        $row['ago'] = Time::parse($row['created'])->humanize(); // e.g. "3 hours ago"
+    });
 
     // Add pagination metadata
     if ( $pagination ) {
