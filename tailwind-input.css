@@ -3,3 +3,14 @@
 @plugin "daisyui" {
   themes: nord --default, dark --prefersdark, nord;
 }
+
+@layer base {
+    body {
+        font-family: 'Arimo', sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Fira Sans Extra Condensed', sans-serif;
+        font-weight: 700;
+    }
+}

@@ -2,6 +2,7 @@
 
 use CodeIgniter\Model;
 use App\Libraries\SystemCore;
+use CodeIgniter\I18n\Time;
 
 /**
  * ****************************************************
@@ -63,7 +64,7 @@ public function getPosts(
     $builder->join('topics t', 't.id = p.topic_id');
 
     // Basic post fields
-    $builder->select('p.id, p.title, p.photo');
+    $builder->select('p.id, p.title, p.subtitle, p.photo, p.created');
     $builder->select('DATE_FORMAT(p.created, "%b %d, %Y") AS f_created', false);
     $builder->select('CONCAT(u.first_name, " ", u.last_name) AS author', false);
     $builder->select('u.author AS author_handle');
@@ -103,6 +104,12 @@ public function getPosts(
 
     // Fetch and return posts
     $postData['posts'] = $builder->get()->getResultArray();
+
+    // Add human readable ago column
+    array_walk($postData['posts'], static function (&$row) {
+        $row['ago'] = Time::parse($row['created'])->humanize(); // e.g. "3 hours ago"
+    });
+
     return $postData;
 }
 

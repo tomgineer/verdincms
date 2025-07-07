@@ -22,10 +22,8 @@
         <?php endif; ?>
 
         <link rel="stylesheet" href="<?=path_css()?>tailwind.css?v=<?=setting('system.version')?>">
-
-<!--        <link rel="stylesheet" href="</?=path_assets()?>fonts/fonts.css?v=</?=setting('system.version')?>">-->
-<!--        <link rel="stylesheet" href="</?=path_css()?>vernito.css?v=</?=setting('system.version')?>">-->
-<!--        <link rel="stylesheet" href="</?=path_css()?>app.css?v=</?=setting('system.version')?>">-->
+        <link rel="stylesheet" href="<?=path_css()?>app.css?v=<?=setting('system.version')?>">
+        <link rel="stylesheet" href="<?=path_assets()?>fonts/fonts.css?v=<?=setting('system.version')?>">
 
         <?php if ( !empty($highlight) ): ?>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github-dark.min.css">

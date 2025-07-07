@@ -1,6 +1,19 @@
 <?= $this->extend('layout_app') ?>
 <?= $this->section('main') ?>
 
+<div class="container mx-auto px-4">
+    <div class="flex flex-col lg:flex-row gap-4">
+        <section class="flex-1">
+            <?= view('components/post_list', ['posts' => $latest_updates]) ?>
+        </section>
+
+        <aside class="w-full lg:w-[30%]">
+            aside
+        </aside>
+    </div>
+</div>
+
+
 <!--<div class="container container--front mt-2 mt-sm-0 mb-7">
     <div class="frontpage">
         <div class="frontpage__main">
@@ -35,19 +48,6 @@
     </div>
 </div>-->
 
-<p>Hello World</p>
 
-<button class="btn btn-active">Default</button>
-<button class="btn btn-active btn-primary">Primary</button>
-<button class="btn btn-active btn-secondary">Secondary</button>
-<button class="btn btn-active btn-accent">Accent</button>
-<button class="btn btn-active btn-info">Info</button>
-<button class="btn btn-active btn-success">Success</button>
-<button class="btn btn-active btn-warning">Warning</button>
-<button class="btn btn-active btn-error">Error</button>
-
-<h1 class="text-3xl font-bold underline text-blue-500 bg-violet-500 hover:bg-amber-300">
-    Hello world!
-</h1>
 
 <?= $this->endSection() ?>

@@ -2,25 +2,31 @@
 
     <ul class="post-list <?=(!empty($ranked)?'ranked':'')?>">
         <?php foreach ($posts['posts'] as $post):?>
-            <li class="post-list__item">
-                <a class="post-list__image-link" href="<?=site_url('post/'. esc($post['id']))?>">
-                    <picture>
-                        <source srcset="<?= path_img_xs() . esc($post['photo']) . '.webp' ?>" media="(min-width: 800px)">
-                        <img class="post-list__image" src="<?= path_img_tn() . esc($post['photo']) . '.webp' ?>" alt="Post Photo" loading="lazy">
-                    </picture>
-                </a>
+            <li class="mb-10">
 
-                <div class="post-list__body">
-                    <a class="post-list__link" href="<?=site_url('post/'. esc($post['id']))?>">
-                        <h2 class="post-list__title"><?=esc($post['title'])?></h2>
-                    </a>
+                <div class="card lg:card-side bg-base-100">
+                    <figure class="w-full lg:w-1/3">
+                        <a href="<?=site_url('post/'. esc($post['id']))?>">
+                            <img class="rounded-[25%_0_25%_0] shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:brightness-110 hover:shadow-xl" src="<?= path_img_tn() . esc($post['photo']) . '.webp' ?>" alt="Post Photo" loading="lazy">
+                        </a>
+                    </figure>
 
-                    <p class="post-list__info">
-                        <a href="<?=site_url('author/'. esc($post['author_handle']))?>"><?=esc($post['author'])?></a>
-                        / <?=esc($post['f_created'])?> in
-                        <a href="<?=site_url('topic/'. esc($post['topic_slug']))?>"><?=esc($post['topic'])?></a>
-                    </p>
+                    <div class="card-body w-full lg:w-2/3">
+
+                        <a class="mb-2 hover:underline" href="<?=site_url('post/'. esc($post['id']))?>">
+                            <h2 class="card-title text-2xl font-medium"><?=esc($post['title'])?></h2>
+                        </a>
+
+                        <p class="text-lg"><?=esc($post['subtitle'])?></p>
+
+                        <div class="card-actions justify-end">
+                            <a class="text-secondary hover:underline" href="<?=site_url('author/'. esc($post['author_handle']))?>"><?=esc($post['author'])?></a>
+                            / <?=esc($post['ago'])?> in
+                            <a class="text-secondary hover:underline" href="<?=site_url('topic/'. esc($post['topic_slug']))?>"><?=esc($post['topic'])?></a>
+                        </div>
+                    </div>
                 </div>
+
 
             </li>
         <?php endforeach;?>
