@@ -39,7 +39,7 @@
     <body class="<?=body_class()?>" id="<?=body_class()?>">
 
         <header>
-           <!-- </?= $this->include('nav/nav') ?>-->
+            <?= $this->include('navbar/navbar') ?>
             <?= $this->renderSection('header') ?>
         </header>
 
@@ -47,9 +47,9 @@
             <?= $this->renderSection('main') ?>
         </main>
 
-        <section>
+        <footer>
             <?= $this->include('site/footer') ?>
-        </section>
+        </footer>
 
     </body>
 </html>

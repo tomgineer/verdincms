@@ -7,7 +7,7 @@
                 <div class="card lg:card-side bg-base-100">
                     <figure class="w-full lg:w-1/3">
                         <a href="<?=site_url('post/'. esc($post['id']))?>">
-                            <img class="rounded-[25%_0_25%_0] shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:brightness-110 hover:shadow-xl" src="<?= path_img_tn() . esc($post['photo']) . '.webp' ?>" alt="<?=esc($post['title'])?>" loading="lazy">
+                            <img class="rounded-[25%_0_25%_0] shadow-sm transition-all duration-300 ease-in-out hover:scale-105 hover:brightness-110 hover:shadow-xl" src="<?= path_img_tn() . esc($post['photo']) . '.webp' ?>" alt="<?=esc($post['title'])?>" loading="lazy">
                         </a>
                     </figure>
 
