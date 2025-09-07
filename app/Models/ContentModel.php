@@ -129,7 +129,7 @@ public function getRelatedPosts(int $id, int $topic_id, int $amount = 10) {
     $builder = $this->db->table('posts p')
                         ->join('users u', 'u.id = p.user_id')
                         ->join('topics t', 't.id = p.topic_id')
-                        ->select('p.id, p.title')
+                        ->select('p.id, p.title, p.subtitle, p.created')
                         ->select('DATE_FORMAT(p.created, "%b %d, %Y") AS f_created', false)
                         ->select('CONCAT(u.first_name, " ", u.last_name) AS author', false)
                         ->select('u.author AS author_handle')
@@ -143,28 +143,32 @@ public function getRelatedPosts(int $id, int $topic_id, int $amount = 10) {
     $clonedBuilder = clone $builder;
 
     // First try: same topic
-    $result = $builder->where('p.topic_id', $topic_id)
+    $posts = $builder->where('p.topic_id', $topic_id)
                       ->limit($amount)
                       ->get()
                       ->getResultArray();
 
-    $found = count($result);
+    // If we still need more, pull random others excluding what we already have
+    if (count($posts) < $amount) {
 
-    if ($found >= $amount) {
-        return $result;
+        // Fallback: fetch from other topics, excluding already fetched IDs
+        $existingIds = array_column($posts, 'id');
+        $remaining = $amount - count($posts);
+
+        if (!empty($existingIds)) {
+            $clonedBuilder->whereNotIn('p.id', $existingIds);
+        }
+
+        $fallback = $clonedBuilder->limit($remaining)->get()->getResultArray();
+        $posts    = array_merge($posts, $fallback);
     }
 
-    // Fallback: fetch from other topics, excluding already fetched IDs
-    $existingIds = array_column($result, 'id');
-    $remaining = $amount - $found;
+    // Add human readable ago column
+    array_walk($posts, static function (&$row) {
+        $row['ago'] = Time::parse($row['created'])->humanize(); // e.g. "3 hours ago"
+    });
 
-    if (!empty($existingIds)) {
-        $clonedBuilder->whereNotIn('p.id', $existingIds);
-    }
-
-    $fallback = $clonedBuilder->limit($remaining)->get()->getResultArray();
-
-    return array_merge($result, $fallback);
+    return $posts;
 }
 
 

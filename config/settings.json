@@ -1,8 +1,8 @@
 {
     "site": {
-        "title": "VerdinCMS",
-        "url": "https://verdincms.com",
-        "language": "en",
+        "title": "Tomgineer",
+        "url": "https://tomgineer.com",
+        "language": "el",
         "timezone": "Europe/Berlin"
     },
     "theme": {
@@ -14,7 +14,7 @@
         "lifetime": 3600
     },
     "admin": {
-        "email": "tom@tpapatolis.com",
+        "email": "info@tomgineer.com",
         "login_required": true
     },
     "social_media": {
@@ -55,19 +55,19 @@
     },
     "system": {
         "version": "1.7.34",
-        "logo_height": 32,
+        "logo_height": 34,
         "trending_range": 24,
         "ip2location": false
     },
     "meta": {
-        "site_name": "TomsNews",
-        "site_title": "TomsNews \u2014 Free Speech Oasis",
-        "site_description": "TomsNews \u2014 Free Speech Oasis",
-        "twitter": "@tomsnews_blog"
+        "site_name": "Tomgineer",
+        "site_title": "Tomgineer — Smarter ways to live and work",
+        "site_description": "Tomgineer — Smarter ways to live and work",
+        "twitter": "@tomgineer"
     },
     "company": {
-        "name": "TomsNews",
-        "email": "tom@tomsnews.blog",
-        "support_email": "tom@tomsnews.blog"
+        "name": "Verdin Dynamics",
+        "email": "info@verdindynamics.com",
+        "support_email": "support@verdindynamics.com"
     }
 }

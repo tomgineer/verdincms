@@ -97,7 +97,8 @@
         </ul>
     </div>
 
-    <div class="navbar-end">
+    <div class="navbar-end flex gap-2">
+        <a class="btn btn-accent btn-outline">Edit</a>
         <a class="btn btn-secondary">Login</a>
     </div>
 </nav>

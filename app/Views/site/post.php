@@ -12,12 +12,12 @@
         </section>
     </div>
 
-    <?php if (!empty($post['avatar'])):?>
+<!--    </?php if (!empty($post['avatar'])):?>
         <div class="post__author">
-            <img class="post__author-img" src="<?=path_avatar().pathinfo($post['avatar'], PATHINFO_FILENAME).'.webp'?>" alt="Avatar" loading="lazy">
-            <p class="post__author-info">γράφει ο:<br> <a href="<?= site_url('author/' . esc($post['user_handle'])) ?>"><?= esc($post['author']) ?></a></p>
+            <img class="post__author-img" src="</?=path_avatar().pathinfo($post['avatar'], PATHINFO_FILENAME).'.webp'?>" alt="Avatar" loading="lazy">
+            <p class="post__author-info">γράφει ο:<br> <a href="</?= site_url('author/' . esc($post['user_handle'])) ?>"></?= esc($post['author']) ?></a></p>
         </div>
-    <?php endif;?>
+    </?php endif;?>-->
 
     <div class="container container--xl">
 
@@ -38,8 +38,8 @@
         </section>
     </div>
 
-    <?= $this->include('components/share') ?>
-    <?= $this->include('components/post_info') ?>
+<!--    </?= $this->include('components/share') ?>
+    </?= $this->include('components/post_info') ?>-->
 
 </article>
 
