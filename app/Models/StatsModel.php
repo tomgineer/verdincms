@@ -277,40 +277,43 @@ public function ip2location(string $ip): array {
     }
 
     // IPv4 Handling
-    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
-        $current_ip =  sprintf('%u', ip2long($ip));
+    // if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+    //     $current_ip =  sprintf('%u', ip2long($ip));
 
-        $result = $this->db->table('ip2loc_ipv4')
-                           ->select('country_name, country_code')
-                           ->where('ip_from <=', $current_ip)
-                           ->where('ip_to >=', $current_ip)
-                           ->limit(1)
-                           ->get()->getRowArray();
-    }
+    //     $result = $this->db->table('ip2loc_ipv4')
+    //                        ->select('country_name, country_code')
+    //                        ->where('ip_from <=', $current_ip)
+    //                        ->where('ip_to >=', $current_ip)
+    //                        ->limit(1)
+    //                        ->get()->getRowArray();
+    // }
     // IPv6 Handling
-    else {
-        $ipBin = @inet_pton($ip);
+    // else {
+    //     $ipBin = @inet_pton($ip);
 
-        if ($ipBin === false) {
-            return $unknown; // Invalid IP
-        }
+    //     if ($ipBin === false) {
+    //         return $unknown; // Invalid IP
+    //     }
 
-        $ipBig = gmp_import($ipBin);
-        $ipStr = gmp_strval($ipBig);
+    //     $ipBig = gmp_import($ipBin);
+    //     $ipStr = gmp_strval($ipBig);
 
-        $result = $this->db->table('ip2loc_ipv6')
-                           ->select('country_name, country_code')
-                           ->where('ip_from <=', $ipStr)
-                           ->where('ip_to >=', $ipStr)
-                           ->limit(1)
-                           ->get()
-                           ->getRowArray();
-    }
+    //     $result = $this->db->table('ip2loc_ipv6')
+    //                        ->select('country_name, country_code')
+    //                        ->where('ip_from <=', $ipStr)
+    //                        ->where('ip_to >=', $ipStr)
+    //                        ->limit(1)
+    //                        ->get()
+    //                        ->getRowArray();
+    // }
 
-    return [
-        'country'      => $result['country_name'] ?? $unknown['country'],
-        'country_code' => $result['country_code'] ?? $unknown['country_code'],
-    ];
+    // Remove this after installing the new API IP Resolution (https://ip-api.com/)
+    return $unknown;
+
+    // return [
+    //     'country'      => $result['country_name'] ?? $unknown['country'],
+    //     'country_code' => $result['country_code'] ?? $unknown['country_code'],
+    // ];
 }
 
 } // ─── End of Class ───

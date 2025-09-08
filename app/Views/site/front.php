@@ -15,21 +15,21 @@
         </section>
 
         <aside class="w-full lg:w-[30%]">
-            <a href="https://t.me/tomsnews" target="_blank">
-                <img src="<?=path_gfx().'telegram.webp?v=3'?>" alt="Follow Us on Telegram" loading="lazy">
+            <a href="https://www.youtube.com/@TomgineerChannel target="_blank">
+                <img src="<?=path_gfx().'youtube.webp?v=3'?>" alt="Join Me on YouTube" loading="lazy">
             </a>
 
-            <h2 class="text-3xl text-primary mt-8">Featured</h2>
+            <h2 class="text-3xl text-primary mt-8 mb-2">Featured</h2>
             <?= view('components/plain_list', ['posts' => $featured['posts']]) ?>
 
-            <a href="https://x.com/tomsnews_blog" target="_blank">
-                <img src="<?=path_gfx().'twitter.webp?v=3'?>" alt="Follow Us on Twitter (X)" loading="lazy">
+            <a href="https://rumble.com/c/c-7774896" target="_blank">
+                <img src="<?=path_gfx().'rumble.webp?v=3'?>" alt="Join Me on Rumble" loading="lazy">
             </a>
 
-            <h2 class="text-3xl text-primary mt-8">Trending</h2>
+            <h2 class="text-3xl text-primary mt-8 mb-2">Trending</h2>
             <?= view('components/plain_list', ['posts' => $trending['posts']]) ?>
 
-            <h3 class="text-3xl text-primary mt-8">Popular</h3>
+            <h2 class="text-3xl text-primary mt-8 mb-2">Popular</h2>
             <?= view('components/plain_list', ['posts' => $popular['posts']]) ?>
         </aside>
 

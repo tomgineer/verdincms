@@ -85,32 +85,32 @@ class BotRedirectFilter implements FilterInterface {
         }
 
         // Country check using cached IP location
-        if (setting('system.ip2location') === true) {
-            $ip = $request->getIPAddress();
-            $statsModel = new StatsModel();
-            $geo = $statsModel->getIpLocation($ip);
+        // if (setting('system.ip2location') === true) {
+        //     $ip = $request->getIPAddress();
+        //     $statsModel = new StatsModel();
+        //     $geo = $statsModel->getIpLocation($ip);
 
-            $blockedCountries = [
-                'China',
-                'Russian Federation',
-                'Ukraine',
-                'India',
-                'Brazil',
-                'Indonesia',
-                'Vietnam',
-                'Pakistan',
-                'Iran',
-                'Bangladesh',
-                'Nigeria',
-                'Israel',
-                'Lithuania',
-                'Kazakhstan',
-            ];
+        //     $blockedCountries = [
+        //         'China',
+        //         'Russian Federation',
+        //         'Ukraine',
+        //         'India',
+        //         'Brazil',
+        //         'Indonesia',
+        //         'Vietnam',
+        //         'Pakistan',
+        //         'Iran',
+        //         'Bangladesh',
+        //         'Nigeria',
+        //         'Israel',
+        //         'Lithuania',
+        //         'Kazakhstan',
+        //     ];
 
-            if (in_array($geo['country'], $blockedCountries, true)) {
-                return redirect()->to('https://www.google.com');
-            }
-        }
+        //     if (in_array($geo['country'], $blockedCountries, true)) {
+        //         return redirect()->to('https://www.google.com');
+        //     }
+        // }
 
         // No return = continue normally
     }

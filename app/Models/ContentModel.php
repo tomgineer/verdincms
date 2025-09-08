@@ -181,22 +181,25 @@ public function getRelatedPosts(int $id, int $topic_id, int $amount = 10) {
 public function getSinglePost(int $id): ?array {
     $tier = tier();
 
-    return $this->db->table('posts p')
-                    ->select([
-                        'p.*',
-                        "DATE_FORMAT(p.created, '%b %d, %Y') as f_created",
-                        'CONCAT(u.first_name, " ", u.last_name) as author',
-                        't.id as topic_id',
-                        't.title as topic',
-                        't.slug as topic_slug',
-                        'u.author as user_handle',
-                        'u.avatar'
-                    ])
-                    ->join('users u', 'p.user_id = u.id')
-                    ->join('topics t', 'p.topic_id = t.id')
-                    ->where('p.id', $id)
-                    ->where('p.accessibility <=', $tier)
-                    ->get()->getRowArray();
+    $post =  $this->db->table('posts p')
+                      ->select([
+                          'p.*',
+                          "DATE_FORMAT(p.created, '%b %d, %Y') as f_created",
+                          'CONCAT(u.first_name, " ", u.last_name) as author',
+                          't.id as topic_id',
+                          't.title as topic',
+                          't.slug as topic_slug',
+                          'u.author as author_handle',
+                          'u.avatar'
+                      ])
+                      ->join('users u', 'p.user_id = u.id')
+                      ->join('topics t', 'p.topic_id = t.id')
+                      ->where('p.id', $id)
+                      ->where('p.accessibility <=', $tier)
+                      ->get()->getRowArray();
+
+    $post['ago'] = Time::parse($post['created'])->humanize();
+    return $post;
 }
 
 /**

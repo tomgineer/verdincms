@@ -7,5 +7,8 @@
     "scripts": {
         "dev": "npx @tailwindcss/cli -i ./tailwind-input.css -o ./public/css/tailwind.css --watch",
         "build:css": "npx @tailwindcss/cli -i ./tailwind-input.css -o ./public/css/tailwind.css --minify"
+    },
+    "devDependencies": {
+        "@tailwindcss/typography": "^0.5.16"
     }
 }

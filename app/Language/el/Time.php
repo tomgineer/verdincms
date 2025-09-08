@@ -25,7 +25,7 @@ return [
     'hours'          => '{0, plural, =1{# ώρα} other{# ώρες}}', // '{0, plural, =1{# hour} other{# hours}}',
     'minutes'        => '{0, plural, =1{# λεπτό} other{# λεπτά}}', // '{0, plural, =1{# minute} other{# minutes}}',
     'seconds'        => '{0, plural, =1{# δευτερόλεπτο} other{# δευτερόλεπτα}}', // '{0, plural, =1{# second} other{# seconds}}',
-    'ago'            => '{0} πίσω', // '{0} ago',
+    'ago'            => 'πριν {0}', // '{0} ago',
     'inFuture'       => 'σε {0}', // 'in {0}',
     'yesterday'      => 'Εχθές', // 'Yesterday',
     'tomorrow'       => 'Αύριο', // 'Tomorrow',
