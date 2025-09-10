@@ -506,21 +506,22 @@ public function getSocialsList(): array {
     $socials = setting('social_media') ?? [];
     $list = [];
 
+    // icons available in your sprite (public/gfx/icons.svg)
+    $availableIcons = [
+        'rumble','youtube','instagram','x','whatsapp',
+        'tiktok','facebook','telegram','reddit','discord','github'
+    ];
+
     foreach ($socials as $key => $value) {
         if (!empty($value)) {
             $list[] = [
                 'setting' => $key,
                 'value'   => $value,
+                'label'   => ucfirst($key),
+                'icon_id' => in_array($key, $availableIcons, true) ? $key : 'fallback',
             ];
         }
     }
-
-    // Append the static contact link
-    $list[] = [
-        'setting' => 'contact',
-        'value'   => site_url('info/contact'),
-    ];
-
     return $list;
 }
 

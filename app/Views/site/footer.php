@@ -12,13 +12,13 @@
         <h6 class="text-lg text-primary">Stats</h6>
         <p><span class="text-base-content/70">Total posts:</span> <?=esc($total_posts)?></p>
         <p><span class="text-base-content/70">Public posts:</span> <?=esc($public_posts)?></p>
-        <p><a href="https://github.com/tomgineer/verdincms" target="_blank" class="link-hover text-base-content/70">VerdinCMS version:</a> <?=setting('system.version')?></p>
+        <p><a href="https://github.com/tomgineer/verdincms" target="_blank" class="link-hover text-base-content/70">Powered by Voralis Core:</a> <?=setting('system.version')?></p>
         <p><span class="text-base-content/70">Rendered in:</span> {elapsed_time} sec</p>
     </nav>
 
     <?php foreach ($pages_list as $sectionName => $pages):?>
         <nav>
-            <h6 class="text-lg text-primary"><?=$sectionName?></h6>
+            <h3 class="text-xl text-primary"><?=$sectionName?></h3>
             <?php foreach ($pages as $page):?>
                 <?php if ( empty($page['url']) ):?>
                     <a class="link link-hover" href="<?=site_url($page['s_slug'].'/'.$page['slug'])?>" data-match="<?=$page['s_slug'].'/'.$page['slug']?>"><?=$page['label']?></a>
@@ -31,25 +31,32 @@
 
 </section>
 
-<section class="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4 pb-8">
-    <aside class="grid-flow-col gap-4 items-center">
+<section class="footer bg-base-200 text-base-content border-base-100 border-t-2 px-10 py-8 pb-8">
+    <aside class="grid-flow-col gap-6 items-center">
         <a href="<?=base_url()?>">
-            <img class="h-20" src="<?=path_gfx().'logo_color.svg'?>" alt="Logo Color" loading="lazy">
+            <img class="h-14" src="<?=path_gfx().'logo_color.svg'?>" alt="Logo Color" loading="lazy">
         </a>
-        <div>
+        <div class="text-base-content/70">
             <?=block($base_blocks,'footer','footer_copyright','body')?>
         </div>
     </aside>
 
     <nav class="md:place-self-center md:justify-self-end">
         <div class="grid grid-flow-col gap-4">
-            <?php foreach ($socials_list as $social):?>
-                <a class="hover:text-secondary" href="<?=$social['value']?>" target="_blank" rel="nofollow" title="<?=ucfirst($social['setting'])?>">
-                    <svg class="svg-icon svg-icon-2x" aria-hidden="true">
-                        <use href="<?=svg($social['setting'])?>"></use>
+            <?php foreach ($socials_list as $social): ?>
+                <a
+                    class="text-base-content/70 hover:text-secondary transform transition-transform duration-200 hover:scale-125"
+                    href="<?= esc($social['value']) ?>"
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    aria-label="<?= esc($social['label']) ?>"
+                    title="<?= esc($social['label']) ?>"
+                >
+                    <svg class="w-6 h-6 fill-current" aria-hidden="true" focusable="false">
+                        <use href="<?= path_gfx() . 'icons.svg#icon-' . esc($social['icon_id']) ?>"></use>
                     </svg>
                 </a>
-            <?php endforeach;?>
+            <?php endforeach; ?>
         </div>
     </nav>
 

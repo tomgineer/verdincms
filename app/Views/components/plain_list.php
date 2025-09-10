@@ -12,7 +12,7 @@
 
                         <div class="card-actions justify-end">
                             <a class="text-secondary hover:underline" href="<?=site_url('author/'. esc($post['author_handle']))?>"><?=esc($post['author'])?></a>
-                            <span class="text-base-content/50">/ <?=esc($post['ago'])?> in</span>
+                            <span class="text-base-content/50">/ <?=esc($post['ago'])?> <?=lang('misc.in')?></span>
                             <a class="text-secondary hover:underline" href="<?=site_url('topic/'. esc($post['topic_slug']))?>"><?=esc($post['topic'])?></a>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-<nav class="navbar bg-base-200 shadow-sm z-999 mb-16">
+<nav class="navbar bg-base-200 shadow-sm z-999">
     <div class="navbar-start">
 
         <div class="dropdown">

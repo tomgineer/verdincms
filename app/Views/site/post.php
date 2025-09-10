@@ -1,16 +1,16 @@
 <?= $this->extend('layout_app') ?>
 <?= $this->section('main') ?>
 
-<article class="container mx-auto px-4">
+<article class="container mx-auto px-4 mt-16">
 
     <div class="card lg:card-side bg-base-100">
         <figure class="w-full lg:w-1/3">
             <img class="rounded-[25%_0_25%_0] shadow-sm" src="<?= path_img() . esc($post['photo']) . '.webp' ?>" alt="<?=esc($post['title'])?>">
         </figure>
 
-        <div class="card-body w-full lg:w-2/3">
+        <div class="card-body w-full lg:w-2/3 px-2 lg:px-8">
 
-            <h1 class="card-title text-4xl font-medium leading-tight"><?=esc($post['title'])?></h1>
+            <h1 class="card-title text-3xl xl:text-5xl font-medium leading-tight"><?=esc($post['title'])?></h1>
 
             <p class="text-lg"><?=esc($post['subtitle'])?></p>
 
@@ -26,10 +26,9 @@
         <?= esc($post['body'], 'raw') ?>
     </div>
 
-
 </article>
 
-<section class="container mx-auto px-4 mt-16">
+<section class="container mx-auto px-4 py-12 mt-8 lg:py-24 lg:mt-16">
     <h2 class="text-3xl mb-4 text-primary">Related</h2>
     <?= view('components/plain_list', ['posts' => $related, 'style' => 'plain-list--columns']) ?>
 </section>
