@@ -1,56 +1,83 @@
 <?= $this->extend('layout_app') ?>
 <?= $this->section('main') ?>
 
-<section class="mt-4 mt-sm-1">
+<section class="mt-8 sm:mt-16">
+    <div class="mx-auto w-full max-w-3xl px-4">
 
-    <div class="container container--lg">
+        <?php if (empty($error)): ?>
 
-        <?php if ( empty($error) ):?>
+            <div class="card bg-base-200 shadow-sm">
+                <div class="card-body gap-4 sm:gap-6">
+                    <div>
+                        <h1 class="card-title text-2xl sm:text-3xl">Welcome back!</h1>
+                        <p class="text-base-content/80">
+                            <span class="font-medium text-base-content">Please log in to continue accessing your account.</span><br>
+                            New here? Click <span class="font-medium">Sign Up</span> to create your account and get started in seconds.
+                        </p>
+                    </div>
 
-            <div class="login mb-5">
-                <img class="login__image" src="<?=path_gfx().'monsters/monster_keys.svg?v=3'?>" alt="Login Image" loading="lazy">
-                <div class="login__main">
-                    <h1>Welcome back!</h1>
-                    <p><span class="login__raised">Please log in to continue accessing your account.</span><br>New here? Click Sign Up to create your account and get started in seconds.</p>
-
-                    <form action="<?=site_url('users/login')?>" method="post">
+                    <form action="<?= site_url('users/login') ?>" method="post" class="grid gap-4 sm:gap-5">
                         <?= csrf_field() ?>
 
-                        <div class="fieldset mb-05">
-                            <label class="fieldset__label">Email</label>
-                            <input class="fieldset__control" type="email" name="email" placeholder="Email" minlength="8" required>
+                        <div class="form-control">
+                            <label class="label" for="email">
+                                <span class="label-text">Email</span>
+                            </label>
+                            <input
+                                id="email"
+                                class="input input-bordered w-full"
+                                type="email"
+                                name="email"
+                                placeholder="you@example.com"
+                                minlength="8"
+                                required
+                                autocomplete="username"
+                            />
                         </div>
 
-                        <div class="fieldset mb-15">
-                            <label class="fieldset__label">Password</label>
-                            <input class="fieldset__control" type="password" name="password" placeholder="Password" minlength="3" required>
+                        <div class="form-control">
+                            <label class="label" for="password">
+                                <span class="label-text">Password</span>
+                            </label>
+                            <input
+                                id="password"
+                                class="input input-bordered w-full"
+                                type="password"
+                                name="password"
+                                placeholder="••••••••"
+                                minlength="3"
+                                required
+                                autocomplete="current-password"
+                            />
                         </div>
 
-                        <div class="login__buttonset">
-                            <a class="login__button disabled" href="<?=site_url('register')?>">Sign Up</a>
-                            <button class="login__button">Log in</button>
+                        <div class="mt-2 flex flex-col-reverse gap-2 sm:flex-row sm:items-center sm:justify-between">
+                            <a class="btn btn-ghost sm:btn-outline pointer-events-none opacity-50" href="#">Sign Up</a>
+                            <button class="btn btn-primary" type="submit">Log in</button>
                         </div>
-
                     </form>
-
                 </div>
             </div>
 
-        <?php else:?>
+        <?php else: ?>
 
-            <div class="login mb-5">
-                <img class="login__image" src="<?=path_gfx().'monsters/monster_shocked.svg?v=3'?>" alt="Login Failure">
-                <div class="login__main">
-                    <h2>Well, That Didn't Work...</h2>
-                    <p>If at first you don’t succeed, try yelling at your screen. That usually helps.</p>
-
+            <div class="card bg-base-200 shadow-sm">
+                <div class="card-body items-center text-center gap-4 sm:gap-6">
+                    <div>
+                        <h2 class="card-title text-xl sm:text-2xl">Well, That Didn't Work...</h2>
+                        <p class="text-base-content/80">
+                            If at first you don’t succeed, try yelling at your screen. That usually helps.
+                        </p>
+                    </div>
+                    <div class="w-full sm:w-auto">
+                        <a class="btn btn-primary" href="<?= site_url('login') ?>">Try Again</a>
+                    </div>
                 </div>
             </div>
 
-        <?php endif;?>
+        <?php endif; ?>
 
     </div>
-
 </section>
 
 <?= $this->endSection() ?>

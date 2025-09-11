@@ -1,30 +1,6 @@
 <nav class="navbar bg-base-200 shadow-sm z-999">
     <div class="navbar-start">
-
-        <div class="dropdown">
-            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
-            </div>
-
-            <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-300 rounded-box z-1 mt-3 w-70 p-2 shadow">
-                <li>
-                    <a>Item 1</a>
-                </li>
-
-                <li>
-                    <a>Parent</a>
-                    <ul class="p-2">
-                        <li><a>Submenu 1</a></li>
-                        <li><a>Submenu 2</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a>Item 3</a>
-                </li>
-            </ul>
-        </div>
-
+        <?= $this->include('navbar/mobile_menu') ?>
         <a class="btn btn-ghost px-0 sm:px-4" href="<?=base_url()?>">
             <img class="h-full w-auto" src="<?=path_gfx().'logo.svg'?>" alt="Logo">
         </a>
@@ -70,28 +46,28 @@
                 </details>
             </li>
 
+            <li><a href="<?=site_url('info/about')?>">About</a></li>
+            <li><a href="<?=site_url('info/contact')?>">Contact</a></li>
+
             <?php if( tier() >= 9 ):?>
                 <li>
                     <details>
-                        <summary>Administration</summary>
+                        <summary class="text-warning font-semibold">Administration</summary>
                         <ul class="p-2 bg-base-300 z-998 w-70">
-                            <li><a class="btn btn-soft btn-secondary mb-2" href="#">New Post</a></li>
-                            <li><a class="btn btn-soft btn-primary mb-2" href="#">New Page</a></li>
+                            <li><a class="btn btn-success mb-2" href="<?=site_url('admin/edit/post/new')?>">New Post</a></li>
+                            <li><a class="btn btn-soft mb-2" href="<?=site_url('admin/edit/page/new')?>">New Page</a></li>
                             <li><a href="<?=site_url('admin/moderate/drafts')?>">Drafts</a></li>
 
                             <?php if( tier() >= 10 ):?>
                                 <li><a href="<?=site_url('admin/moderate/review')?>">Review Pending</a></li>
-                                <li><a href="#">Dashboard</a></li>
-                                <li><a href="#">Analytics</a></li>
-                                <li><a href="<?=site_url('admin/mobile-analytics')?>">Mobile Analytics</a></li>
+                                <li><a href="<?=site_url('admin/dashboard')?>">Dashboard</a></li>
+                                <li><a href="<?=site_url('admin/analytics')?>">Analytics</a></li>
                             <?php endif;?>
                         </ul>
                     </details>
                 </li>
             <?php endif;?>
 
-            <li><a href="<?=site_url('info/about')?>">About</a></li>
-            <li><a href="<?=site_url('info/contact')?>">Contact</a></li>
         </ul>
     </div>
 

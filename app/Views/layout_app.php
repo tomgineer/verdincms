@@ -22,7 +22,6 @@
         <?php endif; ?>
 
         <link rel="stylesheet" href="<?=path_css()?>tailwind.css?v=<?=setting('system.version')?>">
-        <link rel="stylesheet" href="<?=path_css()?>app.css?v=<?=setting('system.version')?>">
         <link rel="stylesheet" href="<?=path_assets()?>fonts/fonts.css?v=<?=setting('system.version')?>">
 
         <?php if ( !empty($highlight) ): ?>
@@ -36,14 +35,14 @@
 
     </head>
 
-    <body class="<?=body_class()?>" id="<?=body_class()?>">
+    <body class="min-h-screen flex flex-col <?=body_class()?>" id="<?=body_class()?>">
 
         <header>
             <?= $this->include('navbar/navbar') ?>
             <?= $this->renderSection('header') ?>
         </header>
 
-        <main>
+        <main class="flex-grow">
             <?= $this->renderSection('main') ?>
         </main>
 

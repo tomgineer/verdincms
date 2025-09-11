@@ -6,7 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Site::index');
-$routes->set404Override('App\Controllers\Site::handle404');
+//$routes->set404Override('App\Controllers\Site::handle404');
 
 /**
  * --------------------------------------------------------------------
@@ -28,7 +28,7 @@ $routes->get('post/(:num)', 'Site::post/$1');
 $routes->get('print/(:num)', 'Site::print/$1');
 $routes->get('author/(:alpha)', 'Site::author/$1');
 $routes->get('ranking/(:alpha)', 'Site::ranking/$1');
-$routes->match(['get','post'],'search', 'Site::search');
+$routes->match(['GET','POST'],'search', 'Site::search');
 $routes->get('featured', 'Site::featured');
 $routes->get('botshield', 'Site::botshield');
 
@@ -77,7 +77,7 @@ $routes->get('ajax/search', 'Ajax::search');
 /******************************************************************************
  * ADMIN
  *****************************************************************************/
-$routes->match(['get','post'], 'admin/edit/(:alpha)/(:alphanum)', 'Admin::edit/$1/$2');
+$routes->match(['GET','POST'], 'admin/edit/(:alpha)/(:alphanum)', 'Admin::edit/$1/$2');
 $routes->get('admin/dashboard', 'Admin::dashboard');
 $routes->get('admin/dashboard/(:any)', 'Admin::dashboard/$1');
 $routes->get('admin/analytics', 'Admin::analytics');

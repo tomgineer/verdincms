@@ -9,6 +9,7 @@ use CodeIgniter\API\ResponseTrait;
 
 class Admin extends BaseController {
 
+    private $dash;
 	use ResponseTrait;
 
 /**

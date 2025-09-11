@@ -9,7 +9,7 @@
 <section class="footer sm:footer-horizontal bg-base-200 text-base-content p-10 pt-1">
 
     <nav>
-        <h6 class="text-lg text-primary">Stats</h6>
+        <h4 class="text-xl text-base-content/70">Stats</h4>
         <p><span class="text-base-content/70">Total posts:</span> <?=esc($total_posts)?></p>
         <p><span class="text-base-content/70">Public posts:</span> <?=esc($public_posts)?></p>
         <p><a href="https://github.com/tomgineer/verdincms" target="_blank" class="link-hover text-base-content/70">Powered by Voralis Core:</a> <?=setting('system.version')?></p>
@@ -18,7 +18,7 @@
 
     <?php foreach ($pages_list as $sectionName => $pages):?>
         <nav>
-            <h3 class="text-xl text-primary"><?=$sectionName?></h3>
+            <h4 class="text-xl text-base-content/70"><?=$sectionName?></h4>
             <?php foreach ($pages as $page):?>
                 <?php if ( empty($page['url']) ):?>
                     <a class="link link-hover" href="<?=site_url($page['s_slug'].'/'.$page['slug'])?>" data-match="<?=$page['s_slug'].'/'.$page['slug']?>"><?=$page['label']?></a>
@@ -45,14 +45,14 @@
         <div class="grid grid-flow-col gap-4">
             <?php foreach ($socials_list as $social): ?>
                 <a
-                    class="text-base-content/65 hover:text-secondary transform transition-transform duration-200 hover:scale-125"
+                    class="text-base-content/70 hover:text-secondary transform transition-transform duration-200 hover:scale-125"
                     href="<?= esc($social['value']) ?>"
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                     aria-label="<?= esc($social['label']) ?>"
                     title="<?= esc($social['label']) ?>"
                 >
-                    <svg class="w-7 h-7 fill-current" aria-hidden="true" focusable="false">
+                    <svg class="w-6 h-6 fill-current" aria-hidden="true" focusable="false">
                         <use href="<?= path_gfx() . 'icons.svg#icon-' . esc($social['icon_id']) ?>"></use>
                     </svg>
                 </a>

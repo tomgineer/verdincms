@@ -10,9 +10,9 @@
 
         <div class="card-body w-full lg:w-2/3 px-2 lg:px-8">
 
-            <h1 class="card-title text-3xl xl:text-5xl font-medium leading-tight"><?=esc($post['title'])?></h1>
+            <h1 class="card-title text-3xl xl:text-5xl font-medium leading-tight mb-4"><?=esc($post['title'])?></h1>
 
-            <p class="text-lg"><?=esc($post['subtitle'])?></p>
+            <p class="text-2xl prose"><?=esc($post['subtitle'])?></p>
 
             <div class="card-actions justify-end">
                 <a class="text-secondary hover:underline" href="<?=site_url('author/'. esc($post['author_handle']))?>"><?=esc($post['author'])?></a>

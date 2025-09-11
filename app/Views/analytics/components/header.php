@@ -1,5 +1,5 @@
 <div class="dash-header-inline">
-    <a href="<?=base_url()?>"><img class="dash-header-inline__logo" src="<?=path_gfx().'verdincms.svg'?>" alt="VerdinCMS Logo"></a>
+    <a href="<?=base_url()?>"><img class="dash-header-inline__logo" src="<?=path_gfx().'logo.svg'?>" alt="VerdinCMS Logo"></a>
 
     <div class="dash-header-inline__msg">
         <svg class="svg-icon svg-icon-lg color-blue-200" aria-hidden="true">

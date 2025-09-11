@@ -7,7 +7,7 @@
         <title><?=$title?></title>
         <meta name="description" content="<?=setting('meta.site_description')?>"/>
         <?= $this->include('components/favicon') ?>
-        <link rel="stylesheet" href="<?=path_assets()?>fonts/fonts-admin.css">
+        <link rel="stylesheet" href="<?=path_assets()?>fonts/fonts.css">
 
         <?= $this->renderSection('head') ?>
 
