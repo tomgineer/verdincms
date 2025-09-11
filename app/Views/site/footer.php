@@ -45,14 +45,14 @@
         <div class="grid grid-flow-col gap-4">
             <?php foreach ($socials_list as $social): ?>
                 <a
-                    class="text-base-content/70 hover:text-secondary transform transition-transform duration-200 hover:scale-125"
+                    class="text-base-content/65 hover:text-secondary transform transition-transform duration-200 hover:scale-125"
                     href="<?= esc($social['value']) ?>"
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                     aria-label="<?= esc($social['label']) ?>"
                     title="<?= esc($social['label']) ?>"
                 >
-                    <svg class="w-6 h-6 fill-current" aria-hidden="true" focusable="false">
+                    <svg class="w-7 h-7 fill-current" aria-hidden="true" focusable="false">
                         <use href="<?= path_gfx() . 'icons.svg#icon-' . esc($social['icon_id']) ?>"></use>
                     </svg>
                 </a>

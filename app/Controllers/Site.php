@@ -343,6 +343,7 @@ public function ranking(string $type) {
         ...$this->data,
         'site_title' => ucfirst($type),
         'post_data'  => $this->content->getRankingPosts(type: $type),
+        'featured'   => $this->content->getPosts(amount: 10, featured: true),
         'ranked'     => true,
     ];
 

@@ -1,24 +1,36 @@
 <?= $this->extend('layout_app') ?>
 <?= $this->section('main') ?>
 
-<div class="container container--post mt-3 mt-sm-2 mb-5">
-    <h1 class="topic-title mb-2"><?=esc($site_title)?></h1>
-    <?= view('components/post_list', ['posts' => $post_data]) ?>
-</div>
 
-<?php if (!empty($post_data['pagination']) && is_array($post_data['pagination'])): ?>
-    <?= view('components/pagination', ['pagination' => $post_data['pagination']]) ?>
-<?php endif; ?>
+<div class="container mx-auto px-4 mt-16">
+    <div class="flex flex-col lg:flex-row gap-8">
 
-<?php if (!empty($trending)):?>
-    <div class="container container--xl mb-5">
-        <h2 class="h1 plain-list-title">Trending</h2>
-        <?= view('components/plain_list', ['posts' => $trending['posts'], 'style' => 'plain-list--columns']) ?>
+        <section class="flex-1">
+            <h1 class="text-4xl text-base-content/70 mb-8 text-shadow-lg"><?=esc($site_title)?></h1>
+            <?= view('components/post_list', ['posts' => $post_data]) ?>
+        </section>
+
+        <aside class="w-full lg:w-[30%]">
+            <a href="https://www.youtube.com/@TomgineerChannel target="_blank">
+                <img src="<?=path_gfx().'youtube.webp?v=3'?>" alt="Join Me on YouTube" loading="lazy">
+            </a>
+
+            <?php if (!empty($trending)):?>
+                <h2 class="text-3xl text-primary mt-8 mb-2">Trending</h2>
+                <?= view('components/plain_list', ['posts' => $trending['posts']]) ?>
+            <?php endif;?>
+
+            <?php if (!empty($featured)):?>
+                <h2 class="text-3xl text-primary mt-8 mb-2">Featured</h2>
+                <?= view('components/plain_list', ['posts' => $featured['posts']]) ?>
+            <?php endif;?>
+
+            <a href="https://rumble.com/c/c-7774896" target="_blank">
+                <img src="<?=path_gfx().'rumble.webp?v=3'?>" alt="Join Me on Rumble" loading="lazy">
+            </a>
+        </aside>
+
     </div>
-<?php endif;?>
-
-<!--</?php if (!empty($ai)):?>
-    </?= $this->include('components/ai_knowledge') ?>
-</?php endif;?>-->
+</div>
 
 <?= $this->endSection() ?>

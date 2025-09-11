@@ -30,7 +30,7 @@
             <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
         <?php endif;?>
 
-        <!--<script src="</?=path_js()?>app-dist.js?v=</?=setting('system.version')?>" defer></script>-->
+        <script src="<?=path_js()?>app-dist.js?v=<?=setting('system.version')?>" defer></script>
         <?= $this->include('components/favicon') ?>
         <?= $this->renderSection('head') ?>
 

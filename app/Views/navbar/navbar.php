@@ -70,35 +70,47 @@
                 </details>
             </li>
 
-            <li>
-                <details>
-                    <summary>Administration</summary>
-                    <ul class="p-2 bg-base-300 z-998 w-70">
-
-                        <!--</?php if( tier() >= 9 ):?>-->
+            <?php if( tier() >= 9 ):?>
+                <li>
+                    <details>
+                        <summary>Administration</summary>
+                        <ul class="p-2 bg-base-300 z-998 w-70">
                             <li><a class="btn btn-soft btn-secondary mb-2" href="#">New Post</a></li>
                             <li><a class="btn btn-soft btn-primary mb-2" href="#">New Page</a></li>
                             <li><a href="<?=site_url('admin/moderate/drafts')?>">Drafts</a></li>
-                        <!--</?php endif;?>-->
 
-                        <!--</?php if( tier() >= 10 ):?>-->
-                            <li><a href="<?=site_url('admin/moderate/review')?>">Review Pending</a></li>
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Analytics</a></li>
-                            <li><a href="<?=site_url('admin/mobile-analytics')?>">Mobile Analytics</a></li>
-                        <!--</?php endif;?>-->
+                            <?php if( tier() >= 10 ):?>
+                                <li><a href="<?=site_url('admin/moderate/review')?>">Review Pending</a></li>
+                                <li><a href="#">Dashboard</a></li>
+                                <li><a href="#">Analytics</a></li>
+                                <li><a href="<?=site_url('admin/mobile-analytics')?>">Mobile Analytics</a></li>
+                            <?php endif;?>
+                        </ul>
+                    </details>
+                </li>
+            <?php endif;?>
 
-                    </ul>
-                </details>
-            </li>
-
-            <li><a>About</a></li>
-            <li><a>Contact</a></li>
+            <li><a href="<?=site_url('info/about')?>">About</a></li>
+            <li><a href="<?=site_url('info/contact')?>">Contact</a></li>
         </ul>
     </div>
 
     <div class="navbar-end flex gap-2">
-        <a class="btn btn-accent btn-outline">Edit</a>
-        <a class="btn btn-secondary">Login</a>
+        <?php if ($can_edit ?? false): ?>
+            <?php if ( !empty($post) ):?>
+                <a class="btn btn-primary" href="<?=site_url('admin/edit/post/'.$post['id'])?>">Edit</a>
+            <?php elseif( !empty($page) ):?>
+                <a class="btn btn-primary" href="<?=site_url('admin/edit/page/'.$page['id'])?>">Edit</a>
+            <?php endif;?>
+        <?php endif;?>
+
+        <?php if( tier() == 0 ):?>
+            <a class="btn btn-secondary" href="<?=site_url('login')?>">Login</a>
+        <?php else:?>
+            <a class="btn btn-warning" href="<?=site_url('users/logout')?>">Logout</a>
+        <?php endif;?>
     </div>
+
 </nav>
+
+

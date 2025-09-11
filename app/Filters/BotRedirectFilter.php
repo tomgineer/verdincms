@@ -38,6 +38,8 @@ use App\Models\StatsModel;
 class BotRedirectFilter implements FilterInterface {
 
     public function before(RequestInterface $request, $arguments = null) {
+        return;
+
         // Skip all logic if in development environment
         if (ENVIRONMENT === 'development') {
             return; // Allow request
