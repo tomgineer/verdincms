@@ -3,14 +3,14 @@ use App\Libraries\SystemCore;
 
 /**
  * ****************************************************
- * Verdin Helper — VerdinCMS 2026 Edition
+ * Verdin Helper — Voralis Core 2026 Edition
  * ****************************************************
  *
  * Provides a collection of globally available utility functions
  * used throughout the VerdinCMS system, including path helpers,
  * date/time utilities, and content formatting tools.
  *
- * Version : VerdinCMS 2026
+ * Version : Voralis Core 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT

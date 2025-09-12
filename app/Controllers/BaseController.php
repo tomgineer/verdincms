@@ -99,10 +99,10 @@ abstract class BaseController extends Controller
                         $this->data[$key] = $this->content->getBlocks(['footer', 'components']);
                         break;
                     case 'total_posts':
-                        $this->data[$key] = $this->content->getTotalPosts();
+                        $this->data[$key] = $this->content->countContent('total');
                         break;
                     case 'public_posts':
-                        $this->data[$key] = $this->content->getTotalPosts(public: true);
+                        $this->data[$key] = $this->content->countContent('public');
                         break;
                 }
 

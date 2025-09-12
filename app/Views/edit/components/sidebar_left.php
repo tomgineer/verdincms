@@ -5,6 +5,6 @@
         <input type="file" id="photoInput" accept="image/*" class="hidden">
     </div>
 
-    <?= $this->include('edit/components/info_panel') ?>
+
     <?= $this->include('edit/components/options_panel') ?>
 </sidebar>

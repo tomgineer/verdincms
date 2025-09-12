@@ -1,7 +1,6 @@
 <?php namespace App\Controllers;
 use App\Models\DashboardModel;
 use App\Models\ActionsModel;
-use App\Models\AdminModel;
 use App\Models\SystemModel;
 use App\Models\AnalyticsModel;
 use App\Models\EditContentModel;
@@ -12,7 +11,6 @@ class Admin extends BaseController {
 
     private $dash;
     private $analytics;
-    private $admin;
     private $system;
     private $edit;
 
@@ -36,17 +34,17 @@ public function edit(string $type, int|string $id) {
     if (tier() < 9) {return redirect()->to('/');}
     $this->edit = new EditContentModel;
 
-    $data = [
+    $data = array_merge($this->data, [
         'title'        => "Edit " . ucfirst($type) . ": {$id}",
         'type'         => $type,
         'statusLabels' => [1 => 'Published', 2 => 'Draft', 3 => 'Deleted'],
-        'statusColors' => [1 => 'green', 2 => 'blue', 3 => 'red'],
+        'statusColors' => [1 => 'success', 2 => 'warning', 3 => 'error'],
         'post'         => $this->edit->getContent($type, $id),
         'users'        => $this->edit->getUsers(),
         'user_groups'  => $this->edit->getUserGroups(),
         'topics'       => $this->edit->getTopics(),
         'sections'     => $this->edit->getSections(),
-    ];
+    ]);
 
     return view('edit/edit',$data);
 }
@@ -65,8 +63,6 @@ public function moderate(string $type) {
     if (tier() < 9 || !in_array($type, ['drafts', 'review'])) {
         return redirect()->to('/');
     }
-
-    $this->admin = new AdminModel;
 
     // Get Page
     $page = $this->request->getGet('page') ?? 1;
@@ -88,7 +84,7 @@ public function moderate(string $type) {
         'post_data'  => $post_data,
         'stats' => [[
             'title' => ucfirst($type),
-            'value' => $this->admin->countModerationPosts($type),
+            'value' => $this->content->countContent($type),
             'desc'  => $descriptions[$type] ?? 'Pending'
         ]]
     ];

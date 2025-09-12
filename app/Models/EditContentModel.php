@@ -5,7 +5,7 @@ use App\Libraries\QRCode;
 
 /**
  * ****************************************************
- * EditContent Model — VerdinCMS 2026 Edition
+ * EditContent Model — Voralis Core 2026 Edition
  * ****************************************************
  *
  * Primary Responsibilities
@@ -15,7 +15,7 @@ use App\Libraries\QRCode;
  * • Handle image uploads and conversions to WebP with automatic thumbnails
  * • Generate QR codes for new posts
  *
- * Version : VerdinCMS 2026
+ * Version : Voralis Core 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT

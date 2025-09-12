@@ -1,16 +1,16 @@
-<div class="container">
+<div class="w-full mx-auto px-4 lg:max-w-4xl mt-6">
 
-    <div class="edit-text-area-wrapper">
-        <textarea class="edit-textarea autogrow fs-700" name="title" rows="1" placeholder="Title" data-minlength="60"><?=esc($post['title'])?></textarea>
-        <span class="char-count">0</span>
+    <div class="indicator w-full mb-6">
+        <span class="indicator-item badge font-semibold" data-indicator="60">12</span>
+        <textarea class="textarea textarea-primary bg-base-200 w-full resize-none overflow-hidden text-2xl font-semibold" name="title" placeholder="Title" data-autogrow="true"><?=esc($post['title'])?></textarea>
     </div>
 
-    <div class="edit-text-area-wrapper">
-        <textarea class="edit-textarea autogrow fs-600" name="subtitle" rows="1" placeholder="Subtitle" data-minlength="120"><?=esc($post['subtitle'])?></textarea>
-        <span class="char-count">0</span>
+    <div class="indicator w-full mb-6">
+        <span class="indicator-item badge font-semibold" data-indicator="120">12</span>
+        <textarea class="textarea textarea-secondary bg-base-200 w-full resize-none overflow-hidden text-xl" name="subtitle" placeholder="Subtitle" data-autogrow="true"><?=esc($post['subtitle'])?></textarea>
     </div>
 
-    <div class="edit-body"></div>
+    <div class="edit-body prose prose-neutral prose-xl leading-relaxed mx-auto"></div>
 
     <!-- Start: Inputs -->
     <input type="hidden" name="id" value="<?=esc($post['id'])?>">

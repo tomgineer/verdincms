@@ -6,7 +6,7 @@ use CodeIgniter\I18n\Time;
 
 /**
  * ****************************************************
- * Content Model — VerdinCMS 2026 Edition
+ * Content Model — Voralis Core 2026 Edition
  * ****************************************************
  *
  * Handles all database operations related to content,
@@ -14,7 +14,7 @@ use CodeIgniter\I18n\Time;
  * Supports querying, filtering, and grouping logic used
  * across public and administrative interfaces.
  *
- * Version : VerdinCMS 2026
+ * Version : Voralis Core 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT
@@ -541,30 +541,58 @@ public function getTopicsList(): ?array {
 }
 
 /**
- * Get the total count of posts, pages, and AI posts.
+ * Count content items across `posts` and `pages` by type.
  *
- * If `$public` is `true`, it counts only the posts and pages with a `status` of 1 (public).
- * If `$public` is `false`, it counts all entries in the tables regardless of their `status`.
- * The `ai_posts` table is always counted regardless of the `status` condition as it does not have a `status` field.
+ * Types supported (case-insensitive):
+ * - "total"  : All items where id != 0.
+ * - "public" : Items with status = 1 (published).
+ * - "drafts" : Items with status IN (2, 3) (Unpublished or Deleted).
+ * - "pending": Items with review = 1 (awaiting review).
  *
- * @param bool $public Whether to count only public posts and pages. Defaults to `false`.
+ * Counts are aggregated across both tables using CodeIgniter's Query Builder.
+ * `countAllResults()` is used so the applied filters are respected and the builder
+ * auto-resets between iterations.
  *
- * @return int The total count of posts, pages, and AI posts based on the condition.
+ * @param string $type One of "total", "public", "drafts", or "pending". Defaults to "total".
+ * @return int Total count across `posts` and `pages` for the given type.
  */
-public function getTotalPosts(bool $public = false): int {
+public function countContent(string $type = 'total'): int {
     $tables = ['posts', 'pages'];
-    $total = 0;
+    $total  = 0;
+    $type   = strtolower($type);
+
+    if (!in_array($type, ['total', 'public', 'drafts', 'review'], true)) {
+        $type = 'total';
+    }
 
     foreach ($tables as $table) {
-        if ($public) {
-            $total += $this->db->table($table)->where('status', '1')->where('id !=', 0)->countAllResults();
-        } else {
-            $total += $this->db->table($table)->where('id !=', 0)->countAllResults();
+        $builder = $this->db->table($table)->where('id !=', 0);
+
+        switch ($type) {
+            case 'public':
+                $builder->where('status', 1);
+                break;
+
+            case 'drafts':
+                $builder->whereIn('status', [2, 3]);
+                break;
+
+            case 'review':
+                $builder->where('review', 1);
+                break;
+
+            case 'total':
+            default:
+                // no extra filters
+                break;
         }
+
+        $total += $builder->countAllResults();
     }
 
     return $total;
 }
+
 
 
 } // ─── End of Class ───

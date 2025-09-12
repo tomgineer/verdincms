@@ -5,14 +5,14 @@ use App\Libraries\SystemCore;
 
 /**
  * ****************************************************
- * Admin Model — VerdinCMS 2026 Edition
+ * Admin Model — Voralis Core 2026 Edition
  * ****************************************************
  *
  * Manages all administrative operations related to user and system control,
  * including dashboard data, admin-only tools, maintenance utilities,
  * and quick system-level queries.
  *
- * Version : VerdinCMS 2026
+ * Version : Voralis Core 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT
@@ -92,32 +92,5 @@ public function sendNotificationEmails(int $post_id = 0): string {
 
     return $msg;
 }
-
-/**
- * Count posts and pages that require moderation.
- *
- * Depending on the given type, this method counts items across
- * both the `posts` and `pages` tables:
- * - If $type is "drafts", it counts entries with a `status` of 2 or 3.
- * - Otherwise, it counts entries marked with `review = 1`.
- *
- * @param string $type The moderation type to count ("drafts" or other).
- * @return int The total number of posts and pages requiring moderation.
- */
-public function countModerationPosts(string $type = "drafts") {
-    $tables = ['posts', 'pages'];
-    $total = 0;
-
-    foreach ($tables as $table) {
-        if ($type === "drafts") {
-            $total += $this->db->table($table)->whereIn('status', [2, 3])->where('id !=', 0)->countAllResults();
-        } else { // Need Review
-            $total += $this->db->table($table)->where('review', 1)->where('id !=', 0)->countAllResults();
-        }
-    }
-
-    return $total;
-}
-
 
 } // ─── End of Class ───

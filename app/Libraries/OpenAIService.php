@@ -2,13 +2,13 @@
 
 /**
  * ****************************************************
- * OpenAIService Library — VerdinCMS 2026 Edition
+ * OpenAIService Library — Voralis Core 2026 Edition
  * ****************************************************
  *
  * Provides a static interface to communicate with OpenAI's API.
  * Designed for simple, direct GPT-4.1 integration with minimal setup.
  *
- * Version : VerdinCMS 2026
+ * Version : Voralis Core 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT

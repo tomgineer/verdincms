@@ -6,13 +6,13 @@ use App\Libraries\OpenAIService;
 
 /**
  * ****************************************************
- * Actions Model — VerdinCMS 2026 Edition
+ * Actions Model — Voralis Core 2026 Edition
  * ****************************************************
  *
  * Responsible for managing all database operations related to actions,
  * including creation, updates, and internal system maintenance routines.
  *
- * Version : VerdinCMS 2026
+ * Version : Voralis Core 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT

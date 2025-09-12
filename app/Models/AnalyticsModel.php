@@ -5,13 +5,13 @@ use CodeIgniter\I18n\Time;
 
 /**
  * ****************************************************
- * Analytics Model — VerdinCMS 2026 Edition
+ * Analytics Model — Voralis Core 2026 Edition
  * ****************************************************
  *
  * Handles all analytics-related database operations, including tracking,
  * statistics aggregation, and traffic/event logging functionality.
  *
- * Version : VerdinCMS 2026
+ * Version : Voralis Core 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT
@@ -288,7 +288,6 @@ public function getOverviewData() {
     $totalPosts = $this->db->table('posts')->countAll();
     $pages = $this->db->table('pages')->countAll();
     $publicPosts = $this->db->table('posts')->where('status', 1)->countAllResults();
-    $aiBlocks = $this->db->table('ai_posts')->countAll();
 
     // Get the total word count for posts and pages
     $words = $this->db->query("SELECT (SELECT SUM(words) FROM posts) + (SELECT SUM(words) FROM pages) AS total")->getRow('total');
@@ -381,7 +380,6 @@ public function getOverviewData() {
     $content = [
         'Total Posts'      => ($totalPosts - 1),
         'Public Posts'     => $publicPosts,
-        'AI Blocks'        => $aiBlocks,
         'Pages'            => $pages,
         'Pages & Posts'    => ($totalPosts + $pages),
         'Words'                    => $words,

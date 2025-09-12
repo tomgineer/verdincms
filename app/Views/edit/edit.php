@@ -1,4 +1,4 @@
-<?= $this->extend('layout_admin') ?>
+<?= $this->extend('layout_admin2') ?>
 <?= $this->section('head') ?>
 
     <script src="<?=path_assets()?>ckeditor/ckeditor.js?v=<?=setting('system.version')?>"></script>
@@ -12,12 +12,12 @@
     <?= $this->include('edit/components/sidebar_left') ?>
 </aside>
 
-<aside class="edit-aside-right">
-    <?= $this->include('edit/components/sidebar_right') ?>
-</aside>
-
 <main class="edit-main">
     <?= $this->include('edit/main') ?>
 </main>
+
+<aside>
+    <?= $this->include('edit/sidebar') ?>
+</aside>
 
 <?= $this->endSection() ?>
