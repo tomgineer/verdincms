@@ -17,7 +17,7 @@
                             <h2 class="card-title text-2xl font-medium"><?=esc($post['title'])?></h2>
                         </a>
 
-                        <p class="text-lg"><?=esc($post['subtitle'])?></p>
+                        <p class="text-lg prose"><?=esc($post['subtitle'])?></p>
 
                         <div class="card-actions justify-end">
                             <a class="text-secondary hover:underline" href="<?=site_url('author/'. esc($post['author_handle']))?>"><?=esc($post['author'])?></a>

@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 use App\Models\DashboardModel;
 use App\Models\ActionsModel;
+use App\Models\AdminModel;
 use App\Models\SystemModel;
 use App\Models\AnalyticsModel;
 use App\Models\EditContentModel;
@@ -10,6 +11,11 @@ use CodeIgniter\API\ResponseTrait;
 class Admin extends BaseController {
 
     private $dash;
+    private $analytics;
+    private $admin;
+    private $system;
+    private $edit;
+
 	use ResponseTrait;
 
 /**
@@ -60,6 +66,8 @@ public function moderate(string $type) {
         return redirect()->to('/');
     }
 
+    $this->admin = new AdminModel;
+
     // Get Page
     $page = $this->request->getGet('page') ?? 1;
     $page = ctype_digit($page) ? (int) $page : 1;
@@ -69,9 +77,20 @@ public function moderate(string $type) {
         ? $this->content->getPosts(status: 2, pagination: true, page: $page)
         : $this->content->getPosts(review: true, pagination: true, page: $page);
 
+    // Smarter descriptions
+    $descriptions = [
+        'drafts' => 'Unpublished or Deleted',
+        'review' => 'Awaiting Editorial Review'
+    ];
+
     $data = [...$this->data,
         'site_title' => ucwords($type),
         'post_data'  => $post_data,
+        'stats' => [[
+            'title' => ucfirst($type),
+            'value' => $this->admin->countModerationPosts($type),
+            'desc'  => $descriptions[$type] ?? 'Pending'
+        ]]
     ];
 
     // Render view

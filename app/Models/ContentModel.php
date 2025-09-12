@@ -556,10 +556,10 @@ public function getTotalPosts(bool $public = false): int {
     $total = 0;
 
     foreach ($tables as $table) {
-        if ($public && in_array($table, ['posts', 'pages'])) {
-            $total += $this->db->table($table)->where('status', '1')->countAllResults();
+        if ($public) {
+            $total += $this->db->table($table)->where('status', '1')->where('id !=', 0)->countAllResults();
         } else {
-            $total += $this->db->table($table)->countAll();
+            $total += $this->db->table($table)->where('id !=', 0)->countAllResults();
         }
     }
 

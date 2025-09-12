@@ -37,9 +37,9 @@
                 <details>
                     <summary>The Blog</summary>
                     <ul class="p-2 bg-base-300 z-998 w-70">
-                        <?php foreach ($menu_items['pages'] as $page):?>
+                        <?php foreach ($menu_items['pages'] as $page_items):?>
                             <li>
-                                <a href="<?=site_url($page['s_slug'] . '/' . $page['slug'])?>"><?=esc($page['label'])?></a>
+                                <a href="<?=site_url($page_items['s_slug'] . '/' . $page_items['slug'])?>"><?=esc($page_items['label'])?></a>
                             </li>
                         <?php endforeach;?>
                     </ul>
