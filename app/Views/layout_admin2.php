@@ -11,7 +11,6 @@
 
         <?= $this->renderSection('head') ?>
 
-        <link rel="stylesheet" href="<?=path_css()?>admin.css?v=<?=setting('system.version')?>">
         <link rel="stylesheet" href="<?=path_css()?>tailwind.css?v=<?=setting('system.version')?>">
 
         <script src="<?=path_js()?>app-dist.js?v=<?=setting('system.version')?>" defer></script>

@@ -39,23 +39,6 @@
                 placeholder="Label"
                 maxlength="50" />
 
-        <label class="label">Icon</label>
-        <input type="text"
-                name="icon"
-                value="<?= esc($post['icon']) ?>"
-                class="input w-full"
-                placeholder="Icon"
-                maxlength="20" />
-
     <?php endif; ?>
-
-    <label class="label">Accessibility</label>
-    <select name="accessibility" class="select w-full">
-        <?php foreach ($user_groups as $group): ?>
-            <option value="<?= esc($group['tier']) ?>" <?= $post['accessibility'] == $group['tier'] ? 'selected' : '' ?>>
-                <?= esc($group['title']) ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
 
 </fieldset>

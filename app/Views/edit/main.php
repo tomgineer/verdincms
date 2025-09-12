@@ -10,7 +10,7 @@
         <textarea class="textarea textarea-secondary bg-base-200 w-full resize-none overflow-hidden text-xl" name="subtitle" placeholder="Subtitle" data-autogrow="true"><?=esc($post['subtitle'])?></textarea>
     </div>
 
-    <div class="edit-body prose prose-neutral prose-xl leading-relaxed mx-auto"></div>
+    <div class="edit-body prose prose-neutral prose-xl leading-relaxed mx-auto w-full lg:max-w-[80ch]"></div>
 
     <!-- Start: Inputs -->
     <input type="hidden" name="id" value="<?=esc($post['id'])?>">

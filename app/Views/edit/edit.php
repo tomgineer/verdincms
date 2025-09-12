@@ -8,16 +8,18 @@
 
 <?= $this->section('main') ?>
 
-<aside class="edit-aside-left">
-    <?= $this->include('edit/components/sidebar_left') ?>
-</aside>
-
-<main class="edit-main">
+<main class="edit-main mb-32">
     <?= $this->include('edit/main') ?>
 </main>
 
 <aside>
     <?= $this->include('edit/sidebar') ?>
 </aside>
+
+<div class="toast toast-top toast-start mt-16 hidden" data-toast-save>
+    <div class="alert alert-success font-semibold">
+        <span>Post Saved!</span>
+    </div>
+</div>
 
 <?= $this->endSection() ?>
