@@ -1,4 +1,4 @@
-<?= $this->extend('layout_admin3') ?>
+<?= $this->extend('layout_admin2') ?>
 <?= $this->section('head') ?>
     <?php if ( !empty($useChartJS) ):?>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

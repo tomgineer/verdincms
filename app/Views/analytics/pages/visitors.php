@@ -4,12 +4,12 @@
 </header>
 
 <section class="grid grid-cols-2 gap-8 mb-12">
-    <div class="chart-container">
+    <div class="chart-container h-[40vh]">
         <h4>Visitors — Last 30 Days</h4>
         <canvas class="dash-chart" data-json="<?=chart_data($traffic['chart_visitors'])?>" data-type="line" data-color="red"></canvas>
     </div>
 
-    <div class="chart-container">
+    <div class="chart-container h-[40vh]">
         <h4>Hits — Last 30 Days</h4>
         <canvas class="dash-chart" data-json="<?=chart_data($traffic['chart_hits'])?>" data-type="line" data-color="blue"></canvas>
     </div>

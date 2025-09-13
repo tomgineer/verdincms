@@ -4,7 +4,7 @@
 </header>
 
 <section class="grid grid-cols-2 gap-8 mb-12">
-    <div class="chart-container">
+    <div class="chart-container h-[40vh]">
         <h4>Top 10 Countries — Pie Chart</h4>
         <canvas
             class="dash-chart"
@@ -13,7 +13,7 @@
             data-color="red"></canvas>
     </div>
 
-    <div class="chart-container">
+    <div class="chart-container h-[40vh]">
         <h4>Top 10 Countries — Bar Chart</h4>
         <canvas
             class="dash-chart"

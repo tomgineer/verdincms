@@ -27,7 +27,7 @@
 
 <section class="tabs tabs-lg tabs-border">
     <input type="radio" name="analytics" class="tab" aria-label="Averages & Growth" checked="checked" />
-    <div class="tab-content border-base-content/10 p-8">
+    <div class="tab-content bg-base-content/5 border-base-content/10 p-8">
         <div class="grid grid-cols-2 gap-4">
             <div class="p-4">
                 <h3 class="text-3xl mb-1">Averages</h3>
@@ -62,7 +62,7 @@
     </div><!-- .tab-content -->
 
     <input type="radio" name="analytics" class="tab" aria-label="Content & Users" />
-    <div class="tab-content border-base-content/10 p-8">
+    <div class="tab-content bg-base-content/5 border-base-content/10 p-8">
         <div class="grid grid-cols-2 gap-4">
             <div class="p-4">
                 <h3 class="text-3xl mb-1">Content</h3>
@@ -97,7 +97,7 @@
     </div><!-- .tab-content -->
 
     <input type="radio" name="analytics" class="tab" aria-label="System" />
-    <div class="tab-content border-base-content/10 p-8">
+    <div class="tab-content bg-base-content/5 border-base-content/10 p-8">
         <div class="grid grid-cols-2 gap-4">
             <div class="p-4">
                 <h3 class="text-3xl mb-1">System</h3>
