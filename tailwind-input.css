@@ -6,25 +6,22 @@
 }
 @plugin "@tailwindcss/typography";
 
-@layer base {
-    body {
-        font-family: 'Arimo', sans-serif;
-    }
+@theme {
+    --font-sans: "Arimo", ui-sans-serif, system-ui, sans-serif;
+    --font-heading: "Fira Sans Extra Condensed", ui-sans-serif, system-ui, sans-serif;
+    --font-bebas: "Bebas Neue", ui-sans-serif, system-ui, sans-serif;
+}
 
-    h1, h2, h3, h4, h5, h6 {
-        font-family: 'Fira Sans Extra Condensed', sans-serif;
-    }
-    h1, h2, h3 {
-        font-weight: 700;
-    }
-    h4, h5, h6 {
-        font-weight: 500;
-    }
+@layer base {
+    body { @apply font-sans; }
+    h1, h2, h3, h4, h5, h6 { @apply font-heading; }
+    h1, h2, h3 { font-weight: 700; }
+    h4, h5, h6 { font-weight: 500; }
 }
 
 @layer utilities {
-    .table-zebra-soft tbody tr:nth-child(even) {
-        @apply bg-white/5; /* very subtle stripe */
-    }
+    .table-zebra-soft tbody tr:nth-child(even) { @apply bg-white/5; }
+    .stat-lg .stat-title { @apply text-lg; }
+    .stat-lg .stat-value { @apply text-5xl leading-tight font-bebas; }
 
 }

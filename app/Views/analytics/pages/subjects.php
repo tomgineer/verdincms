@@ -1,18 +1,15 @@
-<header class="dash-page-header">
-    <div>
-        <h1 class="ff-body fw-500 ls-1 mb-0">Popular Topics & Sections</h1>
-        <p class="color-300 mb-0 lh-150">Explore the most viewed topics and sections based on visitor activity.</p>
-    </div>
+<header class="mt-10 mb-8">
+    <h1 class="text-5xl mb-2">Popular Topics &amp; Sections</h1>
+    <p class="text-base-content/70">Explore the most viewed topics and sections based on visitor activity.</p>
 </header>
 
-<section class="grid grid-col-2 gap-05 grid-break-md mt-2">
-
-    <panel class="tabpanel">
-        <h3 class="tabpanel__title">Topics</h3>
-        <p class="tabpanel__desc">Top topics based on post engagement.</p>
+<section class="grid grid-cols-1 gap-16">
+    <div class="p-0">
+        <h3 class="text-3xl mb-1">Topics</h3>
+        <p class="text-base-content/70 mb-4">Top topics based on post engagement.</p>
 
         <?php if (!empty($stats['topics'])): ?>
-            <table class="dash-table">
+            <table class="table table-zebra-soft">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -27,12 +24,12 @@
                     <?php foreach ($stats['topics'] as $topic): ?>
                         <tr>
                             <td><?= esc($topic['title']) ?></td>
-                            <td class="primary"><?= esc($topic['slug']) ?></td>
-                            <td class="primary"><?= esc($topic['posts']) ?></td>
-                            <td class="primary"><?= esc($topic['hits']) ?></td>
-                            <td class="primary"><?= esc($topic['hits_post']) ?></td>
-                            <td class="primary">
-                                <a href="<?= site_url('topic/'. $topic['slug']) ?>" target="_blank">View</a>
+                            <td><?= esc($topic['slug']) ?></td>
+                            <td><?= esc($topic['posts']) ?></td>
+                            <td><?= esc($topic['hits']) ?></td>
+                            <td><?= esc($topic['hits_post']) ?></td>
+                            <td>
+                                <a class="btn btn-sm hover:btn-primary" href="<?= site_url('topic/' . $topic['slug']) ?>" target="_blank">View</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -41,16 +38,14 @@
         <?php else: ?>
             <p>No popular topics found.</p>
         <?php endif; ?>
+    </div>
 
-
-    </panel>
-
-    <panel class="tabpanel tabpanel--right tabpanel--light">
-        <h3 class="tabpanel__title">Sections</h3>
-        <p class="tabpanel__desc">Most visited sections based on page views.</p>
+    <div class="p-0">
+        <h3 class="text-3xl mb-1">Sections</h3>
+        <p class="text-base-content/70 mb-4">Most visited sections based on page views.</p>
 
         <?php if (!empty($stats['sections'])): ?>
-            <table class="dash-table mt-2">
+            <table class="table table-zebra-soft">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -64,10 +59,10 @@
                     <?php foreach ($stats['sections'] as $section): ?>
                         <tr>
                             <td><?= esc($section['title']) ?></td>
-                            <td class="primary"><?= esc($section['slug']) ?></td>
-                            <td class="primary"><?= esc($section['pages']) ?></td>
-                            <td class="primary"><?= esc($section['hits']) ?></td>
-                            <td class="primary"><?= esc($section['hits_page']) ?></td>
+                            <td><?= esc($section['slug']) ?></td>
+                            <td><?= esc($section['pages']) ?></td>
+                            <td><?= esc($section['hits']) ?></td>
+                            <td><?= esc($section['hits_page']) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -75,7 +70,5 @@
         <?php else: ?>
             <p>No popular sections found.</p>
         <?php endif; ?>
-
-    </panel>
-
+    </div>
 </section>

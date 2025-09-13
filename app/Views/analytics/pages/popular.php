@@ -1,18 +1,15 @@
-<header class="dash-page-header">
-    <div>
-        <h1 class="ff-body fw-500 ls-1 mb-0">Popular Content</h1>
-        <p class="color-300 mb-0 lh-150">Explore the most visited content on your website and what your audience engages with most.</p>
-    </div>
+<header class="mt-10 mb-8">
+    <h1 class="text-5xl mb-2">Popular Content</h1>
+    <p class="text-base-content/70">Explore the most visited content on your website and what your audience engages with most.</p>
 </header>
 
-<section class="grid grid-col-1 gap-05 grid-break-md mt-2">
-
-    <panel class="tabpanel">
-        <h3 class="tabpanel__title">Posts</h3>
-        <p class="tabpanel__desc">Highest-performing posts of all time.</p>
+<section class="grid grid-cols-1 gap-16">
+    <div class="p-0">
+        <h3 class="text-3xl mb-1">Posts</h3>
+        <p class="text-base-content/70 mb-4">Highest-performing posts of all time.</p>
 
         <?php if (!empty($posts)): ?>
-            <table class="dash-table">
+            <table class="table table-zebra-soft">
                 <thead>
                     <tr>
                         <th>Rank</th>
@@ -27,30 +24,28 @@
                 <tbody>
                     <?php foreach ($posts as $index => $post): ?>
                         <tr>
-                            <td class="primary"><?= ($index + 1) ?></td>
+                            <td><?= ($index + 1) ?></td>
                             <td><?= esc($post['title']) ?></td>
                             <td><?= esc($post['subtitle']) ?></td>
-                            <td class="primary"><?= esc($post['hits']) ?></td>
-                            <td class="primary"><?= esc($post['words']) ?></td>
-                            <td class="primary"><?= esc($post['f_created']) ?></td>
-                            <td class="primary"><a href="<?=site_url('post/'.$post['id'])?>" target="_blank">View</a></td>
+                            <td><?= esc($post['hits']) ?></td>
+                            <td><?= esc($post['words']) ?></td>
+                            <td><?= esc($post['f_created']) ?></td>
+                            <td><a class="btn btn-sm hover:btn-primary" href="<?= site_url('post/'.$post['id']) ?>" target="_blank">View</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
-
-        <?php else:?>
+        <?php else: ?>
             <p>No popular posts found.</p>
         <?php endif; ?>
+    </div>
 
-    </panel>
-
-    <panel class="panel panel--light">
-        <h3 class="panel__title">Pages</h3>
-        <p class="panel__desc">Most viewed pages across the site.</p>
+    <div class="p-0">
+        <h3 class="text-3xl mb-1">Pages</h3>
+        <p class="text-base-content/70 mb-4">Most viewed pages across the site.</p>
 
         <?php if (!empty($pages)): ?>
-            <table class="dash-table">
+            <table class="table table-zebra-soft">
                 <thead>
                     <tr>
                         <th>Rank</th>
@@ -67,24 +62,21 @@
                 <tbody>
                     <?php foreach ($pages as $index => $page): ?>
                         <tr>
-                            <td class="primary"><?= ($index + 1) ?></td>
+                            <td><?= ($index + 1) ?></td>
                             <td><?= esc($page['title']) ?></td>
                             <td><?= esc($page['subtitle']) ?></td>
-                            <td class="primary"><?= esc($page['slug']) ?></td>
-                            <td class="primary"><?= esc($page['s_slug']) ?></td>
-                            <td class="primary"><?= esc($page['hits']) ?></td>
-                            <td class="primary"><?= esc($page['words']) ?></td>
-                            <td class="primary"><?= esc($page['f_created']) ?></td>
-                            <td class="primary"><a href="<?=site_url($page['s_slug'].'/'.$page['slug'])?>" target="_blank">View</a></td>
+                            <td><?= esc($page['slug']) ?></td>
+                            <td><?= esc($page['s_slug']) ?></td>
+                            <td><?= esc($page['hits']) ?></td>
+                            <td><?= esc($page['words']) ?></td>
+                            <td><?= esc($page['f_created']) ?></td>
+                            <td><a class="btn btn-sm hover:btn-primary" href="<?= site_url($page['s_slug'].'/'.$page['slug']) ?>" target="_blank">View</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
-
-        <?php else:?>
+        <?php else: ?>
             <p>No popular pages found.</p>
         <?php endif; ?>
-
-    </panel>
-
+    </div>
 </section>
