@@ -279,10 +279,10 @@ public function dashboard(...$segments) {
 public function analytics(...$segments) {
     if (tier() < 10) {return redirect()->to('/');}
     $path = implode('/', $segments);
-    $data = [
+    $data = array_merge($this->data, [
         'path'  => $path,
         'title' => 'Analytics'
-    ];
+    ]);
 
     $this->dash = new DashboardModel();
 

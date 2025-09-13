@@ -21,3 +21,10 @@
         font-weight: 500;
     }
 }
+
+@layer utilities {
+    .table-zebra-soft tbody tr:nth-child(even) {
+        @apply bg-white/5; /* very subtle stripe */
+    }
+
+}

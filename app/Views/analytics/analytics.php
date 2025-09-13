@@ -1,4 +1,4 @@
-<?= $this->extend('layout_admin') ?>
+<?= $this->extend('layout_admin3') ?>
 <?= $this->section('head') ?>
     <?php if ( !empty($useChartJS) ):?>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -7,20 +7,14 @@
 
 <?= $this->section('main') ?>
 
-<header class="dash-header">
-    <?= $this->include('analytics/components/header') ?>
-</header>
-
-<aside class="dash-aside">
-    <?= $this->include('analytics/components/sidenav') ?>
-</aside>
-
-<main class="dash-main">
-    <div class="container container--3xl">
-        <?php if ( !empty($path) ):?>
-            <?= $this->include('analytics/pages/' . $path) ?>
-        <?php endif;?>
-    </div>
+<main class="pl-24 pb-32 container mx-auto">
+    <?php if ( !empty($path) ):?>
+        <?= $this->include('analytics/pages/' . $path) ?>
+    <?php endif;?>
 </main>
+
+<aside>
+    <?= $this->include('analytics/components/menu') ?>
+</aside>
 
 <?= $this->endSection() ?>

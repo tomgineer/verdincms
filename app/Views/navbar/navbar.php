@@ -1,4 +1,4 @@
-<nav class="navbar bg-base-200 shadow-sm z-999">
+<nav class="navbar bg-base-200 shadow-sm relative z-999">
     <div class="navbar-start">
         <?= $this->include('navbar/mobile_menu') ?>
         <a class="btn btn-ghost px-0 sm:px-4" href="<?=base_url()?>">
