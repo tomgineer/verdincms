@@ -1,49 +1,41 @@
-<header class="dash-page-header">
-    <div>
-        <h1 class="ff-body fw-500 ls-1 mb-0">Blocks</h1>
-        <p class="color-300 mb-0 lh-150">Modular content blocks that can be placed across different areas of the website.</p>
-    </div>
+<header class="mt-10 mb-4">
+    <h1 class="text-5xl mb-2">Blocks</h1>
+    <p class="text-base-content/70">Modular content blocks that can be placed across different areas of the website.</p>
 </header>
 
-<section class="grid grid-col-2 gap-05 grid-break-md mt-2">
-    <?php $index = 0; ?>
+<div class="tabs tabs-lg tabs-border">
+    <?php $firstGroup = array_key_first($blocks); ?>
     <?php foreach ($blocks as $group => $items): ?>
 
-        <?php
-        $panelClass = match ($index) {
-            0 => 'tabpanel',
-            1 => 'tabpanel tabpanel--right tabpanel--light',
-            2 => 'panel panel--light',
-            3 => 'panel',
-            4 => 'panel',
-            default => 'panel'
-        };
-        ?>
+        <input
+            type="radio"
+            name="blocks"
+            class="tab"
+            aria-label="<?= esc(ucwords(str_replace('_', ' ', $group))) ?>"
+            <?= $group === $firstGroup ? 'checked="checked"' : '' ?> />
 
-        <panel class="<?= esc($panelClass) ?>">
-            <header class="flex flex-space gap-2 flex-vt">
-                <div>
-                    <h3 class="tabpanel__title"><?= esc(ucwords(str_replace('_', ' ', $group))) ?></h3>
-                    <p class="tabpanel__desc">Blocks in group: <?= esc($group) ?></p>
-                </div>
-            </header>
-
+        <div class="tab-content p-8">
+            <p class="mb-2">Blocks in group: <strong><?= esc(ucwords($group)) ?></strong></p>
             <?php if (!empty($items)): ?>
-                <table class="dash-table">
+                <table class="table table-zebra-soft">
                     <thead>
                         <tr>
                             <th>Alias</th>
                             <th>Title</th>
+                            <th>Group</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($items as $block): ?>
                             <tr>
-                                <td class="primary"><?= esc($block['alias']) ?></td>
+                                <th><?= esc($block['alias']) ?></th>
                                 <td><?= esc($block['title']) ?></td>
-                                <td class="primary">
-                                    <button type="button"
+                                <td>
+                                    <span class="badge badge-dash badge-accent"><?= esc($group) ?></span>
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-sm" type="button"
                                             data-modify-button="<?= esc($block['id']) ?>"
                                             data-target-modal="modalBlock">
                                         Modify
@@ -56,10 +48,9 @@
             <?php else: ?>
                 <p>No blocks in this group.</p>
             <?php endif; ?>
-        </panel>
+        </div>
 
-        <?php $index++; ?>
     <?php endforeach; ?>
-</section>
+</div>
 
 <?= $this->include('dashboard/pages/blocks/modal_blocks') ?>

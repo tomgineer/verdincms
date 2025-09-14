@@ -156,10 +156,8 @@ public function dashboard(...$segments) {
             $data['gd_info']  = gd_info();
             $data['session_data'] = session()->get();
             break;
-        case 'review/posts':
+        case 'review/review':
             $data['posts'] = $this->dash->needReview('post');
-            break;
-        case 'review/pages':
             $data['pages'] = $this->dash->needReview('page');
             break;
         case 'subjects/subjects':
@@ -187,13 +185,9 @@ public function dashboard(...$segments) {
             ]);
 
             break;
-        case 'logs/cron':
+        case 'logs/logs':
             $data['crons'] = $this->dash->getCronLog(10);
-            break;
-        case 'logs/hits':
             $data['hits'] = $this->dash->getHitsEntries(20);
-            break;
-        case 'logs/error':
             $data['errors'] = $this->dash->getErrorLogs();
             break;
         case 'archive/archive':
