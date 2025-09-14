@@ -143,9 +143,6 @@ public function dashboard(...$segments) {
                 'useChartJS'         => true,
                 'chart_visitors'     => $this->analytics->getVisitorAndHitStats(14, true),
                 'posting_activity'   => $this->analytics->getDailyCreationCounts(),
-                'actions'            => (new ActionsModel)->getActionsArray(),
-                'admin_links'        => $this->dash->getAdminLinks(),
-                'sortables'          => $this->dash->getSortablesArray(),
                 'data_sort_pages'    => $this->system->sortBuilder('pages', 'title'),
                 'data_sort_topics'   => $this->system->sortBuilder('topics', 'title'),
                 'data_sort_sections' => $this->system->sortBuilder('sections', 'title'),
@@ -153,14 +150,10 @@ public function dashboard(...$segments) {
             ]);
 
             break;
-        case 'info/overview':
+        case 'info/info':
             $data['info'] = $this->dash->getSystemAndDatabaseInfo();
-            break;
-        case 'info/environment':
             $data['php_info'] = $this->dash->getPhpInfo();
             $data['gd_info']  = gd_info();
-            break;
-        case 'info/session':
             $data['session_data'] = session()->get();
             break;
         case 'review/posts':

@@ -1,13 +1,11 @@
-<?= $this->include('dashboard/pages/info/header') ?>
+<section class="grid grid-cols-2 gap-8 mt-4">
 
-<section class="grid grid-col-2 gap-05 grid-break-md mt-2">
+    <div>
+        <h3 class="text-3xl mb-2">App & Server Environment</h3>
+        <p class="text-base-content/70 mb-4">Overview of the app and server environment, including framework versions and key PHP settings, useful for debugging and maintenance.</p>
 
-    <panel class="tabpanel">
-        <h3 class="tabpanel__title">PHP Info</h3>
-        <p class="tabpanel__desc">Details about the PHP environment, version, configuration, and loaded extensions.</p>
-
-        <?php if (!empty($php_info)): ?>
-            <table class="dash-table dash-table--primary">
+        <?php if (!empty($info['system'])): ?>
+            <table class="table table-zebra-soft">
                 <thead>
                     <tr>
                         <th>Property</th>
@@ -15,24 +13,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($php_info as $label => $value): ?>
+                    <?php foreach ($info['system'] as $label => $value): ?>
                         <tr>
-                            <td class="primary"><?=$label?></td>
+                            <th><?=$label?></th>
                             <td><?=$value?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         <?php endif; ?>
+    </div>
 
-    </panel>
+    <div>
+        <h3 class="text-3xl mb-2">Database Info</h3>
+        <p class="text-base-content/70 mb-4">Key database connection details, including version, charset, time settings, and session-specific information.</p>
 
-    <panel class="tabpanel tabpanel--right tabpanel--light">
-        <h3 class="tabpanel__title">GD Info</h3>
-        <p class="tabpanel__desc">Information about the GD library version and supported image types.</p>
-
-        <?php if (!empty($gd_info)): ?>
-            <table class="dash-table dash-table--primary">
+        <?php if (!empty($info['database'])): ?>
+            <table class="table table-zebra-soft">
                 <thead>
                     <tr>
                         <th>Property</th>
@@ -40,9 +37,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($gd_info as $label => $value): ?>
+                    <?php foreach ($info['database'] as $label => $value): ?>
                         <tr>
-                            <td class="primary"><?=$label?></td>
+                            <th><?=$label?></th>
                             <td><?=$value?></td>
                         </tr>
                     <?php endforeach; ?>
@@ -50,6 +47,9 @@
             </table>
         <?php endif; ?>
 
-    </panel>
+    </div>
 
 </section>
+
+
+

@@ -1,15 +1,15 @@
-<header class="mt-10 mb-4">
+<header class="mt-10 mb-8">
     <h1 class="text-5xl mb-2">Welcome, <?=session('firstname')?>!</h1>
-    <p class="text-base-content/70">System Dashboard.</p>
+    <p class="text-base-content/70">Configure settings, manage content and users, monitor system health, and run maintenance tools, all in one place.</p>
 </header>
 
-<section class="grid grid-cols-2 gap-8 mb-12">
-    <div class="chart-container h-[30vh]">
+<section class="grid grid-cols-2 gap-8 mb-16">
+    <div class="chart-container h-[40vh]">
         <h4>Visitors & Hits — Last 14 Days</h4>
         <canvas class="dash-chart" data-json="<?=chart_data($chart_visitors)?>" data-type="bar"></canvas>
     </div>
 
-    <div class="chart-container h-[30vh]">
+    <div class="chart-container h-[40vh]">
         <h4>Posting Activity — Last 14 Days</h4>
         <canvas class="dash-chart" data-json="<?=chart_data($posting_activity)?>" data-type="bar"></canvas>
     </div>
