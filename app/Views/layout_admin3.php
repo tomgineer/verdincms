@@ -8,7 +8,6 @@
         <meta name="description" content="<?=setting('meta.site_description')?>"/>
         <?= $this->include('components/favicon') ?>
         <link rel="stylesheet" href="<?=path_assets()?>fonts/fonts.css">
-        <link rel="stylesheet" href="<?=path_assets()?>fonts/bebas.css">
 
         <?= $this->renderSection('head') ?>
 

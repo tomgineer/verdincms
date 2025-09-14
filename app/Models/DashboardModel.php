@@ -464,7 +464,11 @@ public function needReview(string $type = 'post', int $limit = 15): array {
  *                 - section (string) The section title (only if type is 'page').
  *                 - s_slug (string) The section slug (only if type is 'page').
  */
-public function getArchivedContent(string $type = 'post', string $status = '2,3'): array {
+public function getArchivedContent(
+    string $type = 'post',
+    string $status = '2,3',
+    int $limit = 30
+): array {
     $user_id   = session('user_id');
     $statusArr = explode(',', $status);
 
@@ -473,7 +477,8 @@ public function getArchivedContent(string $type = 'post', string $status = '2,3'
                       ->select("DATE_FORMAT(p.created, '%b %d, %Y %H:%i') AS f_created", false)
                       ->select("CASE p.status WHEN 2 THEN 'Draft' WHEN 3 THEN 'Deleted' ELSE 'Unknown' END AS f_status", false)
                       ->whereIn('p.status', $statusArr)
-                      ->orderBy('p.created', 'DESC');
+                      ->orderBy('p.created', 'DESC')
+                      ->limit($limit);
 
     if ($type === 'post') {
         $query->select('t.title as topic, t.slug as topic_slug')

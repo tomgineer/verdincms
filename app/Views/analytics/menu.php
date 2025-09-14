@@ -1,6 +1,5 @@
 <nav class="fixed left-0 top-0 bottom-0 w-24 z-50 bg-base-200 pt-16">
 
-
     <ul class="menu bg-base-200 rounded-box w-full pt-4 gap-y-2">
         <li>
             <a class="flex flex-col gap-0" href="<?=site_url('admin/analytics')?>">
@@ -74,11 +73,7 @@
                 <span class="text-xs">Browsers</span>
             </a>
         </li>
-
-
-
     </ul>
-
 
 </nav>
 

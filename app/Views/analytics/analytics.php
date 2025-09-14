@@ -7,14 +7,14 @@
 
 <?= $this->section('main') ?>
 
+<aside>
+    <?= $this->include('analytics/menu') ?>
+</aside>
+
 <main class="pl-24 pb-32 container mx-auto">
     <?php if ( !empty($path) ):?>
         <?= $this->include('analytics/pages/' . $path) ?>
     <?php endif;?>
 </main>
-
-<aside>
-    <?= $this->include('analytics/components/menu') ?>
-</aside>
 
 <?= $this->endSection() ?>

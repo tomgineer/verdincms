@@ -1,85 +1,72 @@
-<header class="dash-page-header">
-    <div>
-        <h1 class="ff-body fw-500 ls-1 mb-0">Welcome, <?=session('firstname')?>!</h1>
-        <p class="color-300 mb-0 lh-150" data-dash-typewriter="How can I help you today?">&nbsp;</p>
-    </div>
+<header class="mt-10 mb-4">
+    <h1 class="text-5xl mb-2">Welcome, <?=session('firstname')?>!</h1>
+    <p class="text-base-content/70">System Dashboard.</p>
 </header>
 
-<section class="grid grid-col-2 gap-05 mt-2">
-
-    <div class="chart-container mb-5">
+<section class="grid grid-cols-2 gap-8 mb-12">
+    <div class="chart-container h-[30vh]">
         <h4>Visitors & Hits — Last 14 Days</h4>
         <canvas class="dash-chart" data-json="<?=chart_data($chart_visitors)?>" data-type="bar"></canvas>
     </div>
 
-    <div class="chart-container mb-5">
+    <div class="chart-container h-[30vh]">
         <h4>Posting Activity — Last 14 Days</h4>
         <canvas class="dash-chart" data-json="<?=chart_data($posting_activity)?>" data-type="bar"></canvas>
     </div>
+</section>
 
-    <panel class="tabpanel grid-row-span-2">
+<section class="tabs tabs-lg tabs-border">
+    <input type="radio" name="dashboard" class="tab" aria-label="Primary Actions" checked="checked" />
+    <div class="tab-content border-0 p-8">
+        <p class="mb-8">This section provides utilities for version control, manual Cron execution, and system maintenance, including cleanup of orphaned files, soft-deleted records, and cache.</p>
+        <nav class="grid grid-cols-[250px_1fr] items-center gap-4">
+            <?= $this->include('dashboard/pages/home/actions_primary') ?>
+        </nav>
+    </div>
 
-        <header class="flex flex-space gap-2 flex-vt">
-            <div>
-                <h3 class="tabpanel__title">Actions</h3>
-                <p class="tabpanel__desc">System-level actions for maintenance, cleanup, and automated tasks. Use with care—these are powerful one-click operations.</p>
-            </div>
+    <input type="radio" name="dashboard" class="tab" aria-label="System Utilities" />
+    <div class="tab-content border-0 p-8">
+        <p class="mb-8">This section provides utilities for SEO (robots and sitemap generation), statistics optimization, role-based testing, AI execution, and updating content-related data such as topics and popular posts.</p>
+        <nav class="grid grid-cols-[250px_1fr] items-center gap-4">
+            <?= $this->include('dashboard/pages/home/actions_utilities') ?>
+        </nav>
+    </div>
 
-            <button class="btn-outline fs-200 locked" data-protect="dash-actions">
-                <svg class="svg-icon" aria-hidden="true">
-                    <use href="#lock"></use>
-                </svg>
-                <span>Unlock</span>
-            </button>
-        </header>
+    <input type="radio" name="dashboard" class="tab" aria-label="Sorting Options" />
+    <div class="tab-content border-0 p-8">
+        <p class="mb-8">Manage the order in which pages, topics, sections, and settings appear in menus and the admin panel.</p>
+        <nav class="grid grid-cols-[250px_1fr] items-center gap-4">
+            <?= $this->include('dashboard/pages/home/actions_sortable') ?>
+        </nav>
+    </div>
 
-        <div class="grid grid-col-auto-120 gap-075 dash-actions">
-            <?php foreach ($actions as $item): ?>
-                <button class="dash-btn disabled" data-dash-action="<?= esc($item['action']) ?>" type="button">
-                    <svg class="svg-icon dash-btn__icon" aria-hidden="true">
-                        <use href="#<?= esc($item['icon']) ?>"></use>
-                    </svg>
-                    <span class="dash-btn__label"><?= esc($item['title']) ?></span>
-                </button>
-            <?php endforeach; ?>
-        </div>
-    </panel>
+    <input type="radio" name="dashboard" class="tab" aria-label="System Cleanup" />
+    <div class="tab-content border-0 p-8">
+        <p class="mb-8">This section provides maintenance utilities to purge logs, cache, expired session files, and orphaned media files, helping keep the system optimized and clutter-free.</p>
+        <nav class="grid grid-cols-[250px_1fr] items-center gap-4">
+            <?= $this->include('dashboard/pages/home/actions_cleanup') ?>
+        </nav>
+    </div>
 
-    <panel class="tabpanel tabpanel--right tabpanel--light">
-        <h3 class="tabpanel__title">Sort Items</h3>
-        <p class="tabpanel__desc">Drag and drop items to set their new order.</p>
+    <input type="radio" name="dashboard" class="tab" aria-label="Critical Actions" />
+    <div class="tab-content border-0 p-8 bg-error-content">
+        <p class="mb-8">
+            These actions perform irreversible changes such as resetting data or replacing photos with placeholders.
+            Use them only if you fully understand their impact.
+            <span class="font-bold text-error">Caution: These operations cannot be undone!</span>
+        </p>
+        <nav class="grid grid-cols-[250px_1fr] items-center gap-4">
+            <?= $this->include('dashboard/pages/home/actions_critical') ?>
+        </nav>
+    </div>
 
-        <div class="grid grid-col-auto-120 gap-075">
-            <?php foreach ($sortables as $item): ?>
-                <button class="dash-btn" data-dash-sortable="<?= esc($item['action']) ?>" type="button">
-                    <svg class="svg-icon dash-btn__icon" aria-hidden="true">
-                        <use href="#<?= esc($item['icon']) ?>"></use>
-                    </svg>
-                    <span class="dash-btn__label"><?= esc($item['title']) ?></span>
-                </button>
-            <?php endforeach; ?>
-        </div>
-
-    </panel>
-
-    <panel class="panel">
-        <h3 class="panel__title">Admin Links</h3>
-        <p class="panel__desc">Quick access to content creation, layout management, and system configuration tools.</p>
-
-        <div class="grid grid-col-auto-120 gap-075">
-            <?php foreach ($admin_links as $item): ?>
-                <a class="dash-btn" href="<?=site_url($item['action'])?>" target="_blank">
-                    <svg class="svg-icon dash-btn__icon" aria-hidden="true">
-                        <use href="#<?= esc($item['icon']) ?>"></use>
-                    </svg>
-                    <span class="dash-btn__label"><?= esc($item['title']) ?></span>
-                </a>
-            <?php endforeach; ?>
-        </div>
-    </panel>
-
-
-
+    <input type="radio" name="dashboard" class="tab" aria-label="Administration Links" />
+    <div class="tab-content border-0 p-8">
+        <p class="mb-8">Useful links for quick access to system functions.</p>
+        <nav class="grid grid-cols-[250px_1fr] items-center gap-4">
+            <?= $this->include('dashboard/pages/home/actions_links') ?>
+        </nav>
+    </div>
 </section>
 
 <?= $this->include('dashboard/pages/home/modal_sort_pages') ?>

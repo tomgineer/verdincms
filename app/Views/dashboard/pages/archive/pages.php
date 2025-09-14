@@ -1,59 +1,49 @@
-<?= $this->include('dashboard/pages/archive/header') ?>
+<nav class="flex justify-end mb-4">
+    <button class="btn btn-sm btn-outline btn-error" data-dash-action="removeDeletedPages" data-dash-return="archive/archive">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+        </svg>
+        Purge Deleted Pages
+    </button>
+</nav>
 
-<section class="grid grid-col-1 gap-05 mt-2">
-
-    <panel class="tabpanel tabpanel--right tabpanel--light">
-
-        <header class="flex flex-space gap-2 flex-vt">
-            <div>
-                <h3 class="tabpanel__title">Pages</h3>
-                <p class="tabpanel__desc">All draft of deleted pages.</p>
-            </div>
-            <button class="btn-outline fs-200" data-dash-action="removeDeletedPages" data-dash-return="archive/pages">
-                <svg class="svg-icon" aria-hidden="true">
-                    <use href="#warning"></use>
-                </svg>
-                Purge Deleted Pages
-            </button>
-        </header>
-
-        <?php if (!empty($pages)): ?>
-            <table class="dash-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Status</th>
-                        <th>Created</th>
-                        <th>Title</th>
-                        <th>Subtitle</th>
-                        <th>Section</th>
-                        <th>Slug</th>
-                        <th>Hits</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($pages as $page): ?>
-                        <tr>
-                            <td class="primary"><?= esc($page['id']) ?></td>
-                            <td class="primary">
-                                <?= esc($page['f_status']) ?>
-                            </td>
-                            <td class="primary"><?= esc($page['f_created']) ?></td>
-                            <td><?= esc($page['title']) ?></td>
-                            <td><?= esc($page['subtitle']) ?></td>
-                            <td class="primary"><?= esc($page['section']) ?></td>
-                            <td class="primary"><?= esc($page['slug']) ?></td>
-                            <td class="primary"><?= esc($page['hits']) ?></td>
-                            <td class="primary"><a href="<?=site_url('admin/edit/page/'.$page['id'])?>" target="_blank">Modify</a></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php else:?>
-            <p>No draft of deleted pages found.</p>
-        <?php endif; ?>
-
-    </panel>
-
-</section>
+<?php if (!empty($pages)): ?>
+    <table class="table table-zebra-soft">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Title</th>
+                <th>Subtitle</th>
+                <th>Section</th>
+                <th>Slug</th>
+                <th>Hits</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($pages as $page): ?>
+                <tr>
+                    <td class="text-info"><?= esc($page['id']) ?></td>
+                    <td>
+                        <span class="badge badge-dash <?= ($page['f_status'] === 'Draft' ? 'badge-warning' : 'badge-error') ?>">
+                            <?= esc($page['f_status']) ?>
+                        </span>
+                    </td>
+                    <td><?= esc($page['f_created']) ?></td>
+                    <td><?= esc($page['title']) ?></td>
+                    <td class="text-xs text-base-content/70"><?= esc($page['subtitle']) ?></td>
+                    <td><?= esc($page['section']) ?></td>
+                    <td class="text-xs text-base-content/70"><?= esc($page['slug']) ?></td>
+                    <td><?= esc($page['hits']) ?></td>
+                    <td>
+                        <a class="btn btn-sm" href="<?= site_url('admin/edit/page/'.$page['id']) ?>" target="_blank">Modify</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php else: ?>
+    <p>No draft or deleted pages found.</p>
+<?php endif; ?>

@@ -126,10 +126,10 @@ public function dashboard(...$segments) {
     if (tier() < 10) {return redirect()->to('/');}
     $path = implode('/', $segments);
 
-    $data = [
+    $data = array_merge($this->data, [
         'path'  => $path,
         'title' => 'Dashboard'
-    ];
+    ]);
 
     $this->dash = new DashboardModel();
 
@@ -210,10 +210,8 @@ public function dashboard(...$segments) {
         case 'logs/error':
             $data['errors'] = $this->dash->getErrorLogs();
             break;
-        case 'archive/posts':
+        case 'archive/archive':
             $data['posts'] = $this->dash->getArchivedContent('post');
-            break;
-        case 'archive/pages':
             $data['pages'] = $this->dash->getArchivedContent('page');
             break;
         case 'settings/settings':
@@ -258,7 +256,7 @@ public function dashboard(...$segments) {
             break;
     }
 
-    return view('dashboard/dashboard',$data);
+    return view('dashboard/dashboard', $data);
 }
 
 /**
