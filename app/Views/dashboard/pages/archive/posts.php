@@ -30,12 +30,14 @@
                             <?= esc($post['f_status']) ?>
                         </span>
                     </td>
-                    <td><?= esc($post['f_created']) ?></td>
+                    <td class="min-w-40"><?= esc($post['f_created']) ?></td>
                     <td><?= esc($post['title']) ?></td>
                     <td class="text-xs text-base-content/70"><?= esc($post['subtitle']) ?></td>
                     <td><?= esc($post['topic']) ?></td>
                     <td><?= esc($post['hits']) ?></td>
-                    <td><a class="btn btn-sm" href="<?=site_url('admin/edit/post/'.$post['id'])?>" target="_blank">Modify</a></td>
+                    <td class="text-right">
+                        <a class="btn btn-sm" href="<?=site_url('admin/edit/post/'.$post['id'])?>" target="_blank">Modify</a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

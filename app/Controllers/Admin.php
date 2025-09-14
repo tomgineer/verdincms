@@ -169,18 +169,13 @@ public function dashboard(...$segments) {
         case 'review/pages':
             $data['pages'] = $this->dash->needReview('page');
             break;
-        case 'subjects/topics':
+        case 'subjects/subjects':
             $data = array_merge($data, [
                 'useCKEditor' => true,
                 'topics'      => $this->dash->getSubjects('topics'),
-                'modal_data'  => (new SystemModel)->formBuilder(table: 'topics', hidden: ['id', 'position', 'posts'])
-            ]);
-            break;
-        case 'subjects/sections':
-            $data = array_merge($data, [
-                'useCKEditor' => true,
                 'sections'    => $this->dash->getSubjects('sections'),
-                'modal_data'  => (new SystemModel)->formBuilder(table: 'sections', hidden: ['id', 'position'])
+                'modal_data'  => (new SystemModel)->formBuilder(table: 'topics', hidden: ['id', 'position', 'posts'])
+                // 'modal_data'  => (new SystemModel)->formBuilder(table: 'sections', hidden: ['id', 'position'])
             ]);
             break;
         case 'latest/posts':
@@ -189,7 +184,7 @@ public function dashboard(...$segments) {
         case 'latest/pages':
             $data['pages'] = $this->dash->getLatestContent('page', 10);
             break;
-        case 'accounts/users':
+        case 'accounts/accounts':
             $data = array_merge($data, [
                 'users'       => $this->dash->getUserData(),
                 'modal_data'  => (new SystemModel)->formBuilder(

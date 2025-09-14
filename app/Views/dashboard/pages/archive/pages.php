@@ -31,13 +31,13 @@
                             <?= esc($page['f_status']) ?>
                         </span>
                     </td>
-                    <td><?= esc($page['f_created']) ?></td>
+                    <td class="min-w-40"><?= esc($page['f_created']) ?></td>
                     <td><?= esc($page['title']) ?></td>
                     <td class="text-xs text-base-content/70"><?= esc($page['subtitle']) ?></td>
                     <td><?= esc($page['section']) ?></td>
                     <td class="text-xs text-base-content/70"><?= esc($page['slug']) ?></td>
                     <td><?= esc($page['hits']) ?></td>
-                    <td>
+                    <td class="text-right">
                         <a class="btn btn-sm" href="<?= site_url('admin/edit/page/'.$page['id']) ?>" target="_blank">Modify</a>
                     </td>
                 </tr>
