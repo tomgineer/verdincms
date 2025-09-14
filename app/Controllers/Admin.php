@@ -171,10 +171,8 @@ public function dashboard(...$segments) {
                 // 'modal_data'  => (new SystemModel)->formBuilder(table: 'sections', hidden: ['id', 'position'])
             ]);
             break;
-        case 'latest/posts':
+        case 'latest/latest':
             $data['posts'] = $this->dash->getLatestContent('post', 10);
-            break;
-        case 'latest/pages':
             $data['pages'] = $this->dash->getLatestContent('page', 10);
             break;
         case 'accounts/accounts':
