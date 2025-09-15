@@ -72,5 +72,4 @@
 <?= $this->include('dashboard/pages/home/modal_sort_pages') ?>
 <?= $this->include('dashboard/pages/home/modal_sort_topics') ?>
 <?= $this->include('dashboard/pages/home/modal_sort_sections') ?>
-<?= $this->include('dashboard/pages/home/modal_sort_settings') ?>
 <backdrop class="dash-modal__backdrop hidden"></backdrop>

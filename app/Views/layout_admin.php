@@ -11,14 +11,24 @@
 
         <?= $this->renderSection('head') ?>
 
-        <link rel="stylesheet" href="<?=path_css()?>vernito.css?v=<?=setting('system.version')?>">
-        <link rel="stylesheet" href="<?=path_css()?>admin.css?v=<?=setting('system.version')?>">
+        <link rel="stylesheet" href="<?=path_css()?>tailwind.css?v=<?=setting('system.version')?>">
+
+        <script src="<?=path_js()?>app-dist.js?v=<?=setting('system.version')?>" defer></script>
         <script src="<?=path_js()?>admin-dist.js?v=<?=setting('system.version')?>" defer></script>
 
     </head>
 
     <body class="<?=body_class()?>" data-theme="dark" id="<?=body_class()?>">
-        <?= $this->renderSection('main') ?>
+
+        <header>
+            <?= $this->include('navbar/navbar') ?>
+            <?= $this->renderSection('header') ?>
+        </header>
+
+        <main>
+            <?= $this->renderSection('main') ?>
+        </main>
+
     </body>
 
 </html>

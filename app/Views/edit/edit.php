@@ -1,4 +1,4 @@
-<?= $this->extend('layout_admin2') ?>
+<?= $this->extend('layout_admin') ?>
 <?= $this->section('head') ?>
 
     <script src="<?=path_assets()?>ckeditor/ckeditor.js?v=<?=setting('system.version')?>"></script>

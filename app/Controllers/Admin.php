@@ -145,8 +145,7 @@ public function dashboard(...$segments) {
                 'posting_activity'   => $this->analytics->getDailyCreationCounts(),
                 'data_sort_pages'    => $this->system->sortBuilder('pages', 'title'),
                 'data_sort_topics'   => $this->system->sortBuilder('topics', 'title'),
-                'data_sort_sections' => $this->system->sortBuilder('sections', 'title'),
-                'data_sort_settings' => $this->system->sortBuilder('setting_groups', 'title')
+                'data_sort_sections' => $this->system->sortBuilder('sections', 'title')
             ]);
 
             break;
@@ -183,7 +182,6 @@ public function dashboard(...$segments) {
                     hidden: ['id', 'password', 'standin_id', 'modified']
                 )
             ]);
-
             break;
         case 'logs/logs':
             $data['crons'] = $this->dash->getCronLog(10);
@@ -194,27 +192,12 @@ public function dashboard(...$segments) {
             $data['posts'] = $this->dash->getArchivedContent('post');
             $data['pages'] = $this->dash->getArchivedContent('page');
             break;
-        case 'settings/settings':
-            $data = array_merge($data, [
-                'settings'    => $this->dash->getSettings(),
-                'modal_data'  => (new SystemModel)->formBuilder(
-                    table: 'settings',
-                    dropdowns: ['setting_group_id' => ['setting_groups', 'title']],
-                    hidden: ['id', 'position']
-                )
-            ]);
-
-            break;
-        case 'trash/photos':
+        case 'trash/trash':
             $data['photos'] = (new SystemModel())->getOrphanPhotos();
-            break;
-        case 'trash/content':
             $data['content'] = [
                 'posts' => $this->dash->getArchivedContent('post', 3),
                 'pages' => $this->dash->getArchivedContent('page', 3)
             ];
-            break;
-        case 'trash/accounts':
             $data['accounts'] = [
                 'users'   => $this->dash->getUserData('0')
             ];

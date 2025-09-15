@@ -1,35 +1,23 @@
-<?= $this->include('dashboard/pages/trash/header') ?>
+<nav class="flex justify-end mb-8">
+    <button class="btn btn-sm btn-outline btn-error" data-dash-action="removeOrphanPhotos" data-dash-return="trash/trash">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+        </svg>
+        Purge Orphan Photos
+    </button>
+</nav>
 
-<section class="grid grid-col-1 gap-05 mt-2">
+<?php if ( !empty($photos) ):?>
+    <ul class="flex flex-wrap gap-4">
 
-    <panel class="tabpanel tabpanel">
+        <?php foreach ($photos as $photo):?>
+            <li class="w-1/6 h-1/6 rounded overflow-hidden shadow-xl">
+                <img class="block w-full aspect-square object-cover" src="<?=path_img().$photo.'.webp'?>">
+            </li>
+        <?php endforeach;?>
 
-        <header class="flex flex-space gap-2 flex-vt">
-            <div>
-                <h3 class="tabpanel__title">Orphan Photos</h3>
-                <p class="tabpanel__desc">Images no longer linked to any post or page.</p>
-            </div>
-            <button class="btn-outline fs-200" data-dash-action="removeOrphanPhotos" data-dash-return="trash/photos">
-                <svg class="svg-icon" aria-hidden="true">
-                    <use href="#warning"></use>
-                </svg>
-                Purge Orphan Photos
-            </button>
-        </header>
-
-        <div class="grid grid-col-auto-200 gap-col-1 gap-row-2">
-            <?php if ( !empty($photos) ):?>
-
-                <?php foreach ($photos as $photo):?>
-                    <img class="dash-thumb" src="<?=path_img().$photo.'.webp'?>" alt="<?=$photo?>">
-                <?php endforeach;?>
-
-            <?php else:?>
-                <p>No orphan photos found.</p>
-            <?php endif;?>
-        </div>
-
-    </panel>
-
-</section>
+    </ul>
+<?php else:?>
+    <p>No orphan photos found.</p>
+<?php endif;?>
 
