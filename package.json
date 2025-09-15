@@ -1,12 +1,17 @@
 {
     "dependencies": {
         "@tailwindcss/cli": "^4.1.11",
+        "chart.js": "^4.5.0",
         "daisyui": "^5.0.43",
+        "highlight.js": "^11.11.1",
         "tailwindcss": "^4.1.11"
     },
     "scripts": {
         "dev": "npx @tailwindcss/cli -i ./tailwind-input.css -o ./public/css/tailwind.css --watch",
-        "build:css": "npx @tailwindcss/cli -i ./tailwind-input.css -o ./public/css/tailwind.css --minify"
+        "build:css": "npx @tailwindcss/cli -i ./tailwind-input.css -o ./public/css/tailwind.css --minify",
+        "copy:chart": "powershell Copy-Item node_modules/chart.js/dist/chart.umd.js public/js/chart.js",
+        "copy:highlight:js": "powershell Copy-Item node_modules/highlight.js/lib/common.js public/js/highlight.js",
+        "copy:highlight:css": "powershell Copy-Item node_modules/highlight.js/styles/*.css public/css/highlight/"
     },
     "devDependencies": {
         "@tailwindcss/typography": "^0.5.16"

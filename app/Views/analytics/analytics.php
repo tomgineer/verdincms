@@ -1,7 +1,7 @@
 <?= $this->extend('layout_admin') ?>
 <?= $this->section('head') ?>
     <?php if ( !empty($useChartJS) ):?>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="<?= base_url('js/chart.js') ?>"></script>
     <?php endif;?>
 <?= $this->endSection() ?>
 
