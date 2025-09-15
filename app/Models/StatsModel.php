@@ -46,9 +46,9 @@ class StatsModel extends Model {
  */
 public function trackVisitor(int $id = 0, string $type = 'post'): void {
 
-    if ($this->shouldSkipTracking()) {
-        return;
-    }
+    // if ($this->shouldSkipTracking()) {
+    //     return;
+    // }
 
     if (!in_array($type, ['post', 'page'], true)) {
         log_message('error', "Invalid type passed to trackVisitor: {$type}");

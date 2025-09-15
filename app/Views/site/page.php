@@ -5,7 +5,7 @@
 
     <?php if ( $page['disable_hero']==0 ):?>
         <div class="relative w-full h-[40vh] flex items-center justify-center overflow-hidden">
-            <h1 class="absolute z-10 text-5xl font-bold text-white text-center text-shadow-lg">
+            <h1 class="z-10 text-5xl font-bold text-white text-center text-shadow-lg">
                 <?= esc($page['title']) ?>
             </h1>
             <picture class="absolute inset-0 z-0">

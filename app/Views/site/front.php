@@ -1,12 +1,13 @@
 <?= $this->extend('layout_app') ?>
 <?= $this->section('main') ?>
 
+<?= $this->include('site/hero') ?>
+
 <div class="container mx-auto px-4 mt-16">
     <div class="flex flex-col lg:flex-row gap-8">
 
         <section class="flex-1">
             <?= view('components/post_list', ['posts' => $latest_updates]) ?>
-
 <!--            </?php if (!empty($latest_updates['pagination']) && is_array($latest_updates['pagination'])): ?>
                 <div class="mt-3">
                     </?= view('components/pagination', ['pagination' => $latest_updates['pagination']]) ?>
