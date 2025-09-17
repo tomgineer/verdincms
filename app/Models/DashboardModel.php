@@ -144,43 +144,11 @@ public function getPhpInfo(): array {
 }
 
 /**
- * Retrieves detailed system and database environment information.
+ * Gather detailed system and database configuration information.
  *
- * This method gathers system configuration values, PHP environment details,
- * and database metadata including platform, version, character set, timezone,
- * and current connections.
+ * Includes PHP, server, VerdinCMS, and database settings.
  *
- * @return array {
- *     @type array $system {
- *         @type string $VerdinCMS Version      The VerdinCMS version.
- *         @type string $CodeIgniter Version    The CodeIgniter version.
- *         @type string $App Environment        The current application environment.
- *         @type string $Base URL               The application base URL.
- *         @type string $PHP Version            The PHP version.
- *         @type string $PHP SAPI               The PHP Server API (SAPI) type.
- *         @type string $PHP Timezone           The PHP timezone setting.
- *         @type string $PHP Memory Limit       The PHP memory limit.
- *         @type string $PHP Max Upload Size    The maximum upload filesize.
- *         @type string $PHP Max POST Size      The maximum POST size.
- *         @type string $PHP Max Execution Time The maximum script execution time.
- *         @type string $Server Software        The server software string or OS info.
- *         @type string $Operating System       The operating system name and version.
- *     }
- *     @type array $database {
- *         @type string $Database Platform      The database platform/driver name.
- *         @type string $Database Version       The database version.
- *         @type string $Database Name          The name of the database.
- *         @type string $Character Set          The database character set.
- *         @type string $Collation              The database collation.
- *         @type string $MySQL Timezone         The database server timezone.
- *         @type string $MySQL Session Timezone The session timezone setting.
- *         @type string $NOW()                  The current date and time from the database.
- *         @type string $CURRENT_TIMESTAMP      The current timestamp from the database.
- *         @type string $CURDATE()              The current date from the database.
- *         @type string $Current DB User        The current database user.
- *         @type string $Active Connections     The number of active database connections.
- *     }
- * }
+ * @return array Associative array with 'system' and 'database' info.
  */
 public function getSystemAndDatabaseInfo(): array {
     $maxUpload = ini_get('upload_max_filesize');
@@ -247,24 +215,11 @@ public function getSystemAndDatabaseInfo(): array {
 }
 
 /**
- * Retrieves the latest posts or pages.
+ * Retrieve the latest content entries from posts or pages.
  *
- * This method fetches a list of the latest posts or pages from the database,
- * including basic details such as title, subtitle, hits, word count, and formatted creation date.
- * When fetching pages, it also includes the page and section slugs.
- *
- * @param string $type  The type of content to retrieve. Accepted values are 'post' or 'page'. Defaults to 'post'.
- * @param int    $limit The maximum number of records to return. Defaults to 10.
- *
- * @return array[] Each array contains the content data with keys:
- *                 - id (int)
- *                 - title (string)
- *                 - subtitle (string|null)
- *                 - hits (int)
- *                 - words (int)
- *                 - f_created (string)
- *                 - slug (string, only if type is 'page')
- *                 - s_slug (string, only if type is 'page')
+ * @param string $type  Content type ('post' or 'page').
+ * @param int    $limit Maximum number of items to return.
+ * @return array        List of latest content items with metadata.
  */
 public function getLatestContent($type = 'post', $limit = 10) {
     $builder = $this->db->table(($type === 'post') ? 'posts p' : 'pages p')
@@ -284,20 +239,11 @@ public function getLatestContent($type = 'post', $limit = 10) {
 }
 
 /**
- * Retrieves entries from the cron log.
+ * Retrieve cron job log entries with formatted date and time.
  *
- * This method fetches log entries from the cron_log table, including formatted date and time.
- * Results are ordered by creation date in descending order and can be paginated using limit and offset.
- *
- * @param int $limit  The maximum number of records to return. Defaults to PHP_INT_MAX.
- * @param int $offset The offset for pagination. Defaults to 0.
- *
- * @return array[] Each array contains the cron log data with keys:
- *                 - id (int)
- *                 - type (string)
- *                 - log (string)
- *                 - cron_date (string) Formatted date (e.g. Monday, 04 May 2025).
- *                 - cron_time (string) Formatted time (e.g. 14:32:10).
+ * @param int $limit  Maximum number of log entries to return.
+ * @param int $offset Offset for paginated results.
+ * @return array      List of cron log records.
  */
 public function getCronLog(int $limit = PHP_INT_MAX, int $offset = 0): array {
     return $this->db->table('cron_log')
@@ -315,18 +261,11 @@ public function getCronLog(int $limit = PHP_INT_MAX, int $offset = 0): array {
 }
 
 /**
- * Retrieves hit entries from the stats table.
+ * Retrieve visitor hit entries with formatted date and mobile flag.
  *
- * This method fetches hit records, including formatted creation date and mobile flag.
- * Results are ordered by the last updated date in descending order and can be paginated using limit and offset.
- *
- * @param int $limit  The maximum number of records to return. Defaults to PHP_INT_MAX.
- * @param int $offset The offset for pagination. Defaults to 0.
- *
- * @return array[] Each array contains the hit entry data with keys:
- *                 - (all original columns from stats table)
- *                 - date_logged (string) Formatted creation date (e.g. 04 May 2025).
- *                 - is_mobile (string) 'Yes' if mobile, 'No' otherwise.
+ * @param int $limit  Maximum number of entries to return.
+ * @param int $offset Offset for paginated results.
+ * @return array      List of hit records with extra fields.
  */
 public function getHitsEntries(int $limit = PHP_INT_MAX, int $offset = 0): array {
      return $this->db->table('stats')
@@ -387,26 +326,11 @@ public function getErrorLogs(): array {
 }
 
 /**
- * Retrieves posts or pages that require review.
+ * Retrieve content entries (posts or pages) marked for review.
  *
- * This method fetches content entries marked for review from either the posts or pages table,
- * including related topic or section information depending on the type.
- *
- * @param string $type  The type of content to retrieve. Accepted values are 'post' or 'page'.
- * @param int    $limit The maximum number of records to return. Defaults to 15.
- *
- * @return array[] Each array contains the content data with keys:
- *                 - id (int)
- *                 - status (int)
- *                 - title (string)
- *                 - subtitle (string|null)
- *                 - hits (int)
- *                 - f_created (string) Formatted creation date and time (e.g. May 04, 2025 14:32).
- *                 - topic (string) The topic title (only if type is 'post').
- *                 - topic_slug (string) The topic slug (only if type is 'post').
- *                 - slug (string) The page slug (only if type is 'page').
- *                 - section (string) The section title (only if type is 'page').
- *                 - s_slug (string) The section slug (only if type is 'page').
+ * @param string $type  Content type ('post' or 'page').
+ * @param int    $limit Maximum number of entries to return.
+ * @return array        List of review-pending content items with metadata.
  *
  * @throws \InvalidArgumentException If an invalid type is provided.
  */
@@ -441,28 +365,14 @@ public function needReview(string $type = 'post', int $limit = 15): array {
 }
 
 /**
- * Retrieves archived content (drafts and deleted posts/pages).
+ * Retrieve archived content entries (posts or pages).
  *
- * This method fetches unpublished content from the posts or pages table based on the given status codes.
- * It includes additional information such as formatted creation date, status label, and related topic or section info.
- * Writers (tier 9) only see their own archived content.
+ * Supports filtering by status codes (e.g., drafts, deleted) and user tier.
  *
- * @param string $type   The type of content to retrieve. Accepted values are 'post' or 'page'. Defaults to 'post'.
- * @param string $status A comma-separated list of status codes to filter by. Defaults to '2,3' (Draft and Deleted).
- *
- * @return array[] Each array contains the archived content data with keys:
- *                 - id (int)
- *                 - status (int)
- *                 - title (string)
- *                 - subtitle (string|null)
- *                 - hits (int)
- *                 - f_created (string) Formatted creation date and time (e.g. May 04, 2025 14:32).
- *                 - f_status (string) The status label ('Draft', 'Deleted', or 'Unknown').
- *                 - topic (string) The topic title (only if type is 'post').
- *                 - topic_slug (string) The topic slug (only if type is 'post').
- *                 - slug (string) The page slug (only if type is 'page').
- *                 - section (string) The section title (only if type is 'page').
- *                 - s_slug (string) The section slug (only if type is 'page').
+ * @param string $type   Content type ('post' or 'page').
+ * @param string $status Comma-separated list of status codes to include.
+ * @param int    $limit  Maximum number of entries to return.
+ * @return array         List of archived content items with metadata.
  */
 public function getArchivedContent(
     string $type = 'post',
@@ -496,21 +406,13 @@ public function getArchivedContent(
 }
 
 /**
- * Retrieves a list of topics or sections with associated content counts.
+ * Retrieve subjects with post or page counts.
  *
- * This method fetches either topics (with post counts) or sections (with page counts)
- * from the database. Results are ordered by content count (descending) and then title (ascending).
- * If an invalid type is provided, an empty array is returned.
+ * Supports fetching either topics (with post counts) or sections (with page counts).
  *
- * @param string $type  The type of subject to retrieve. Accepted values are 'topics' or 'sections'. Defaults to 'topics'.
- * @param int    $limit The maximum number of records to return. Defaults to PHP_INT_MAX.
- *
- * @return array[] Each array contains the subject data with keys:
- *                 - id (int)
- *                 - title (string)
- *                 - description (string|null)
- *                 - slug (string)
- *                 - count (int) The number of associated posts (for topics) or pages (for sections).
+ * @param string $type  Subject type ('topics' or 'sections').
+ * @param int    $limit Maximum number of subjects to return.
+ * @return array        List of subjects with metadata and content counts.
  */
 public function getSubjects(string $type = 'topics', int $limit = PHP_INT_MAX): array {
     if ($type === 'topics') {
@@ -537,27 +439,12 @@ public function getSubjects(string $type = 'topics', int $limit = PHP_INT_MAX): 
 }
 
 /**
- * Retrieves user or member data, optionally filtered by status.
+ * Retrieve user records with group and stand-in details.
  *
- * This method fetches records from either the users or members table, including
- * formatted dates and status labels. If a comma-separated status filter is provided,
- * only records matching the status codes are returned.
- * Returns an empty array if an invalid type is provided.
+ * Optionally filters by one or more status codes.
  *
- * @param string $type   The type of records to retrieve. Accepted values are 'users' or 'members'. Defaults to 'users'.
- * @param string $status Optional comma-separated list of status codes to filter by.
- *
- * @return array[] Each array contains the user or member data with keys:
- *                 - (all original columns from users or members table)
- *                 - tier (int, only if type is 'users')
- *                 - group_title (string, only if type is 'users')
- *                 - standin (string|null, only if type is 'users')
- *                 - f_created (string) Formatted creation date and time.
- *                 - status_label (string) The status label ('Deleted', 'Active', 'Inactive').
- *                 - f_membership_activated (string, only if type is 'members') Formatted membership activation date.
- *                 - f_membership_expiration (string, only if type is 'members') Formatted membership expiration date.
- *
- * Returns an empty array for invalid type.
+ * @param string $status Comma-separated list of status codes to filter by.
+ * @return array         List of users with metadata and formatted fields.
  */
 public function getUserData(string $status = ''): array {
     // Parse comma-separated statuses into array

@@ -54,15 +54,15 @@
         "popular_count": 30
     },
     "system": {
-        "version": "1.7.34",
+        "version": "1.7.38",
         "logo_height": 34,
         "trending_range": 24,
         "ip2location": false
     },
     "meta": {
         "site_name": "Tomgineer",
-        "site_title": "Tomgineer — Smarter ways to live and work",
-        "site_description": "Tomgineer — Smarter ways to live and work",
+        "site_title": "Tomgineer \u2014 Smarter ways to live and work",
+        "site_description": "Tomgineer \u2014 Smarter ways to live and work",
         "twitter": "@tomgineer"
     },
     "company": {

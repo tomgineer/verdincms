@@ -171,7 +171,6 @@ public function getRelatedPosts(int $id, int $topic_id, int $amount = 10) {
     return $posts;
 }
 
-
 /**
  * Retrieves a single post with author and topic details, formatted and filtered by access level.
  *
@@ -309,17 +308,11 @@ public function getPagesList(): array {
 }
 
 /**
- * Returns featured pages and topics for menu display.
+ * Retrieve featured menu items from pages and topics.
  *
- * Pages:
- * - Active, public, featured, and not in section ID 1
- * - Includes label, slug, and section slug (s_slug)
+ * Only includes public, accessible, and featured entries.
  *
- * Topics:
- * - Featured only
- * - Includes title and slug
- *
- * @return array{pages: array<int, array{label: string, slug: string, s_slug: string}>, topics: array<int, array{title: string, slug: string}>}|null
+ * @return array|null Associative array with 'pages' and 'topics', or null if none found.
  */
 public function getMenuItems(): ?array {
     $pages = $this->db->table('pages p')
@@ -541,20 +534,12 @@ public function getTopicsList(): ?array {
 }
 
 /**
- * Count content items across `posts` and `pages` by type.
+ * Count the total number of content items across posts and pages.
  *
- * Types supported (case-insensitive):
- * - "total"  : All items where id != 0.
- * - "public" : Items with status = 1 (published).
- * - "drafts" : Items with status IN (2, 3) (Unpublished or Deleted).
- * - "pending": Items with review = 1 (awaiting review).
+ * Supports filtering by content type: total, public, drafts, or review.
  *
- * Counts are aggregated across both tables using CodeIgniter's Query Builder.
- * `countAllResults()` is used so the applied filters are respected and the builder
- * auto-resets between iterations.
- *
- * @param string $type One of "total", "public", "drafts", or "pending". Defaults to "total".
- * @return int Total count across `posts` and `pages` for the given type.
+ * @param string $type Filter type ('total', 'public', 'drafts', 'review').
+ * @return int         Number of matching content items.
  */
 public function countContent(string $type = 'total'): int {
     $tables = ['posts', 'pages'];

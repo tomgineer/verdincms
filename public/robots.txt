@@ -1,2 +1,32 @@
+# Whitelisted Bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Pinterestbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# Block All Other Bots
 User-agent: *
-Disallow: 
+Disallow: /
+
+# Sitemap Links
+Sitemap: http://[::1]/verdincms/public/sitemap.xml
+Sitemap: http://[::1]/verdincms/public/sitemap.xml.gz

@@ -12,4 +12,4 @@
     </svg>
     Reset Trending
 </button>
-<p>Clears the Trending table.</p>
+<p>Reset the column <code>CREATED</code> of all entries in the Trending table to the current timestamp <code>NOW()</code>.</p>
