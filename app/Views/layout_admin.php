@@ -18,7 +18,7 @@
 
     </head>
 
-    <body class="<?=body_class()?>" data-theme="dark" id="<?=body_class()?>">
+    <body class="min-h-screen flex flex-col <?=body_class()?>" data-theme="dark" id="<?=body_class()?>">
 
         <header>
             <?= $this->include('navbar/navbar') ?>

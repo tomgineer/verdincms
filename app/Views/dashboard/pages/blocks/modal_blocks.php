@@ -1,37 +1,114 @@
-<modal class="dash-modal dash-modal--3xl hidden" data-modal="modalBlock" role="dialog" aria-modal="true">
+<dialog id="modal_blocks" class="modal" open>
 
-    <h3 class="dash-modal__title mb-1 no-select">
-        <svg class="svg-icon color-400" aria-hidden="true">
-            <use href="#verdincms"></use>
-        </svg>
-        <span>Edit Block</span>
-    </h3>
-    <button class="dash-modal__prev" type="button" aria-label="Previous">
-        <svg class="svg-icon" aria-hidden="true">
-            <use href="#chevron-prev"></use>
-        </svg>
-    </button>
-    <button class="dash-modal__next" type="button" aria-label="Next">
-        <svg class="svg-icon" aria-hidden="true">
-            <use href="#chevron-next"></use>
-        </svg>
-    </button>
-    <button class="dash-modal__close" type="button" aria-label="Close">
-        <svg class="svg-icon" aria-hidden="true">
-            <use href="#nav-close"></use>
-        </svg>
-    </button>
+    <div class="modal-box w-11/12 max-w-7xl min-h-[50rem]">
+        <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+        </form>
+        <h3 class="text-2xl font-bold">Edit Block</h3>
+        <p class="text-sm text-base-content/70">Feel free to edit this fuckin block</p>
 
-    <formbuilder class="formbuilder" data-formbuilder-table="<?=$modal_data['table']?>">
-        <?= $this->include('components/formbuilder/header') ?>
+        <section class="mt-4">
 
-        <section class="formbuilder__section form-blocks">
-            <?=view('components/formbuilder/formbuilder', $modal_data)?>
+            <div class="tabs tabs-border">
+                <input type="radio" name="tabs_blocks" class="tab" aria-label="General" checked="checked" />
+                <div class="tab-content p-4">
+
+                    <div class="grid grid-cols-3 gap-4">
+                        <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4 col-span-2 row-span-2">
+                            <legend class="fieldset-legend">Content</legend>
+
+                            <label class="label">Title</label>
+                            <input type="text" class="input w-full" name="title" placeholder="Title" maxlength="300" />
+
+                            <label class="label">Subtitle</label>
+                            <input type="text" class="input w-full" name="subtitle" placeholder="Subtitle" maxlength="300" />
+
+                            <label class="label">Body</label>
+                            <textarea class="textarea w-full" name="body" placeholder="Body"></textarea>
+                        </fieldset>
+
+                        <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+                            <legend class="fieldset-legend">Main Attributes</legend>
+
+                            <label class="label">ID</label>
+                            <input type="text" class="input input-neutral w-full" name="id" placeholder="ID" readonly />
+
+                            <label class="label">Alias</label>
+                            <input type="text" class="input w-full" name="alias" placeholder="Alias" maxlength="50" />
+
+                            <label class="label">Group</label>
+                            <select class="select w-full">
+                                <option disabled selected>Pick a group</option>
+                                <option>Crimson</option>
+                                <option>Amber</option>
+                                <option>Velvet</option>
+                            </select>
+
+                            <label class="label">Description</label>
+                            <textarea class="textarea w-full" name="description" placeholder="Description" maxlength="255"></textarea>
+                        </fieldset>
+
+                    </div>
+                </div>
+
+                <input type="radio" name="tabs_blocks" class="tab" aria-label="Advanced" />
+                <div class="tab-content p-4">
+
+                    <div class="grid grid-cols-3 gap-4">
+                        <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+                            <legend class="fieldset-legend">Texts</legend>
+
+                            <label class="label">Text 1</label>
+                            <input type="text" class="input w-full" name="text1" placeholder="Text 1" maxlength="100" />
+
+                            <label class="label">Text 2</label>
+                            <input type="text" class="input w-full" name="text2" placeholder="Text 2" maxlength="100" />
+
+                            <label class="label">Text 3</label>
+                            <input type="text" class="input w-full" name="text3" placeholder="Text 3" maxlength="100" />
+
+                            <label class="label">Text 4</label>
+                            <input type="text" class="input w-full" name="text4" placeholder="Text 4" maxlength="100" />
+
+                            <label class="label">Text 5</label>
+                            <input type="text" class="input w-full" name="text5" placeholder="Text 5" maxlength="100" />
+                        </fieldset>
+
+                        <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+                            <legend class="fieldset-legend">Links</legend>
+
+                            <label class="label">Link 1</label>
+                            <input type="text" class="input w-full" name="link1" placeholder="Link 1" maxlength="255" />
+
+                            <label class="label">Link 2</label>
+                            <input type="text" class="input w-full" name="link2" placeholder="Link 2" maxlength="255" />
+
+                            <label class="label">Link 3</label>
+                            <input type="text" class="input w-full" name="link3" placeholder="Link 3" maxlength="255" />
+
+                            <label class="label">Link 4</label>
+                            <input type="text" class="input w-full" name="link4" placeholder="Link 4" maxlength="255" />
+
+                            <label class="label">Link 5</label>
+                            <input type="text" class="input w-full" name="link5" placeholder="Link 5" maxlength="255" />
+                        </fieldset>
+
+
+                        <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+                            <legend class="fieldset-legend">Media</legend>
+
+                            <label class="label">Image</label>
+                            <input type="file" class="file-input w-full" name="image" />
+
+                            <label class="label">Background</label>
+                            <input type="file" class="file-input w-full" name="background" />
+                        </fieldset>
+                    </div>
+
+                </div>
+            </div>
+
         </section>
+    </div>
 
-        <?= $this->include('components/formbuilder/footer') ?>
-    </formbuilder>
-
-</modal>
-
-<backdrop class="dash-modal__backdrop hidden"></backdrop>
+</dialog>
