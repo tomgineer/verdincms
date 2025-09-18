@@ -4,10 +4,10 @@
         <form method="dialog">
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
-        <h3 class="text-2xl font-bold">Edit Block</h3>
+        <h3 class="text-2xl font-bold mb-2">Edit Block</h3>
         <p class="text-sm text-base-content/70">Feel free to edit this fuckin block</p>
 
-        <section class="mt-4">
+        <section class="mt-4" data-autofill-form data-table="blocks">
 
             <div class="tabs tabs-border">
                 <input type="radio" name="tabs_blocks" class="tab" aria-label="General" checked="checked" />
@@ -31,17 +31,13 @@
                             <legend class="fieldset-legend">Main Attributes</legend>
 
                             <label class="label">ID</label>
-                            <input type="text" class="input input-neutral w-full" name="id" placeholder="ID" readonly />
+                            <input type="text" class="input input-neutral w-full" name="id" placeholder="ID" readonly value="1" />
 
                             <label class="label">Alias</label>
                             <input type="text" class="input w-full" name="alias" placeholder="Alias" maxlength="50" />
 
                             <label class="label">Group</label>
-                            <select class="select w-full">
-                                <option disabled selected>Pick a group</option>
-                                <option>Crimson</option>
-                                <option>Amber</option>
-                                <option>Velvet</option>
+                            <select class="select w-full" data-table="block_groups" data-column="title" data-autofill-select>
                             </select>
 
                             <label class="label">Description</label>

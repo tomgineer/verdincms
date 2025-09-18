@@ -74,6 +74,10 @@ $routes->post('ajax/sortTable/(:segment)', 'Ajax::sortTable/$1');
 // Search
 $routes->get('ajax/search', 'Ajax::search');
 
+// Modals
+$routes->match(['GET', 'POST'], 'ajax/modalFillSelect', 'Ajax::modalFillSelect');
+$routes->match(['GET', 'POST'], 'ajax/modalFillForm', 'Ajax::modalFillForm');
+
 /******************************************************************************
  * ADMIN
  *****************************************************************************/

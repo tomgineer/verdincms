@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 use App\Models\ActionsModel;
 use App\Models\SystemModel;
+use App\Models\ModalsModel;
 use App\Models\EditContentModel;
 use CodeIgniter\API\ResponseTrait;
 
@@ -441,6 +442,53 @@ public function search() {
     return $this->response->setJSON($results);
 }
 
+// ===============================[ MODALS ]===============================
 
+/**
+ * Handles AJAX requests to populate modal <select> elements.
+ *
+ * Validates the request type and user tier, extracts the target table
+ * and column from the JSON payload, and returns the results as JSON.
+ *
+ * @return \CodeIgniter\HTTP\ResponseInterface JSON response with id/column data
+ */
+public function modalFillSelect() {
+
+    if (!$this->request->isAJAX()) {
+        return $this->failForbidden('Not an AJAX request');
+    }
+
+    if (tier() < 10) {
+        return $this->fail('Tier too low', 403);
+    }
+
+    $request = $this->request->getJSON(true); // true => array
+
+    $table  = $request['table'];
+    $column = $request['column'];
+
+    $result = (new ModalsModel)->ajaxModalFillSelect($table, $column);
+    return $this->response->setJSON($result);
+}
+
+public function modalFillForm() {
+
+    if (!$this->request->isAJAX()) {
+        return $this->failForbidden('Not an AJAX request');
+    }
+
+    if (tier() < 10) {
+        return $this->fail('Tier too low', 403);
+    }
+
+    $request = $this->request->getJSON(true); // true => array
+
+    $id     = $request['id'];
+    $table  = $request['table'];
+
+    $result = (new ModalsModel)->ajaxModalFillForm($id, $table);
+    return $this->response->setJSON($result);
+
+}
 
 } // ─── End of Class ───
