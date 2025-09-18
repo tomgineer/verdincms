@@ -16,4 +16,3 @@
     </div>
 </section>
 
-<?= $this->include('dashboard/pages/accounts/modal_users') ?>

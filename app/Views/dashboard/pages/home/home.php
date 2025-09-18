@@ -68,8 +68,3 @@
         </nav>
     </div>
 </section>
-
-<?= $this->include('dashboard/pages/home/modal_sort_pages') ?>
-<?= $this->include('dashboard/pages/home/modal_sort_topics') ?>
-<?= $this->include('dashboard/pages/home/modal_sort_sections') ?>
-<backdrop class="dash-modal__backdrop hidden"></backdrop>

@@ -16,6 +16,3 @@
         <?= $this->include('dashboard/pages/subjects/sections') ?>
     </div>
 </section>
-
-<?= $this->include('dashboard/pages/subjects/modal_topics') ?>
-<?= $this->include('dashboard/pages/subjects/modal_sections') ?>

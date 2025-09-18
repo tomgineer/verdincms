@@ -5,7 +5,7 @@
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
         <h3 class="text-2xl font-bold mb-2">Edit Block</h3>
-        <p class="text-sm text-base-content/70">Feel free to edit this fuckin block</p>
+        <p class="text-sm text-base-content/70">Update the content and settings for this block as needed.</p>
 
         <section class="mt-4" data-autofill-form data-table="blocks">
 
@@ -31,13 +31,13 @@
                             <legend class="fieldset-legend">Main Attributes</legend>
 
                             <label class="label">ID</label>
-                            <input type="text" class="input input-neutral w-full" name="id" placeholder="ID" readonly value="1" />
+                            <input type="text" class="input input-neutral w-full" name="id" placeholder="ID" readonly value="2" />
 
                             <label class="label">Alias</label>
                             <input type="text" class="input w-full" name="alias" placeholder="Alias" maxlength="50" />
 
                             <label class="label">Group</label>
-                            <select class="select w-full" data-table="block_groups" data-column="title" data-autofill-select>
+                            <select class="select w-full" name="block_group_id" data-table="block_groups" data-column="title" data-autofill-select>
                             </select>
 
                             <label class="label">Description</label>
@@ -95,9 +95,11 @@
 
                             <label class="label">Image</label>
                             <input type="file" class="file-input w-full" name="image" />
+                            <p class="label text-base-content" data-field-desc="image">No file selected.</p>
 
                             <label class="label">Background</label>
                             <input type="file" class="file-input w-full" name="background" />
+                            <p class="label text-base-content" data-field-desc="background">No file selected.</p>
                         </fieldset>
                     </div>
 

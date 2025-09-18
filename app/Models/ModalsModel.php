@@ -21,6 +21,12 @@ class ModalsModel extends Model {
  * @return array<int,array<string,mixed>> Result set as an array of rows
  */
 public function ajaxModalFillSelect(string $table, string $column):?array {
+
+    // Check if the table exists
+    if (!$this->db->tableExists($table)) {
+        return null;
+    }
+
     $results = $this->db->table($table)
                         ->select(['id', $column])
                         ->orderBy($column, 'ASC')

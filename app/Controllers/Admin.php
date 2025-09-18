@@ -142,10 +142,7 @@ public function dashboard(...$segments) {
                 'path'               => 'home/home',
                 'useChartJS'         => true,
                 'chart_visitors'     => $this->analytics->getVisitorAndHitStats(14, true),
-                'posting_activity'   => $this->analytics->getDailyCreationCounts(),
-                'data_sort_pages'    => $this->system->sortBuilder('pages', 'title'),
-                'data_sort_topics'   => $this->system->sortBuilder('topics', 'title'),
-                'data_sort_sections' => $this->system->sortBuilder('sections', 'title')
+                'posting_activity'   => $this->analytics->getDailyCreationCounts()
             ]);
 
             break;
@@ -163,9 +160,7 @@ public function dashboard(...$segments) {
             $data = array_merge($data, [
                 'useCKEditor' => true,
                 'topics'      => $this->dash->getSubjects('topics'),
-                'sections'    => $this->dash->getSubjects('sections'),
-                'modal_data'  => (new SystemModel)->formBuilder(table: 'topics', hidden: ['id', 'position', 'posts'])
-                // 'modal_data'  => (new SystemModel)->formBuilder(table: 'sections', hidden: ['id', 'position'])
+                'sections'    => $this->dash->getSubjects('sections')
             ]);
             break;
         case 'latest/latest':
@@ -174,13 +169,7 @@ public function dashboard(...$segments) {
             break;
         case 'accounts/accounts':
             $data = array_merge($data, [
-                'users'       => $this->dash->getUserData(),
-                'modal_data'  => (new SystemModel)->formBuilder(
-                    table: 'users',
-                    dropdowns: ['user_group_id' => ['user_groups', 'title']],
-                    uploads: ['avatar' => 'public/images/avatars'],
-                    hidden: ['id', 'password', 'standin_id', 'modified']
-                )
+                'users'       => $this->dash->getUserData()
             ]);
             break;
         case 'logs/logs':
@@ -205,13 +194,7 @@ public function dashboard(...$segments) {
         case 'blocks/blocks':
             $data = array_merge($data, [
                 'useCKEditor' => true,
-                'blocks'      => $this->dash->getBlocks(),
-                'modal_data'  => (new SystemModel)->formBuilder(
-                    table: 'blocks',
-                    dropdowns: ['block_group_id' => ['block_groups', 'title']],
-                    uploads: ['image' => 'public/images/blocks', 'background' => 'public/images/blocks'],
-                    hidden: ['id']
-                )
+                'blocks'      => $this->dash->getBlocks()
             ]);
             break;
         default:

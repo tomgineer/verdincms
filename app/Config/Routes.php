@@ -60,20 +60,6 @@ $routes->get('ajax/get_dashboard_page/(:any)', 'Ajax::get_dashboard_page/$1');
 $routes->post('ajax/run_action/(:segment)', 'Ajax::run_action/$1');
 $routes->post('ajax/update_setting', 'Ajax::update_setting');
 
-// FormBuilder
-$routes->post('ajax/formBuilderUploader', 'Ajax::formBuilderUploader');
-$routes->get('ajax/fetchTableColumnWithId/(:segment)/(:segment)', 'Ajax::fetchTableColumnWithId/$1/$2');
-$routes->get('ajax/fetchTableRowById/(:segment)/(:num)', 'Ajax::fetchTableRowById/$1/$2');
-$routes->post('ajax/saveTableRowById/(:segment)/(:segment)', 'Ajax::saveTableRowById/$1/$2');
-$routes->post('ajax/deleteTableRowById/(:segment)/(:num)', 'Ajax::deleteTableRowById/$1/$2');
-$routes->get('ajax/fetchNextId/(:segment)/(:num)/(:alpha)', 'Ajax::fetchNextId/$1/$2/$3');
-
-// SortBuilder
-$routes->post('ajax/sortTable/(:segment)', 'Ajax::sortTable/$1');
-
-// Search
-$routes->get('ajax/search', 'Ajax::search');
-
 // Modals
 $routes->match(['GET', 'POST'], 'ajax/modalFillSelect', 'Ajax::modalFillSelect');
 $routes->match(['GET', 'POST'], 'ajax/modalFillForm', 'Ajax::modalFillForm');
