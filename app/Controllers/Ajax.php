@@ -217,6 +217,11 @@ public function modalFillSelect() {
     return $this->response->setJSON($result);
 }
 
+/**
+ * AJAX: Fills a modal form with data from the given table record.
+ *
+ * @return \CodeIgniter\HTTP\ResponseInterface JSON response
+ */
 public function modalFillForm() {
 
     if (!$this->request->isAJAX()) {
@@ -236,5 +241,28 @@ public function modalFillForm() {
     return $this->response->setJSON($result);
 
 }
+
+public function modalSaveForm() {
+    if (!$this->request->isAJAX()) {
+        return $this->failForbidden('Not an AJAX request');
+    }
+
+    if (tier() < 10) {
+        return $this->fail('Tier too low', 403);
+    }
+
+    $json = $this->request->getJSON(true); // decoded to array
+
+    if (empty($json['table']) || empty($json['data'])) {
+        return $this->failValidationErrors('Missing table or data');
+    }
+
+    $table = $json['table'];
+    $data  = $json['data'];
+
+    $result = (new ModalsModel)->ajaxSaveForm($table, $data);
+    return $this->response->setJSON($result);
+}
+
 
 } // ─── End of Class ───

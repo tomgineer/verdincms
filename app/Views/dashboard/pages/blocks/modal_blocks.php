@@ -1,13 +1,13 @@
 <dialog id="modal_blocks" class="modal" open>
 
-    <div class="modal-box w-11/12 max-w-7xl min-h-[50rem]">
+    <div class="modal-box w-11/12 max-w-7xl min-h-[50rem] flex flex-col">
         <form method="dialog">
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
         <h3 class="text-2xl font-bold mb-2">Edit Block</h3>
         <p class="text-sm text-base-content/70">Update the content and settings for this block as needed.</p>
 
-        <section class="mt-4" data-autofill-form data-table="blocks">
+        <section class="mt-4 flex-1 overflow-y-auto" data-autofill-form="blocks">
 
             <div class="tabs tabs-border">
                 <input type="radio" name="tabs_blocks" class="tab" aria-label="General" checked="checked" />
@@ -24,7 +24,7 @@
                             <input type="text" class="input w-full" name="subtitle" placeholder="Subtitle" maxlength="300" />
 
                             <label class="label">Body</label>
-                            <textarea class="textarea w-full" name="body" placeholder="Body"></textarea>
+                            <textarea class="textarea w-full simple-editor" name="body" placeholder="Body"></textarea>
                         </fieldset>
 
                         <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
@@ -41,7 +41,7 @@
                             </select>
 
                             <label class="label">Description</label>
-                            <textarea class="textarea w-full" name="description" placeholder="Description" maxlength="255"></textarea>
+                            <textarea class="textarea w-full" name="description" placeholder="Description" maxlength="255" rows="7"></textarea>
                         </fieldset>
 
                     </div>
@@ -107,6 +107,14 @@
             </div>
 
         </section>
+
+        <nav class="flex gap-4 justify-end">
+            <form method="dialog">
+                <button class="btn btn-soft">Cancel</button>
+            </form>
+            <button class="btn btn-success" type="button" data-save-form>Save</button>
+        </nav>
+
     </div>
 
 </dialog>

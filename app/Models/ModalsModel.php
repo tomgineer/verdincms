@@ -50,5 +50,30 @@ public function ajaxModalFillForm(int $id, string $table):?array {
                     ->getRowArray();
 }
 
+public function ajaxSaveForm(string $table, array $data): array {
+    if (empty($data['id'])) {
+        return ['success' => false, 'message' => 'Missing ID'];
+    }
+
+    $id = $data['id'];
+    unset($data['id']);
+
+    // Update
+    $success = $this->db->table($table)->where('id', $id)->update($data);
+
+    if (!$success) {
+        return [
+            'success' => false,
+            'message' => 'Update failed',
+        ];
+    }
+
+    return [
+        'success' => true,
+        'message' => 'Record updated successfully',
+        'id' => $id,
+    ];
+}
+
 
 } // ─── End of Class ───

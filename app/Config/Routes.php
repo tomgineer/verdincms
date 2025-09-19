@@ -63,6 +63,7 @@ $routes->post('ajax/update_setting', 'Ajax::update_setting');
 // Modals
 $routes->match(['GET', 'POST'], 'ajax/modalFillSelect', 'Ajax::modalFillSelect');
 $routes->match(['GET', 'POST'], 'ajax/modalFillForm', 'Ajax::modalFillForm');
+$routes->match(['GET', 'POST'], 'ajax/modalSaveForm', 'Ajax::modalSaveForm');
 
 /******************************************************************************
  * ADMIN
