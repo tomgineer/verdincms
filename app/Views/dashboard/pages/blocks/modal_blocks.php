@@ -94,12 +94,12 @@
                             <legend class="fieldset-legend">Media</legend>
 
                             <label class="label">Image</label>
-                            <input type="file" class="file-input w-full" name="image" />
-                            <p class="label text-base-content" data-field-desc="image">No file selected.</p>
+                            <input type="file" class="file-input w-full" name="imageUpload" data-path="images/blocks" data-input="image" accept="image/*" />
+                            <input type="text" class="pointer-events-none text-accent" name="image" readonly placeholder="No file selected">
 
                             <label class="label">Background</label>
-                            <input type="file" class="file-input w-full" name="background" />
-                            <p class="label text-base-content" data-field-desc="background">No file selected.</p>
+                            <input type="file" class="file-input w-full" name="backgroundUpload" data-path="images/blocks" data-input="background" accept="image/*" />
+                            <input type="text" class="pointer-events-none text-accent" name="background" readonly placeholder="No file selected">
                         </fieldset>
                     </div>
 

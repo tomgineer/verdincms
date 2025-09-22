@@ -64,6 +64,7 @@ $routes->post('ajax/update_setting', 'Ajax::update_setting');
 $routes->match(['GET', 'POST'], 'ajax/modalFillSelect', 'Ajax::modalFillSelect');
 $routes->match(['GET', 'POST'], 'ajax/modalFillForm', 'Ajax::modalFillForm');
 $routes->match(['GET', 'POST'], 'ajax/modalSaveForm', 'Ajax::modalSaveForm');
+$routes->post('ajax/modalUploadFile', 'Ajax::modalUploadFile');
 
 /******************************************************************************
  * ADMIN

@@ -242,6 +242,14 @@ public function modalFillForm() {
 
 }
 
+/**
+ * Processes AJAX modal form submissions.
+ *
+ * Validates request, checks tier, and saves form data
+ * via ModalsModel::ajaxSaveForm().
+ *
+ * @return \CodeIgniter\HTTP\ResponseInterface JSON response
+ */
 public function modalSaveForm() {
     if (!$this->request->isAJAX()) {
         return $this->failForbidden('Not an AJAX request');
@@ -262,6 +270,43 @@ public function modalSaveForm() {
 
     $result = (new ModalsModel)->ajaxSaveForm($table, $data);
     return $this->response->setJSON($result);
+}
+
+public function modalUploadFile() {
+    if (!$this->request->isAJAX()) {
+        return $this->failForbidden('Not an AJAX request');
+    }
+
+    if (tier() < 10) {
+        return $this->fail('Tier too low', 403);
+    }
+
+    $file  = $this->request->getFile('file');
+    $path  = $this->request->getPost('path');
+    $field = $this->request->getPost('field'); // 'image' or 'background'
+
+    if (!$file || !$file->isValid()) {
+        return $this->fail('Invalid file upload.');
+    }
+
+    // Convert path to system-safe format
+    $relativePath = trim($path, '/');
+    $relativePath = str_replace('/', DIRECTORY_SEPARATOR, $relativePath);
+    $uploadPath = FCPATH . DIRECTORY_SEPARATOR . $relativePath;
+
+    // Create folder if needed
+    if (!is_dir($uploadPath)) {
+        mkdir($uploadPath, 0755, true);
+    }
+
+    $newName = $file->getRandomName();
+    $file->move($uploadPath, $newName);
+
+    return $this->respond([
+        'status'   => 'success',
+        'filename' => $newName,
+        'field'    => $field,
+    ]);
 }
 
 
