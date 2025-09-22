@@ -24,8 +24,8 @@
     .stat-lg .stat-title { @apply text-lg; }
     .stat-lg .stat-value { @apply text-5xl leading-tight font-bebas; }
     .scrollbar-auto {scrollbar-gutter: auto !important;} /* Add this via JS to HTML in a modal */
-    .modal {
+    /* .modal {
         border: none;
         outline: none;
-    }
+    } */
 }

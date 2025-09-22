@@ -1,4 +1,4 @@
-<dialog id="modal_blocks" class="modal" open>
+<dialog id="modalBlock" class="modal">
 
     <div class="modal-box w-11/12 max-w-7xl min-h-[50rem] flex flex-col">
         <form method="dialog">
