@@ -31,7 +31,7 @@
                             <legend class="fieldset-legend">Main Attributes</legend>
 
                             <label class="label">ID</label>
-                            <input type="text" class="input input-neutral w-full" name="id" placeholder="ID" readonly value="2" />
+                            <input type="text" class="input input-neutral w-full text-accent" name="id" placeholder="ID" readonly value="0" />
 
                             <label class="label">Alias</label>
                             <input type="text" class="input w-full" name="alias" placeholder="Alias" maxlength="50" />
@@ -41,7 +41,7 @@
                             </select>
 
                             <label class="label">Description</label>
-                            <textarea class="textarea w-full" name="description" placeholder="Description" maxlength="255" rows="7"></textarea>
+                            <textarea class="textarea w-full resize-none" name="description" placeholder="Description" maxlength="255" rows="7"></textarea>
                         </fieldset>
 
                     </div>

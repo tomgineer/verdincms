@@ -24,7 +24,7 @@
                     <td><?= esc($topic['count']) ?></td>
                     <td class="text-right">
                         <button class="btn btn-sm" type="button"
-                            data-modify-button="<?= esc($topic['id']) ?>"
+                            data-modify-id="<?= esc($topic['id']) ?>"
                             data-target-modal="modalTopics">
                             Modify
                         </button>
@@ -37,3 +37,4 @@
     <p>No topics found.</p>
 <?php endif; ?>
 
+<?= $this->include('dashboard/pages/subjects/modal_topics') ?>
