@@ -1,7 +1,6 @@
 <header class="mt-10 mb-4">
     <h1 class="text-5xl mb-2">Review</h1>
     <p class="text-base-content/70">Pages and posts awaiting editorial review, approval, or final edits.</p>
-    <span class="badge badge-dash badge-success block mt-2">No Modals Here!</span>
 </header>
 
 <section class="tabs tabs-lg tabs-border">

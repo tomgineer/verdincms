@@ -1,7 +1,6 @@
 <header class="mt-10 mb-4">
     <h1 class="text-5xl mb-2">Archive</h1>
     <p class="text-base-content/70">Browse posts and pages that are saved as drafts or have been deleted.</p>
-    <span class="badge badge-dash badge-success block mt-2">No Modals Here!</span>
 </header>
 
 <section class="tabs tabs-lg tabs-border">

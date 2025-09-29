@@ -1,7 +1,6 @@
 <header class="mt-10 mb-4">
     <h1 class="text-5xl mb-2">Latest Posts & Pages</h1>
     <p class="text-base-content/70">Recent activity from your site, including new posts and pages.</p>
-    <span class="badge badge-dash badge-success block mt-2">No Modals Here!</span>
 </header>
 
 <section class="tabs tabs-lg tabs-border">

@@ -1,7 +1,6 @@
 <header class="mt-10 mb-4">
     <h1 class="text-5xl mb-2">Blocks</h1>
     <p class="text-base-content/70">Modular content blocks that can be placed across different areas of the website.</p>
-    <span class="badge badge-dash badge-success block mt-2">Modal Finished!</span>
 </header>
 
 <div class="tabs tabs-lg tabs-border">
