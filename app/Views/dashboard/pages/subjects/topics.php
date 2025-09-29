@@ -36,5 +36,3 @@
 <?php else: ?>
     <p>No topics found.</p>
 <?php endif; ?>
-
-<?= $this->include('dashboard/pages/subjects/modal_topics') ?>

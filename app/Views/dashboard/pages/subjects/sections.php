@@ -24,7 +24,7 @@
                     <td><?= esc($section['count']) ?></td>
                     <td class="text-right">
                         <button class="btn btn-sm" type="button"
-                            data-modify-button="<?= esc($section['id']) ?>"
+                            data-modify-id="<?= esc($section['id']) ?>"
                             data-target-modal="modalSections">
                             Modify
                         </button>
