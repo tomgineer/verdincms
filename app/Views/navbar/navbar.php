@@ -1,18 +1,25 @@
-<nav class="navbar bg-base-200 shadow-sm relative z-999">
-    <div class="navbar-start">
-        <?= $this->include('navbar/mobile_menu') ?>
-        <a class="btn btn-ghost px-0 sm:px-4" href="<?=base_url()?>">
-            <img class="h-full w-auto" src="<?=path_gfx().'logo.svg'?>" alt="Logo">
+<div class="navbar bg-base-300 z-999">
+    <div class="flex-1">
+        <a class="btn btn-ghost text-xl px-1 lg:px-4" href="<?= base_url() ?>">
+            <img class="h-9 w-auto opacity-85 hover:opacity-100 transition-opacity duration-200 select-none" src="<?= path_gfx() . 'logo.svg' ?>" alt="Linkoreo Logo">
         </a>
     </div>
 
-    <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-horizontal px-1">
+    <div class="flex items-center gap-2">
+        <ul class="menu menu-horizontal leading-5 z-998">
+            <li>
+                <a href="" class="gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 text-info">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    <span>New Post</span>
+                </a>
+            </li>
 
             <li>
                 <details>
                     <summary>Ranking</summary>
-                    <ul class="p-2 bg-base-300 z-998 w-70">
+                    <ul class="bg-base-200 rounded-t-none p-2 min-w-52">
                         <li><a href="<?=site_url('ranking/trending')?>">Trending</a></li>
                         <li><a href="<?=site_url('ranking/popular')?>">Popular</a></li>
                         <li><a href="<?=site_url('featured')?>">Featured</a></li>
@@ -23,7 +30,7 @@
             <li>
                 <details>
                     <summary>Sections</summary>
-                    <ul class="p-2 bg-base-300 z-998 w-70">
+                    <ul class="bg-base-200 rounded-t-none p-2 min-w-52">
                         <?php foreach ($menu_items['topics'] as $topic):?>
                             <li>
                                 <a href="<?=site_url('topic/' . $topic['slug'])?>"><?=esc($topic['title'])?></a>
@@ -36,7 +43,7 @@
             <li>
                 <details>
                     <summary>The Blog</summary>
-                    <ul class="p-2 bg-base-300 z-998 w-70">
+                    <ul class="bg-base-200 rounded-t-none p-2 min-w-52">
                         <?php foreach ($menu_items['pages'] as $page_items):?>
                             <li>
                                 <a href="<?=site_url($page_items['s_slug'] . '/' . $page_items['slug'])?>"><?=esc($page_items['label'])?></a>
@@ -53,7 +60,7 @@
                 <li>
                     <details>
                         <summary class="text-warning font-semibold">Administration</summary>
-                        <ul class="p-2 bg-base-300 z-998 w-70">
+                        <ul class="bg-base-200 rounded-t-none p-2 min-w-52">
                             <li><a class="btn btn-success mb-2" href="<?=site_url('admin/edit/post/new')?>">New Post</a></li>
                             <li><a class="btn btn-soft mb-2" href="<?=site_url('admin/edit/page/new')?>">New Page</a></li>
                             <li><a href="<?=site_url('admin/moderate/drafts')?>">Drafts</a></li>
@@ -69,44 +76,30 @@
             <?php endif;?>
 
         </ul>
-    </div>
 
-    <div class="navbar-end flex gap-2">
-        <?php if ($can_edit ?? false): ?>
-            <?php if ( !empty($post) ):?>
-                <a class="btn btn-primary" href="<?=site_url('admin/edit/post/'.$post['id'])?>">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+        <input type="text" placeholder="Search" class="input input-bordered w-96 text-base hidden lg:flex" disabled />
+
+        <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="btn btn-ghost btn-square">
+                <div class="h-full w-full flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                     </svg>
-                    Edit
-                </a>
-            <?php elseif( !empty($page) ):?>
-                <a class="btn btn-primary" href="<?=site_url('admin/edit/page/'.$page['id'])?>">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                    </svg>
-                    Edit
-                </a>
-            <?php endif;?>
-        <?php endif;?>
+                </div>
+            </div>
+            <ul
 
-        <?php if( tier() == 0 ):?>
-            <a class="btn btn-ghost hover:btn-secondary" href="<?=site_url('login')?>">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
-                </svg>
-                Login
-            </a>
-        <?php else:?>
-            <a class="btn btn-ghost hover:btn-warning" href="<?=site_url('users/logout')?>">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
-                </svg>
-                Logout
-            </a>
-        <?php endif;?>
+                tabindex="-1"
+                class="menu menu-sm dropdown-content bg-base-200 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                <li>
+                    <a class="justify-between">
+                        Profile
+                        <span class="badge">New</span>
+                    </a>
+                </li>
+                <li><a>Settings</a></li>
+                <li><a>Logout</a></li>
+            </ul>
+        </div>
     </div>
-
-</nav>
-
-
+</div>

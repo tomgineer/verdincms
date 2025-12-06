@@ -1,7 +1,7 @@
 {
     "site": {
-        "title": "Tomgineer",
-        "url": "https://tomgineer.com",
+        "title": "Χάρτινο Τσίκο",
+        "url": "https://xartinotsirko.com",
         "language": "el",
         "timezone": "Europe/Berlin"
     },
@@ -14,7 +14,7 @@
         "lifetime": 3600
     },
     "admin": {
-        "email": "info@tomgineer.com",
+        "email": "info@xartinotsirko.com",
         "login_required": true
     },
     "social_media": {
@@ -60,14 +60,14 @@
         "ip2location": false
     },
     "meta": {
-        "site_name": "Tomgineer",
-        "site_title": "Tomgineer \u2014 Smarter ways to live and work",
-        "site_description": "Tomgineer \u2014 Smarter ways to live and work",
-        "twitter": "@tomgineer"
+        "site_name": "Χάρτινο Τσίκο",
+        "site_title": "Χάρτινο Τσίκο \u2014 Η παράσταση συνεχίζεται",
+        "site_description": "Χάρτινο Τσίκο \u2014 Η παράσταση συνεχίζεται",
+        "twitter": "@xartinotsirko"
     },
     "company": {
-        "name": "Verdin Dynamics",
-        "email": "info@verdindynamics.com",
-        "support_email": "support@verdindynamics.com"
+        "name": "Χάρτινο Τσίκο",
+        "email": "info@xartinotsirko.com",
+        "support_email": "support@xartinotsirko.com"
     }
 }

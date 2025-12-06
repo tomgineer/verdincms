@@ -42,11 +42,11 @@
             <?= $this->renderSection('header') ?>
         </header>
 
-        <main class="flex-grow">
+        <main class="flex-1">
             <?= $this->renderSection('main') ?>
         </main>
 
-        <footer>
+        <footer class="bg-tent mt-24 bg-base-300">
             <?= $this->include('site/footer') ?>
         </footer>
 
