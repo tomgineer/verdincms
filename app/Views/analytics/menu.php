@@ -1,4 +1,4 @@
-<nav class="fixed left-0 top-0 bottom-0 w-24 z-50 bg-base-200 pt-16" data-nav-active="<?=get_route()?>">
+<nav class="fixed left-0 top-16 bottom-0 w-24 z-50 bg-base-200" data-nav-active="<?=get_route()?>">
 
     <ul class="menu bg-base-200 rounded-box w-full pt-4 gap-y-2">
         <li>

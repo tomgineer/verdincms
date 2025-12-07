@@ -1,7 +1,7 @@
 <section>
 
     <ul>
-        <?php foreach ($posts['posts'] as $post):?>
+        <?php foreach ($posts as $post): ?>
             <li class="mb-10">
 
                 <div class="card lg:card-side bg-base-100">

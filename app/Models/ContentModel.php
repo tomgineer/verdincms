@@ -85,7 +85,7 @@ public function getPosts(
     $featured ? $builder->orderBy('RAND()') : $builder->orderBy('p.created', 'DESC');
 
     // Handle pagination
-    if ( $pagination ) {
+    if ($pagination) {
         $totalRecordsQuery = clone $builder;
         $totalRecords = $totalRecordsQuery->countAllResults(false);
         $totalPages = (int) ceil($totalRecords / $amount);
@@ -94,8 +94,11 @@ public function getPosts(
 
         $postData['pagination'] = [
             'page'         => $page,
+            'total_pages'  => $totalPages,
             'older_exists' => $page < $totalPages,
-            'newer_exists' => $page > 1
+            'newer_exists' => $page > 1,
+            'per_page'     => $amount,
+            'total_items'  => $totalRecords,
         ];
 
     } else {
@@ -577,6 +580,53 @@ public function countContent(string $type = 'total'): int {
 
     return $total;
 }
+
+// TODO: Finish Search
+public function search(string $term): array {
+    $term = trim($term);
+    if ($term === '' || mb_strlen($term) < 2) {
+        return [];
+    }
+
+    $tier    = tier();
+    $escaped = $this->db->escape($term . '*');
+
+    $builder = $this->db->table('posts p')
+        ->join('users u', 'u.id = p.user_id', 'left')
+        ->join('topics t', 't.id = p.topic_id', 'left')
+        ->select([
+            'p.id',
+            'p.title',
+            'p.subtitle',
+            'p.photo',
+            'p.created',
+            'CONCAT(u.first_name, " ", u.last_name) AS author',
+            'u.author AS author_handle',
+            't.title AS topic',
+            't.slug  AS topic_slug',
+            "MATCH(p.title, p.subtitle, p.body) AGAINST ($escaped IN BOOLEAN MODE) AS relevance",
+        ])
+        // visibility rules
+        ->where('p.status', 1)
+        ->where('p.accessibility <=', $tier)
+        ->where('p.unlisted !=', 1)
+        // fulltext condition
+        ->where("MATCH(p.title, p.subtitle, p.body) AGAINST ($escaped IN BOOLEAN MODE)", null, false)
+        ->having('relevance >', 0)
+        ->orderBy('relevance', 'DESC')
+        ->orderBy('p.created', 'DESC')
+        ->limit(50);
+
+    $results = $builder->get()->getResultArray();
+
+    // add "ago" like in getPosts()
+    array_walk($results, static function (&$row) {
+        $row['ago'] = Time::parse($row['created'])->humanize();
+    });
+
+    return $results;
+}
+
 
 
 

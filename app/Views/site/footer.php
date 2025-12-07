@@ -1,7 +1,7 @@
 <section class="footer footer-horizontal footer-center text-base-content rounded p-10">
-    <nav class="flex flex-wrap gap-2 justify-center">
+    <nav class="flex flex-wrap gap-1 justify-center">
         <?php foreach ($topics_list as $topic):?>
-            <a class="btn btn-dash btn-secondary" href="<?=site_url('topic/'.$topic['slug'])?>" data-match="<?='topic/'.$topic['slug']?>"><?=$topic['title']?></a>
+            <a class="btn btn-soft hover:btn-accent font-heading font-light" href="<?=site_url('topic/'.$topic['slug'])?>" data-match="<?='topic/'.$topic['slug']?>"><?=$topic['title']?></a>
         <?php endforeach;?>
     </nav>
 </section>

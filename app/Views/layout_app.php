@@ -38,7 +38,7 @@
     <body class="min-h-screen flex flex-col <?=body_class()?>" id="<?=body_class()?>">
 
         <header>
-            <?= $this->include('navbar/navbar') ?>
+            <?= $this->include('components/nav') ?>
             <?= $this->renderSection('header') ?>
         </header>
 
@@ -46,7 +46,7 @@
             <?= $this->renderSection('main') ?>
         </main>
 
-        <footer class="bg-tent mt-24 bg-base-300">
+        <footer class="mt-24 bg-base-200">
             <?= $this->include('site/footer') ?>
         </footer>
 

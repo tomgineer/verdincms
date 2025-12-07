@@ -21,7 +21,7 @@
     <body class="min-h-screen flex flex-col <?=body_class()?>" data-theme="dark" id="<?=body_class()?>">
 
         <header>
-            <?= $this->include('navbar/navbar') ?>
+            <?= $this->include('components/nav') ?>
             <?= $this->renderSection('header') ?>
         </header>
 

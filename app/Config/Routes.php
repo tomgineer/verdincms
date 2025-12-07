@@ -66,6 +66,9 @@ $routes->match(['GET', 'POST'], 'ajax/modalFillForm', 'Ajax::modalFillForm');
 $routes->match(['GET', 'POST'], 'ajax/modalSaveForm', 'Ajax::modalSaveForm');
 $routes->post('ajax/modalUploadFile', 'Ajax::modalUploadFile');
 
+// Search
+$routes->get('ajax/search', 'Ajax::search');
+
 /******************************************************************************
  * ADMIN
  *****************************************************************************/

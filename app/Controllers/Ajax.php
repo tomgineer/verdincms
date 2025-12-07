@@ -1,8 +1,8 @@
 <?php namespace App\Controllers;
 use App\Models\ActionsModel;
-use App\Models\SystemModel;
 use App\Models\ModalsModel;
 use App\Models\EditContentModel;
+use App\Models\ContentModel;
 use CodeIgniter\API\ResponseTrait;
 
 class Ajax extends BaseController {
@@ -272,6 +272,14 @@ public function modalSaveForm() {
     return $this->response->setJSON($result);
 }
 
+/**
+ * Handles AJAX file uploads from modals.
+ *
+ * Validates user tier (≥10), ensures upload path exists,
+ * saves the file with a random name, and returns a JSON response.
+ *
+ * @return \CodeIgniter\HTTP\ResponseInterface JSON with status, filename, and field
+ */
 public function modalUploadFile() {
     if (!$this->request->isAJAX()) {
         return $this->failForbidden('Not an AJAX request');
@@ -309,5 +317,44 @@ public function modalUploadFile() {
     ]);
 }
 
+/**
+ * Handles AJAX search requests and returns JSON results.
+ *
+ * Validates the request type, retrieves the search term from the
+ * query string, and calls the model search method. Returns an
+ * empty array for short or empty queries and handles exceptions
+ * gracefully with proper error responses.
+ *
+ * @return \CodeIgniter\HTTP\ResponseInterface JSON response containing search results or an error message.
+ */
+public function search() {
+    // Ensure it's an AJAX request
+    if (! $this->request->isAJAX()) {
+        return $this->failForbidden('Not an AJAX request');
+    }
+
+    // Get search term from query string: /ajax/search?q=foo
+    $query = trim((string) $this->request->getGet('q'));
+
+    // Gracefully ignore short or empty queries
+    if ($query === '' || mb_strlen($query) < 2) {
+        return $this->respond([]);
+    }
+
+    try {
+        // Call your model (adjust to your actual model name/method)
+        $results = (new ContentModel)->search($query);
+
+        // Ensure we always return an array
+        if (! is_array($results)) {
+            $results = [];
+        }
+
+        return $this->respond($results); // 200 with JSON
+    } catch (\Throwable $e) {
+        log_message('error', 'Search error: {message}', ['message' => $e->getMessage()]);
+        return $this->failServerError('An error occurred while performing the search.');
+    }
+}
 
 } // ─── End of Class ───

@@ -244,7 +244,7 @@ public function topic(string $slug) {
     // Prepare data
     $data = array_merge($this->data, [
         'site_title' => $this->content->getTitleFromId($topic_id, 'topics'),
-        'post_data'  => $this->content->getPosts(topic_id: $topic_id, pagination: true, page: $page),
+        'post_data'  => $this->content->getPosts(topic_id: $topic_id, pagination: true, page: $page, amount: 20),
         'trending'   => $this->content->getRankingPosts(amount: 10, type: 'trending'),
     ]);
 
@@ -369,8 +369,12 @@ public function ranking(string $type) {
  * @return void
  */
 public function featured() {
+    // Get Page
+    $page = $this->request->getGet('page') ?? 1;
+    $page = ctype_digit((string) $page) ? (int) $page : 1;
+
     // Cache settings
-    $cacheName   = 'featured_posts';
+    $cacheName   = 'featured_posts_page_' . $page;
     $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
     // Serve from cache if available
@@ -383,7 +387,7 @@ public function featured() {
     // Fetch data
     $data = array_merge($this->data, [
         'site_title' => 'Featured',
-        'post_data'  => $this->content->getPosts(featured: true),
+        'post_data'  => $this->content->getPosts(featured: true, pagination: true, page: $page, amount: 20),
         'trending'   => $this->content->getRankingPosts(amount: 10, type: 'trending'),
     ]);
 

@@ -10,9 +10,6 @@
     --font-sans: "Arimo", ui-sans-serif, system-ui, sans-serif;
     --font-heading: "Fira Sans Extra Condensed", ui-sans-serif, system-ui, sans-serif;
     --font-bebas: "Bebas Neue", ui-sans-serif, system-ui, sans-serif;
-
-    /* Background images */
-    --bg-tent: url("../gfx/tent.webp");
 }
 
 @layer base {
@@ -31,10 +28,5 @@
         border: none;
         outline: none;
     } */
-    .bg-tent {
-        background-image: var(--bg-tent);
-        @apply bg-no-repeat bg-right bg-contain bg-blend-soft-light;
-    }
-
 
 }

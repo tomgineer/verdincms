@@ -7,7 +7,8 @@
 
         <section class="flex-1">
             <h1 class="text-4xl text-base-content/70 mb-8 text-shadow-lg"><?= esc($site_title) ?></h1>
-            <?= view('components/post_list', ['posts' => $post_data]) ?>
+            <?= view('components/post_list', ['posts' => $post_data['posts']]) ?>
+            <?= isset($post_data['pagination']) ? view('components/pagination', ['pagination' => $post_data['pagination']]) : '' ?>
         </section>
 
         <aside class="w-full lg:w-[30%]">
