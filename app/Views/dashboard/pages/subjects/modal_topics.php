@@ -33,7 +33,7 @@
                 <legend class="fieldset-legend">Info</legend>
 
                 <label class="label">ID</label>
-                <input type="text" class="input input-neutral w-full text-accent" name="id" placeholder="ID" readonly value="0" />
+                <input type="text" class="input input-neutral w-full text-accent" name="id" placeholder="ID" readonly value="" />
 
                 <label class="label">Position</label>
                 <input type="text" class="input input-neutral w-full text-accent" name="position" placeholder="Position" readonly />
@@ -44,11 +44,11 @@
 
         </section>
 
-        <nav class="flex gap-4 justify-end mt-4">
+        <nav class="flex gap-2 justify-end mt-4">
             <form method="dialog">
-                <button class="btn btn-soft">Cancel</button>
+                <button class="btn btn-ghost">Cancel</button>
             </form>
-            <button class="btn btn-success" type="button" data-save-form>Save</button>
+            <button class="btn btn-success" type="button" data-save-form>Save Topic</button>
         </nav>
 
     </div>

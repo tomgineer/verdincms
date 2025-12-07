@@ -581,8 +581,18 @@ public function countContent(string $type = 'total'): int {
     return $total;
 }
 
-// TODO: Finish Search
-public function search(string $term): array {
+/**
+ * Performs a fulltext search on published posts.
+ *
+ * Searches within title, subtitle, and body using MySQL FULLTEXT
+ * in BOOLEAN MODE, filtered by visibility and accessibility.
+ *
+ * @param string $term  Search term (minimum 2 characters)
+ * @param int    $limit Maximum number of results to return (default: 20)
+ *
+ * @return array List of matching posts with relevance, author, topic, and humanized date
+ */
+public function search(string $term, int $limit = 15): array {
     $term = trim($term);
     if ($term === '' || mb_strlen($term) < 2) {
         return [];
@@ -598,7 +608,6 @@ public function search(string $term): array {
             'p.id',
             'p.title',
             'p.subtitle',
-            'p.photo',
             'p.created',
             'CONCAT(u.first_name, " ", u.last_name) AS author',
             'u.author AS author_handle',
@@ -615,7 +624,7 @@ public function search(string $term): array {
         ->having('relevance >', 0)
         ->orderBy('relevance', 'DESC')
         ->orderBy('p.created', 'DESC')
-        ->limit(50);
+        ->limit($limit);
 
     $results = $builder->get()->getResultArray();
 
@@ -626,8 +635,5 @@ public function search(string $term): array {
 
     return $results;
 }
-
-
-
 
 } // ─── End of Class ───

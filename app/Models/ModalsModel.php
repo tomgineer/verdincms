@@ -51,15 +51,35 @@ public function ajaxModalFillForm(int $id, string $table):?array {
 }
 
 public function ajaxSaveForm(string $table, array $data): array {
-    if (empty($data['id'])) {
-        return ['success' => false, 'message' => 'Missing ID'];
-    }
+    $builder = $this->db->table($table);
 
-    $id = $data['id'];
+    // Grab id and remove it from the data array
+    $id = $data['id'] ?? null;
     unset($data['id']);
 
-    // Update
-    $success = $this->db->table($table)->where('id', $id)->update($data);
+    // NEW RECORD: id is "new"
+    if ($id === 'new') {
+        $success = $builder->insert($data);
+
+        if (!$success) {
+            return [
+                'success' => false,
+                'message' => 'Insert failed',
+            ];
+        }
+
+        $newId = $this->db->insertID();
+
+        return [
+            'success' => true,
+            'message' => 'Record created successfully',
+            'id'      => $newId,
+            'mode'    => 'insert',
+        ];
+    }
+
+    // EXISTING RECORD: id is something else → UPDATE
+    $success = $builder->where('id', $id)->update($data);
 
     if (!$success) {
         return [
@@ -71,9 +91,11 @@ public function ajaxSaveForm(string $table, array $data): array {
     return [
         'success' => true,
         'message' => 'Record updated successfully',
-        'id' => $id,
+        'id'      => $id,
+        'mode'    => 'update',
     ];
 }
+
 
 
 } // ─── End of Class ───

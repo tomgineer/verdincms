@@ -126,7 +126,7 @@
         </ul>
 
         <input type="text" placeholder="Search" class="input input-bordered w-96 text-base hidden lg:flex" data-js-search />
-        <section class="hidden fixed top-16 left-0 right-0 z-50 min-h-[calc(100vh-4rem)] bg-base-100 overflow-y-auto p-8" data-js-search-results>No Results..</section>
+        <section class="hidden absolute top-16 left-1/2 -translate-x-1/2 z-900 max-w-6xl w-full bg-base-300 rounded-2xl shadow-2xl p-8 border-2 border-primary" data-js-search-results>No Results..</section>
 
         <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost btn-square text-base-content/45 lg:text-base-content">

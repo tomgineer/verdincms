@@ -1,3 +1,12 @@
+<nav class="flex gap-2 justify-end mb-4">
+    <button class="btn btn-outline btn-sm btn-accent" type="button" data-modify-id="new" data-target-modal="modalTopics">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+        New Topic
+    </button>
+</nav>
+
 <?php if (!empty($topics)): ?>
     <table class="table table-zebra-soft mt-4">
         <thead>
