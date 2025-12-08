@@ -1,7 +1,7 @@
 <?= $this->extend('layout_app') ?>
 <?= $this->section('main') ?>
 
-<section class="mt-8 sm:mt-16">
+<section class="pt-8 sm:pt-16 custom-bg-1 min-h-[800px]">
     <div class="mx-auto w-full max-w-3xl px-4">
 
         <?php if (empty($error)): ?>

@@ -46,7 +46,7 @@
             <?= $this->renderSection('main') ?>
         </main>
 
-        <footer class="mt-24 bg-base-200">
+        <footer class="bg-base-200">
             <?= $this->include('site/footer') ?>
         </footer>
 

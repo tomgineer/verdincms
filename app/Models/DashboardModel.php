@@ -2,8 +2,8 @@
 
 use CodeIgniter\Model;
 use App\Models\AnalyticsModel;
-use App\Models\SystemModel;
-use App\Models\ActionsModel;
+// use App\Models\SystemModel;
+// use App\Models\ActionsModel;
 
 /**
  * ****************************************************
@@ -32,7 +32,6 @@ class DashboardModel extends Model {
     public function __construct() {
         $this->db = \Config\Database::connect();
     }
-
 
 /**
  * Retrieves hourly analytics data including raw statistics and formatted chart data.
@@ -502,5 +501,35 @@ public function getBlocks(): array {
         return $groups;
     }, []);
 }
+
+/**
+ * Deletes multiple records from a given table inside a transaction.
+ *
+ * @param string $table The table name (validated by the controller).
+ * @param array  $ids   Array of integer IDs to delete.
+ * @return array        Status and number of affected rows.
+ */
+public function bulk_delete(string $table, array $ids): array {
+    $builder = $this->db->table($table);
+
+    $this->db->transStart();
+    $builder->whereIn('id', $ids)->delete();
+    $affected = $this->db->affectedRows();
+    $this->db->transComplete();
+
+    if (! $this->db->transStatus()) {
+        return [
+            'status'        => 'error',
+            'message'       => 'Transaction failed',
+            'affected_rows' => 0,
+        ];
+    }
+
+    return [
+        'status'        => 'success',
+        'affected_rows' => $affected,
+    ];
+}
+
 
 } // ─── End of Class ───

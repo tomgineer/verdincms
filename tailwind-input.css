@@ -7,9 +7,13 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
+    /* Fonts */
     --font-sans: "Arimo", ui-sans-serif, system-ui, sans-serif;
     --font-heading: "Fira Sans Extra Condensed", ui-sans-serif, system-ui, sans-serif;
     --font-bebas: "Bebas Neue", ui-sans-serif, system-ui, sans-serif;
+
+    /* Background images */
+    --bg-bg1: url("../gfx/bg1.webp");
 }
 
 @layer base {
@@ -20,13 +24,20 @@
 }
 
 @layer utilities {
+    /* Backgrounds */
+    .custom-bg-1 {background-image: var(--bg-bg1);}
+    .custom-bg-1 {
+        @apply bg-cover bg-center bg-no-repeat bg-black/60 bg-blend-overlay;
+    }
+
+    /* Tables */
     .table-zebra-soft tbody tr:nth-child(even) { @apply bg-white/5; }
+
+    /* Stats */
     .stat-lg .stat-title { @apply text-lg; }
     .stat-lg .stat-value { @apply text-5xl leading-tight font-bebas; }
+
+    /* Scrollbar */
     .scrollbar-auto {scrollbar-gutter: auto !important;} /* Add this via JS to HTML in a modal */
-    /* .modal {
-        border: none;
-        outline: none;
-    } */
 
 }

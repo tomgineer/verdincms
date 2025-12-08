@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 use App\Models\ActionsModel;
 use App\Models\ModalsModel;
+use App\Models\DashboardModel;
 use App\Models\EditContentModel;
 use App\Models\ContentModel;
 use CodeIgniter\API\ResponseTrait;
@@ -356,5 +357,63 @@ public function search() {
         return $this->failServerError('An error occurred while performing the search.');
     }
 }
+
+/**
+ * Deletes multiple records from an allowed table via AJAX.
+ *
+ * Validates request type, user tier, table name, and IDs.
+ * Delegates deletion to DashboardModel::bulk_delete().
+ *
+ * @return \CodeIgniter\HTTP\ResponseInterface JSON response with status, message, table, deleted_ids, and affected_rows.
+ */
+public function bulk_delete() {
+    if (! $this->request->isAJAX()) {
+        return $this->failForbidden('Not an AJAX request');
+    }
+
+    if (tier() < 10) {
+        return $this->fail('Tier too low', 403);
+    }
+
+    $data  = $this->request->getJSON(true);
+    $table = $data['table'] ?? null;
+    $ids   = $data['ids']   ?? null;
+
+    if (! $table || ! is_array($ids) || empty($ids)) {
+        return $this->failValidationErrors('Missing or invalid "table" or "ids" in payload.');
+    }
+
+    $allowedTables = ['topics', 'sections', 'blocks', 'users']; // Add other allowed tables here
+    if (! in_array($table, $allowedTables, true)) {
+        return $this->failValidationErrors('Table not allowed for bulk delete.');
+    }
+
+    $ids = array_values(array_unique(
+        array_filter(
+            array_map('intval', $ids),
+            static fn ($id) => $id > 0
+        )
+    ));
+
+    if (empty($ids)) {
+        return $this->failValidationErrors('No valid IDs provided.');
+    }
+
+    $result = (new DashboardModel)->bulk_delete($table, $ids);
+
+    if (! $result || ($result['status'] ?? '') !== 'success') {
+        return $this->failServerError('Bulk delete failed.');
+    }
+
+    // --- Respond with model’s data ---
+    return $this->respond([
+        'status'        => 'success',
+        'message'       => 'Records deleted successfully.',
+        'table'         => $table,
+        'deleted_ids'   => $ids,
+        'affected_rows' => $result['affected_rows'] ?? 0,
+    ]);
+}
+
 
 } // ─── End of Class ───

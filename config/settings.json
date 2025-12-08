@@ -1,6 +1,6 @@
 {
     "site": {
-        "title": "Χάρτινο Τσίκο",
+        "title": "\u03a7\u03ac\u03c1\u03c4\u03b9\u03bd\u03bf \u03a4\u03c3\u03af\u03ba\u03bf",
         "url": "https://xartinotsirko.com",
         "language": "el",
         "timezone": "Europe/Berlin"
@@ -54,19 +54,19 @@
         "popular_count": 30
     },
     "system": {
-        "version": "1.7.38",
+        "version": "1.7.41",
         "logo_height": 34,
         "trending_range": 24,
         "ip2location": false
     },
     "meta": {
-        "site_name": "Χάρτινο Τσίκο",
-        "site_title": "Χάρτινο Τσίκο \u2014 Η παράσταση συνεχίζεται",
-        "site_description": "Χάρτινο Τσίκο \u2014 Η παράσταση συνεχίζεται",
+        "site_name": "\u03a7\u03ac\u03c1\u03c4\u03b9\u03bd\u03bf \u03a4\u03c3\u03af\u03ba\u03bf",
+        "site_title": "\u03a7\u03ac\u03c1\u03c4\u03b9\u03bd\u03bf \u03a4\u03c3\u03af\u03ba\u03bf \u2014 \u0397 \u03c0\u03b1\u03c1\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7 \u03c3\u03c5\u03bd\u03b5\u03c7\u03af\u03b6\u03b5\u03c4\u03b1\u03b9",
+        "site_description": "\u03a7\u03ac\u03c1\u03c4\u03b9\u03bd\u03bf \u03a4\u03c3\u03af\u03ba\u03bf \u2014 \u0397 \u03c0\u03b1\u03c1\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7 \u03c3\u03c5\u03bd\u03b5\u03c7\u03af\u03b6\u03b5\u03c4\u03b1\u03b9",
         "twitter": "@xartinotsirko"
     },
     "company": {
-        "name": "Χάρτινο Τσίκο",
+        "name": "\u03a7\u03ac\u03c1\u03c4\u03b9\u03bd\u03bf \u03a4\u03c3\u03af\u03ba\u03bf",
         "email": "info@xartinotsirko.com",
         "support_email": "support@xartinotsirko.com"
     }

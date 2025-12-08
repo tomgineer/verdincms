@@ -59,6 +59,7 @@ $routes->post('ajax/checkPhotoExists', 'Ajax::checkPhotoExists');
 $routes->get('ajax/get_dashboard_page/(:any)', 'Ajax::get_dashboard_page/$1');
 $routes->post('ajax/run_action/(:segment)', 'Ajax::run_action/$1');
 $routes->post('ajax/update_setting', 'Ajax::update_setting');
+$routes->post('ajax/bulk_delete', 'Ajax::bulk_delete');
 
 // Modals
 $routes->match(['GET', 'POST'], 'ajax/modalFillSelect', 'Ajax::modalFillSelect');
