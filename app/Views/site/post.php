@@ -28,7 +28,9 @@
 
 </article>
 
-<section class="container mx-auto px-4 py-12 mt-8 lg:py-24 lg:mt-16">
+<?= $this->include('components/share') ?>
+
+<section class="container mx-auto px-4 py-12 lg:py-24 mt-8 lg:mt-16">
     <h2 class="text-3xl mb-4 text-primary">Related</h2>
     <?= view('components/plain_list', ['posts' => $related, 'style' => 'plain-list--columns']) ?>
 </section>

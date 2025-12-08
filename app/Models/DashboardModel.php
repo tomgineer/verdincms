@@ -531,5 +531,86 @@ public function bulk_delete(string $table, array $ids): array {
     ];
 }
 
+/**
+ * Reads and returns the raw contents of /config/settings.json.
+ *
+ * Ensures UTF-8 compatibility and returns the JSON text exactly as stored.
+ * If the file does not exist, a JSON-encoded error message is returned
+ * instead of throwing an exception.
+ *
+ * @return string The raw JSON contents of the settings file, or an error JSON string.
+ */
+public function getSettings(): string {
+    $file = ROOTPATH . 'config/settings.json';
+
+    if (!is_file($file)) {
+        return json_encode(['error' => 'Settings file not found.'], JSON_UNESCAPED_UNICODE);
+    }
+
+    $json = file_get_contents($file);
+
+    // Ensure the file is UTF-8 encoded and valid JSON
+    if ($json === false || trim($json) === '') {
+        return json_encode(['error' => 'Settings file is empty or unreadable.'], JSON_UNESCAPED_UNICODE);
+    }
+
+    // Normalize JSON to make sure Unicode characters (like Greek) are not escaped
+    $decoded = json_decode($json, true);
+    if (json_last_error() === JSON_ERROR_NONE) {
+        return json_encode($decoded, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+    }
+
+    // If invalid JSON, just return raw content as a fallback
+    return $json;
+}
+
+/**
+ * Retrieves basic data (id and title) from pages, topics, and sections tables.
+ *
+ * @return array Associative array containing the table name as key
+ *               and an array of rows (id, title) as value.
+ */
+public function getSortTables(): array {
+    $tables  = ['pages', 'topics', 'sections'];
+    $columns = ['id', 'title'];
+    $result  = [];
+
+    foreach ($tables as $table) {
+        $builder = $this->db->table($table)
+            ->select(implode(',', $columns))
+            ->orderBy('position', 'ASC')
+            ->orderBy('title', 'ASC');
+
+        $query = $builder->get();
+        $result[$table] = $query->getResultArray();
+    }
+
+    return $result;
+}
+
+/**
+ * Updates the sort order of records in a given table.
+ *
+ * @param string $table Table name ('pages', 'topics', or 'sections').
+ * @param array  $ids   Ordered array of record IDs.
+ * @return void
+ */
+public function updateOrder(string $table, array $ids): void {
+    // Whitelist allowed tables for safety
+    $allowedTables = ['pages', 'topics', 'sections'];
+    if (! in_array($table, $allowedTables, true)) {
+        log_message('error', "updateOrder() rejected invalid table: {$table}");
+        return;
+    }
+
+    $builder = $this->db->table($table);
+
+    // Loop through IDs and update the sort/position field
+    foreach ($ids as $position => $id) {
+        $builder->where('id', (int) $id)
+                ->update(['position' => $position + 1]);
+    }
+}
+
 
 } // ─── End of Class ───

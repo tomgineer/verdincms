@@ -415,5 +415,68 @@ public function bulk_delete() {
     ]);
 }
 
+/**
+ * Handle AJAX request to update the sort order of records.
+ *
+ * Expects JSON payload:
+ * {
+ *   "table": "pages",        // or "topics", "sections"
+ *   "order": [3, 1, 2]       // IDs in the new order
+ * }
+ *
+ * @return \CodeIgniter\HTTP\ResponseInterface
+ */
+public function update_order() {
+    // Ensure it's an AJAX request
+    if (! $this->request->isAJAX()) {
+        return $this->failForbidden('Not an AJAX request.');
+    }
+
+    if (tier() < 10) {
+        return $this->fail('Tier too low', 403);
+    }
+
+    $payload = $this->request->getJSON(true);
+    if (! is_array($payload)) {
+        return $this->failValidationError('Invalid JSON payload.');
+    }
+
+    $table = $payload['table'] ?? '';
+    $order = $payload['order'] ?? [];
+
+    // Whitelist allowed tables
+    $allowedTables = ['topics', 'sections', 'pages'];
+    if ($table === '' || ! in_array($table, $allowedTables, true)) {
+        return $this->failValidationError('Invalid table.');
+    }
+
+    if (! is_array($order) || empty($order)) {
+        return $this->failValidationError('Invalid order data.');
+    }
+
+    // Sanitize IDs
+    $ids = array_values(
+        array_filter(
+            array_map('intval', $order),
+            static fn($id) => $id > 0
+        )
+    );
+
+    if (empty($ids)) {
+        return $this->failValidationError('No valid IDs provided.');
+    }
+
+    try {
+        (new DashboardModel)->updateOrder($table, $ids);
+
+        return $this->respond([
+            'success' => true,
+            'message' => 'Order updated successfully.',
+        ]);
+    } catch (\Throwable $e) {
+        log_message('error', 'Update order failed: ' . $e->getMessage());
+        return $this->failServerError('An error occurred while updating the order.');
+    }
+}
 
 } // ─── End of Class ───

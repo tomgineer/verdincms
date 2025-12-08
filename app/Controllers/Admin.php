@@ -94,116 +94,145 @@ public function moderate(string $type) {
 }
 
 /**
- * Displays various administrative dashboard views based on URL path segments.
+ * Loads the dashboard view and its dynamic content based on the given path.
  *
- * Depending on the provided segments, this method loads analytics, system info,
- * content management, user accounts, logs, settings, and other backend tools.
- * It uses `DashboardModel`, `AnalyticsModel`, and `SystemModel` to gather and
- * merge relevant data before rendering the appropriate dashboard view.
+ * Supports multiple dashboard sections such as home, info, review, subjects,
+ * logs, blocks, and settings. Each section loads the required models and data
+ * into the $data array before rendering the main dashboard view.
  *
- * Access is restricted to users with tier level 10 or higher.
- *
- * Supported paths include:
- * - Home: visitor charts, admin links, content activity
- * - Info: system overview, PHP info, session data
- * - Review: posts or pages needing approval
- * - Subjects: topic and section management with modal editing
- * - Latest: recently created posts/pages
- * - Accounts: user management with form and file handling
- * - Logs: cron, hits, error logs
- * - Archive: archived posts and pages
- * - Settings: application settings grouped for editing
- * - Trash: orphaned content, photos, or deleted accounts
- * - Blocks: reusable content blocks with modal editing
- *
- * @param string ...$segments One or more optional URL segments determining the dashboard section to show.
- *
- * @return \CodeIgniter\HTTP\RedirectResponse|\CodeIgniter\HTTP\ResponseInterface
- *     Redirects to homepage if unauthorized or path is invalid,
- *     otherwise returns the corresponding dashboard view with data.
+ * @param string ...$segments Optional URI segments determining the dashboard path.
+ * @return \CodeIgniter\HTTP\Response|string The rendered dashboard view or redirect.
  */
 public function dashboard(...$segments) {
-    if (tier() < 10) {return redirect()->to('/');}
+    if (tier() < 10) {
+        return redirect()->to('/');
+    }
+
     $path = implode('/', $segments);
-
-    $data = array_merge($this->data, [
-        'path'  => $path,
-        'title' => 'Dashboard'
-    ]);
-
     $this->dash = new DashboardModel();
 
+    $data = [
+        ...$this->data,
+        'path'  => $path,
+        'title' => 'Dashboard',
+    ];
+
     switch ($path) {
-        case '';
+        case '':
             $this->analytics = new AnalyticsModel();
             $this->system    = new SystemModel();
 
-            $data = array_merge($data, [
-                'path'               => 'home/home',
-                'useChartJS'         => true,
-                'chart_visitors'     => $this->analytics->getVisitorAndHitStats(14, true),
-                'posting_activity'   => $this->analytics->getDailyCreationCounts()
-            ]);
+            $data = [
+                ...$data,
+                'path'             => 'home/home',
+                'useChartJS'       => true,
+                'chart_visitors'   => $this->analytics->getVisitorAndHitStats(14, true),
+                'posting_activity' => $this->analytics->getDailyCreationCounts(),
+            ];
+            break;
 
-            break;
         case 'info/info':
-            $data['info'] = $this->dash->getSystemAndDatabaseInfo();
-            $data['php_info'] = $this->dash->getPhpInfo();
-            $data['gd_info']  = gd_info();
-            $data['session_data'] = session()->get();
+            $data = [
+                ...$data,
+                'info'          => $this->dash->getSystemAndDatabaseInfo(),
+                'php_info'      => $this->dash->getPhpInfo(),
+                'gd_info'       => gd_info(),
+                'session_data'  => session()->get(),
+            ];
             break;
+
         case 'review/review':
-            $data['posts'] = $this->dash->needReview('post');
-            $data['pages'] = $this->dash->needReview('page');
+            $data = [
+                ...$data,
+                'posts' => $this->dash->needReview('post'),
+                'pages' => $this->dash->needReview('page'),
+            ];
             break;
+
         case 'subjects/subjects':
-            $data = array_merge($data, [
+            $data = [
+                ...$data,
                 'useCKEditor' => true,
                 'topics'      => $this->dash->getSubjects('topics'),
-                'sections'    => $this->dash->getSubjects('sections')
-            ]);
+                'sections'    => $this->dash->getSubjects('sections'),
+            ];
             break;
+
         case 'latest/latest':
-            $data['posts'] = $this->dash->getLatestContent('post', 10);
-            $data['pages'] = $this->dash->getLatestContent('page', 10);
+            $data = [
+                ...$data,
+                'posts' => $this->dash->getLatestContent('post', 10),
+                'pages' => $this->dash->getLatestContent('page', 10),
+            ];
             break;
+
         case 'accounts/accounts':
-            $data = array_merge($data, [
-                'users'       => $this->dash->getUserData()
-            ]);
+            $data = [
+                ...$data,
+                'users' => $this->dash->getUserData(),
+            ];
             break;
+
         case 'logs/logs':
-            $data['crons'] = $this->dash->getCronLog(10);
-            $data['hits'] = $this->dash->getHitsEntries(20);
-            $data['errors'] = $this->dash->getErrorLogs();
+            $data = [
+                ...$data,
+                'crons'  => $this->dash->getCronLog(10),
+                'hits'   => $this->dash->getHitsEntries(20),
+                'errors' => $this->dash->getErrorLogs(),
+            ];
             break;
+
         case 'archive/archive':
-            $data['posts'] = $this->dash->getArchivedContent('post');
-            $data['pages'] = $this->dash->getArchivedContent('page');
+            $data = [
+                ...$data,
+                'posts' => $this->dash->getArchivedContent('post'),
+                'pages' => $this->dash->getArchivedContent('page'),
+            ];
             break;
+
         case 'trash/trash':
-            $data['photos'] = (new SystemModel())->getOrphanPhotos();
-            $data['content'] = [
-                'posts' => $this->dash->getArchivedContent('post', 3),
-                'pages' => $this->dash->getArchivedContent('page', 3)
-            ];
-            $data['accounts'] = [
-                'users'   => $this->dash->getUserData('0')
+            $data = [
+                ...$data,
+                'photos'   => (new SystemModel())->getOrphanPhotos(),
+                'content'  => [
+                    'posts' => $this->dash->getArchivedContent('post', 3),
+                    'pages' => $this->dash->getArchivedContent('page', 3),
+                ],
+                'accounts' => [
+                    'users' => $this->dash->getUserData('0'),
+                ],
             ];
             break;
+
         case 'blocks/blocks':
-            $data = array_merge($data, [
+            $data = [
+                ...$data,
                 'useCKEditor' => true,
-                'blocks'      => $this->dash->getBlocks()
-            ]);
+                'blocks'      => $this->dash->getBlocks(),
+            ];
             break;
+
+        case 'settings/settings':
+            $data = [
+                ...$data,
+                'settings' => $this->dash->getSettings(),
+            ];
+            break;
+
+        case 'sort/sort':
+            $data = [
+                ...$data,
+                'tables' => $this->dash->getSortTables(),
+            ];
+            break;
+
         default:
             return redirect()->to('/');
-            break;
     }
 
     return view('dashboard/dashboard', $data);
 }
+
 
 /**
  * Displays various analytics dashboards based on the URL path segment.

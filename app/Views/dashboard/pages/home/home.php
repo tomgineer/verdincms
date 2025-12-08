@@ -32,14 +32,6 @@
         </nav>
     </div>
 
-    <input type="radio" name="dashboard" class="tab" aria-label="Sorting Options" />
-    <div class="tab-content border-0 p-8">
-        <p class="mb-8">Manage the order in which pages, topics, sections, and settings appear in menus and the admin panel.</p>
-        <nav class="grid grid-cols-[250px_1fr] items-center gap-4">
-            <?= $this->include('dashboard/pages/home/actions_sortable') ?>
-        </nav>
-    </div>
-
     <input type="radio" name="dashboard" class="tab" aria-label="System Cleanup" />
     <div class="tab-content border-0 p-8">
         <p class="mb-8">This section provides maintenance utilities to purge logs, cache, expired session files, and orphaned media files, helping keep the system optimized and clutter-free.</p>

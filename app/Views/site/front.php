@@ -1,7 +1,7 @@
 <?= $this->extend('layout_app') ?>
 <?= $this->section('main') ?>
 
-<div class="container mx-auto px-4 mt-8 lg:mt-18 mb-8 lg:mb-24">
+<div class="container mx-auto px-4 mt-8 lg:mt-18 mb-12 lg:mb-24">
     <div class="flex flex-col lg:flex-row gap-8">
 
         <section class="flex-1">
