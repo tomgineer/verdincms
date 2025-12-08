@@ -9,11 +9,6 @@
         <p class="mb-2">Admins and staff with access to internal tools and settings.</p>
         <?= $this->include('dashboard/pages/accounts/users') ?>
     </div>
-
-    <input type="radio" name="accounts" class="tab" aria-label="Members" />
-    <div class="tab-content border-0 p-8">
-        <p class="mb-2">Coming Soon.</p>
-    </div>
 </section>
 
 <?= $this->include('dashboard/pages/accounts/modal_users') ?>

@@ -29,9 +29,7 @@
         <tbody>
             <?php foreach ($topics as $topic): ?>
                 <tr>
-                    <td>
-                        <input type="checkbox" class="checkbox" data-delete-id="<?= esc($topic['id']) ?>" data-table="topics" />
-                    </td>
+                    <td class="w-1"><input type="checkbox" class="checkbox" data-delete-id="<?= esc($topic['id']) ?>" data-table="topics" /></td>
                     <td class="text-info"><?= esc($topic['id']) ?></td>
                     <td class="font-semibold"><?= esc($topic['title']) ?></td>
                     <td class="text-base-content/70"><?= strip_tags($topic['description']) ?></td>

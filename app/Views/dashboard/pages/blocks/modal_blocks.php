@@ -1,4 +1,4 @@
-<dialog id="modalBlock" class="modal">
+<dialog id="modalBlocks" class="modal">
 
     <div class="modal-box w-11/12 max-w-7xl min-h-[50rem] flex flex-col">
         <form method="dialog">
@@ -31,7 +31,7 @@
                             <legend class="fieldset-legend">Main Attributes</legend>
 
                             <label class="label">ID</label>
-                            <input type="text" class="input input-neutral w-full text-accent" name="id" placeholder="ID" readonly value="0" />
+                            <input type="text" class="input input-neutral w-full text-accent" name="id" placeholder="ID" readonly value="" />
 
                             <label class="label">Alias</label>
                             <input type="text" class="input w-full" name="alias" placeholder="Alias" maxlength="50" />
@@ -108,11 +108,11 @@
 
         </section>
 
-        <nav class="flex gap-4 justify-end">
+        <nav class="flex gap-2 justify-end">
             <form method="dialog">
-                <button class="btn btn-soft">Cancel</button>
+                <button class="btn btn-ghost">Cancel</button>
             </form>
-            <button class="btn btn-success" type="button" data-save-form>Save</button>
+            <button class="btn btn-success" type="button" data-save-form>Save Block</button>
         </nav>
 
     </div>

@@ -48,7 +48,7 @@
             <form method="dialog">
                 <button class="btn btn-ghost">Cancel</button>
             </form>
-            <button class="btn btn-success" type="button" data-save-form>Save</button>
+            <button class="btn btn-success" type="button" data-save-form>Save Section</button>
         </nav>
 
     </div>

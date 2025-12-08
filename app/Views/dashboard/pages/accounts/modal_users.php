@@ -1,4 +1,4 @@
-<dialog id="modalUsers" class="modal" open>
+<dialog id="modalUsers" class="modal">
 
     <div class="modal-box w-11/12 max-w-7xl min-h-[56rem] flex flex-col">
         <form method="dialog">
@@ -21,7 +21,7 @@
                             <input type="email" class="input w-full" name="email" placeholder="Email" maxlength="320" />
 
                             <label class="label">Password</label>
-                            <input type="password" class="input w-full" name="password" placeholder="Password" maxlength="70" />
+                            <input type="password" class="input w-full" name="password" placeholder="Leave blank to keep current password" maxlength="70" />
 
                             <label class="label">Group</label>
                             <select class="select w-full" name="user_group_id" data-table="user_groups" data-column="title" data-autofill-select>
@@ -47,7 +47,7 @@
                             <input type="date" class="input w-full" name="expiration" placeholder="Expiration" />
 
                             <label class="label">ID</label>
-                            <input type="text" class="input input-neutral w-full text-accent" name="id" placeholder="ID" readonly value="1" />
+                            <input type="text" class="input input-neutral w-full text-accent" name="id" placeholder="ID" readonly value="" />
 
                             <label class="label">Modified</label>
                             <input type="text" class="input input-neutral w-full text-accent" name="modified" placeholder="Modified" readonly />
@@ -86,7 +86,7 @@
                             <input type="text" class="input w-full" name="position" placeholder="Position" maxlength="150" />
 
                             <label class="label">Stand-in</label>
-                            <select class="select w-full" name="standin" data-table="users" data-column="last_name" data-autofill-select>
+                            <select class="select w-full" name="standin_id" data-table="users" data-column="last_name" data-autofill-select>
                             </select>
                             <p class="text-sm text-base-content/40">
                                 Select the employee who will temporarily act as a substitute for this person.
@@ -120,11 +120,11 @@
 
         </section>
 
-        <nav class="flex gap-4 justify-end">
+        <nav class="flex gap-2 justify-end">
             <form method="dialog">
-                <button class="btn btn-soft">Cancel</button>
+                <button class="btn btn-ghost">Cancel</button>
             </form>
-            <button class="btn btn-success" type="button" data-save-form>Save</button>
+            <button class="btn btn-success" type="button" data-save-form>Save User</button>
         </nav>
 
     </div>

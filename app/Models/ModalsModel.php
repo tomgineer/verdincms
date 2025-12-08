@@ -50,12 +50,43 @@ public function ajaxModalFillForm(int $id, string $table):?array {
                     ->getRowArray();
 }
 
+/**
+ * Inserts or updates a record via AJAX.
+ * Hashes non-empty passwords and preserves existing ones if empty.
+ *
+ * @param string $table Target database table name.
+ * @param array  $data  Form data including 'id'.
+ * @return array Result with success, message, id, and mode.
+ */
 public function ajaxSaveForm(string $table, array $data): array {
     $builder = $this->db->table($table);
 
     // Grab id and remove it from the data array
     $id = $data['id'] ?? null;
     unset($data['id']);
+
+    // Handle password hashing
+    if (isset($data['password'])) {
+        $password = trim($data['password']);
+
+        if ($password !== '') {
+            // hash only non-empty passwords
+            $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+        } else {
+            // empty password field → don't overwrite existing one
+            unset($data['password']);
+        }
+    }
+
+    // Automatically set modified timestamp if the field exists
+    if (array_key_exists('modified', $data)) {
+        $data['modified'] = date('Y-m-d H:i:s');
+    }
+
+    // Automatically set created timestamp if it's a new record
+    if ($id === 'new' && array_key_exists('created', $data)) {
+        $data['created'] = date('Y-m-d H:i:s');
+    }
 
     // NEW RECORD: id is "new"
     if ($id === 'new') {
@@ -95,7 +126,6 @@ public function ajaxSaveForm(string $table, array $data): array {
         'mode'    => 'update',
     ];
 }
-
 
 
 } // ─── End of Class ───
