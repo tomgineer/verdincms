@@ -78,6 +78,7 @@ class Filters extends BaseFilters
             ],
             'csrf' => ['except' => [
                 'ajax/*',
+                'newsletter/*',
                 'admin/*',
                 'users/edit/*',
                 'users/edit_member/*',

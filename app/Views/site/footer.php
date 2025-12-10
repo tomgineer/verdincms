@@ -1,5 +1,5 @@
 <section class="footer footer-horizontal footer-center text-base-content rounded p-10 pt-12 relative">
-    <a class="btn btn-lg btn-circle btn-soft btn-primary absolute left-1/2 -translate-x-1/2 -top-6 shadow-md" href="#">
+    <a class="btn btn-lg btn-circle btn-soft absolute left-1/2 -translate-x-1/2 -top-6 shadow-md" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
         </svg>
@@ -14,24 +14,36 @@
 
 <section class="footer sm:footer-horizontal text-base-content p-10 pt-1">
 
-    <nav class="text-base-content/70">
-        <h4 class="text-xl text-neutral-content">Νουμεράκια</h4>
-        <p>Σύνολο δημοσιεύσεων: <span class="text-accent font-semibold"><?= esc($total_posts) ?></span></p>
-        <p>Δημόσια άρθρα: <span class="text-accent font-semibold"><?= esc($public_posts) ?></span></p>
-        <p>Έκδοση CMS: <span class="text-accent font-semibold"><?= setting('system.version') ?></span></p>
-        <p>Rendered in: <span class="text-accent font-semibold">{elapsed_time} sec</span></p>
+    <nav>
+        <ul class="menu w-full">
+            <li>
+                <h2 class="menu-title text-lg">Νουμεράκια</h2>
+                <ul class="ml-4 menu-info">
+                    <li>Σύνολο δημοσιεύσεων: <span><?= esc($total_posts) ?></span></li>
+                    <li>Δημόσια άρθρα: <span><?= esc($public_posts) ?></span></li>
+                    <li>Έκδοση CMS: <span><?= setting('system.version') ?></span></li>
+                    <li>Rendered in: <span>{elapsed_time} sec</span></li>
+                </ul>
+            </li>
+        </ul>
     </nav>
 
     <?php foreach ($pages_list as $sectionName => $pages): ?>
         <nav>
-            <h4 class="text-xl text-neutral-content"><?= $sectionName ?></h4>
-            <?php foreach ($pages as $page): ?>
-                <?php if (empty($page['url'])): ?>
-                    <a class="link link-hover text-base-content/70" href="<?= site_url($page['s_slug'] . '/' . $page['slug']) ?>" data-match="<?= $page['s_slug'] . '/' . $page['slug'] ?>"><?= $page['label'] ?></a>
-                <?php else: ?>
-                    <a class="link link-hover text-base-content/70" href="<?= $page['url'] ?>" data-match="<?= $page['slug'] ?>"><?= $page['label'] ?></a>
-                <?php endif; ?>
-            <?php endforeach; ?>
+            <ul class="menu bg-base-200 rounded-box w-full">
+                <li>
+                    <h2 class="menu-title text-lg"><?= $sectionName ?></h2>
+                    <ul>
+                        <?php foreach ($pages as $page): ?>
+                            <?php if (empty($page['url'])): ?>
+                                <li><a href="<?= site_url($page['s_slug'] . '/' . $page['slug']) ?>" data-match="<?= $page['s_slug'] . '/' . $page['slug'] ?>"><?= $page['label'] ?></a></li>
+                            <?php else: ?>
+                                <li><a href="<?= $page['url'] ?>" data-match="<?= $page['slug'] ?>"><?= $page['label'] ?></a></li>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </ul>
+                </li>
+            </ul>
         </nav>
     <?php endforeach; ?>
 
@@ -40,7 +52,7 @@
 <section class="footer text-base-content border-base-200 border-t-2 px-10 py-8 pb-8">
     <aside class="grid-flow-col gap-6 items-center">
         <a href="<?= base_url() ?>">
-            <img class="h-14" src="<?= path_gfx() . 'logo.svg' ?>" alt="Logo Color" loading="lazy">
+            <img class="h-14" src="<?= path_gfx() . 'logo.svg' ?>" alt="Logo" data-logo>
         </a>
         <div class="text-base-content/70">
             <?= block($base_blocks, 'footer', 'footer_copyright', 'body') ?>

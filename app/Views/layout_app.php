@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="<?=setting('site.language')?>" data-theme="dark">
+<html lang="<?=setting('site.language')?>">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <?= body_class() === 'site-index' ? csrf_meta() : '' ?>
         <meta name="base-url" content="<?=base_url();?>">
         <meta name="color-scheme" content="light dark">
 

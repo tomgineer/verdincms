@@ -72,6 +72,13 @@ $routes->post('ajax/modalUploadFile', 'Ajax::modalUploadFile');
 $routes->get('ajax/search', 'Ajax::search');
 
 /******************************************************************************
+ * NEWSLETTER
+*****************************************************************************/
+
+$routes->post('newsletter/subscribe', 'Newsletter::subscribe');
+// $routes->get('newsletter/confirm/(:segment)', 'Newsletter::confirm/$1');
+
+/******************************************************************************
  * ADMIN
  *****************************************************************************/
 $routes->match(['GET','POST'], 'admin/edit/(:alpha)/(:alphanum)', 'Admin::edit/$1/$2');
