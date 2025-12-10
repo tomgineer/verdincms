@@ -40,4 +40,7 @@
     /* Scrollbar */
     .scrollbar-auto {scrollbar-gutter: auto !important;} /* Add this via JS to HTML in a modal */
 
+    /* ckEditor Fix */
+    .ck-powered-by {display: none !important;}
+
 }

@@ -1,10 +1,8 @@
 <?php namespace App\Controllers;
 use App\Models\DashboardModel;
-use App\Models\ActionsModel;
 use App\Models\SystemModel;
 use App\Models\AnalyticsModel;
 use App\Models\EditContentModel;
-use App\Libraries\SystemCore;
 use CodeIgniter\API\ResponseTrait;
 
 class Admin extends BaseController {

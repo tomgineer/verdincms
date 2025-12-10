@@ -14,7 +14,7 @@
             <?php endif; ?>
 
             <!-- Page indicator -->
-            <button class="join-item btn pointer-events-none text-base-content/70 font-heading font-medium">
+            <button class="join-item btn pointer-events-none text-base-content/70 font-normal">
                 Σελίδα <?= esc($pagination['page']) ?> από <?= esc($pagination['total_pages']) ?>
             </button>
 

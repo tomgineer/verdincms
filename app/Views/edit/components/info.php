@@ -16,7 +16,7 @@
                 <td data-info="status">
                     <?php $statusText = $statusLabels[$post['status']] ?? 'Unknown'; ?>
                     <?php $statusTone = $statusColors[$post['status']] ?? 'neutral'; // e.g. success|warning|error|info|neutral ?>
-                    <span class="badge badge-sm font-semibold badge-<?= esc($statusTone) ?>"><?= esc($statusText) ?></span>
+                    <span class="badge badge-dash badge-sm font-semibold badge-<?= esc($statusTone) ?>"><?= esc($statusText) ?></span>
                 </td>
             </tr>
 
@@ -28,13 +28,15 @@
             <?php endif; ?>
 
             <tr>
-                <th>Hits</th>
-                <td><?= esc($post['hits']) ?></td>
+                <th>Words</th>
+                <td>
+                    <span class="badge badge-dash badge-sm font-semibold" data-info="words"><?= esc($post['words']) ?></span>
+                </td>
             </tr>
 
             <tr>
-                <th>Words</th>
-                <td data-info="words"><?= esc($post['words']) ?></td>
+                <th>Hits</th>
+                <td><?= esc($post['hits']) ?></td>
             </tr>
 
             <tr>

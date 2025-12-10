@@ -9,13 +9,13 @@ use App\Models\StatsModel;
 
 /**
  * ****************************************************
- * BotRedirectFilter — Voralis Core 2026 Edition
+ * BotRedirectFilter — VerdinCMS 2026 Edition
  * ****************************************************
  *
  * A request-level filter for detecting and redirecting unwanted bots
  * based on user agent strings and geographic IP location.
  *
- * Version : Voralis Core 2026
+ * Version : VerdinCMS 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT

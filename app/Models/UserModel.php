@@ -4,14 +4,14 @@ use CodeIgniter\Model;
 
 /**
  * ****************************************************
- * User Model — Voralis Core 2026 Edition
+ * User Model — VerdinCMS 2026 Edition
  * ****************************************************
  *
  * Handles all operations related to users,
  * including authentication, registration, activation,
  * user group handling, and system-level maintenance.
  *
- * Version : Voralis Core 2026
+ * Version : VerdinCMS 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT

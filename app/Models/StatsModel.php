@@ -4,13 +4,13 @@ use CodeIgniter\Model;
 
 /**
  * ****************************************************
- * Stats Model — Voralis Core 2026 Edition
+ * Stats Model — VerdinCMS 2026 Edition
  * ****************************************************
  *
  * Responsible for recording, retrieving, and analyzing
  * visitor and usage statistics across the VerdinCMS platform.
  *
- * Version : Voralis Core 2026
+ * Version : VerdinCMS 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT

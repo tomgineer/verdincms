@@ -1,6 +1,5 @@
 <?php namespace App\Controllers;
 use App\Models\StatsModel;
-use App\Models\SystemModel;
 
 class Site extends BaseController {
 
@@ -245,7 +244,10 @@ public function topic(string $slug) {
     $data = array_merge($this->data, [
         'site_title' => $this->content->getTitleFromId($topic_id, 'topics'),
         'post_data'  => $this->content->getPosts(topic_id: $topic_id, pagination: true, page: $page, amount: 20),
-        'trending'   => $this->content->getRankingPosts(amount: 10, type: 'trending'),
+        'featured'       => $this->content->getPosts(amount: 10, featured: true),
+        'trending'       => $this->content->getRankingPosts(amount: 10, type: 'trending'),
+        'popular'        => $this->content->getRankingPosts(amount: 10, type: 'popular'),
+
     ]);
 
     // Render view
@@ -297,7 +299,10 @@ public function author(string $handle) {
     // Prepare data
     $data = array_merge($this->data, [
         'site_title' => $this->content->getFullnameFromId($user_id, true),
-        'post_data'  => $this->content->getPosts(user_id: $user_id, pagination: true, page: $page),
+        'post_data'  => $this->content->getPosts(user_id: $user_id, pagination: true, page: $page, amount: 20),
+        'featured'       => $this->content->getPosts(amount: 10, featured: true),
+        'trending'       => $this->content->getRankingPosts(amount: 10, type: 'trending'),
+        'popular'        => $this->content->getRankingPosts(amount: 10, type: 'popular'),
     ]);
 
     // Render view

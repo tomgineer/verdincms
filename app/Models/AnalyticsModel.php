@@ -5,13 +5,13 @@ use CodeIgniter\I18n\Time;
 
 /**
  * ****************************************************
- * Analytics Model — Voralis Core 2026 Edition
+ * Analytics Model — VerdinCMS 2026 Edition
  * ****************************************************
  *
  * Handles all analytics-related database operations, including tracking,
  * statistics aggregation, and traffic/event logging functionality.
  *
- * Version : Voralis Core 2026
+ * Version : VerdinCMS 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT

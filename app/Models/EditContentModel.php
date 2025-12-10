@@ -1,11 +1,11 @@
 <?php namespace App\Models;
 
 use CodeIgniter\Model;
-use App\Libraries\QRCode;
+// use App\Libraries\QRCode;
 
 /**
  * ****************************************************
- * EditContent Model — Voralis Core 2026 Edition
+ * EditContent Model — VerdinCMS 2026 Edition
  * ****************************************************
  *
  * Primary Responsibilities
@@ -15,7 +15,7 @@ use App\Libraries\QRCode;
  * • Handle image uploads and conversions to WebP with automatic thumbnails
  * • Generate QR codes for new posts
  *
- * Version : Voralis Core 2026
+ * Version : VerdinCMS 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT
@@ -74,7 +74,7 @@ private function initNewContent(string $type): array {
         'id'             => 0,
         'title'          => '',
         'subtitle'       => '',
-        'body'           => 'Your next masterpiece begins here...',
+        'body'           => 'Body',
         'photo'          => '',
         'status'         => 2,
         'user_id'        => session('user_id'),
@@ -437,7 +437,7 @@ public function saveContent(int $id, string $type, array $updateData): int|false
     $insertID = $this->db->insertID();
 
     // Generate QR code only for posts
-    ($type === 'post') && $this->createQrCode($insertID);
+    // ($type === 'post') && $this->createQrCode($insertID);
 
     return $insertID;
 }
@@ -452,29 +452,29 @@ public function saveContent(int $id, string $type, array $updateData): int|false
  *
  * @return void
  */
-public function createQrCode(int $id): void {
-    $filePath = FCPATH . 'images' . DIRECTORY_SEPARATOR . 'qrcodes' . DIRECTORY_SEPARATOR . "post_{$id}.svg";
+// public function createQrCode(int $id): void {
+//     $filePath = FCPATH . 'images' . DIRECTORY_SEPARATOR . 'qrcodes' . DIRECTORY_SEPARATOR . "post_{$id}.svg";
 
-    // Ensure the target directory exists
-    $dir = dirname($filePath);
-    if (!is_dir($dir)) {
-        mkdir($dir, 0755, true);
-    }
+//     // Ensure the target directory exists
+//     $dir = dirname($filePath);
+//     if (!is_dir($dir)) {
+//         mkdir($dir, 0755, true);
+//     }
 
-    // Skip creation if file already exists
-    if (file_exists($filePath)) {
-        return;
-    }
+//     // Skip creation if file already exists
+//     if (file_exists($filePath)) {
+//         return;
+//     }
 
-    $url = site_url("post/{$id}");
+//     $url = site_url("post/{$id}");
 
-    try {
-        $svg = QRCode::svg($url, ['s' => 'qrl']);
-        file_put_contents($filePath, $svg);
-    } catch (\Exception $e) {
-        log_message('error', "QR Code creation failed for post ID {$id}: " . $e->getMessage());
-    }
-}
+//     try {
+//         $svg = QRCode::svg($url, ['s' => 'qrl']);
+//         file_put_contents($filePath, $svg);
+//     } catch (\Exception $e) {
+//         log_message('error', "QR Code creation failed for post ID {$id}: " . $e->getMessage());
+//     }
+// }
 
 
 } // ─── End of Class ───

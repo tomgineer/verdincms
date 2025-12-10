@@ -6,13 +6,13 @@ use App\Libraries\OpenAIService;
 
 /**
  * ****************************************************
- * Actions Model — Voralis Core 2026 Edition
+ * Actions Model — VerdinCMS 2026 Edition
  * ****************************************************
  *
  * Responsible for managing all database operations related to actions,
  * including creation, updates, and internal system maintenance routines.
  *
- * Version : Voralis Core 2026
+ * Version : VerdinCMS 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT
@@ -186,25 +186,9 @@ private function genRobotsTxt(): void {
     $robotsFile = fopen($robotsPath, 'w') or die('Unable to open file!');
     $base = base_url();
 
-    // Whitelisted bots for 2025
-    $whiteList = [
-        'Googlebot',
-        'Bingbot',
-        'facebookexternalhit',
-        'Twitterbot',
-        'LinkedInBot',
-        'Pinterestbot',
-        'WhatsApp',
-        'TelegramBot',
-    ];
-
-    $content = "# Whitelisted Bots\n";
-    foreach ($whiteList as $bot) {
-        $content .= "User-agent: {$bot}\nAllow: /\n\n";
-    }
-
-    $content .= "# Block All Other Bots\n";
-    $content .= "User-agent: *\nDisallow: /\n\n";
+    $content  = "# Allow all bots\n";
+    $content .= "User-agent: *\n";
+    $content .= "Allow: /\n\n";
 
     $content .= "# Sitemap Links\n";
     $content .= "Sitemap: {$base}sitemap.xml\n";
@@ -213,7 +197,6 @@ private function genRobotsTxt(): void {
     fwrite($robotsFile, $content);
     fclose($robotsFile);
 }
-
 
 /**
  * Sets a placeholder image for all posts and pages.

@@ -1,6 +1,6 @@
 {
     "site": {
-        "title": "\u03a7\u03ac\u03c1\u03c4\u03b9\u03bd\u03bf \u03a4\u03c3\u03af\u03ba\u03bf",
+        "title": "Χάρτινο Τσίρκο",
         "url": "https://xartinotsirko.com",
         "language": "el",
         "timezone": "Europe/Berlin"
@@ -18,18 +18,18 @@
         "login_required": true
     },
     "social_media": {
-        "youtube": "#",
-        "facebook": "#",
-        "whatsapp": "#",
-        "instagram": "#",
+        "youtube": "",
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
         "tiktok": "",
-        "x": "#",
-        "telegram": "#",
+        "x": "",
+        "telegram": "",
         "reddit": "",
         "discord": "",
         "linkedin": "",
         "threads": "",
-        "github": "#",
+        "github": "",
         "stackoverflow": "",
         "patreon": "",
         "gitlab": "",
@@ -60,13 +60,13 @@
         "ip2location": false
     },
     "meta": {
-        "site_name": "\u03a7\u03ac\u03c1\u03c4\u03b9\u03bd\u03bf \u03a4\u03c3\u03af\u03ba\u03bf",
-        "site_title": "\u03a7\u03ac\u03c1\u03c4\u03b9\u03bd\u03bf \u03a4\u03c3\u03af\u03ba\u03bf \u2014 \u0397 \u03c0\u03b1\u03c1\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7 \u03c3\u03c5\u03bd\u03b5\u03c7\u03af\u03b6\u03b5\u03c4\u03b1\u03b9",
-        "site_description": "\u03a7\u03ac\u03c1\u03c4\u03b9\u03bd\u03bf \u03a4\u03c3\u03af\u03ba\u03bf \u2014 \u0397 \u03c0\u03b1\u03c1\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7 \u03c3\u03c5\u03bd\u03b5\u03c7\u03af\u03b6\u03b5\u03c4\u03b1\u03b9",
+        "site_name": "Χάρτινο Τσίρκο",
+        "site_title": "Χάρτινο Τσίρκο — Η παράσταση συνεχίζεται",
+        "site_description": "Χάρτινο Τσίρκο — Η παράσταση συνεχίζεται",
         "twitter": "@xartinotsirko"
     },
     "company": {
-        "name": "\u03a7\u03ac\u03c1\u03c4\u03b9\u03bd\u03bf \u03a4\u03c3\u03af\u03ba\u03bf",
+        "name": "Χάρτινο Τσίρκο",
         "email": "info@xartinotsirko.com",
         "support_email": "support@xartinotsirko.com"
     }

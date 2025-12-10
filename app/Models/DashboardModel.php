@@ -7,13 +7,13 @@ use App\Models\AnalyticsModel;
 
 /**
  * ****************************************************
- * Dashboard Model — Voralis Core 2026 Edition
+ * Dashboard Model — VerdinCMS 2026 Edition
  * ****************************************************
  *
  * Handles data aggregation and analytics retrieval for the dashboard.
  * Combines stats, content metrics, user data, and system diagnostics.
  *
- * Version : Voralis Core 2026
+ * Version : VerdinCMS 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT

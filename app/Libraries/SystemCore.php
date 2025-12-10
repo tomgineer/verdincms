@@ -4,14 +4,14 @@ use splitbrain\phpQRCode\QRCode;
 
 /**
  * ****************************************************
- * SystemCore Library — Voralis Core 2026 Edition
+ * SystemCore Library — VerdinCMS 2026 Edition
  * ****************************************************
  *
  * Core utility library providing low-level helpers and
  * system-wide functionality, including file operations,
  * image handling, formatting utilities, and data helpers.
  *
- * Version : Voralis Core 2026
+ * Version : VerdinCMS 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT

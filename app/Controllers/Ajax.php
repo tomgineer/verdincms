@@ -100,6 +100,37 @@ public function uploadInlinePhoto() {
 }
 
 /**
+ * Checks if a given photo file exists on the server.
+ *
+ * - Accepts only AJAX requests from users with tier >= 10.
+ * - Expects a JSON body with a 'filename' key.
+ * - Validates the filename and checks for a corresponding .webp file in /public/images/.
+ * - Returns a JSON response with a boolean 'photoExists' key.
+ *
+ * @return \CodeIgniter\HTTP\ResponseInterface JSON response indicating file existence.
+ */
+public function checkPhotoExists() {
+    if (!$this->request->isAJAX()) {
+        return $this->failForbidden('Not an AJAX request');
+    }
+
+    if (tier() < 10) {
+        return $this->fail('Tier too low', 403);
+    }
+
+    $data = $this->request->getJSON(true);
+    $filename = $data['filename'] ?? '';
+
+    if (!$filename) {
+        return $this->failValidationErrors('Filename is required');
+    }
+
+    $exists = is_file(FCPATH . 'images/' . $filename . '.webp');
+
+    return $this->response->setJSON(['photoExists' => $exists]);
+}
+
+/**
  * Handles AJAX-based post updates for high-tier users.
  *
  * Validates the request, filters allowed fields, and updates the post via the model.

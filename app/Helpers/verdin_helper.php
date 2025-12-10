@@ -3,14 +3,14 @@ use App\Libraries\SystemCore;
 
 /**
  * ****************************************************
- * Verdin Helper — Voralis Core 2026 Edition
+ * Verdin Helper — VerdinCMS 2026 Edition
  * ****************************************************
  *
  * Provides a collection of globally available utility functions
  * used throughout the VerdinCMS system, including path helpers,
  * date/time utilities, and content formatting tools.
  *
- * Version : Voralis Core 2026
+ * Version : VerdinCMS 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT
@@ -166,20 +166,6 @@ if(!function_exists('module_exists')) {
 	function module_exists($module) {
         return file_exists(APPPATH.'Views/modules/'.$module.'.php');
 	}
-}
-
-// QR Code Exists
-if (!function_exists('qr_code_exists')) {
-    function qr_code_exists($postId) {
-        $filePath = FCPATH . 'images' . DIRECTORY_SEPARATOR . 'qrcodes' . DIRECTORY_SEPARATOR . 'post_' . $postId . '.svg';
-
-        if (!file_exists($filePath)) {
-            // Create the QR code if it doesn't exist
-            (new SystemCore())->createQrCode($postId);
-        }
-
-        return file_exists($filePath); // Return true if it now exists
-    }
 }
 
 // Chart Data

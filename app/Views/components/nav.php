@@ -96,7 +96,7 @@
 
             <li class="hidden lg:flex">
                 <details>
-                    <summary>Sections</summary>
+                    <summary>Topics</summary>
                     <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
                         <?php foreach ($menu_items['topics'] as $topic): ?>
                             <li>
@@ -109,7 +109,7 @@
 
             <li class="hidden lg:flex">
                 <details>
-                    <summary>The Blog</summary>
+                    <summary>Blog</summary>
                     <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
                         <?php foreach ($menu_items['pages'] as $page_items): ?>
                             <li>
@@ -125,7 +125,7 @@
 
         </ul>
 
-        <input type="text" placeholder="Search" class="input input-bordered w-96 text-base hidden lg:flex" data-js-search />
+        <input type="text" placeholder="Search" class="input input-bordered w-48 xl:w-96 text-base hidden lg:flex" data-js-search />
         <section class="hidden absolute top-16 left-1/2 -translate-x-1/2 z-900 max-w-6xl w-full bg-base-300 rounded-2xl shadow-2xl p-8 border-2 border-primary" data-js-search-results>No Results..</section>
 
         <div class="dropdown dropdown-end">
@@ -159,5 +159,30 @@
                 <?php endif; ?>
             </ul>
         </div>
+
+        <ul class="flex gap-1 z-998">
+            <?php if ($can_edit ?? false): ?>
+                <?php if (!empty($post)): ?>
+                    <li>
+                        <a class="btn btn-primary" href="<?= site_url('admin/edit/post/' . $post['id']) ?>">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                            </svg>
+
+                        </a>
+                    </li>
+                <?php elseif (!empty($page)): ?>
+                    <li>
+                        <a class="btn btn-primary" href="<?= site_url('admin/edit/page/' . $page['id']) ?>">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                            </svg>
+
+                        </a>
+                    </li>
+                <?php endif; ?>
+            <?php endif; ?>
+        </ul>
+
     </div>
 </div>

@@ -6,7 +6,7 @@ use CodeIgniter\I18n\Time;
 
 /**
  * ****************************************************
- * Content Model — Voralis Core 2026 Edition
+ * Content Model — VerdinCMS 2026 Edition
  * ****************************************************
  *
  * Handles all database operations related to content,
@@ -14,7 +14,7 @@ use CodeIgniter\I18n\Time;
  * Supports querying, filtering, and grouping logic used
  * across public and administrative interfaces.
  *
- * Version : Voralis Core 2026
+ * Version : VerdinCMS 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
  * License : MIT
