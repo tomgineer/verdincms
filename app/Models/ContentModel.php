@@ -581,6 +581,11 @@ public function countContent(string $type = 'total'): int {
     return $total;
 }
 
+public function countSubscribers(): int {
+    return $this->db->table('newsletter')->countAll();
+}
+
+
 /**
  * Performs a fulltext search on published posts.
  *

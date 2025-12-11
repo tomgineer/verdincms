@@ -1,7 +1,7 @@
 <?= $this->extend('layout_app') ?>
 <?= $this->section('main') ?>
 
-<article class="container mx-auto px-4 mt-16">
+<article class="container mx-auto px-4 mt-8 lg:mt-16">
 
     <div class="card lg:card-side bg-base-100">
         <figure class="w-full lg:w-1/3">

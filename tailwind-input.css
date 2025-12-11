@@ -2,8 +2,7 @@
 @source "./app/Views/**/*.php";
 @source "./public/js/**/*.js";
 @plugin "daisyui" {
-    /* light: nord, dark: dark, chosen by browser */
-    themes: autumn --default, dark --prefersdark;
+    themes: dark --default;
 }
 @plugin "@tailwindcss/typography";
 
@@ -43,14 +42,5 @@
 
     /* ckEditor Fix */
     .ck-powered-by {display: none !important;}
-
-    /* Info Menu in Footer */
-    .menu-info li {
-        @apply flex-row gap-2 items-center pl-3 mb-2;
-        span {
-            @apply badge badge-dash text-secondary font-semibold font-mono pointer-events-none;
-        }
-    }
-
 
 }

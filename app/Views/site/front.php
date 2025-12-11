@@ -10,7 +10,7 @@
         </section>
 
         <aside class="w-full lg:w-[30%]">
-            <div class="sticky top-8">
+            <div class="lg:sticky lg:top-8">
                 <h2 class="text-3xl text-primary mt-8 mb-2">Featured</h2>
                 <?= view('components/plain_list', ['posts' => $featured['posts']]) ?>
 

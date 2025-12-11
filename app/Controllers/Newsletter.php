@@ -1,5 +1,5 @@
 <?php namespace App\Controllers;
-use App\Models\SystemModel;
+use App\Models\NewsletterModel;
 use CodeIgniter\API\ResponseTrait;
 
 class Newsletter extends BaseController {
@@ -33,7 +33,7 @@ public function subscribe() {
     $payload = $this->request->getJSON(true) ?? [];
     $email   = (string) ($payload['email'] ?? '');
 
-    $result = (new SystemModel())->subscribe($email);
+    $result = (new NewsletterModel())->subscribe($email);
 
     if (! empty($result['success'])) {
         return $this->response->setJSON([

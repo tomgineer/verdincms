@@ -67,13 +67,13 @@ abstract class BaseController extends Controller
 
         // Define cache keys with "arr_" prefix
         $cacheKeys = [
-            'pages_list'   => 'arr_pages_list',
-            'menu_items'   => 'arr_menu_items',
-            'socials_list' => 'arr_socials_list',
-            'topics_list'  => 'arr_topics_list',
-            'base_blocks'  => 'arr_base_blocks',
-            'total_posts'  => 'arr_total_posts',
-            'public_posts' => 'arr_public_posts',
+            'pages_list'         => 'arr_pages_list',
+            'menu_items'         => 'arr_menu_items',
+            'socials_list'       => 'arr_socials_list',
+            'topics_list'        => 'arr_topics_list',
+            'base_blocks'        => 'arr_base_blocks',
+            'total_subscribers'  => 'arr_total_subscribers',
+            'public_posts'       => 'arr_public_posts',
         ];
 
         // Fetch & cache data
@@ -98,8 +98,8 @@ abstract class BaseController extends Controller
                     case 'base_blocks':
                         $this->data[$key] = $this->content->getBlocks(['footer', 'components']);
                         break;
-                    case 'total_posts':
-                        $this->data[$key] = $this->content->countContent('total');
+                    case 'total_subscribers':
+                        $this->data[$key] = $this->content->countSubscribers();
                         break;
                     case 'public_posts':
                         $this->data[$key] = $this->content->countContent('public');

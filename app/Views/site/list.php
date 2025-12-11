@@ -12,7 +12,7 @@
         </section>
 
         <aside class="w-full lg:w-[30%]">
-            <div class="sticky top-8">
+            <div class="lg:sticky lg:top-8">
                 <?php if (!empty($stats)): ?>
                     <div class="stats grid grid-cols-2 grid-flow-row">
                         <?php foreach ($stats as $stat): ?>

@@ -18,11 +18,11 @@
         <ul class="menu w-full">
             <li>
                 <h2 class="menu-title text-lg">Νουμεράκια</h2>
-                <ul class="ml-4 menu-info">
-                    <li>Σύνολο δημοσιεύσεων: <span><?= esc($total_posts) ?></span></li>
-                    <li>Δημόσια άρθρα: <span><?= esc($public_posts) ?></span></li>
-                    <li>Έκδοση CMS: <span><?= setting('system.version') ?></span></li>
-                    <li>Rendered in: <span>{elapsed_time} sec</span></li>
+                <ul>
+                    <li><div>Δημόσια άρθρα: <span class="text-accent"><?= esc($public_posts) ?></span></div></li>
+                    <li><div>Συνδρομητές: <span class="text-accent"><?= esc($total_subscribers) ?></span></div></li>
+                    <li><div>Έκδοση CMS: <span class="text-accent"><?= setting('system.version') ?></span></div></li>
+                    <li><div>Rendered in: <span class="text-accent">{elapsed_time} sec</span></div></li>
                 </ul>
             </li>
         </ul>
@@ -30,7 +30,7 @@
 
     <?php foreach ($pages_list as $sectionName => $pages): ?>
         <nav>
-            <ul class="menu bg-base-200 rounded-box w-full">
+            <ul class="menu w-full">
                 <li>
                     <h2 class="menu-title text-lg"><?= $sectionName ?></h2>
                     <ul>
