@@ -62,8 +62,8 @@ public function subscribe(string $email): array {
         ];
     }
 
-    // TODO: Send confirmation email
-    // e.g. $this->sendConfirmationEmail($email, $token);
+    // Send confirmation email
+    $this->sendConfirmationEmail($email, $token);
 
     return [
         'success' => true,
@@ -71,6 +71,127 @@ public function subscribe(string $email): array {
     ];
 }
 
+/**
+ * Send confirmation email with unique token (HTML version).
+ *
+ * @param string $email
+ * @param string $token
+ * @return bool
+ */
+protected function sendConfirmationEmail(string $email, string $token): bool {
+    // Build confirmation link
+    $confirmUrl = site_url('newsletter/confirm?token=' . urlencode($token) . '&email=' . urlencode($email));
+
+    $emailService = \Config\Services::email();
+    $config       = config('Email');
+
+    // Use values from Email.php directly
+    $fromEmail = $config->fromEmail;
+    $fromName  = $config->fromName;
+
+    $emailService->setFrom($fromEmail, $fromName);
+    $emailService->setTo($email);
+    $emailService->setSubject('Επιβεβαίωση εγγραφής στο newsletter του Χάρτινου Τσίρκου');
+
+    // HTML message
+    $message = '
+        <html lang="el">
+        <head>
+            <meta charset="UTF-8">
+            <style>
+                body { font-family: Arial, sans-serif; background-color: #f9f9f9; color: #222; }
+                .container { max-width: 600px; margin: 20px auto; background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+                h1 { color: #333; font-size: 20px; }
+                p { line-height: 1.6; }
+                a.button {
+                    display: inline-block;
+                    padding: 10px 20px;
+                    margin-top: 15px;
+                    background: #007bff;
+                    color: #fff !important;
+                    text-decoration: none;
+                    border-radius: 5px;
+                }
+                a.button:hover { background: #0056b3; }
+                .footer { font-size: 12px; color: #777; margin-top: 20px; }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>Επιβεβαίωση εγγραφής στο Newsletter</h1>
+                <p>Γεια σου,</p>
+                <p>Σε ευχαριστώ που έκανες εγγραφή στο newsletter μου. Για να ολοκληρώσεις την εγγραφή σου, κάνε κλικ στο παρακάτω κουμπί:</p>
+                <p><a href="' . $confirmUrl . '" class="button">Επιβεβαίωση Εγγραφής</a></p>
+                <p>Αν δεν έκανες εσύ αυτή την εγγραφή, μπορείς να αγνοήσεις αυτό το μήνυμα.</p>
+                <p class="footer">Με εκτίμηση,<br>' . esc($fromName) . '</p>
+            </div>
+        </body>
+        </html>
+    ';
+
+    $emailService->setMessage($message);
+
+    if (! $emailService->send()) {
+        log_message('error', 'Newsletter confirmation email failed: ' . $emailService->printDebugger(['headers', 'subject']));
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * Confirm a newsletter subscription using token and email.
+ *
+ * @param string $email
+ * @param string $token
+ * @return array ['success' => bool, 'message' => string]
+ */
+public function confirmSubscription(string $email, string $token): array {
+    $email = trim(strtolower($email));
+    $token = trim($token);
+
+    if ($email === '' || $token === '') {
+        return [
+            'success' => false,
+            'message' => 'Μη έγκυρα δεδομένα επιβεβαίωσης.'
+        ];
+    }
+
+    $builder = $this->db->table('newsletter');
+
+    // Find subscriber by email + token + not confirmed
+    $subscriber = $builder->where('email', $email)
+                          ->where('confirmation_token', $token)
+                          ->where('confirmed', 0)
+                          ->get()
+                          ->getRowArray();
+
+    if (! $subscriber) {
+        return [
+            'success' => false,
+            'message' => 'Ο σύνδεσμος επιβεβαίωσης δεν είναι έγκυρος ή έχει ήδη χρησιμοποιηθεί.'
+        ];
+    }
+
+    // Update confirmation
+    $updated = $builder->where('id', $subscriber['id'])->update([
+        'confirmed'          => 1,
+        'confirmed_at'       => date('Y-m-d H:i:s'),
+        'confirmation_token' => null,
+    ]);
+
+    if (! $updated) {
+        return [
+            'success' => false,
+            'message' => 'Η επιβεβαίωση απέτυχε. Προσπάθησε ξανά αργότερα.'
+        ];
+    }
+
+    return [
+        'success' => true,
+        'message' => 'Η εγγραφή σου στο newsletter επιβεβαιώθηκε με επιτυχία. Σε ευχαριστούμε!'
+    ];
+}
 
 
 } // ─── End of Class ───

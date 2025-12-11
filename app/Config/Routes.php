@@ -76,7 +76,7 @@ $routes->get('ajax/search', 'Ajax::search');
 *****************************************************************************/
 
 $routes->post('newsletter/subscribe', 'Newsletter::subscribe');
-// $routes->get('newsletter/confirm/(:segment)', 'Newsletter::confirm/$1');
+$routes->get('newsletter/confirm', 'Newsletter::confirm');
 
 /******************************************************************************
  * ADMIN

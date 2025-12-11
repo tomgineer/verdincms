@@ -22,9 +22,9 @@
                 placeholder="Ρίξε το email σου..."
                 class="input input-lg w-full bg-transparent border-0 border-b-2 border-base-content/30 rounded-none
                focus:border-accent focus:outline-none text-base-content placeholder:text-base-content/50 transition-all duration-200"
-                required disabled/>
+                required />
 
-            <button type="submit" class="btn btn-accent btn-lg w-full shadow-md hover:shadow-accent/30 transition-all duration-200" disabled="disabled">
+            <button type="submit" class="btn btn-accent btn-lg w-full shadow-md hover:shadow-accent/30 transition-all duration-200">
                 Εγγραφή
             </button>
 

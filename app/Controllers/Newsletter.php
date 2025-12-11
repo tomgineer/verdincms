@@ -48,6 +48,34 @@ public function subscribe() {
     ]);
 }
 
+/**
+ * Handles newsletter subscription confirmation.
+ *
+ * Retrieves the token and email from the query string,
+ * verifies the subscription via the NewsletterModel,
+ * and returns the confirmation result view.
+ *
+ * @return \CodeIgniter\HTTP\Response|string
+ */
+public function confirm() {
+    $request = service('request');
+    $token = (string) $request->getGet('token');
+    $email = (string) $request->getGet('email');
+
+    $model  = new NewsletterModel();
+    $result = $model->confirmSubscription($email, $token);
+
+    // Merge arrays using spread syntax (PHP 7.4+)
+    $data = [
+        ...($this->data ?? []),
+        'success' => $result['success'],
+        'message' => $result['message'],
+    ];
+
+    return view('newsletter/confirm_result', $data);
+}
+
+
 
 
 } // ─── End of Class ───
