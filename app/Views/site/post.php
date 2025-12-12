@@ -5,7 +5,7 @@
 
     <div class="card lg:card-side bg-base-100">
         <figure class="w-full lg:w-1/3">
-            <img class="rounded-[25%_0_25%_0] shadow-sm" src="<?= path_img() . esc($post['photo']) . '.webp' ?>" alt="<?=esc($post['title'])?>">
+            <img class="rounded-[25%_0_25%_0] shadow-sm aspect-square" src="<?= path_img() . esc($post['photo']) . '.webp' ?>" alt="<?=esc($post['title'])?>">
         </figure>
 
         <div class="card-body w-full lg:w-2/3 px-2 lg:px-8">

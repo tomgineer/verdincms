@@ -49,8 +49,8 @@
 
 </section>
 
-<section class="footer text-base-content border-base-200 border-t-2 px-10 py-8 pb-8">
-    <aside class="grid-flow-col gap-6 items-center">
+<section class="footer text-base-content border-base-200 border-t-2 px-10 py-8 pb-8 lg:gap-0">
+    <aside class="grid-flow-row lg:grid-flow-col gap-6 items-center">
         <a href="<?= base_url() ?>">
             <img class="h-14" src="<?= path_gfx() . 'logo.svg' ?>" alt="Logo" data-logo>
         </a>
@@ -59,22 +59,27 @@
         </div>
     </aside>
 
-    <nav class="md:place-self-center md:justify-self-end">
-        <div class="grid grid-flow-col gap-4">
-            <?php foreach ($socials_list as $social): ?>
-                <a
-                    class="text-base-content/50 hover:text-accent transform transition-transform duration-200 hover:scale-125"
-                    href="<?= esc($social['value']) ?>"
-                    target="_blank"
-                    rel="noopener noreferrer nofollow"
-                    aria-label="<?= esc($social['label']) ?>"
-                    title="<?= esc($social['label']) ?>">
-                    <svg class="w-6 h-6 fill-current" aria-hidden="true" focusable="false">
-                        <use href="<?= path_gfx() . 'icons.svg#icon-' . esc($social['icon_id']) ?>"></use>
-                    </svg>
-                </a>
-            <?php endforeach; ?>
+    <?php if (empty($socials_list)):?>
+        <div class="place-self-center md:justify-self-end">
+            <img class="h-15 w-auto opacity-85" src="<?=path_gfx().'no_socials.svg'?>" alt="No Social Media" loading="lazy">
         </div>
-    </nav>
-
+    <?php else:?>
+        <nav class="place-self-center md:justify-self-end">
+            <div class="grid grid-flow-col gap-4">
+                <?php foreach ($socials_list as $social): ?>
+                    <a
+                        class="text-base-content/50 hover:text-accent transform transition-transform duration-200 hover:scale-125"
+                        href="<?= esc($social['value']) ?>"
+                        target="_blank"
+                        rel="noopener noreferrer nofollow"
+                        aria-label="<?= esc($social['label']) ?>"
+                        title="<?= esc($social['label']) ?>">
+                        <svg class="w-6 h-6 fill-current" aria-hidden="true" focusable="false">
+                            <use href="<?= path_gfx() . 'icons.svg#icon-' . esc($social['icon_id']) ?>"></use>
+                        </svg>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        </nav>
+    <?php endif;?>
 </section>

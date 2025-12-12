@@ -612,5 +612,145 @@ public function updateOrder(string $table, array $ids): void {
     }
 }
 
+/**
+ * Returns active and inactive newsletter subscriber emails.
+ *
+ * @return array{active_subs: array, inactive_subs: array}
+ */
+public function getSubscribers(): array {
+    $get = fn(int $status) => array_column(
+        $this->db->table('newsletter')
+            ->select('email')
+            ->where('confirmed', $status)
+            ->orderBy('email', 'ASC')
+            ->get()
+            ->getResultArray(),
+        'email'
+    );
+
+    return [
+        'active_subs'   => $get(1),
+        'inactive_subs' => $get(0),
+    ];
+}
+
+/**
+ * Builds a default HTML snippet for this week's newsletter content.
+ *
+ * Uses getNewsletterContent() and returns nicely structured HTML with:
+ * - "Νέα άρθρα της εβδομάδας" for posts
+ * - "Νέες σελίδες της εβδομάδας" for pages
+ *
+ * @return string
+ */
+public function buildWeeklyNewsletterHtml(int $limit = 20): string {
+    $content = $this->getNewsletterContent($limit);
+
+    $posts = $content['posts'] ?? [];
+    $pages = $content['pages'] ?? [];
+
+    $html = '';
+
+    // Posts block
+    if (!empty($posts)) {
+        $html .= "<h1>Νέα άρθρα της εβδομάδας</h1>\n\n";
+
+        foreach ($posts as $post) {
+            $title    = htmlspecialchars($post['title'] ?? '', ENT_QUOTES, 'UTF-8');
+            $subtitle = htmlspecialchars($post['subtitle'] ?? '', ENT_QUOTES, 'UTF-8');
+
+            // base_url/post/{id}
+            $url = base_url('post/' . ($post['id'] ?? ''));
+
+            $html .= "<h3>{$title}</h3>\n";
+
+            if ($subtitle !== '') {
+                $html .= "<p>{$subtitle}</p>\n";
+            }
+
+            $html .= '<p><a href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '">Διαβάστε περισσότερα</a></p>' . "\n\n";
+        }
+    }
+
+    // Pages block
+    if (!empty($pages)) {
+        // Add spacing between sections if both exist
+        if ($html !== '') {
+            $html .= "\n\n";
+        }
+
+        $html .= "<h1>Νέες σελίδες της εβδομάδας</h1>\n\n";
+
+        foreach ($pages as $page) {
+            $title       = htmlspecialchars($page['title'] ?? '', ENT_QUOTES, 'UTF-8');
+            $subtitle    = htmlspecialchars($page['subtitle'] ?? '', ENT_QUOTES, 'UTF-8');
+            $sectionSlug = $page['section_slug'] ?? '';
+            $pageSlug    = $page['page_slug'] ?? '';
+
+            // base_url/(section slug)/(page slug)
+            $path = trim($sectionSlug . '/' . $pageSlug, '/');
+            $url  = base_url($path);
+
+            $html .= "<h3>{$title}</h3>\n";
+
+            if ($subtitle !== '') {
+                $html .= "<p>{$subtitle}</p>\n";
+            }
+
+            $html .= '<p><a href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '">Διαβάστε περισσότερα</a></p>' . "\n\n";
+        }
+    }
+
+    return trim($html);
+}
+
+/**
+ * Get recent posts and pages for newsletter content.
+ *
+ * @param int $limit Maximum number of posts/pages to return per group.
+ * @return array{
+ *     posts: array<int, array<string,mixed>>,
+ *     pages: array<int, array<string,mixed>>
+ * }
+ */
+protected function getNewsletterContent(int $limit = 20): array {
+    // Determine timeframe
+    $startDate = date('Y-m-d 00:00:00', strtotime('monday this week'));
+    $endDate   = date('Y-m-d 23:59:59', strtotime('sunday this week'));
+
+    // Testing: last ~630 days
+    $startDate = date('Y-m-d 00:00:00', strtotime('-630 days'));
+    $endDate   = date('Y-m-d 23:59:59', strtotime('now'));
+
+    // Fetch posts
+    $posts = $this->db->table('posts')
+        ->select('id, title, subtitle, created')
+        ->where('created >=', $startDate)
+        ->where('created <=', $endDate)
+        ->orderBy('created', 'DESC')
+        ->limit($limit)
+        ->get()
+        ->getResultArray();
+
+    // Fetch pages (with section + page slug)
+    $pages = $this->db->table('pages p')
+        ->select('p.id, p.title, p.subtitle, p.slug AS page_slug, s.slug AS section_slug, p.created')
+        ->join('sections s', 's.id = p.section_id', 'inner')
+        ->where('p.created >=', $startDate)
+        ->where('p.created <=', $endDate)
+        ->where('p.status', 1)
+        ->where('p.accessibility', 0)
+        ->where('s.id !=', 1)
+        ->orderBy('p.created', 'DESC')
+        ->limit($limit)
+        ->get()
+        ->getResultArray();
+
+    return [
+        'posts' => $posts,
+        'pages' => $pages,
+    ];
+}
+
 
 } // ─── End of Class ───

@@ -167,7 +167,16 @@ public function dashboard(...$segments) {
         case 'accounts/accounts':
             $data = [
                 ...$data,
-                'users' => $this->dash->getUserData(),
+                'users'       => $this->dash->getUserData(),
+            ];
+            break;
+
+        case 'newsletter/newsletter':
+            $data = [
+                ...$data,
+                'useCKEditor'        => true,
+                'subscribers'        => $this->dash->getSubscribers(),
+                'newsletter_content' => $this->dash->buildWeeklyNewsletterHtml(),
             ];
             break;
 

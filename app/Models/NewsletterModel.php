@@ -173,11 +173,17 @@ public function confirmSubscription(string $email, string $token): array {
         ];
     }
 
+    // Generate unsubscribe token for later use in emails
+    $unsubscribeToken = bin2hex(random_bytes(16)); // 32-char secure token
+
     // Update confirmation
     $updated = $builder->where('id', $subscriber['id'])->update([
         'confirmed'          => 1,
         'confirmed_at'       => date('Y-m-d H:i:s'),
         'confirmation_token' => null,
+        'unsubscribe_token'  => $unsubscribeToken,
+        'unsubscribed'       => 0,
+        'unsubscribed_at'    => null,
     ]);
 
     if (! $updated) {
@@ -193,5 +199,90 @@ public function confirmSubscription(string $email, string $token): array {
     ];
 }
 
+/**
+ * Unsubscribe a user from the newsletter using a unique token.
+ *
+ * Used by the unsubscribe link in each email:
+ * e.g. https://your-site.tld/newsletter/unsubscribe?token=...
+ *
+ * @param string $token Unique unsubscribe token.
+ * @return array ['success' => bool, 'message' => string, 'email' => string|null]
+ */
+public function unsubscribeByToken(string $token): array {
+    $token = trim($token);
+
+    if ($token === '') {
+        return [
+            'success' => false,
+            'message' => 'Μη έγκυρος σύνδεσμος διαγραφής.',
+            'email'   => null,
+        ];
+    }
+
+    $builder = $this->db->table('newsletter');
+
+    // Find subscriber by token and ensure they are not already unsubscribed
+    $subscriber = $builder->where('unsubscribe_token', $token)
+                          ->where('unsubscribed', 0)
+                          ->get()
+                          ->getRowArray();
+
+    if (! $subscriber) {
+        return [
+            'success' => false,
+            'message' => 'Ο σύνδεσμος διαγραφής δεν είναι έγκυρος ή έχει ήδη χρησιμοποιηθεί.',
+            'email'   => null,
+        ];
+    }
+
+    // Mark as unsubscribed
+    $updated = $builder->where('id', $subscriber['id'])->update([
+        'unsubscribed'      => 1,
+        'unsubscribed_at'   => date('Y-m-d H:i:s'),
+        'unsubscribe_token' => null, // optional: make the token one-time use
+    ]);
+
+    if (! $updated) {
+        return [
+            'success' => false,
+            'message' => 'Η διαδικασία διαγραφής απέτυχε. Προσπάθησε ξανά αργότερα.',
+            'email'   => $subscriber['email'] ?? null,
+        ];
+    }
+
+    return [
+        'success' => true,
+        'message' => 'Η διεύθυνση email διαγράφηκε με επιτυχία από το newsletter.',
+        'email'   => $subscriber['email'],
+    ];
+}
+
+// protected function buildNewsletterHtml(string $unsubscribeUrl): string {
+//     return '
+//     <html>
+//         <head><meta charset="UTF-8"></head>
+//         <body style="font-family: Arial, sans-serif; background:#f8f8f8; color:#333; padding:20px;">
+//             <div style="max-width:600px; margin:auto; background:#fff; border-radius:8px; padding:20px;">
+//                 <h2 style="color:#222;">🎪 Νέο από το Χάρτινο Τσίρκο</h2>
+//                 <p>...your content here...</p>
+
+//                 ' . $this->newsletterFooter($unsubscribeUrl) . '
+//             </div>
+//         </body>
+//     </html>';
+// }
+
+// protected function newsletterFooter(string $unsubscribeUrl): string {
+//     return '
+//         <hr style="border:none; border-top:1px solid #ddd; margin:30px 0;">
+//         <p style="font-size:13px; color:#777; line-height:1.5; text-align:center;">
+//             Λαμβάνεις αυτό το email επειδή έχεις εγγραφεί στο newsletter μας.<br>
+//             Αν δεν επιθυμείς να λαμβάνεις πλέον ενημερώσεις,
+//             μπορείς να <a href="' . esc($unsubscribeUrl) . '" style="color:#555;">διαγραφείς εδώ</a>.
+//         </p>
+//         <p style="font-size:11px; color:#999; text-align:center; margin-top:10px;">
+//             &copy; ' . date('Y') . ' Χάρτινο Τσίρκο — Όλα τα δικαιώματα διατηρούνται.
+//         </p>';
+// }
 
 } // ─── End of Class ───

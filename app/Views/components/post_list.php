@@ -2,13 +2,13 @@
 
     <ul>
         <?php foreach ($posts as $post): ?>
-            <li class="mb-10">
+            <li class="mb-12">
 
                 <div class="card lg:card-side bg-base-100">
-                    <figure class="w-full lg:w-1/3">
+                    <figure class="w-full lg:w-1/3 my-1">
                         <a href="<?=site_url('post/'. esc($post['id']))?>">
                             <img
-                                class="rounded-[25%_0_25%_0] shadow-sm transition-all duration-300 ease-in-out hover:scale-95 hover:brightness-110 hover:shadow-xl"
+                                class="rounded-[25%_0_25%_0] shadow-sm transition-all duration-300 ease-in-out hover:scale-95 hover:brightness-110 hover:shadow-xl aspect-square"
                                 src="<?= path_img_tn() . esc($post['photo']) . '.webp' ?>"
                                 alt="<?=esc($post['title'])?>"
                                 loading="lazy">

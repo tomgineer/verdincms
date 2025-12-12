@@ -75,6 +75,32 @@ public function confirm() {
     return view('newsletter/confirm_result', $data);
 }
 
+/**
+ * Handles newsletter unsubscribe via token link.
+ *
+ * Reads the token from the query string, delegates the logic
+ * to the NewsletterModel, and returns a result view.
+ *
+ * @return \CodeIgniter\HTTP\Response|string
+ */
+public function unsubscribe() {
+    $request = service('request');
+    $token   = (string) $request->getGet('token');
+
+    $model  = new NewsletterModel();
+    $result = $model->unsubscribeByToken($token);
+
+    // Merge base controller data (if any) with unsubscribe result
+    $data = [
+        ...($this->data ?? []),
+        'success' => $result['success'] ?? false,
+        'message' => $result['message'] ?? 'Προέκυψε σφάλμα κατά τη διαγραφή από το newsletter.',
+        'email'   => $result['email'] ?? null,
+    ];
+
+    return view('newsletter/unsubscribe_result', $data);
+}
+
 
 
 
