@@ -61,7 +61,7 @@
 
     <?php if (empty($socials_list)):?>
         <div class="place-self-center md:justify-self-end">
-            <img class="h-15 w-auto opacity-85" src="<?=path_gfx().'no_socials.svg'?>" alt="No Social Media" loading="lazy">
+            <img class="h-15 w-auto opacity-65" src="<?=path_gfx().'no_socials.svg'?>" alt="No Social Media" loading="lazy">
         </div>
     <?php else:?>
         <nav class="place-self-center md:justify-self-end">

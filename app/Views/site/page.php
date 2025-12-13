@@ -4,7 +4,7 @@
 <article>
 
     <?php if ( $page['disable_hero']==0 ):?>
-        <div class="relative w-full h-[40vh] flex items-center justify-center overflow-hidden">
+        <div class="relative w-full h-[400px] xl:h-[40vh] flex items-center justify-center overflow-hidden">
             <h1 class="z-10 text-5xl font-bold text-white text-center text-shadow-lg">
                 <?= esc($page['title']) ?>
             </h1>
@@ -32,5 +32,9 @@
     <h2 class="text-3xl mb-4 text-primary">Featured</h2>
     <?= view('components/plain_list', ['posts' => $featured['posts'], 'style' => 'plain-list--columns']) ?>
 </section>
+
+<?php if (!empty($page['slug']) && $page['slug'] === 'about'): ?>
+    <?= $this->include('components/badges') ?>
+<?php endif; ?>
 
 <?= $this->endSection() ?>
