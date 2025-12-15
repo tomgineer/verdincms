@@ -5,7 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Site::index');
+//$routes->get('/', 'Site::index');
 //$routes->set404Override('App\Controllers\Site::handle404');
 
 /**
@@ -112,4 +112,14 @@ foreach ($extraRouteFiles as $routeFile) {
     }
 
     require $routeFile;
+}
+
+// -------------------------------------------------------------------------
+// Fallback default route: only if no other GET '/' route exists
+// -------------------------------------------------------------------------
+
+$getRoutes = $routes->getRoutes('get');
+
+if (! isset($getRoutes['/'])) {
+    $routes->get('/', 'Site::index');
 }

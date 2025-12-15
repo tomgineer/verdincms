@@ -35,7 +35,7 @@ abstract class BaseController extends Controller
     protected $request;
     protected $content;
     protected $data = [];
-    protected $site_type = 'blog';
+    protected $site_type = 'app';
 
     /**
      * An array of helpers to be loaded automatically upon
