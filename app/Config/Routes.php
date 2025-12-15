@@ -96,3 +96,20 @@ $routes->get('admin/moderate/(:alpha)', 'Admin::moderate/$1');
 $siteController = new \App\Controllers\Site();
 $siteController->setupTopicRoutes();
 $siteController->setupPageRoutes();
+
+/******************************************************************************
+ * EXTRA ROUTE FILES (Routes*.php)
+ *****************************************************************************/
+
+$extraRouteFiles = glob(APPPATH . 'Config/Routes*.php');
+
+foreach ($extraRouteFiles as $routeFile) {
+    // Skip the main routes file(s) to avoid recursion
+    $basename = basename($routeFile);
+
+    if ($basename === 'Routes.php') {
+        continue;
+    }
+
+    require $routeFile;
+}

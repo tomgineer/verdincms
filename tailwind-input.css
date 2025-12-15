@@ -85,3 +85,8 @@
     /* Scrollbar */
     .scrollbar-auto {scrollbar-gutter: auto !important;} /* Add this via JS to HTML in a modal */
 }
+
+/* ---------------------------------------------------
+   Local Tailwind Overrides (ignored by Git)
+--------------------------------------------------- */
+@import "./tailwind-overrides.css";

@@ -155,3 +155,9 @@ node_modules/
 app/Config/App.php
 app/Config/Database.php
 app/Config/Email.php
+
+# Local Tailwind overrides
+/tailwind-overrides.css
+
+# Config File
+/config/settings.json

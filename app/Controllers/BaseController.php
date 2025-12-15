@@ -35,6 +35,7 @@ abstract class BaseController extends Controller
     protected $request;
     protected $content;
     protected $data = [];
+    protected $site_type = 'blog';
 
     /**
      * An array of helpers to be loaded automatically upon
@@ -59,10 +60,17 @@ abstract class BaseController extends Controller
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
 
+        // Site Type
+        $envSiteType = env('site.type');
+        if (!empty($envSiteType)) {
+            $this->site_type = $envSiteType;
+        }
+        service('renderer')->setVar('site_type', $this->site_type);
+
         // Preload any models, libraries, etc, here.
         $this->content = new ContentModel();
 
-// Define cache settings
+        // Define cache settings
         $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
         // Define cache keys with "arr_" prefix
