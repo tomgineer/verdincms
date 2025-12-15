@@ -151,5 +151,7 @@ node_modules/
 /public/js/*.js
 /public/js/*.map
 
-# Email Settings
+# CI4 Configuration Files
+app/Config/App.php
+app/Config/Database.php
 app/Config/Email.php
