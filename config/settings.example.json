@@ -1,8 +1,8 @@
 {
     "site": {
-        "title": "Χάρτινο Τσίρκο",
-        "url": "https://xartinotsirko.com",
-        "language": "el",
+        "title": "My Demo Website",
+        "url": "https://example.com",
+        "language": "en",
         "timezone": "Europe/Berlin"
     },
     "theme": {
@@ -10,48 +10,48 @@
         "dark_mode": true
     },
     "cache": {
-        "enabled": false,
+        "enabled": true,
         "lifetime": 3600
     },
     "admin": {
-        "email": "info@xartinotsirko.com",
+        "email": "admin@example.com",
         "login_required": true
     },
     "social_media": {
-        "youtube": "",
-        "facebook": "",
-        "whatsapp": "",
-        "instagram": "",
-        "tiktok": "",
-        "x": "",
-        "telegram": "",
-        "reddit": "",
-        "discord": "",
-        "linkedin": "",
-        "threads": "",
-        "github": "",
-        "stackoverflow": "",
-        "patreon": "",
-        "gitlab": "",
-        "vimeo": "",
-        "mastodon": "",
-        "codepen": "",
-        "jsfiddle": "",
-        "buymeacoffee": "",
-        "rumble": "",
-        "odysee": "",
-        "bitchute": "",
-        "gab": "",
-        "brighteon": "",
-        "xing": ""
+        "youtube": "https://www.youtube.com/@example",
+        "facebook": "https://www.facebook.com/example",
+        "whatsapp": "https://wa.me/491701234567",
+        "instagram": "https://www.instagram.com/example",
+        "tiktok": "https://www.tiktok.com/@example",
+        "x": "https://twitter.com/example",
+        "telegram": "https://t.me/example",
+        "reddit": "https://www.reddit.com/r/example",
+        "discord": "https://discord.gg/example",
+        "linkedin": "https://www.linkedin.com/company/example",
+        "threads": "https://www.threads.net/@example",
+        "github": "https://github.com/example",
+        "stackoverflow": "https://stackoverflow.com/users/1234567/example",
+        "patreon": "https://www.patreon.com/example",
+        "gitlab": "https://gitlab.com/example",
+        "vimeo": "https://vimeo.com/example",
+        "mastodon": "https://mastodon.social/@example",
+        "codepen": "https://codepen.io/example",
+        "jsfiddle": "https://jsfiddle.net/user/example/",
+        "buymeacoffee": "https://www.buymeacoffee.com/example",
+        "rumble": "https://rumble.com/user/example",
+        "odysee": "https://odysee.com/@example",
+        "bitchute": "https://www.bitchute.com/channel/example",
+        "gab": "https://gab.com/example",
+        "brighteon": "https://www.brighteon.com/channels/example",
+        "xing": "https://www.xing.com/profile/Example_User"
     },
     "posts": {
         "post_count": 30,
         "latest_count": 10,
         "featured_count": 10,
         "related_count": 8,
-        "trending_count": 30,
-        "popular_count": 30
+        "trending_count": 20,
+        "popular_count": 20
     },
     "system": {
         "version": "1.7.41",
@@ -60,14 +60,14 @@
         "ip2location": false
     },
     "meta": {
-        "site_name": "Χάρτινο Τσίρκο",
-        "site_title": "Χάρτινο Τσίρκο — Η παράσταση συνεχίζεται",
-        "site_description": "Χάρτινο Τσίρκο — Η παράσταση συνεχίζεται",
-        "twitter": "@xartinotsirko"
+        "site_name": "My Demo Website",
+        "site_title": "My Demo Website — Just Another VerdinCMS Site",
+        "site_description": "A demo configuration for VerdinCMS. Customize freely to match your own project.",
+        "twitter": "@example"
     },
     "company": {
-        "name": "Χάρτινο Τσίρκο",
-        "email": "info@xartinotsirko.com",
-        "support_email": "support@xartinotsirko.com"
+        "name": "Example Media Group",
+        "email": "info@example.com",
+        "support_email": "support@example.com"
     }
 }
