@@ -1,0 +1,18 @@
+/**
+ * --------------------------------------------------------------------------
+ * Tailwind Overrides
+ * --------------------------------------------------------------------------
+ * This file contains custom CSS rules and Tailwind utility overrides
+ * specific to this VerdinCMS installation.
+ *
+ * Use it to:
+ *  - Adjust default Tailwind styles
+ *  - Add project-specific utility classes
+ *  - Override theme colors, spacing, or typography
+ *
+ * Note:
+ *  - This file is ignored by Git (local only)
+ *  - It is loaded after all other Tailwind layers
+ *  - Safe for experimentation and environment-specific tweaks
+ * --------------------------------------------------------------------------
+ */
