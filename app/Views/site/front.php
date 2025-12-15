@@ -33,7 +33,7 @@
             </svg>
 
             <span class="ml-1 font-bold text-white">100%</span>
-            <span class="ml-1 text-white/80">Human Created Texts</span>
+            <span class="ml-1 text-white/80">Human Generated Content</span>
         </div>
     </div>
 

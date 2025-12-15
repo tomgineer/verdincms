@@ -405,7 +405,7 @@ private function optimizeStatsTables(int $days = 45, int $hours = 6): void {
  * @param int $limit     Maximum number of top-performing posts to store (default: 100)
  * @return void
  */
-private function updatePopularContent(int $days = 365, int $threshold = 7, int $limit = 100): void {
+private function updatePopularContent(int $days = 30, int $threshold = 2, int $limit = 100): void {
     // Get posts within date range and calculate hits per day
     $posts = $this->db->table('posts p')
                       ->select([

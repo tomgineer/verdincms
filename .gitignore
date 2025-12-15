@@ -143,8 +143,13 @@ _modules/*
 # Node Modules
 node_modules/
 
-# Remove Later!
-public/**
+# Public Images, JS, CSS & Assets
+/public/assets/**
+/public/gfx/**
+/public/images/**
+/public/css/**
+/public/js/*.js
+/public/js/*.map
 
 # Email Settings
 app/Config/Email.php

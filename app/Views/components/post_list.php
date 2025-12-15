@@ -4,7 +4,7 @@
         <?php foreach ($posts as $post): ?>
             <li class="mb-12">
 
-                <div class="card lg:card-side bg-base-100">
+                <div class="card lg:card-side bg-base-100 rounded-none">
                     <figure class="w-full lg:w-1/3 my-1">
                         <a href="<?=site_url('post/'. esc($post['id']))?>">
                             <img
