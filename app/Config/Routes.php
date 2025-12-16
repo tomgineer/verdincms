@@ -115,8 +115,10 @@ foreach ($extraRouteFiles as $routeFile) {
 }
 
 // -------------------------------------------------------------------------
-// Fallback default route: only if no other GET '/' route exists
+// Fallback default route
 // -------------------------------------------------------------------------
+// If no other route file (e.g., RoutesPortfolio.php) has defined a GET '/',
+// this will ensure that the site still has a homepage route defined.
 
 $getRoutes = $routes->getRoutes('get');
 

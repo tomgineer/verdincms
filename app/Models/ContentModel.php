@@ -492,6 +492,42 @@ public function getBlocks(array $groups = []): array {
 }
 
 /**
+ * Returns blocks grouped by block group and indexed by alias.
+ *
+ * @param array $groups Block group titles to filter by.
+ * @return array Grouped blocks as [group][alias] => row.
+ */
+public function getBlocksByGroupAndAlias(array $groups = []): array {
+    if ($groups === []) {
+        return [];
+    }
+
+    $rows = $this->db->table('blocks b')
+        ->select('b.*, g.title AS block_group')
+        ->join('block_groups g', 'g.id = b.block_group_id', 'left')
+        ->whereIn('g.title', $groups)
+        ->orderBy('g.title', 'ASC')
+        ->orderBy('b.alias', 'ASC')
+        ->get()
+        ->getResultArray();
+
+    $out = [];
+
+    foreach ($rows as $row) {
+        $group = $row['block_group'] ?? 'ungrouped';
+        $alias = $row['alias'] ?? null;
+
+        if ($alias === null) {
+            continue;
+        }
+
+        $out[$group][$alias] = $row; // no [0] nesting
+    }
+
+    return $out;
+}
+
+/**
  * Retrieves a list of active social media links from the settings table,
  * including an additional static contact link at the end.
  *
