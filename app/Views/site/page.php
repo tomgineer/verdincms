@@ -33,7 +33,7 @@
     <?= view('components/plain_list', ['posts' => $featured['posts'], 'style' => 'plain-list--columns']) ?>
 </section>
 
-<?php if (!empty($page['slug']) && $page['slug'] === 'about'): ?>
+<?php if (!empty($page['slug']) && $page['slug'] === 'about' && $site_type==='app'): ?>
     <?= $this->include('components/badges') ?>
 <?php endif; ?>
 
