@@ -54,7 +54,7 @@
         <a href="<?= base_url() ?>">
             <img class="h-14" src="<?= path_gfx() . 'logo.svg' ?>" alt="Logo" data-logo>
         </a>
-        <div class="text-base-content/70">
+        <div class="text-base-content/70 [&_a]:underline">
             <?= block($base_blocks, 'footer', 'footer_copyright', 'body') ?>
         </div>
     </aside>

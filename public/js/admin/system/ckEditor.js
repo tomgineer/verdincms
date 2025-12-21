@@ -65,10 +65,38 @@ export function initSimpleEditor() {
             .then(editorInstance => {
                 smallEditors[name] = editorInstance; // Save editor by its name
                 editor.setAttribute('data-editor-initialized', '1');
+
+                // critical for <dialog>
+                moveCkUiIntoClosestDialog(editorInstance, editor);
+
             })
             .catch(error => { console.error(error); });
     });
 }
+
+/**
+ * Moves CKEditor’s floating UI (balloons, link panel, etc.)
+ * into the closest native <dialog>.
+ *
+ * CKEditor renders these panels outside the editor (under <body>),
+ * which breaks inside <dialog> elements because of the top-layer.
+ *
+ * @param {Object} editorInstance CKEditor 5 editor instance
+ * @param {HTMLElement} editableEl Editor DOM element
+ */
+function moveCkUiIntoClosestDialog(editorInstance, editableEl) {
+    const dialog = editableEl.closest('dialog');
+    if (!dialog) return;
+
+    // CKEditor renders floating panels into a detached UI container.
+    // This container must live inside the <dialog> or balloons (link UI) end up behind it.
+    const uiContainer = editorInstance.ui.view.body._bodyCollectionContainer;
+
+    if (uiContainer && !dialog.contains(uiContainer)) {
+        dialog.appendChild(uiContainer);
+    }
+}
+
 
 /**
  * Initializes CKEditor 5 BalloonEditor on `.edit-body`.
