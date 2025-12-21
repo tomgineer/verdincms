@@ -83,7 +83,7 @@
                 </li>
             <?php endif; ?>
 
-            <li class="hidden lg:flex">
+            <li class="hidden <?=(tier()!=0?'xl:flex':'lg:flex')?>">
                 <details>
                     <summary>Ranking</summary>
                     <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
@@ -94,7 +94,7 @@
                 </details>
             </li>
 
-            <li class="hidden lg:flex">
+            <li class="hidden <?=(tier()!=0?'xl:flex':'lg:flex')?>">
                 <details>
                     <summary>Topics</summary>
                     <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
