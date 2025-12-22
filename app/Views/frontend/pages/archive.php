@@ -6,7 +6,7 @@
 
         <section class="flex-1">
             <h1 class="text-4xl text-base-content/70 mb-8 text-shadow-lg"><?= esc($site_title) ?></h1>
-            <?= view('frontend/partials/full_posts_list', ['posts' => $post_data['posts']]) ?>
+            <?= view('frontend/partials/post_list', ['posts' => $post_data['posts']]) ?>
             <?= isset($post_data['pagination']) ? view('frontend/partials/pagination', ['pagination' => $post_data['pagination']]) : '' ?>
         </section>
 
@@ -36,12 +36,12 @@
 
                 <?php if (!empty($trending)): ?>
                     <h2 class="text-3xl text-primary mt-8 mb-2">Trending</h2>
-                    <?= view('frontend/partials/simple_posts_list', ['posts' => $trending['posts']]) ?>
+                    <?= view('frontend/partials/post_list_lite', ['posts' => $trending['posts']]) ?>
                 <?php endif; ?>
 
                 <?php if (!empty($featured)): ?>
                     <h2 class="text-3xl text-primary mt-8 mb-2">Featured</h2>
-                    <?= view('frontend/partials/simple_posts_list', ['posts' => $featured['posts']]) ?>
+                    <?= view('frontend/partials/post_list_lite', ['posts' => $featured['posts']]) ?>
                 <?php endif; ?>
             </div>
         </aside>

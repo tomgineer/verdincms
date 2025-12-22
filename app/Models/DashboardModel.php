@@ -541,7 +541,7 @@ public function bulk_delete(string $table, array $ids): array {
  * @return string The raw JSON contents of the settings file, or an error JSON string.
  */
 public function getSettings(): string {
-    $file = ROOTPATH . 'themes/config.json';
+    $file = ROOTPATH . 'config/config.json';
 
     if (!is_file($file)) {
         return json_encode(['error' => 'Settings file not found.'], JSON_UNESCAPED_UNICODE);

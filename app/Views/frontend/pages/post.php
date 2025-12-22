@@ -38,7 +38,7 @@
 
 <section class="container mx-auto px-4 py-12 lg:py-24 mt-8 lg:mt-16">
     <h2 class="text-3xl mb-4 text-primary">Related</h2>
-    <?= view('frontend/partials/simple_posts_list', ['posts' => $related, 'style' => 'plain-list--columns']) ?>
+    <?= view('frontend/partials/post_list_lite', ['posts' => $related, 'style' => 'plain-list--columns']) ?>
 </section>
 
 <?= $this->endSection() ?>

@@ -16,6 +16,6 @@
     <?= $this->include('admin/edit/sidebar') ?>
 </aside>
 
-<?= $this->include('admin/edit/components/toasts') ?>
+<?= $this->include('admin/edit/partials/toasts') ?>
 
 <?= $this->endSection() ?>

@@ -48,7 +48,7 @@ public function index() {
     ]);
 
     // Render the view
-    $output = view('frontend/pages/front', $data);
+    $output = theme_view('frontend/pages/front', $data);
 
     // Store in cache if applicable (Cached is enabled && !logged_in)
     if ($shouldCache) {
@@ -107,7 +107,7 @@ public function post(int|string $id) {
     ]);
 
     // Render the view
-    $output = view('frontend/pages/post', $data);
+    $output = theme_view('frontend/pages/post', $data);
 
     // Store in cache if applicable (cache different versions per tier)
     if ($shouldCache) {
@@ -116,37 +116,6 @@ public function post(int|string $id) {
 
     echo $output;
     $this->stats->trackVisitor($id);
-}
-
-/**
- * Renders a printable version of the post.
- *
- * Restrictions:
- * - Only available if the post exists and the user is authorized.
- *
- * @param int|string $id The post ID.
- * @return \CodeIgniter\HTTP\RedirectResponse|void
- */
-public function print(int|string $id) {
-    $postData = $this->content->getSinglePost($id);
-
-	// Members Only or Post does not Exist
-	if ( empty($postData) ) {
-       return redirect()->to('/');
-    }
-
-	// Not a Writer or higher & Not Published
-	if ( tier() < 9 && $postData['status'] !=1 ) {
-		return redirect()->to('/');
-	}
-
-    // Construct the data array
-    $data = array_merge($this->data, [
-        'post' => $postData
-    ]);
-
-	echo view('site/print',$data);
-	$this->stats->trackVisitor($id);
 }
 
 /**
@@ -197,7 +166,7 @@ public function page(string $slug) {
     ]);
 
     // Render the view
-    $output = view('frontend/pages/page', $data);
+    $output = theme_view('frontend/pages/page', $data);
 
     // Store in cache if applicable (cache by page slug)
     if ($shouldCache) {
@@ -251,7 +220,7 @@ public function topic(string $slug) {
     ]);
 
     // Render view
-    $output = view('frontend/pages/posts_list', $data);
+    $output = theme_view('frontend/pages/archive', $data);
 
     // Store in cache if applicable
     if ($shouldCache) {
@@ -306,7 +275,7 @@ public function author(string $handle) {
     ]);
 
     // Render view
-    $output = view('frontend/pages/posts_list', $data);
+    $output = theme_view('frontend/pages/archive', $data);
 
     // Store in cache if applicable
     if ($shouldCache) {
@@ -353,7 +322,7 @@ public function ranking(string $type) {
     ];
 
     // Render view
-    $output = view('frontend/pages/posts_list', $data);
+    $output = theme_view('frontend/pages/archive', $data);
 
     // Store in cache if applicable
     if ($shouldCache) {
@@ -397,7 +366,7 @@ public function featured() {
     ]);
 
     // Render the view
-    $output = view('frontend/pages/posts_list', $data);
+    $output = theme_view('frontend/pages/archive', $data);
 
     // Store in cache if applicable
     if ($shouldCache) {
@@ -424,7 +393,7 @@ public function handle404() {
  * @return \CodeIgniter\View\View
  */
 public function botshield() {
-    return view('frontend/pages/botshield');
+    return theme_view('frontend/pages/botshield');
 }
 
 /**

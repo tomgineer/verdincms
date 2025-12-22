@@ -88,7 +88,7 @@ public function moderate(string $type) {
     ];
 
     // Render view
-    return view('frontend/pages/posts_list', $data);
+    return view('frontend/pages/archive', $data);
 }
 
 /**

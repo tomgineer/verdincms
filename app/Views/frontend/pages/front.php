@@ -5,20 +5,20 @@
     <div class="flex flex-col lg:flex-row gap-8">
 
         <section class="flex-1">
-            <?= view('frontend/partials/full_posts_list', ['posts' => $latest_updates['posts']]) ?>
+            <?= view('frontend/partials/post_list', ['posts' => $latest_updates['posts']]) ?>
             <?= view('frontend/partials/pagination', ['pagination' => $latest_updates['pagination']]) ?>
         </section>
 
         <aside class="w-full lg:w-[30%]">
             <div class="xl:sticky xl:top-8">
                 <h2 class="text-3xl text-primary mt-8 mb-2">Featured</h2>
-                <?= view('frontend/partials/simple_posts_list', ['posts' => $featured['posts']]) ?>
+                <?= view('frontend/partials/post_list_lite', ['posts' => $featured['posts']]) ?>
 
                 <h2 class="text-3xl text-primary mt-8 mb-2">Trending</h2>
-                <?= view('frontend/partials/simple_posts_list', ['posts' => $trending['posts']]) ?>
+                <?= view('frontend/partials/post_list_lite', ['posts' => $trending['posts']]) ?>
 
                 <h2 class="text-3xl text-primary mt-8 mb-2">Popular</h2>
-                <?= view('frontend/partials/simple_posts_list', ['posts' => $popular['posts']]) ?>
+                <?= view('frontend/partials/post_list_lite', ['posts' => $popular['posts']]) ?>
             </div>
         </aside>
 

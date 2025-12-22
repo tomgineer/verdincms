@@ -139,7 +139,7 @@ class ActionsModel extends Model {
  * @return bool True on success, false on failure
  */
 function updateVersion(): bool {
-    $path = ROOTPATH . 'themes/config.json';
+    $path = ROOTPATH . 'config/config.json';
 
     if (!is_file($path)) {
         return false;

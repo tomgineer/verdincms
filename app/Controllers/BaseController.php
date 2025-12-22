@@ -44,7 +44,7 @@ abstract class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = ['verdin', 'form'];
+    protected $helpers = ['verdin', 'form', 'theme'];
 
     /**
      * Be sure to declare properties for any property fetch you initialized.
@@ -61,10 +61,8 @@ abstract class BaseController extends Controller
         parent::initController($request, $response, $logger);
 
         // Site Type
-        $envSiteType = env('site.type');
-        if (!empty($envSiteType)) {
-            $this->site_type = $envSiteType;
-        }
+        $envSiteType = env('site.type') ?: 'app';
+        $this->site_type = $envSiteType;
         service('renderer')->setVar('site_type', $this->site_type);
 
         // Preload any models, libraries, etc, here.
