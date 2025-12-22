@@ -72,7 +72,7 @@ public function confirm() {
         'message' => $result['message'],
     ];
 
-    return view('newsletter/confirm_result', $data);
+    return view('frontend/pages/newsletter_confirmed', $data);
 }
 
 /**
@@ -98,7 +98,7 @@ public function unsubscribe() {
         'email'   => $result['email'] ?? null,
     ];
 
-    return view('newsletter/unsubscribe_result', $data);
+    return view('frontend/pages/newsletter_unsubbed', $data);
 }
 
 

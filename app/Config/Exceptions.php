@@ -42,9 +42,9 @@ class Exceptions extends BaseConfig
      * This is the path to the directory that contains the 'cli' and 'html'
      * directories that hold the views used to generate errors.
      *
-     * Default: APPPATH.'Views/errors'
+     * Default: APPPATH.'Views/shared/errors'
      */
-    public string $errorViewPath = APPPATH . 'Views/errors';
+    public string $errorViewPath = APPPATH . 'Views/shared/errors';
 
     /**
      * --------------------------------------------------------------------------

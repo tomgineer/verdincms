@@ -21,7 +21,7 @@ class Users extends BaseController {
 public function login_page() {
     $data = $this->data;
     $data['blocks'] = $this->content->getBlocks(['login']);
-    echo view('site/login',$data);
+    echo view('frontend/pages/login',$data);
     (new StatsModel)->trackVisitor();
 }
 
@@ -85,7 +85,7 @@ public function login() {
                     'blocks'     => $this->content->getBlocks(['login']),
                     'error'      => TRUE
                 ]);
-                return view('site/login', $data);
+                return view('frontend/pages/login', $data);
             }
         } else {
             // Validation failed, display error
@@ -95,7 +95,7 @@ public function login() {
                 'blocks'     => $this->content->getBlocks(['login']),
                 'error'      => TRUE
             ]);
-            return view('site/login', $data);
+            return view('frontend/pages/login', $data);
         }
     }
 }

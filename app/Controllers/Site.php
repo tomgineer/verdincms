@@ -48,7 +48,7 @@ public function index() {
     ]);
 
     // Render the view
-    $output = view('site/front', $data);
+    $output = view('frontend/pages/front', $data);
 
     // Store in cache if applicable (Cached is enabled && !logged_in)
     if ($shouldCache) {
@@ -107,7 +107,7 @@ public function post(int|string $id) {
     ]);
 
     // Render the view
-    $output = view('site/post', $data);
+    $output = view('frontend/pages/post', $data);
 
     // Store in cache if applicable (cache different versions per tier)
     if ($shouldCache) {
@@ -197,7 +197,7 @@ public function page(string $slug) {
     ]);
 
     // Render the view
-    $output = view('site/page', $data);
+    $output = view('frontend/pages/page', $data);
 
     // Store in cache if applicable (cache by page slug)
     if ($shouldCache) {
@@ -251,7 +251,7 @@ public function topic(string $slug) {
     ]);
 
     // Render view
-    $output = view('site/list', $data);
+    $output = view('frontend/pages/posts_list', $data);
 
     // Store in cache if applicable
     if ($shouldCache) {
@@ -306,7 +306,7 @@ public function author(string $handle) {
     ]);
 
     // Render view
-    $output = view('site/list', $data);
+    $output = view('frontend/pages/posts_list', $data);
 
     // Store in cache if applicable
     if ($shouldCache) {
@@ -353,7 +353,7 @@ public function ranking(string $type) {
     ];
 
     // Render view
-    $output = view('site/list', $data);
+    $output = view('frontend/pages/posts_list', $data);
 
     // Store in cache if applicable
     if ($shouldCache) {
@@ -397,7 +397,7 @@ public function featured() {
     ]);
 
     // Render the view
-    $output = view('site/list', $data);
+    $output = view('frontend/pages/posts_list', $data);
 
     // Store in cache if applicable
     if ($shouldCache) {
@@ -424,7 +424,7 @@ public function handle404() {
  * @return \CodeIgniter\View\View
  */
 public function botshield() {
-    return view('site/botshield');
+    return view('frontend/pages/botshield');
 }
 
 /**

@@ -44,7 +44,7 @@ public function edit(string $type, int|string $id) {
         'sections'     => $this->edit->getSections(),
     ]);
 
-    return view('edit/edit',$data);
+    return view('admin/edit/edit',$data);
 }
 
 /**
@@ -88,7 +88,7 @@ public function moderate(string $type) {
     ];
 
     // Render view
-    return view('site/list', $data);
+    return view('frontend/pages/posts_list', $data);
 }
 
 /**
@@ -237,7 +237,7 @@ public function dashboard(...$segments) {
             return redirect()->to('/');
     }
 
-    return view('dashboard/dashboard', $data);
+    return view('admin/dashboard/dashboard', $data);
 }
 
 
@@ -307,7 +307,7 @@ public function analytics(...$segments) {
             break;
     }
 
-    return view('analytics/analytics',$data);
+    return view('admin/analytics/analytics',$data);
 }
 
 /**
@@ -331,7 +331,8 @@ public function mobileAnalytics() {
         'countries'       => $this->analytics->getStatsCountries(10),
         'overview'        => $this->analytics->getOverviewData(),
     ];
-    return view('analytics/mobile',$data);
+    return view('admin/analytics/mobile',$data);
 }
 
 } // ─── End of Class ───
+
