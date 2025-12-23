@@ -39,7 +39,7 @@
     <body class="min-h-dvh flex flex-col <?=body_class()?>" id="<?=body_class()?>">
 
         <header>
-            <?= $this->include('frontend/partials/nav') ?>
+            <?=view_cell('FrontendCell::nav')?>
             <?= $this->renderSection('header') ?>
         </header>
 
@@ -48,7 +48,7 @@
         </main>
 
         <footer class="bg-base-200">
-            <?= $this->include('frontend/partials/footer') ?>
+            <?=view_cell('FrontendCell::footer')?>
         </footer>
 
     </body>

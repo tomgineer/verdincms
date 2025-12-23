@@ -68,57 +68,6 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
         $this->content = new ContentModel();
 
-        // Define cache settings
-        $shouldCache = setting('cache.enabled') === true && !session('logged_in');
-
-        // Define cache keys with "arr_" prefix
-        $cacheKeys = [
-            'pages_list'         => 'arr_pages_list',
-            'menu_items'         => 'arr_menu_items',
-            'socials_list'       => 'arr_socials_list',
-            'topics_list'        => 'arr_topics_list',
-            'base_blocks'        => 'arr_base_blocks',
-            'total_subscribers'  => 'arr_total_subscribers',
-            'public_posts'       => 'arr_public_posts',
-        ];
-
-        // Fetch & cache data
-        foreach ($cacheKeys as $key => $cacheKey) {
-            if ($shouldCache && ($cachedData = cache($cacheKey))) {
-                $this->data[$key] = $cachedData;
-            } else {
-                // Fetch fresh data
-                switch ($key) {
-                    case 'pages_list':
-                        $this->data[$key] = $this->content->getPagesList();
-                        break;
-                    case 'menu_items':
-                        $this->data[$key] = $this->content->getMenuItems();
-                        break;
-                    case 'socials_list':
-                        $this->data[$key] = $this->content->getSocialsList();
-                        break;
-                    case 'topics_list':
-                        $this->data[$key] = $this->content->getTopicsList();
-                        break;
-                    case 'base_blocks':
-                        $this->data[$key] = $this->content->getBlocks(['footer', 'components']);
-                        break;
-                    case 'total_subscribers':
-                        $this->data[$key] = $this->content->countSubscribers();
-                        break;
-                    case 'public_posts':
-                        $this->data[$key] = $this->content->countContent('public');
-                        break;
-                }
-
-                // Store in cache
-                if ($shouldCache) {
-                    cache()->save($cacheKey, $this->data[$key], setting("cache.lifetime"));
-                }
-            }
-        }
-
         // E.g.: $this->session = \Config\Services::session();
     }
 }

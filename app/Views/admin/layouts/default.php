@@ -21,7 +21,7 @@
     <body class="min-h-dvh flex flex-col <?=body_class()?>" data-theme="dark" id="<?=body_class()?>">
 
         <header>
-            <?= $this->include('frontend/partials/nav') ?>
+            <?=view_cell('FrontendCell::nav')?>
             <?= $this->renderSection('header') ?>
         </header>
 
