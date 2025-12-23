@@ -17,7 +17,7 @@
 
                     <div class="card-body w-full lg:w-2/3">
 
-                        <a class="mb-2 hover:underline" href="<?=site_url('post/'. esc($post['id']))?>">
+                        <a class="mb-2 hover:underline active:underline" href="<?=site_url('post/'. esc($post['id']))?>">
                             <h2 class="card-title text-2xl font-medium"><?=esc($post['title'])?></h2>
                         </a>
 

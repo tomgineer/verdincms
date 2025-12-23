@@ -33,7 +33,7 @@
     <?= view('frontend/partials/post_list_lite', ['posts' => $featured['posts'], 'style' => 'plain-list--columns']) ?>
 </section>
 
-<?php if (!empty($page['slug']) && $page['slug'] === 'about' && $site_type==='app'): ?>
+<?php if (!empty($page['slug']) && $page['slug'] === 'about' && $site_type==='blog'): ?>
     <?= $this->include('frontend/partials/badges') ?>
 <?php endif; ?>
 

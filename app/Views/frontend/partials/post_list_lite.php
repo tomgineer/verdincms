@@ -5,7 +5,7 @@
 
                 <div class="card bg-base-200 card-md flex-1">
                     <div class="card-body">
-                        <a class="mb-1 hover:underline" href="<?=site_url('post/'. esc($post['id']))?>">
+                        <a class="mb-1 hover:underline active:underline" href="<?=site_url('post/'. esc($post['id']))?>">
                             <h2 class="card-title font-medium"><?=esc($post['title'])?></h2>
                         </a>
                         <p><?=esc($post['subtitle'])?></p>

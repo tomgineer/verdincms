@@ -39,13 +39,14 @@ public function index() {
         return;
     }
 
-    // Fetch Data ONLY when needed
-    $data = array_merge($this->data, [
+    // Fetch Data
+    $data = [
+        ...$this->data,
         'latest_updates' => $this->content->getPosts(pagination: true, page: $page, amount: 20),
         'featured'       => $this->content->getPosts(amount: 10, featured: true),
         'trending'       => $this->content->getRankingPosts(amount: 10, type: 'trending'),
         'popular'        => $this->content->getRankingPosts(amount: 10, type: 'popular'),
-    ]);
+    ];
 
     // Render the view
     $output = theme_view('frontend/pages/front', $data);

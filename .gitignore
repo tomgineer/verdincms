@@ -160,4 +160,4 @@ app/Config/Email.php
 /tailwind-overrides.css
 
 # Config File
-/themes/config.json
+/config/config.json

@@ -414,7 +414,7 @@ public function bulk_delete() {
         return $this->failValidationErrors('Missing or invalid "table" or "ids" in payload.');
     }
 
-    $allowedTables = ['topics', 'sections', 'blocks', 'users']; // Add other allowed tables here
+    $allowedTables = ['topics', 'sections', 'blocks', 'block_groups', 'users']; // Add other allowed tables here
     if (! in_array($table, $allowedTables, true)) {
         return $this->failValidationErrors('Table not allowed for bulk delete.');
     }

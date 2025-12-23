@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 use App\Models\SystemModel;
-use App\Libraries\OpenAIService;
+use App\Models\GitHubModel;
 
 /**
  * ****************************************************
@@ -114,6 +114,9 @@ class ActionsModel extends Model {
                 break;
             case 'removeOrphanAvatars':
                $this->removeOrphanAvatars();
+                break;
+            case 'updateGitHubRepos':
+                (new GitHubModel())->syncGithubRepos('tomgineer');
                 break;
             default:
                 break;

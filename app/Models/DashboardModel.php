@@ -405,37 +405,46 @@ public function getArchivedContent(
 }
 
 /**
- * Retrieve subjects with post or page counts.
+ * Returns topics or sections with a related content count.
  *
- * Supports fetching either topics (with post counts) or sections (with page counts).
+ * Supports "topics" (posts per topic) and "sections" (pages per section).
+ * Can optionally exclude ID = 1 and limit the number of results.
  *
- * @param string $type  Subject type ('topics' or 'sections').
- * @param int    $limit Maximum number of subjects to return.
- * @return array        List of subjects with metadata and content counts.
+ * @param string   $type     Either "topics" or "sections".
+ * @param int|null $limit    Optional result limit.
+ * @param bool     $filtered Exclude ID = 1 when true.
+ *
+ * @return array
  */
-public function getSubjects(string $type = 'topics', int $limit = PHP_INT_MAX): array {
+public function getSubjects(string $type = 'topics', ?int $limit = null, bool $filtered = true): array {
     if ($type === 'topics') {
         $builder = $this->db->table('topics t')
                             ->select('t.id, t.title, t.description, t.slug, COUNT(p.topic_id) AS count')
-                            ->join('posts p', 't.id = p.topic_id', 'left')
-                            ->groupBy('t.id')
-                            ->orderBy('count', 'DESC')
-                            ->orderBy('t.title', 'ASC')
-                            ->limit($limit);
+                            ->join('posts p', 't.id = p.topic_id', 'left');
+        $filtered && $builder->where('t.id !=', 1);
+
+        $builder->groupBy('t.id')
+                ->orderBy('count', 'DESC')
+                ->orderBy('t.title', 'ASC');
+
     } elseif ($type === 'sections') {
         $builder = $this->db->table('sections s')
                             ->select('s.id, s.title, s.description, s.slug, COUNT(p.section_id) AS count')
-                            ->join('pages p', 's.id = p.section_id', 'left')
-                            ->groupBy('s.id')
-                            ->orderBy('count', 'DESC')
-                            ->orderBy('s.title', 'ASC')
-                            ->limit($limit);
+                            ->join('pages p', 's.id = p.section_id', 'left');
+        $filtered && $builder->where('s.id !=', 1);
+
+        $builder->groupBy('s.id')
+                ->orderBy('count', 'DESC')
+                ->orderBy('s.title', 'ASC');
+
     } else {
         return [];
     }
 
+    $limit !== null && $builder->limit($limit);
     return $builder->get()->getResultArray();
 }
+
 
 /**
  * Retrieve user records with group and stand-in details.
@@ -500,6 +509,18 @@ public function getBlocks(): array {
         $groups[$block['block_group']][] = $block;
         return $groups;
     }, []);
+}
+
+/**
+ * Returns all block groups sorted alphabetically by title.
+ *
+ * @return array
+ */
+public function getBlockGroups(): array {
+    return $this->db->table('block_groups')
+                    ->orderBy('title', 'ASC')
+                    ->get()
+                    ->getResultArray();
 }
 
 /**

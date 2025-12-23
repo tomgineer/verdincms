@@ -47,7 +47,7 @@ public function login() {
 
         // Sanitize input data
         $login_data['email']    = filter_var($login_data['email'], FILTER_SANITIZE_EMAIL);
-        $login_data['password'] = htmlspecialchars(trim($login_data['password']), ENT_QUOTES, 'UTF-8');
+        $login_data['password'] = trim($login_data['password']);
 
         // Validate form data
         $validationRules = [

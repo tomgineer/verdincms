@@ -214,8 +214,9 @@ public function dashboard(...$segments) {
         case 'blocks/blocks':
             $data = [
                 ...$data,
-                'useCKEditor' => true,
-                'blocks'      => $this->dash->getBlocks(),
+                'useCKEditor'  => true,
+                'blocks'       => $this->dash->getBlocks(),
+                'block_groups' => $this->dash->getBlockGroups(),
             ];
             break;
 

@@ -15,6 +15,10 @@ export default async function initModals() {
         saveForm();
     }
 
+    if (document.querySelector('[data-toggle-password]')) {
+        initPasswordToggles();
+    }
+
     try {
         await autoFillSelect(); // wait until all selects are populated
     } catch (err) {
@@ -73,6 +77,27 @@ async function autoFillSelect() {
 
     // wait until all selects are done
     return Promise.all(tasks);
+}
+
+/**
+ * Toggles password visibility for buttons with [data-toggle-password].
+ */
+function initPasswordToggles() {
+    document.addEventListener('click', function (e) {
+        const button = e.target.closest('[data-toggle-password]');
+        if (!button) return;
+
+        const selector = button.dataset.togglePassword;
+        if (!selector) return;
+
+        const input = document.querySelector(selector);
+        if (!input || input.type !== 'password' && input.type !== 'text') return;
+
+        const isHidden = input.type === 'password';
+        input.type = isHidden ? 'text' : 'password';
+        button.title = isHidden ? 'Hide password' : 'Show password';
+        button.setAttribute('aria-pressed', isHidden ? 'true' : 'false');
+    });
 }
 
 /**
@@ -382,12 +407,16 @@ function initModifyButtons() {
             return;
         }
 
+        const passwordHint = modal.querySelector('[data-password-hint]');
+
         if (modifyId === 'new') {
             resetModalForm(modal);
             idInput.value = 'new'; // keep empty -> autoFillForm will do nothing
+            if (passwordHint) passwordHint.classList.add('hidden');
         } else {
             resetModalForm(modal); // clear stale data
             idInput.value = modifyId;
+            if (passwordHint) passwordHint.classList.remove('hidden');
 
             // Explicitly fill only this form section
             autoFillForm(formSection);
