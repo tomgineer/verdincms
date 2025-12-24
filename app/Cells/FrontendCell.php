@@ -17,7 +17,7 @@ class FrontendCell extends Cell {
             'menu_items' => $content->getMenuItems()
         ];
 
-        return view('frontend/partials/nav', $data);
+        return view('frontend/partials/nav', $data, ['saveData' => false]);
     }
 
     /**
@@ -34,6 +34,6 @@ class FrontendCell extends Cell {
             'base_blocks'       => $content->getBlocks(['footer'])
         ];
 
-        return view('frontend/partials/footer', $data);
+        return view('frontend/partials/footer', $data, ['saveData' => false]);
     }
 }

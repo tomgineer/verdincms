@@ -19,7 +19,7 @@ class Users extends BaseController {
  * @return void Outputs the login page HTML directly.
  */
 public function login_page() {
-    $data = $this->data;
+    $data = [];
     $data['blocks'] = $this->content->getBlocks(['login']);
     echo view('frontend/pages/login',$data);
     (new StatsModel)->trackVisitor();
@@ -79,22 +79,22 @@ public function login() {
                 return redirect()->to('/');
             } else {
                 // Invalid credentials, display error
-                $data = array_merge($this->data, [
+                $data = [
                     'nav_style'  => 'dynamic',
                     'site_title' => 'Invalid Credentials',
                     'blocks'     => $this->content->getBlocks(['login']),
                     'error'      => TRUE
-                ]);
+                ];
                 return view('frontend/pages/login', $data);
             }
         } else {
             // Validation failed, display error
-            $data = array_merge($this->data, [
+            $data = [
                 'nav_style'  => 'dynamic',
                 'site_title' => 'Invalid Credentials',
                 'blocks'     => $this->content->getBlocks(['login']),
                 'error'      => TRUE
-            ]);
+            ];
             return view('frontend/pages/login', $data);
         }
     }
@@ -125,3 +125,4 @@ public function logout() {
 }
 
 } // ─── End of Class ───
+

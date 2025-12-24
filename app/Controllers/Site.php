@@ -41,7 +41,6 @@ public function index() {
 
     // Fetch Data
     $data = [
-        ...$this->data,
         'latest_updates' => $this->content->getPosts(pagination: true, page: $page, amount: 20),
         'featured'       => $this->content->getPosts(amount: 10, featured: true),
         'trending'       => $this->content->getRankingPosts(amount: 10, type: 'trending'),
@@ -100,12 +99,12 @@ public function post(int|string $id) {
     }
 
     // Construct the data array
-    $data = array_merge($this->data, [
+    $data = [
         'post'      => $postData,
         'related'   => $this->content->getRelatedPosts(id: $id, topic_id: $postData['topic_id']),
         'can_edit'  => $tier >= 10 || ($tier == 9 && $postData['user_id'] == session('user_id')),
         'highlight' => $postData['highlight'] == '1',
-    ]);
+    ];
 
     // Render the view
     $output = theme_view('frontend/pages/post', $data);
@@ -158,13 +157,13 @@ public function page(string $slug) {
     }
 
     // Construct the data array
-    $data = array_merge($this->data, [
+    $data = [
         'related'   => $this->content->getPages(amount: setting('posts.related_count'), exclude: $id, section_id: $pageData['section_id']),
         'page'      => $pageData,
         'can_edit'  => tier() >= 10,
         'highlight' => $pageData['highlight'] == '1',
         'featured'  => $this->content->getPosts(amount: 10, featured: true),
-    ]);
+    ];
 
     // Render the view
     $output = theme_view('frontend/pages/page', $data);
@@ -211,14 +210,14 @@ public function topic(string $slug) {
     }
 
     // Prepare data
-    $data = array_merge($this->data, [
+    $data = [
         'site_title' => $this->content->getTitleFromId($topic_id, 'topics'),
         'post_data'  => $this->content->getPosts(topic_id: $topic_id, pagination: true, page: $page, amount: 20),
         'featured'       => $this->content->getPosts(amount: 10, featured: true),
         'trending'       => $this->content->getRankingPosts(amount: 10, type: 'trending'),
         'popular'        => $this->content->getRankingPosts(amount: 10, type: 'popular'),
 
-    ]);
+    ];
 
     // Render view
     $output = theme_view('frontend/pages/archive', $data);
@@ -267,13 +266,13 @@ public function author(string $handle) {
     }
 
     // Prepare data
-    $data = array_merge($this->data, [
+    $data = [
         'site_title' => $this->content->getFullnameFromId($user_id, true),
         'post_data'  => $this->content->getPosts(user_id: $user_id, pagination: true, page: $page, amount: 20),
         'featured'       => $this->content->getPosts(amount: 10, featured: true),
         'trending'       => $this->content->getRankingPosts(amount: 10, type: 'trending'),
         'popular'        => $this->content->getRankingPosts(amount: 10, type: 'popular'),
-    ]);
+    ];
 
     // Render view
     $output = theme_view('frontend/pages/archive', $data);
@@ -315,7 +314,6 @@ public function ranking(string $type) {
 
     // Prepare data
     $data = [
-        ...$this->data,
         'site_title' => ucfirst($type),
         'post_data'  => $this->content->getRankingPosts(type: $type),
         'featured'   => $this->content->getPosts(amount: 10, featured: true),
@@ -360,11 +358,11 @@ public function featured() {
     }
 
     // Fetch data
-    $data = array_merge($this->data, [
+    $data = [
         'site_title' => 'Featured',
         'post_data'  => $this->content->getPosts(featured: true, pagination: true, page: $page, amount: 20),
         'trending'   => $this->content->getRankingPosts(amount: 10, type: 'trending'),
-    ]);
+    ];
 
     // Render the view
     $output = theme_view('frontend/pages/archive', $data);
@@ -446,3 +444,4 @@ public function setupPageRoutes() {
 }
 
 } // ─── End of Class ───
+

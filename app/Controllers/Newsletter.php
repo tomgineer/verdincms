@@ -67,7 +67,6 @@ public function confirm() {
 
     // Merge arrays using spread syntax (PHP 7.4+)
     $data = [
-        ...($this->data ?? []),
         'success' => $result['success'],
         'message' => $result['message'],
     ];
@@ -92,7 +91,6 @@ public function unsubscribe() {
 
     // Merge base controller data (if any) with unsubscribe result
     $data = [
-        ...($this->data ?? []),
         'success' => $result['success'] ?? false,
         'message' => $result['message'] ?? 'Προέκυψε σφάλμα κατά τη διαγραφή από το newsletter.',
         'email'   => $result['email'] ?? null,
@@ -105,3 +103,4 @@ public function unsubscribe() {
 
 
 } // ─── End of Class ───
+

@@ -32,7 +32,7 @@ public function edit(string $type, int|string $id) {
     if (tier() < 9) {return redirect()->to('/');}
     $this->edit = new EditContentModel;
 
-    $data = array_merge($this->data, [
+    $data = [
         'title'        => "Edit " . ucfirst($type) . ": {$id}",
         'type'         => $type,
         'statusLabels' => [1 => 'Published', 2 => 'Draft', 3 => 'Deleted'],
@@ -42,7 +42,7 @@ public function edit(string $type, int|string $id) {
         'user_groups'  => $this->edit->getUserGroups(),
         'topics'       => $this->edit->getTopics(),
         'sections'     => $this->edit->getSections(),
-    ]);
+    ];
 
     return view('admin/edit/edit',$data);
 }
@@ -77,7 +77,7 @@ public function moderate(string $type) {
         'review' => 'Awaiting Editorial Review'
     ];
 
-    $data = [...$this->data,
+    $data = [
         'site_title' => ucwords($type),
         'post_data'  => $post_data,
         'stats' => [[
@@ -110,7 +110,6 @@ public function dashboard(...$segments) {
     $this->dash = new DashboardModel();
 
     $data = [
-        ...$this->data,
         'path'  => $path,
         'title' => 'Dashboard',
     ];
@@ -260,10 +259,10 @@ public function dashboard(...$segments) {
 public function analytics(...$segments) {
     if (tier() < 10) {return redirect()->to('/');}
     $path = implode('/', $segments);
-    $data = array_merge($this->data, [
+    $data = [
         'path'  => $path,
         'title' => 'Analytics'
-    ]);
+    ];
 
     $this->dash = new DashboardModel();
 
@@ -336,4 +335,5 @@ public function mobileAnalytics() {
 }
 
 } // ─── End of Class ───
+
 
