@@ -1,15 +1,13 @@
-<?php namespace App\Models;
+<?php namespace App\Libraries;
 
-use CodeIgniter\Model;
 use DateTimeImmutable;
 use Throwable;
 
-class GitHubModel extends Model {
+class GitHubSync {
 
     protected $db;
 
     public function __construct() {
-        parent::__construct();
         $this->db = \Config\Database::connect();
     }
 
@@ -22,6 +20,14 @@ class GitHubModel extends Model {
  * @return array{fetched:int, upserted:int, pages:int, errors:array<int,string>}
  */
 public function syncGithubRepos(string $username, string $sort = 'DESC', ?string $token = null): array {
+    if (!$this->db->tableExists('github_repos')) {
+        return [
+            'fetched' => 0,
+            'upserted' => 0,
+            'pages' => 0,
+            'errors' => [],
+        ];
+    }
     $sort = strtoupper($sort);
     if (!in_array($sort, ['ASC', 'DESC'], true)) {
         $sort = 'DESC';
@@ -282,5 +288,10 @@ public function getGithubRepos(string $orderBy = 'pushed_at', string $direction 
         ->getResultArray();
 }
 
-
 } // ─── End of Class ───
+
+
+
+
+
+

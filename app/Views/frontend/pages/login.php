@@ -2,11 +2,11 @@
 <?= $this->section('main') ?>
 
 <section class="pt-8 sm:pt-16 custom-bg-1 min-h-[800px]">
-    <div class="mx-auto w-full max-w-3xl px-4">
+    <div class="mx-auto w-full max-w-2xl px-4">
 
         <?php if (empty($error)): ?>
 
-            <div class="card bg-base-200 shadow-sm">
+            <div class="card bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
                 <div class="card-body gap-4 sm:gap-6">
                     <div>
                         <h1 class="card-title text-2xl sm:text-3xl">Welcome back!</h1>
@@ -25,14 +25,15 @@
                             </label>
                             <input
                                 id="email"
-                                class="input input-bordered w-full"
+                                class="input w-full bg-black/20 border border-white/20
+                                    text-white placeholder-white/40
+                                    focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20"
                                 type="email"
                                 name="email"
                                 placeholder="you@example.com"
                                 minlength="8"
                                 required
-                                autocomplete="username"
-                            />
+                                autocomplete="username" />
                         </div>
 
                         <div class="form-control">
@@ -41,14 +42,15 @@
                             </label>
                             <input
                                 id="password"
-                                class="input input-bordered w-full"
+                                class="input w-full bg-black/20 border border-white/20
+                                    text-white placeholder-white/40
+                                    focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20"
                                 type="password"
                                 name="password"
                                 placeholder="••••••••"
                                 minlength="3"
                                 required
-                                autocomplete="current-password"
-                            />
+                                autocomplete="current-password" />
                         </div>
 
                         <div class="mt-2 flex flex-col-reverse gap-2 sm:flex-row sm:items-center sm:justify-between">

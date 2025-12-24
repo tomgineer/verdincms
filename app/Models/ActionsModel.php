@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 use App\Models\SystemModel;
-use App\Models\GitHubModel;
+use App\Libraries\GitHubSync;
 
 /**
  * ****************************************************
@@ -116,7 +116,7 @@ class ActionsModel extends Model {
                $this->removeOrphanAvatars();
                 break;
             case 'updateGitHubRepos':
-                (new GitHubModel())->syncGithubRepos('tomgineer');
+                (new GitHubSync())->syncGithubRepos('tomgineer');
                 break;
             default:
                 break;
@@ -589,3 +589,6 @@ function splitParagraph(string $text, int $parts = 2): string {
 }
 
 } // ─── End of Class ───
+
+
+

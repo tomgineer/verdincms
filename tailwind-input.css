@@ -13,7 +13,7 @@
     --font-bebas: "Bebas Neue", ui-sans-serif, system-ui, sans-serif;
 
     /* Background images */
-    --bg-bg1: url("../gfx/bg1.webp");
+    --bg-bg1: url("../gfx/login.svg");
 }
 
 @layer base {
@@ -72,7 +72,7 @@
     /* Backgrounds */
     .custom-bg-1 {background-image: var(--bg-bg1);}
     .custom-bg-1 {
-        @apply bg-cover bg-center bg-no-repeat bg-black/60 bg-blend-overlay;
+        @apply bg-cover bg-bottom bg-no-repeat;
     }
 
     /* Tables */

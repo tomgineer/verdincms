@@ -1,7 +1,6 @@
 <?php namespace App\Models;
 
 use CodeIgniter\Model;
-use App\Libraries\SystemCore;
 use CodeIgniter\I18n\Time;
 
 /**
@@ -304,8 +303,7 @@ public function getPagesList(): array {
                         ->where('s.id !=', 1)
                         ->orderBy('s.position ASC, p.position ASC')
                         ->get()->getResultArray();
-    $core = new SystemCore();
-    $grouped_results =  $core->arrayGroupBy($results, 'section');
+    $grouped_results = $this->arrayGroupBy($results, 'section');
 
     return $grouped_results;
 }
@@ -487,8 +485,7 @@ public function getBlocks(array $groups = []): array {
     $results = $builder->get()->getResultArray();
 
     // Group by block_group (which is now coming from block_groups.title)
-    $core = new SystemCore();
-    return $core->arrayGroupBy($results, 'block_group', 'alias');
+    return $this->arrayGroupBy($results, 'block_group', 'alias');
 }
 
 /**
@@ -684,6 +681,40 @@ public function search(string $term, int $limit = 15): array {
     });
 
     return $results;
+}
+
+/**
+ * Groups an array by a given key or callback.
+ *
+ * @param array $array The input array.
+ * @param string|int|callable $key The key to group by or a callback.
+ * @param mixed ...$nextKeys Optional additional keys for deeper grouping.
+ * @return array Grouped array.
+ */
+private function arrayGroupBy(array $array, string|int|callable $key, ...$nextKeys): array {
+    if (!is_string($key) && !is_int($key) && !is_callable($key)) {
+        throw new \InvalidArgumentException(
+            'arrayGroupBy(): Key must be a string, integer, or callable.'
+        );
+    }
+
+    $grouped = [];
+
+    foreach ($array as $item) {
+        $groupKey = is_callable($key) ? $key($item) : (is_object($item) ? $item->{$key} : $item[$key] ?? null);
+
+        if ($groupKey === null) continue; // Skip items with no valid group key
+
+        $grouped[$groupKey][] = $item;
+    }
+
+    if (!empty($nextKeys)) {
+        foreach ($grouped as $group => $items) {
+            $grouped[$group] = $this->arrayGroupBy($items, ...$nextKeys);
+        }
+    }
+
+    return $grouped;
 }
 
 } // ─── End of Class ───

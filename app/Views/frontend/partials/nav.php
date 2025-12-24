@@ -83,7 +83,7 @@
                 </li>
             <?php endif; ?>
 
-            <li class="hidden <?=(tier()!=0?'xl:flex':'lg:flex')?>">
+            <li class="hidden <?=(tier()!=0?'2xl:flex':'lg:flex')?>">
                 <details>
                     <summary>Ranking</summary>
                     <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
@@ -94,7 +94,7 @@
                 </details>
             </li>
 
-            <li class="hidden <?=(tier()!=0?'xl:flex':'lg:flex')?>">
+            <li class="hidden <?=(tier()!=0?'2xl:flex':'lg:flex')?>">
                 <details>
                     <summary>Topics</summary>
                     <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
@@ -126,7 +126,7 @@
         </ul>
 
         <!-- Search -->
-        <input type="text" placeholder="Search" class="input input-bordered w-48 xl:w-96 text-base hidden lg:flex" data-js-search />
+        <input type="text" placeholder="Search" class="input input-bordered w-52 2xl:w-96 text-base hidden lg:flex" data-js-search />
         <section class="hidden absolute top-16 left-1/2 -translate-x-1/2 z-900 max-w-6xl w-full bg-base-300 rounded-2xl shadow-2xl p-8 border-2 border-primary" data-js-search-results>No Results..</section>
 
         <!-- Profile -->
