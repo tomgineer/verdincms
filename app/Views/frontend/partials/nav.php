@@ -1,7 +1,12 @@
 <div class="navbar bg-base-300 z-999">
     <div class="flex-1 flex items-center gap-2">
         <a class="btn btn-ghost text-xl px-1 lg:px-4" href="<?= base_url() ?>">
-            <img class="h-<?=setting('theme.logo_height')?> w-auto opacity-85 hover:opacity-100 transition-opacity duration-200 select-none" src="<?= path_gfx() . 'logo.svg' ?>" alt="Logo" data-logo>
+            <img
+                style="height: <?= (int) setting('theme.logo_height') ?>px;"
+                class="w-auto opacity-85 hover:opacity-100 transition-opacity duration-200 select-none"
+                src="<?= path_gfx() . 'logo.svg' ?>"
+                alt="Logo"
+                data-logo>
         </a>
 
         <?php if (tier() >= 10): ?>

@@ -52,7 +52,12 @@
 <section class="footer text-base-content border-base-200 border-t-2 px-10 py-8 pb-8 lg:gap-0">
     <aside class="grid-flow-row lg:grid-flow-col gap-6 items-center">
         <a href="<?= base_url() ?>">
-            <img class="h-<?= (int) setting('theme.logo_height') + 5 ?>" src="<?= path_gfx() . 'logo.svg' ?>" alt="Logo" data-logo>
+            <img
+                style="height: <?= ((int) setting('theme.logo_height') * 1.5) ?>px;"
+                class="w-auto"
+                src="<?= path_gfx() . 'logo.svg' ?>"
+                alt="Logo"
+                data-logo>
         </a>
         <div class="text-base-content/70 [&_a]:underline">
             <?= block($base_blocks, 'footer', 'footer_copyright', 'body') ?>

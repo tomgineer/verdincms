@@ -8,7 +8,7 @@
     "theme": {
         "name": "default",
         "dark_mode": true,
-        "logo_height": 9
+        "logo_height": 36
     },
     "cache": {
         "enabled": true,
