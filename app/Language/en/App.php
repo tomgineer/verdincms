@@ -11,5 +11,7 @@
 
 // Errors language settings
 return [
-    'in'    => 'in',
+    'in'      => 'in',
+    'about'   => 'About',
+    'contact' => 'Contact',
 ];

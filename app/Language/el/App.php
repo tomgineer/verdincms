@@ -11,5 +11,7 @@
 
 // Errors language settings
 return [
-    'in'    => 'στο',
+    'in'      => 'στο',
+    'about'   => 'Περί',
+    'contact' => 'Επικοινωνία',
 ];

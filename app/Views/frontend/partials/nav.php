@@ -120,8 +120,8 @@
                 </details>
             </li>
 
-            <li class="hidden lg:flex"><a href="<?= site_url('info/about') ?>">Περί</a></li>
-            <li class="hidden lg:flex"><a href="<?= site_url('info/contact') ?>">Επικοινωνία</a></li>
+            <li class="hidden lg:flex"><a href="<?= site_url('info/about') ?>"><?=lang('App.about')?></a></li>
+            <li class="hidden lg:flex"><a href="<?= site_url('info/contact') ?>"><?=lang('App.contact')?></a></li>
 
         </ul>
 
