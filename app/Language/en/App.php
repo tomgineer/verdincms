@@ -11,7 +11,11 @@
 
 // Errors language settings
 return [
-    'in'      => 'in',
-    'about'   => 'About',
+    'in' => 'in',
+    'about' => 'About',
     'contact' => 'Contact',
+    'mini_stas' => 'Mini Stats',
+    'public_posts' => 'Public Posts',
+    'cms_version' => 'Powered by VerdinCMS',
+    'subscribers' => 'Subscribers',
 ];

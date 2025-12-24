@@ -11,7 +11,11 @@
 
 // Errors language settings
 return [
-    'in'      => 'στο',
-    'about'   => 'Περί',
+    'in' => 'στο',
+    'about' => 'Περί',
     'contact' => 'Επικοινωνία',
+    'mini_stas' => 'Νουμεράκια',
+    'public_posts' => 'Δημόσια Άρθρα',
+    'cms_version' => 'Έκδοση VerdinCMS',
+    'subscribers' => 'Συνδρομητές',
 ];
