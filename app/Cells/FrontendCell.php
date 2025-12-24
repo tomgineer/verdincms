@@ -31,7 +31,8 @@ class FrontendCell extends Cell {
             'public_posts'      => $content->countContent('public'),
             'total_subscribers' => $content->countSubscribers(),
             'pages_list'        => $content->getPagesList(),
-            'base_blocks'       => $content->getBlocks(['footer'])
+            'base_blocks'       => $content->getBlocks(['footer']),
+            'socials_list'      => $content->getSocialsList()
         ];
 
         return view('frontend/partials/footer', $data, ['saveData' => false]);
