@@ -9,7 +9,7 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-// RESTful language settings
+// Errors language settings
 return [
-    'notImplemented' => '"{0}" η ενέργεια δεν εφαρμόστηκε.', // '"{0}" action not implemented.',
+    'in'    => 'in',
 ];
