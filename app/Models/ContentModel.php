@@ -197,7 +197,8 @@ public function getSinglePost(int $id): ?array {
                       ->join('topics t', 'p.topic_id = t.id')
                       ->where('p.id', $id)
                       ->where('p.accessibility <=', $tier)
-                      ->get()->getRowArray();
+                      ->get()
+                      ->getRowArray();
 
     $post['ago'] = Time::parse($post['created'])->humanize();
     return $post;

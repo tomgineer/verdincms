@@ -1,12 +1,15 @@
 <?php namespace App\Controllers;
 use App\Models\StatsModel;
+use App\Models\ContentModel;
 
 class Site extends BaseController {
 
-    private $stats;
+    private StatsModel $stats;
+    private ContentModel $content;
 
     function __construct() {
-        $this->stats    = new StatsModel();
+        $this->stats   = new StatsModel();
+        $this->content = new ContentModel();
     }
 
 /**
@@ -42,9 +45,6 @@ public function index() {
     // Fetch Data
     $data = [
         'latest_updates' => $this->content->getPosts(pagination: true, page: $page, amount: 20),
-        'featured'       => $this->content->getPosts(amount: 10, featured: true),
-        'trending'       => $this->content->getRankingPosts(amount: 10, type: 'trending'),
-        'popular'        => $this->content->getRankingPosts(amount: 10, type: 'popular'),
     ];
 
     // Render the view
@@ -101,7 +101,7 @@ public function post(int|string $id) {
     // Construct the data array
     $data = [
         'post'      => $postData,
-        'related'   => $this->content->getRelatedPosts(id: $id, topic_id: $postData['topic_id']),
+        //'related'   => $this->content->getRelatedPosts(id: $id, topic_id: $postData['topic_id']),
         'can_edit'  => $tier >= 10 || ($tier == 9 && $postData['user_id'] == session('user_id')),
         'highlight' => $postData['highlight'] == '1',
     ];
@@ -158,11 +158,9 @@ public function page(string $slug) {
 
     // Construct the data array
     $data = [
-        'related'   => $this->content->getPages(amount: setting('posts.related_count'), exclude: $id, section_id: $pageData['section_id']),
         'page'      => $pageData,
         'can_edit'  => tier() >= 10,
         'highlight' => $pageData['highlight'] == '1',
-        'featured'  => $this->content->getPosts(amount: 10, featured: true),
     ];
 
     // Render the view
@@ -212,11 +210,7 @@ public function topic(string $slug) {
     // Prepare data
     $data = [
         'site_title' => $this->content->getTitleFromId($topic_id, 'topics'),
-        'post_data'  => $this->content->getPosts(topic_id: $topic_id, pagination: true, page: $page, amount: 20),
-        'featured'       => $this->content->getPosts(amount: 10, featured: true),
-        'trending'       => $this->content->getRankingPosts(amount: 10, type: 'trending'),
-        'popular'        => $this->content->getRankingPosts(amount: 10, type: 'popular'),
-
+        'post_data'  => $this->content->getPosts(topic_id: $topic_id, pagination: true, page: $page, amount: 20)
     ];
 
     // Render view
@@ -268,10 +262,7 @@ public function author(string $handle) {
     // Prepare data
     $data = [
         'site_title' => $this->content->getFullnameFromId($user_id, true),
-        'post_data'  => $this->content->getPosts(user_id: $user_id, pagination: true, page: $page, amount: 20),
-        'featured'       => $this->content->getPosts(amount: 10, featured: true),
-        'trending'       => $this->content->getRankingPosts(amount: 10, type: 'trending'),
-        'popular'        => $this->content->getRankingPosts(amount: 10, type: 'popular'),
+        'post_data'  => $this->content->getPosts(user_id: $user_id, pagination: true, page: $page, amount: 20)
     ];
 
     // Render view
@@ -314,10 +305,10 @@ public function ranking(string $type) {
 
     // Prepare data
     $data = [
-        'site_title' => ucfirst($type),
-        'post_data'  => $this->content->getRankingPosts(type: $type),
-        'featured'   => $this->content->getPosts(amount: 10, featured: true),
-        'ranked'     => true,
+        'site_title'   => ucfirst($type),
+        'post_data'    => $this->content->getRankingPosts(type: $type),
+        'hideTrending' => $type === 'trending',
+        'hidePopular'  => $type === 'popular',
     ];
 
     // Render view
@@ -360,8 +351,7 @@ public function featured() {
     // Fetch data
     $data = [
         'site_title' => 'Featured',
-        'post_data'  => $this->content->getPosts(featured: true, pagination: true, page: $page, amount: 20),
-        'trending'   => $this->content->getRankingPosts(amount: 10, type: 'trending'),
+        'post_data'  => $this->content->getPosts(featured: true, pagination: true, page: $page, amount: 20)
     ];
 
     // Render the view

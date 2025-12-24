@@ -10,12 +10,6 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Custom Models
- */
-
-use App\Models\ContentModel;
-
-/**
  * Class BaseController
  *
  * BaseController provides a convenient place for loading components
@@ -33,7 +27,6 @@ abstract class BaseController extends Controller
      * @var CLIRequest|IncomingRequest
      */
     protected $request;
-    protected $content;
     protected $site_type = 'app';
 
     /**
@@ -65,8 +58,6 @@ abstract class BaseController extends Controller
         service('renderer')->setVar('site_type', $this->site_type);
 
         // Preload any models, libraries, etc, here.
-        $this->content = new ContentModel();
-
         // E.g.: $this->session = \Config\Services::session();
     }
 }

@@ -36,9 +36,14 @@
 
 <?= $this->include('frontend/partials/share') ?>
 
-<section class="container mx-auto px-4 py-12 lg:py-24 mt-8 lg:mt-16">
+<section class="container mx-auto px-4 mt-16 lg:mt-24">
     <h2 class="text-3xl mb-4 text-primary">Related</h2>
-    <?= view('frontend/partials/post_list_lite', ['posts' => $related, 'style' => 'plain-list--columns']) ?>
+    <?= view_cell('FrontendCell::related', ['post_id'=>(int)$post['id'],'topic_id'=>(int)$post['topic_id'],'gridStyle'=>'columns']) ?>
+</section>
+
+<section class="container mx-auto px-4 mt-8 mb-24 lg:mb-36">
+    <h2 class="text-3xl mb-4 text-primary">Trending</h2>
+    <?= view_cell('FrontendCell::trending', ['gridStyle' => 'columns']) ?>
 </section>
 
 <?= $this->endSection() ?>

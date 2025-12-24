@@ -34,15 +34,16 @@
                     </div>
                 <?php endif; ?>
 
-                <?php if (!empty($trending)): ?>
+                <?php if (empty($hideTrending)): ?>
                     <h2 class="text-3xl text-primary mt-8 mb-2">Trending</h2>
-                    <?= view('frontend/partials/post_list_lite', ['posts' => $trending['posts']]) ?>
+                    <?= view_cell('FrontendCell::trending') ?>
                 <?php endif; ?>
 
-                <?php if (!empty($featured)): ?>
+                <?php if (empty($hidePopular)): ?>
                     <h2 class="text-3xl text-primary mt-8 mb-2">Featured</h2>
-                    <?= view('frontend/partials/post_list_lite', ['posts' => $featured['posts']]) ?>
+                    <?= view_cell('FrontendCell::featured') ?>
                 <?php endif; ?>
+
             </div>
         </aside>
 

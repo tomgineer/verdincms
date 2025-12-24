@@ -1,13 +1,16 @@
 <?php namespace App\Controllers;
 use App\Models\UserModel;
 use App\Models\StatsModel;
+use App\Models\ContentModel;
 
 class Users extends BaseController {
 
     private $user;
+    private $content;
 
     function __construct() {
         $this->user = new UserModel();
+        $this->content = new ContentModel();
     }
 
 /**

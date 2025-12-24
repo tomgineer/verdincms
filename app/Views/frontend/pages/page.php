@@ -28,9 +28,14 @@
 
 </article>
 
-<section class="container mx-auto px-4 py-12 mt-8 lg:py-24 lg:mt-16">
+<section class="container mx-auto px-4 mt-16 lg:mt-24">
     <h2 class="text-3xl mb-4 text-primary">Featured</h2>
-    <?= view('frontend/partials/post_list_lite', ['posts' => $featured['posts'], 'style' => 'plain-list--columns']) ?>
+    <?= view_cell('FrontendCell::featured', ['gridStyle' => 'columns']) ?>
+</section>
+
+<section class="container mx-auto px-4 mt-8 mb-24 lg:mb-36">
+    <h2 class="text-3xl mb-4 text-primary">Trending</h2>
+    <?= view_cell('FrontendCell::trending', ['gridStyle' => 'columns']) ?>
 </section>
 
 <?php if (!empty($page['slug']) && $page['slug'] === 'about' && $site_type==='blog'): ?>

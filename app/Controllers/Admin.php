@@ -3,16 +3,21 @@ use App\Models\DashboardModel;
 use App\Models\SystemModel;
 use App\Models\AnalyticsModel;
 use App\Models\EditContentModel;
+use App\Models\ContentModel;
 use CodeIgniter\API\ResponseTrait;
 
 class Admin extends BaseController {
 
     private $dash;
     private $analytics;
-    private $system;
     private $edit;
+    private $content;
 
 	use ResponseTrait;
+
+    public function __construct() {
+        $this->content = new ContentModel();
+    }
 
 /**
  * Displays the edit form for a specific content item of a given type.
@@ -117,7 +122,6 @@ public function dashboard(...$segments) {
     switch ($path) {
         case '':
             $this->analytics = new AnalyticsModel();
-            $this->system    = new SystemModel();
 
             $data = [
                 ...$data,
