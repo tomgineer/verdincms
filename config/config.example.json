@@ -70,7 +70,6 @@
     },
     "system": {
         "version": "1.7.42",
-        "logoHeight": 34,
         "trendingRange": 24,
         "ip2location": false
     },
