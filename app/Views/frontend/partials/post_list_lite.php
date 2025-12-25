@@ -7,7 +7,7 @@
 
                     <div class="card-body">
 
-                        <a class="mb-1 hover:underline focus:underline" href="<?= site_url('post/' . esc($post['id'])) ?>">
+                        <a class="mb-1 link link-hover" href="<?= site_url('post/' . esc($post['id'])) ?>">
                             <h2 class="card-title font-medium"><?= esc($post['title']) ?></h2>
                         </a>
                         <div class="flex items-start gap-3">
