@@ -231,8 +231,8 @@ public function ajaxUploadContentPhoto(?\CodeIgniter\HTTP\Files\UploadedFile $fi
         return ['success' => false, 'error' => 'Thumbnail error: ' . $thumbResult];
     }
 
-    // Create 256x256 thumbnail
-    $xsResult = $this->createThumbnail($tempPath, $xsThumbPath, 256, 256);
+    // Create 128x128 thumbnail
+    $xsResult = $this->createThumbnail($tempPath, $xsThumbPath, 128, 128);
     if ($xsResult !== true) {
         return ['success' => false, 'error' => 'XS thumbnail error: ' . $xsResult];
     }

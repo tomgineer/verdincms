@@ -131,7 +131,7 @@ public function getRelatedPosts(int $id, int $topic_id, int $amount = 10) {
     $builder = $this->db->table('posts p')
                         ->join('users u', 'u.id = p.user_id')
                         ->join('topics t', 't.id = p.topic_id')
-                        ->select('p.id, p.title, p.subtitle, p.created')
+                        ->select('p.id, p.title, p.subtitle, p.created, p.photo')
                         ->select('DATE_FORMAT(p.created, "%b %d, %Y") AS f_created', false)
                         ->select('CONCAT(u.first_name, " ", u.last_name) AS author', false)
                         ->select('u.author AS author_handle')
@@ -146,9 +146,9 @@ public function getRelatedPosts(int $id, int $topic_id, int $amount = 10) {
 
     // First try: same topic
     $posts = $builder->where('p.topic_id', $topic_id)
-                      ->limit($amount)
-                      ->get()
-                      ->getResultArray();
+                     ->limit($amount)
+                     ->get()
+                     ->getResultArray();
 
     // If we still need more, pull random others excluding what we already have
     if (count($posts) < $amount) {
