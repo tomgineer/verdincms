@@ -1,7 +1,7 @@
 <?= $this->extend('frontend/layouts/default') ?>
 <?= $this->section('main') ?>
 
-<article class="container mx-auto px-4 mt-8 lg:mt-16">
+<article class="container mx-auto px-4 mt-8 lg:mt-16 mb-16 lg:mb-24">
 
     <div class="card lg:card-side bg-base-100 rounded-none">
         <figure class="w-full lg:w-1/3">
@@ -34,16 +34,20 @@
 
 </article>
 
-<?= $this->include('frontend/partials/share') ?>
+<?php if (setting('theme.postShare')): ?>
+    <?= $this->include('frontend/partials/share') ?>
+<?php endif; ?>
 
-<section class="container mx-auto px-4 mt-16 lg:mt-24">
-    <h2 class="text-3xl mb-4 text-primary">Related</h2>
-    <?= view_cell('FrontendCell::related', ['post_id'=>(int)$post['id'],'topic_id'=>(int)$post['topic_id'],'gridStyle'=>'columns']) ?>
-</section>
+<?php if (setting('theme.postExtras')): ?>
+    <section class="container mx-auto px-4 mb-8">
+        <h2 class="text-3xl mb-4 text-primary">Related</h2>
+        <?= view_cell('FrontendCell::related', ['post_id' => (int)$post['id'], 'topic_id' => (int)$post['topic_id'], 'gridStyle' => 'columns']) ?>
+    </section>
 
-<section class="container mx-auto px-4 mt-8 mb-24 lg:mb-36">
-    <h2 class="text-3xl mb-4 text-primary">Trending</h2>
-    <?= view_cell('FrontendCell::trending', ['gridStyle' => 'columns']) ?>
-</section>
+    <section class="container mx-auto px-4 mb-24 lg:mb-36">
+        <h2 class="text-3xl mb-4 text-primary">Trending</h2>
+        <?= view_cell('FrontendCell::trending', ['gridStyle' => 'columns']) ?>
+    </section>
+<?php endif; ?>
 
 <?= $this->endSection() ?>

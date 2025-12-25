@@ -8,7 +8,13 @@
     "theme": {
         "name": "default",
         "darkMode": true,
-        "logoHeight": 36
+        "logoHeight": 36,
+        "pageExtras": true,
+        "pageBadges": true,
+        "postExtras": true,
+        "postShare": true,
+        "newsletter": true,
+        "humanContent": true
     },
     "navbar": {
         "displaySearch": true,

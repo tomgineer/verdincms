@@ -1,9 +1,9 @@
 <?= $this->extend('frontend/layouts/default') ?>
 <?= $this->section('main') ?>
 
-<article>
+<article class="mb-16 lg:mb-24">
 
-    <?php if ( $page['disable_hero']==0 ):?>
+    <?php if ($page['disable_hero'] == 0): ?>
         <div class="relative w-full h-[350px] xl:h-[40vh] flex items-center justify-center overflow-hidden">
             <h1 class="z-10 text-5xl font-bold text-white text-center text-shadow-lg">
                 <?= esc($page['title']) ?>
@@ -14,9 +14,9 @@
             </picture>
         </div>
 
-    <?php else:?>
-        <h1 class="w-full lg:max-w-[50ch] mx-auto text-5xl leading-tight mt-8"><?=esc($page['title'])?></h1>
-    <?php endif;?>
+    <?php else: ?>
+        <h1 class="w-full lg:max-w-[50ch] mx-auto text-5xl leading-tight mt-8"><?= esc($page['title']) ?></h1>
+    <?php endif; ?>
 
     <section class="container mx-auto px-4 mt-4 lg:mt-12">
         <h2 class="w-full lg:max-w-[65ch] mx-auto text-content text-3xl mt-8 leading-tight"><?= esc($page['subtitle']) ?></h2>
@@ -28,17 +28,19 @@
 
 </article>
 
-<section class="container mx-auto px-4 mt-16 lg:mt-24">
-    <h2 class="text-3xl mb-4 text-primary">Featured</h2>
-    <?= view_cell('FrontendCell::featured', ['gridStyle' => 'columns']) ?>
-</section>
+<?php if (setting('theme.pageExtras')): ?>
+    <section class="container mx-auto px-4 mb-8">
+        <h2 class="text-3xl mb-4 text-primary">Featured</h2>
+        <?= view_cell('FrontendCell::featured', ['gridStyle' => 'columns']) ?>
+    </section>
 
-<section class="container mx-auto px-4 mt-8 mb-24 lg:mb-36">
-    <h2 class="text-3xl mb-4 text-primary">Trending</h2>
-    <?= view_cell('FrontendCell::trending', ['gridStyle' => 'columns']) ?>
-</section>
+    <section class="container mx-auto px-4 mb-24 lg:mb-36">
+        <h2 class="text-3xl mb-4 text-primary">Trending</h2>
+        <?= view_cell('FrontendCell::trending', ['gridStyle' => 'columns']) ?>
+    </section>
+<?php endif; ?>
 
-<?php if (!empty($page['slug']) && $page['slug'] === 'about' && $site_type==='blog'): ?>
+<?php if (setting('theme.pageBadges') && $page['slug'] === 'about'): ?>
     <?= $this->include('frontend/partials/badges') ?>
 <?php endif; ?>
 

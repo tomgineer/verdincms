@@ -10,8 +10,8 @@
                         <a class="mb-1 link link-hover" href="<?= site_url('post/' . esc($post['id'])) ?>">
                             <h2 class="card-title font-medium"><?= esc($post['title']) ?></h2>
                         </a>
-                        <div class="flex items-start gap-3">
-                            <figure class="w-16 lg:w-24 shrink-0 aspect-square overflow-hidden">
+                        <div>
+                            <figure class="w-16 xl:w-20 2xl:w-24 shrink-0 aspect-square rounded-full wrap-around">
                                 <a href="<?= site_url('post/' . esc($post['id'])) ?>">
                                     <img
                                         src="<?= path_img_xs() . esc($post['photo']) . '.webp' ?>"

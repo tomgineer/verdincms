@@ -23,9 +23,14 @@
         </aside>
 
     </div>
-    <?= $this->include('frontend/partials/not_ai_badge') ?>
+
+    <?php if (setting('theme.humanContent')): ?>
+        <?= $this->include('frontend/partials/not_ai_badge') ?>
+    <?php endif; ?>
 </div>
 
-<?= $this->include('frontend/partials/newsletter') ?>
+<?php if (setting('theme.newsletter')): ?>
+    <?= $this->include('frontend/partials/newsletter') ?>
+<?php endif; ?>
 
 <?= $this->endSection() ?>
