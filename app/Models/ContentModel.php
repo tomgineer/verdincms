@@ -57,7 +57,7 @@ public function getPosts(
     bool $review = false
 ) : array {
     $tier = tier(); // Access level of the current session user
-    $amount = $amount ?? setting('posts.post_count', 30);
+    $amount = $amount ?? setting('posts.postCount', 30);
     $builder = $this->db->table('posts p');
     $builder->join('users u', 'u.id = p.user_id');
     $builder->join('topics t', 't.id = p.topic_id');
@@ -221,7 +221,7 @@ public function getRankingPosts(
     bool $pagination = true
 ): array {
     $tier = tier();
-    $amount = $amount ?? setting('posts.post_count', 30);
+    $amount = $amount ?? setting('posts.postCount', 30);
     $builder = $this->db->table('posts p');
 
     // Select core fields
@@ -245,7 +245,7 @@ public function getRankingPosts(
             $builder->orderBy('s.hits_per_day', 'DESC');
             break;
         case 'trending':
-            $hours = setting('system.trending_range') ?? 24;
+            $hours = setting('system.trendingRange') ?? 24;
             $builder->join('stats_trending s', 's.post_id = p.id', 'inner')
                     ->where('s.created >=', "DATE_SUB(NOW(), INTERVAL {$hours} HOUR)", false)
                     ->groupBy('s.post_id');
@@ -542,7 +542,7 @@ public function getBlocksByGroupAndAlias(
  */
 public function getSocialsList(): array {
 
-    $socials = setting('social_media') ?? [];
+    $socials = setting('socialMedia') ?? [];
     $list = [];
 
     // icons available in your sprite (public/gfx/icons.svg)

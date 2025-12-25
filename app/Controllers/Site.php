@@ -43,9 +43,7 @@ public function index() {
     }
 
     // Fetch Data
-    $data = [
-        'latest_updates' => $this->content->getPosts(pagination: true, page: $page, amount: 20),
-    ];
+    $data = ['latest_updates' => $this->content->getPosts(pagination: true, page: $page, amount: 20)];
 
     // Render the view
     $output = theme_view('frontend/pages/front', $data);
@@ -56,7 +54,6 @@ public function index() {
     }
 
     echo $output;
-
     $this->stats->trackVisitor();
 }
 
@@ -374,15 +371,6 @@ public function featured() {
  */
 public function handle404() {
     return redirect()->to('/');
-}
-
-/**
- * Displays the botshield page to deter or block unwanted bot traffic.
- *
- * @return \CodeIgniter\View\View
- */
-public function botshield() {
-    return theme_view('frontend/pages/botshield');
 }
 
 /**

@@ -7,8 +7,16 @@
     },
     "theme": {
         "name": "default",
-        "dark_mode": true,
-        "logo_height": 36
+        "darkMode": true,
+        "logoHeight": 36
+    },
+    "navbar": {
+        "displaySearch": true,
+        "displayContact": true,
+        "displayAbout": true,
+        "displayRanking": true,
+        "displayTopics": true,
+        "displayBlog": true
     },
     "cache": {
         "enabled": true,
@@ -16,9 +24,9 @@
     },
     "admin": {
         "email": "admin@example.com",
-        "login_required": true
+        "loginRequired": true
     },
-    "social_media": {
+    "socialMedia": {
         "youtube": "https://www.youtube.com/@example",
         "facebook": "https://www.facebook.com/example",
         "whatsapp": "https://wa.me/491701234567",
@@ -47,28 +55,28 @@
         "xing": "https://www.xing.com/profile/Example_User"
     },
     "posts": {
-        "post_count": 30,
-        "latest_count": 10,
-        "featured_count": 10,
-        "related_count": 8,
-        "trending_count": 20,
-        "popular_count": 20
+        "postCount": 30,
+        "latestCount": 10,
+        "featuredCount": 10,
+        "relatedCount": 8,
+        "trendingCount": 20,
+        "popularCount": 20
     },
     "system": {
-        "version": "1.7.41",
-        "logo_height": 34,
-        "trending_range": 24,
+        "version": "1.7.42",
+        "logoHeight": 34,
+        "trendingRange": 24,
         "ip2location": false
     },
     "meta": {
-        "site_name": "My Demo Website",
-        "site_title": "My Demo Website — Just Another VerdinCMS Site",
-        "site_description": "A demo configuration for VerdinCMS. Customize freely to match your own project.",
+        "siteName": "My Demo Website",
+        "siteTitle": "My Demo Website — Just Another VerdinCMS Site",
+        "siteDescription": "A demo configuration for VerdinCMS. Customize freely to match your own project.",
         "twitter": "@example"
     },
     "company": {
         "name": "Example Media Group",
         "email": "info@example.com",
-        "support_email": "support@example.com"
+        "supportEmail": "support@example.com"
     }
 }

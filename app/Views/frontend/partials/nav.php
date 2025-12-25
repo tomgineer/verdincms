@@ -2,7 +2,7 @@
     <div class="flex-1 flex items-center gap-2">
         <a class="btn btn-ghost text-xl px-1 lg:px-4" href="<?= base_url() ?>">
             <img
-                style="height: <?= (int) setting('theme.logo_height') ?>px;"
+                style="height: <?= (int) setting('theme.logoHeight') ?>px;"
                 class="w-auto opacity-85 hover:opacity-100 transition-opacity duration-200 select-none"
                 src="<?= path_gfx() . 'logo.svg' ?>"
                 alt="Logo"
@@ -88,51 +88,67 @@
                 </li>
             <?php endif; ?>
 
-            <li class="hidden <?=(tier()!=0?'2xl:flex':'lg:flex')?>">
-                <details>
-                    <summary>Ranking</summary>
-                    <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
-                        <li><a href="<?= site_url('ranking/trending') ?>">Trending</a></li>
-                        <li><a href="<?= site_url('ranking/popular') ?>">Popular</a></li>
-                        <li><a href="<?= site_url('featured') ?>">Featured</a></li>
-                    </ul>
-                </details>
-            </li>
+            <!-- Ranking -->
+            <?php if (setting('navbar.displayRanking')): ?>
+                <li class="hidden <?= (tier() != 0 ? '2xl:flex' : 'lg:flex') ?>">
+                    <details>
+                        <summary>Ranking</summary>
+                        <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
+                            <li><a href="<?= site_url('ranking/trending') ?>">Trending</a></li>
+                            <li><a href="<?= site_url('ranking/popular') ?>">Popular</a></li>
+                            <li><a href="<?= site_url('featured') ?>">Featured</a></li>
+                        </ul>
+                    </details>
+                </li>
+            <?php endif; ?>
 
-            <li class="hidden <?=(tier()!=0?'2xl:flex':'lg:flex')?>">
-                <details>
-                    <summary>Topics</summary>
-                    <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
-                        <?php foreach ($menu_items['topics'] as $topic): ?>
-                            <li>
-                                <a href="<?= site_url('topic/' . $topic['slug']) ?>"><?= esc($topic['title']) ?></a>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </details>
-            </li>
+            <!-- Topics -->
+            <?php if (setting('navbar.displayTopics')): ?>
+                <li class="hidden <?= (tier() != 0 ? '2xl:flex' : 'lg:flex') ?>">
+                    <details>
+                        <summary>Topics</summary>
+                        <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
+                            <?php foreach ($menu_items['topics'] as $topic): ?>
+                                <li>
+                                    <a href="<?= site_url('topic/' . $topic['slug']) ?>"><?= esc($topic['title']) ?></a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </details>
+                </li>
+            <?php endif; ?>
 
-            <li class="hidden lg:flex">
-                <details>
-                    <summary>Blog</summary>
-                    <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
-                        <?php foreach ($menu_items['pages'] as $page_items): ?>
-                            <li>
-                                <a href="<?= site_url($page_items['s_slug'] . '/' . $page_items['slug']) ?>"><?= esc($page_items['label']) ?></a>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </details>
-            </li>
+            <!-- Blog -->
+            <?php if (setting('navbar.displayBlog')): ?>
+                <li class="hidden lg:flex">
+                    <details>
+                        <summary>Blog</summary>
+                        <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
+                            <?php foreach ($menu_items['pages'] as $page_items): ?>
+                                <li>
+                                    <a href="<?= site_url($page_items['s_slug'] . '/' . $page_items['slug']) ?>"><?= esc($page_items['label']) ?></a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </details>
+                </li>
+            <?php endif; ?>
 
-            <li class="hidden lg:flex"><a href="<?= site_url('info/about') ?>"><?=lang('App.about')?></a></li>
-            <li class="hidden lg:flex"><a href="<?= site_url('info/contact') ?>"><?=lang('App.contact')?></a></li>
+            <?php if (setting('navbar.displayAbout')): ?>
+                <li class="hidden lg:flex"><a href="<?= site_url('info/about') ?>"><?= lang('App.about') ?></a></li>
+            <?php endif; ?>
+
+            <?php if (setting('navbar.displayContact')): ?>
+                <li class="hidden lg:flex"><a href="<?= site_url('info/contact') ?>"><?= lang('App.contact') ?></a></li>
+            <?php endif; ?>
 
         </ul>
 
         <!-- Search -->
-        <input type="text" placeholder="Search" class="input input-bordered w-52 2xl:w-96 text-base hidden lg:flex" data-js-search />
-        <section class="hidden absolute top-16 left-1/2 -translate-x-1/2 z-900 max-w-6xl w-full bg-base-300 rounded-2xl shadow-2xl p-8 border-2 border-primary" data-js-search-results>No Results..</section>
+        <?php if (setting('navbar.displaySearch')): ?>
+            <input type="text" placeholder="Search" class="input input-bordered w-52 2xl:w-96 text-base hidden lg:flex" data-js-search />
+            <section class="hidden absolute top-16 left-1/2 -translate-x-1/2 z-900 max-w-6xl w-full bg-base-300 rounded-2xl shadow-2xl p-8 border-2 border-primary" data-js-search-results>No Results..</section>
+        <?php endif; ?>
 
         <!-- Profile -->
         <div class="dropdown dropdown-end">

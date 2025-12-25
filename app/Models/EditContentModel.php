@@ -1,7 +1,6 @@
 <?php namespace App\Models;
 
 use CodeIgniter\Model;
-// use App\Libraries\QRCode;
 
 /**
  * ****************************************************
@@ -13,7 +12,6 @@ use CodeIgniter\Model;
  * • Retrieve, create, and save post/page content
  * • Manage user metadata, topics, sections, and user groups
  * • Handle image uploads and conversions to WebP with automatic thumbnails
- * • Generate QR codes for new posts
  *
  * Version : VerdinCMS 2026
  * Author  : Tom Papatolis
@@ -409,7 +407,6 @@ private function createThumbnail(
  * Saves content to the database by either inserting a new record or updating an existing one.
  *
  * If $id is 0, a new record is inserted into the corresponding table ('posts' or 'pages').
- * If the content type is 'post' and a new record is inserted, a QR code will be generated.
  * If $id is non-zero, the existing record is updated.
  *
  * @param int $id The ID of the content. Use 0 to insert new content.
@@ -435,46 +432,9 @@ public function saveContent(int $id, string $type, array $updateData): int|false
     }
 
     $insertID = $this->db->insertID();
-
-    // Generate QR code only for posts
-    // ($type === 'post') && $this->createQrCode($insertID);
-
     return $insertID;
 }
 
-/**
- * Generates a QR code SVG file for a specific post ID if it doesn't already exist.
- *
- * The QR code encodes the URL to the post, e.g., site_url('post/{id}'),
- * and is saved to the /public/images/qrcodes/ directory.
- *
- * @param int $id The ID of the post for which the QR code is generated.
- *
- * @return void
- */
-// public function createQrCode(int $id): void {
-//     $filePath = FCPATH . 'images' . DIRECTORY_SEPARATOR . 'qrcodes' . DIRECTORY_SEPARATOR . "post_{$id}.svg";
-
-//     // Ensure the target directory exists
-//     $dir = dirname($filePath);
-//     if (!is_dir($dir)) {
-//         mkdir($dir, 0755, true);
-//     }
-
-//     // Skip creation if file already exists
-//     if (file_exists($filePath)) {
-//         return;
-//     }
-
-//     $url = site_url("post/{$id}");
-
-//     try {
-//         $svg = QRCode::svg($url, ['s' => 'qrl']);
-//         file_put_contents($filePath, $svg);
-//     } catch (\Exception $e) {
-//         log_message('error', "QR Code creation failed for post ID {$id}: " . $e->getMessage());
-//     }
-// }
-
 
 } // ─── End of Class ───
+

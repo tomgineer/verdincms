@@ -14,4 +14,4 @@
 <meta property="og:image" content="<?= esc(path_img_tn() . $page['photo'] . '.webp') ?>" />
 <meta property="og:image:width" content="1344" />
 <meta property="og:image:height" content="768" />
-<meta property="og:site_name" content="<?= esc(setting('meta.site_name')) ?>" />
+<meta property="og:site_name" content="<?= esc(setting('meta.siteName')) ?>" />

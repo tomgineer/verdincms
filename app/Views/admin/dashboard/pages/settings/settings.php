@@ -4,6 +4,6 @@
 </header>
 
 <section>
-    <pre data-js-highlight="json" class="bg-base-200 p-4 rounded overflow-x-auto whitespace-pre-wrap leading-relaxed font-mono text-sm text-base-content/80"><?= esc($settings) ?></pre>
+    <pre data-js-highlight="json" class="bg-base-200 p-4 rounded overflow-x-auto whitespace-pre-wrap leading-tight font-mono text-sm text-base-content/80"><?= esc($settings) ?></pre>
 </section>
 

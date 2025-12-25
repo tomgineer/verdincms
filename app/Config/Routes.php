@@ -6,7 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 //$routes->get('/', 'Site::index');
-//$routes->set404Override('App\Controllers\Site::handle404');
+$routes->set404Override('App\Controllers\Site::handle404');
 
 /**
  * --------------------------------------------------------------------
@@ -30,7 +30,6 @@ $routes->get('author/(:alpha)', 'Site::author/$1');
 $routes->get('ranking/(:alpha)', 'Site::ranking/$1');
 $routes->match(['GET','POST'],'search', 'Site::search');
 $routes->get('featured', 'Site::featured');
-$routes->get('botshield', 'Site::botshield');
 
 /******************************************************************************
  * USERS

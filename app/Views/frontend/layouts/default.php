@@ -8,18 +8,18 @@
         <meta name="color-scheme" content="light dark">
 
         <?php if (!empty($post)): ?>
-            <title><?= htmlspecialchars($post['title']) ?> | <?= setting('meta.site_name') ?></title>
+            <title><?= htmlspecialchars($post['title']) ?> | <?= setting('meta.siteName') ?></title>
             <meta name="description" content="<?= htmlspecialchars($post['subtitle']) ?>"/>
             <?= $this->include('frontend/partials/meta_post') ?>
 
         <?php elseif (!empty($page)): ?>
-            <title><?= htmlspecialchars($page['title']) ?> | <?= setting('meta.site_name') ?></title>
+            <title><?= htmlspecialchars($page['title']) ?> | <?= setting('meta.siteName') ?></title>
             <meta name="description" content="<?= htmlspecialchars($page['subtitle']) ?>"/>
             <?= $this->include('frontend/partials/meta_page') ?>
 
         <?php else: ?>
-            <title><?= (!empty($site_title) ? $site_title . ' | ' . setting('meta.site_name') : setting('meta.site_title')) ?></title>
-            <meta name="description" content="<?= setting('meta.site_description') ?>"/>
+            <title><?= (!empty($site_title) ? $site_title . ' | ' . setting('meta.siteName') : setting('meta.siteTitle')) ?></title>
+            <meta name="description" content="<?= setting('meta.siteDescription') ?>"/>
         <?php endif; ?>
 
         <link rel="stylesheet" href="<?=path_css()?>tailwind.css?v=<?=setting('system.version')?>">

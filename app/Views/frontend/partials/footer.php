@@ -53,7 +53,7 @@
     <aside class="grid-flow-row lg:grid-flow-col gap-6 items-center">
         <a href="<?= base_url() ?>">
             <img
-                style="height: <?= ((int) setting('theme.logo_height') * 1.5) ?>px;"
+                style="height: <?= ((int) setting('theme.logoHeight') * 1.5) ?>px;"
                 class="w-auto"
                 src="<?= path_gfx() . 'logo.svg' ?>"
                 alt="Logo"
