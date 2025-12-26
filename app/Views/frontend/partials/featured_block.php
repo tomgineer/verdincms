@@ -13,7 +13,7 @@
 
     <ul class="no-scrollbar flex gap-4 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth px-3 py-2 touch-pan-x overscroll-x-contain sm:gap-6 sm:px-4">
         <?php foreach ($posts as $post):?>
-            <li class="relative aspect-square w-[80vw] shrink-0 snap-center lg:w-[400px] 2xl:w-[512px]">
+            <li class="relative aspect-square w-[80vw] shrink-0 snap-center lg:w-[400px] 2xl:w-[500px]">
                 <a class="group absolute inset-0" href="<?= site_url('post/' . esc($post['id'])) ?>" aria-label="<?=esc($post['title'])?>">
                     <h3 class="absolute bottom-0 left-0 right-0 z-10 p-5 text-white text-2xl lg:text-3xl 2xl:text-4xl font-semibold"><?=esc($post['title'])?></h3>
                     <figure class="absolute inset-0 -z-10">

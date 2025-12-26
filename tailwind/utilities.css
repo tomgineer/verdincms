@@ -1,0 +1,49 @@
+@layer utilities {
+
+    /* ckEditor Apply Prose */
+    .ck-editor__editable {
+        @apply prose max-w-none;
+    }
+    /* ckEditor Fix */
+    .ck-powered-by {
+        display: none !important;
+    }
+
+    /* Backgrounds */
+    .custom-bg-1 {background-image: var(--bg-bg1);}
+    .custom-bg-1 {
+        @apply bg-cover bg-bottom bg-no-repeat;
+    }
+
+    /* Tables */
+    .table-zebra-soft tbody tr:nth-child(even) {
+        @apply bg-white/5;
+    }
+
+    /* Stats */
+    .stat-lg .stat-title {
+        @apply text-lg;
+    }
+    .stat-lg .stat-value {
+        @apply text-5xl leading-tight font-bebas;
+    }
+
+    /* Scrollbar */
+    .scrollbar-auto {
+        scrollbar-gutter: auto !important; /* Add this via JS to HTML in a modal */
+    }
+    .no-scrollbar {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Wrap text around image */
+    .wrap-around {
+        @apply float-left mr-4;
+        shape-outside: circle(50%);
+    }
+
+}

@@ -1,0 +1,37 @@
+@import "tailwindcss";
+@source "./app/Views/**/*.php";
+@source "./public/js/**/*.js";
+@plugin "daisyui" {
+    themes: dark --default, corporate, dim;
+}
+@plugin "@tailwindcss/typography";
+
+@theme {
+    /* Fonts */
+    --font-sans: "Arimo", ui-sans-serif, system-ui, sans-serif;
+    --font-heading: "Fira Sans Extra Condensed", ui-sans-serif, system-ui, sans-serif;
+    --font-bebas: "Bebas Neue", ui-sans-serif, system-ui, sans-serif;
+
+    /* Background images */
+    --bg-bg1: url("../gfx/login.svg");
+}
+
+@layer base {
+    body {
+        @apply font-sans;
+        scrollbar-gutter: auto !important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-heading;
+    }
+    h1, h2, h3 {
+        font-weight: 700;
+    }
+    h4, h5, h6 {
+        font-weight: 500;
+    }
+}
+
+@import "./components.css";
+@import "./utilities.css";
+@import "./overrides.css";

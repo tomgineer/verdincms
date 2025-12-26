@@ -1,0 +1,40 @@
+@layer components {
+
+    /* Animated Border */
+    .animated-border {
+        @apply relative inline-flex items-center rounded font-semibold overflow-hidden px-3 py-1;
+
+        &::before {
+            content: "";
+            @apply absolute inset-0 rounded p-[2px];
+            background: linear-gradient(
+                90deg,
+                var(--tw-gradient-from, theme(colors.primary.DEFAULT)),
+                theme(colors.purple.500),
+                theme(colors.blue.500),
+                var(--tw-gradient-to, theme(colors.primary.DEFAULT))
+            );
+            background-size: 200% 200%;
+            animation: gradient-move 4s ease infinite;
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+                    mask-composite: exclude;
+        }
+
+        > * {
+            @apply relative z-10;
+        }
+    }
+
+    @keyframes gradient-move {
+        0%, 100% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+
+}
