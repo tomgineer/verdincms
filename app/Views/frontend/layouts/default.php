@@ -40,7 +40,7 @@
 
 </head>
 
-<body class="min-h-dvh flex flex-col <?= body_class() ?>" id="<?= body_class() ?>">
+<body class="min-h-screen flex flex-col <?= body_class() ?>" id="<?= body_class() ?>">
 
     <header>
         <?= view_cell('FrontendCell::nav') ?>
