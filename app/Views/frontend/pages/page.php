@@ -18,7 +18,7 @@
         <h1 class="w-full lg:max-w-[50ch] mx-auto text-5xl leading-tight mt-8"><?= esc($page['title']) ?></h1>
     <?php endif; ?>
 
-    <section class="container mx-auto px-4 mt-4 lg:mt-12">
+    <section class="container mx-auto px-4 lg:py-8 mt-4 lg:mt-12">
         <h2 class="w-full lg:max-w-[65ch] mx-auto text-content text-3xl mt-8 leading-tight"><?= esc($page['subtitle']) ?></h2>
 
         <div class="w-full lg:max-w-[80ch] mx-auto mt-4 lg:mt-8 leading-relaxed text-xl prose prose-neutral">
