@@ -8,6 +8,7 @@
     "theme": {
         "name": "dark",
         "logoHeight": 36,
+        "extraFonts": [],
         "pageExtras": true,
         "pageBadges": true,
         "postExtras": true,
