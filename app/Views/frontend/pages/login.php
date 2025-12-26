@@ -1,7 +1,7 @@
 <?= $this->extend('frontend/layouts/default') ?>
 <?= $this->section('main') ?>
 
-<section class="pt-8 sm:pt-16 custom-bg-1 min-h-[800px]">
+<section class="pt-8 sm:pt-16 custom-bg-1 min-h-[800px]" data-theme="dark">
     <div class="mx-auto w-full max-w-2xl px-4">
 
         <?php if (empty($error)): ?>
