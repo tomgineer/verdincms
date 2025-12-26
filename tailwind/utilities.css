@@ -1,14 +1,5 @@
 @layer utilities {
 
-    /* ckEditor Apply Prose */
-    .ck-editor__editable {
-        @apply prose max-w-none;
-    }
-    /* ckEditor Fix */
-    .ck-powered-by {
-        display: none !important;
-    }
-
     /* Backgrounds */
     .custom-bg-1 {background-image: var(--bg-bg1);}
     .custom-bg-1 {
@@ -32,13 +23,13 @@
     .scrollbar-auto {
         scrollbar-gutter: auto !important; /* Add this via JS to HTML in a modal */
     }
-    .no-scrollbar {
+    /* .no-scrollbar {
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
     .no-scrollbar::-webkit-scrollbar {
         display: none;
-    }
+    } */
 
     /* Wrap text around image */
     .wrap-around {

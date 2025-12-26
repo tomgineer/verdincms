@@ -1,5 +1,13 @@
 @layer components {
 
+    /* ckEditor */
+    .ck-editor__editable {
+        @apply prose max-w-none;
+    }
+    .ck-powered-by {
+        display: none !important;
+    }
+
     /* Animated Border */
     .animated-border {
         @apply relative inline-flex items-center rounded font-semibold overflow-hidden px-3 py-1;

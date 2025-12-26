@@ -17,8 +17,8 @@ initCopyUrl();
 import newsletterInit from './system/newsletter.js'
 newsletterInit();
 
-import magneticSliderInit from './system/slider.js'
-magneticSliderInit();
+import initCarousel from './system/carousel.js'
+initCarousel();
 
 // import themeSwither from './system/theme.js'
 // themeSwither();
