@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?=setting('site.language')?>" data-theme="dark">
+<html lang="<?=setting('site.language')?>" data-theme="<?=setting('theme.name')?>">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +47,7 @@
             <?= $this->renderSection('main') ?>
         </main>
 
-        <footer class="bg-base-200">
+        <footer class="bg-base-200" data-theme="dark">
             <?=view_cell('FrontendCell::footer')?>
         </footer>
 

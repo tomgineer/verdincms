@@ -15,7 +15,7 @@
                         </a>
                     </figure>
 
-                    <div class="card-body w-full lg:w-2/3">
+                    <div class="card-body w-full lg:w-2/3 px-0 md:px-6">
 
                         <a class="mb-2 link link-hover" href="<?= site_url('post/' . esc($post['id'])) ?>">
                             <h2 class="card-title text-2xl font-medium"><?= esc($post['title']) ?></h2>

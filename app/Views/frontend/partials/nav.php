@@ -1,4 +1,4 @@
-<div class="navbar bg-base-300 z-999">
+<nav class="navbar bg-base-300 z-999" data-theme="dark">
     <div class="flex-1 flex items-center gap-2">
         <a class="btn btn-ghost text-xl px-1 lg:px-4" href="<?= base_url() ?>">
             <img
@@ -208,4 +208,4 @@
         </ul>
 
     </div>
-</div>
+</nav>
