@@ -32,11 +32,8 @@
     }
 
     [data-admin="true"] {
-        font-family: var(--font-sans) !important;
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-heading) !important;
-        }
+        font-family: "Arimo", ui-sans-serif, system-ui, sans-serif;
+        h1, h2, h3, h4, h5, h6 {font-family: "Fira Sans Extra Condensed", ui-sans-serif, system-ui, sans-serif;}
     }
 }
 
