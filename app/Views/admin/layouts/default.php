@@ -18,7 +18,7 @@
 
     </head>
 
-    <body class="min-h-dvh flex flex-col <?=body_class()?>" data-theme="dark" id="<?=body_class()?>">
+    <body class="min-h-dvh flex flex-col <?=body_class()?>" data-theme="dark" id="<?=body_class()?>" data-admin="true">
 
         <header>
             <?=view_cell('FrontendCell::nav')?>

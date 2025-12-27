@@ -4,7 +4,7 @@
 <article class="mb-16 lg:mb-24">
 
     <?php if ($page['disable_hero'] == 0): ?>
-        <div class="relative w-full h-[350px] xl:h-[40vh] flex items-center justify-center overflow-hidden">
+        <div class="relative w-full h-[350px] xl:h-[40vh] flex items-center justify-center overflow-hidden bg-black">
             <h1 class="z-10 text-5xl font-bold text-white text-center text-shadow-lg">
                 <?= esc($page['title']) ?>
             </h1>
