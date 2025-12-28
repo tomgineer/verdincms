@@ -298,14 +298,12 @@ public function postsArrFiller(array $posts, int $amount): array {
                       ->get()
                       ->getResultArray();
 
-    $merged = array_merge($posts, $filler);
-
-    // Ensure "ago" is present for any filler items when used elsewhere.
-    array_walk($merged, static function (&$row) {
-        if (!isset($row['ago']) || $row['ago'] === '') {
-            $row['ago'] = Time::parse($row['created'])->humanize() . '+';
-        }
+    // Add human readable ago column
+    array_walk($filler, static function (&$row) {
+        $row['ago'] = Time::parse($row['created'])->humanize() . '﹢';
     });
+
+    $merged = array_merge($posts, $filler);
 
     return $merged;
 
