@@ -1,0 +1,57 @@
+@plugin "daisyui/theme" {
+    name: "arc-dark";
+    default: false;
+    prefersdark: true;
+    color-scheme: dark;
+
+    /* Base surfaces */
+    --color-base-100: oklch(32.48% 0.0208 265.9); /* Main background */
+    --color-base-200: oklch(35.81% 0.0249 272.6); /* Elevated surfaces */
+    --color-base-300: oklch(39.09% 0.0230 268.7); /* Borders and separators */
+    --color-base-content: oklch(88.57% 0.0145 254.6); /* Primary text */
+
+    /* Primary accent (Arc blue) */
+    --color-primary: oklch(65.80% 0.1352 253.9);
+    --color-primary-content: oklch(100% 0 90);
+
+    /* Secondary surface color */
+    --color-secondary: oklch(65.80% 0.1352 253.9);
+    --color-secondary-content: oklch(100% 0 90);
+
+    /* Accent color (links, highlights) */
+    --color-accent: oklch(70.02% 0.1488 246.7);
+    --color-accent-content: oklch(16.35% 0.0136 264.1);
+
+    /* Neutral surfaces */
+    --color-neutral: oklch(28.75% 0.0163 259.8);
+    --color-neutral-content: oklch(88.57% 0.0145 254.6);
+
+    /* Semantic colors */
+    --color-info: oklch(76.85% 0.1214 252.3);
+    --color-info-content: oklch(16.35% 0.0136 264.1);
+
+    --color-success: oklch(67.18% 0.0729 120.9);
+    --color-success-content: oklch(16.35% 0.0136 264.1);
+
+    --color-warning: oklch(93.90% 0.1073 101.9);
+    --color-warning-content: oklch(23.08% 0.0143 266.9);
+
+    --color-error: oklch(60.61% 0.1206 15.3);
+    --color-error-content: oklch(100% 0 90);
+
+    /* Border radius */
+    --radius-selector: 1rem;
+    --radius-field: 0.25rem;
+    --radius-box: 0.5rem;
+
+    /* Base spacing */
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+
+    /* Border width */
+    --border: 1px;
+
+    /* Visual effects */
+    --depth: 1;
+    --noise: 0;
+}

@@ -73,7 +73,7 @@ public function related(): string {
 public function featuredBlock(): string {
     $content = new ContentModel();
     $data = $content->getPosts(amount: 10, featured: true) ?? [];
-    return view('frontend/partials/featured_block', $data, ['saveData' => false]);
+    return view('frontend/partials/carousel', $data, ['saveData' => false]);
 }
 
 }

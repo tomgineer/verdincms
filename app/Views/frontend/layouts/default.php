@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?= setting('site.language') ?>" data-theme="<?= setting('theme.name') ?>">
+<html lang="<?= setting('site.language') ?>" data-theme="<?= setting('theme.main') ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -51,7 +51,7 @@
         <?= $this->renderSection('main') ?>
     </main>
 
-    <footer class="bg-base-200" data-theme="dark">
+    <footer class="bg-base-200" data-theme="<?=setting('theme.dark')?>">
         <?= view_cell('FrontendCell::footer') ?>
     </footer>
 

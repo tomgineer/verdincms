@@ -8,17 +8,21 @@
 
 @theme {
     /* Fonts */
-    --font-sans: "Arimo", ui-sans-serif, system-ui, sans-serif;
+    --font-main: "Arimo", ui-sans-serif, system-ui, sans-serif;
     --font-heading: "Fira Sans Extra Condensed", ui-sans-serif, system-ui, sans-serif;
     --font-bebas: "Bebas Neue", ui-sans-serif, system-ui, sans-serif;
+    --font-main-admin: "Arimo", ui-sans-serif, system-ui, sans-serif;
+    --font-heading-admin: "Fira Sans Extra Condensed", ui-sans-serif, system-ui, sans-serif;
 
     /* Background images */
     --bg-bg1: url("../gfx/login.svg");
 }
 
+@import "./themes.css";
+
 @layer base {
     body {
-        @apply font-sans;
+        @apply font-main;
         scrollbar-gutter: auto !important;
     }
     h1, h2, h3, h4, h5, h6 {
@@ -32,8 +36,8 @@
     }
 
     [data-admin="true"] {
-        font-family: "Arimo", ui-sans-serif, system-ui, sans-serif;
-        h1, h2, h3, h4, h5, h6 {font-family: "Fira Sans Extra Condensed", ui-sans-serif, system-ui, sans-serif;}
+        @apply font-main-admin;
+        h1, h2, h3, h4, h5, h6 {@apply font-heading-admin;}
     }
 }
 

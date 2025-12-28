@@ -1,6 +1,6 @@
 <?php if (!empty($posts)): ?>
     <section class="carousel-wrapper relative">
-        <div class="carousel gap-1 border-t-4 border-b-4 border-secondary py-1 flex max-w-full">
+        <div class="carousel gap-2 border-t-4 border-b-4 border-secondary py-2 flex max-w-full">
 
             <?php foreach ($posts as $post): ?>
                 <div class="carousel-item">

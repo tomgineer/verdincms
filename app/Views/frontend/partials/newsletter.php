@@ -1,11 +1,11 @@
-<section class="bg-gradient-to-br from-primary via-primary/70 to-secondary text-base-content" data-theme="dark">
+<section class="bg-gradient-to-br from-primary via-primary/70 to-secondary text-base-content" data-theme="<?=setting('theme.dark')?>">
     <div class="max-w-5xl mx-auto px-8 py-16 flex flex-col md:flex-row items-center gap-12">
 
         <div class="flex-1 text-center md:text-left">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-base-content">
                 Newsletter
             </h1>
-            <p class="text-lg leading-relaxed opacity-90">
+            <p class="text-lg leading-relaxed">
                 Εγγράψου δωρεάν στο Newsletter της σελίδας! <span class="font-semibold">Κάθε Σαββατοκύριακο</span> στέλνω μια επιλεγμένη σύνοψη με τα πιο πρόσφατα άρθρα,
                 μαζί με αποκλειστικό περιεχόμενο που δεν μπορώ να δημοσιεύσω εδώ λόγω λογοκρισίας.
             </p>
@@ -24,11 +24,11 @@
                focus:border-accent focus:outline-none text-base-content placeholder:text-base-content/50 transition-all duration-200"
                 required />
 
-            <button type="submit" class="btn btn-accent btn-lg w-full shadow-md hover:shadow-accent/30 transition-all duration-200">
+            <button type="submit" class="btn btn-primary btn-lg w-full shadow-md hover:shadow-accent/30 transition-all duration-200">
                 Εγγραφή
             </button>
 
-            <p id="newsletter-message" class="text-sm text-center opacity-70">
+            <p id="newsletter-message" class="text-sm text-center">
                 Χωρίς spam. Μπορείς να διαγραφείς <br>ανά πάσα στιγμή με ένα κλικ.
             </p>
         </form>
