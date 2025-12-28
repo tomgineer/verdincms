@@ -1,9 +1,13 @@
 {
     "site": {
-        "title": "My Demo Website",
-        "url": "https://example.com",
+        "title": "",
+        "url": "",
         "language": "en",
         "timezone": "Europe/Berlin"
+    },
+    "cache": {
+        "enabled": false,
+        "lifetime": 3600
     },
     "theme": {
         "main": "dark",
@@ -25,64 +29,56 @@
         "displayTopics": true,
         "displayBlog": true
     },
-    "cache": {
-        "enabled": true,
-        "lifetime": 3600
-    },
-    "admin": {
-        "email": "admin@example.com",
-        "loginRequired": true
-    },
-    "socialMedia": {
-        "youtube": "https://www.youtube.com/@example",
-        "facebook": "https://www.facebook.com/example",
-        "whatsapp": "https://wa.me/491701234567",
-        "instagram": "https://www.instagram.com/example",
-        "tiktok": "https://www.tiktok.com/@example",
-        "x": "https://twitter.com/example",
-        "telegram": "https://t.me/example",
-        "reddit": "https://www.reddit.com/r/example",
-        "discord": "https://discord.gg/example",
-        "linkedin": "https://www.linkedin.com/company/example",
-        "threads": "https://www.threads.net/@example",
-        "github": "https://github.com/example",
-        "stackoverflow": "https://stackoverflow.com/users/1234567/example",
-        "patreon": "https://www.patreon.com/example",
-        "gitlab": "https://gitlab.com/example",
-        "vimeo": "https://vimeo.com/example",
-        "mastodon": "https://mastodon.social/@example",
-        "codepen": "https://codepen.io/example",
-        "jsfiddle": "https://jsfiddle.net/user/example/",
-        "buymeacoffee": "https://www.buymeacoffee.com/example",
-        "rumble": "https://rumble.com/user/example",
-        "odysee": "https://odysee.com/@example",
-        "bitchute": "https://www.bitchute.com/channel/example",
-        "gab": "https://gab.com/example",
-        "brighteon": "https://www.brighteon.com/channels/example",
-        "xing": "https://www.xing.com/profile/Example_User"
-    },
-    "posts": {
-        "postCount": 30,
-        "latestCount": 10,
-        "featuredCount": 10,
-        "relatedCount": 8,
-        "trendingCount": 20,
-        "popularCount": 20
+    "content": {
+        "postsPerPage": 20,
+        "postsPerCell": 10,
+        "trendingRange": 24
     },
     "system": {
         "version": "1.7.42",
-        "trendingRange": 24,
         "ip2location": false
     },
+    "admin": {
+        "email": "",
+        "loginRequired": true
+    },
+    "socialMedia": {
+        "youtube": "",
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "tiktok": "",
+        "x": "",
+        "telegram": "",
+        "reddit": "",
+        "discord": "",
+        "linkedin": "",
+        "threads": "",
+        "github": "",
+        "stackoverflow": "",
+        "patreon": "",
+        "gitlab": "",
+        "vimeo": "",
+        "mastodon": "",
+        "codepen": "",
+        "jsfiddle": "",
+        "buymeacoffee": "",
+        "rumble": "",
+        "odysee": "",
+        "bitchute": "",
+        "gab": "",
+        "brighteon": "",
+        "xing": ""
+    },
     "meta": {
-        "siteName": "My Demo Website",
-        "siteTitle": "My Demo Website — Just Another VerdinCMS Site",
-        "siteDescription": "A demo configuration for VerdinCMS. Customize freely to match your own project.",
-        "twitter": "@example"
+        "siteName": "",
+        "siteTitle": "",
+        "siteDescription": "",
+        "twitter": ""
     },
     "company": {
-        "name": "Example Media Group",
-        "email": "info@example.com",
-        "supportEmail": "support@example.com"
+        "name": "",
+        "email": "",
+        "supportEmail": ""
     }
 }

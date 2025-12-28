@@ -51,7 +51,7 @@
         <?= $this->renderSection('main') ?>
     </main>
 
-    <footer class="bg-base-200" data-theme="<?=setting('theme.dark')?>">
+    <footer class="bg-base-200" data-theme="<?=setting('theme.darkBlocks')?>">
         <?= view_cell('FrontendCell::footer') ?>
     </footer>
 

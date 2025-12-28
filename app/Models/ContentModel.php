@@ -57,7 +57,7 @@ public function getPosts(
     bool $review = false
 ) : array {
     $tier = tier(); // Access level of the current session user
-    $amount = $amount ?? setting('posts.postCount', 30);
+    $amount = $amount ?? setting('content.postsPerPage', 20);
     $builder = $this->db->table('posts p');
     $builder->join('users u', 'u.id = p.user_id');
     $builder->join('topics t', 't.id = p.topic_id');
@@ -216,12 +216,10 @@ public function getSinglePost(int $id): ?array {
  */
 public function getRankingPosts(
     ?int $amount = null,
-    string $type = 'popular',
-    int $page = 1,
-    bool $pagination = true
+    string $type = 'popular'
 ): array {
     $tier = tier();
-    $amount = $amount ?? setting('posts.postCount', 30);
+    $amount = $amount ?? setting('content.postsPerPage', 20);
     $builder = $this->db->table('posts p');
 
     // Select core fields
@@ -230,35 +228,26 @@ public function getRankingPosts(
             ->select('CONCAT(u.first_name, " ", u.last_name) AS author', false)
             ->select('u.author AS author_handle')
             ->select('t.title AS topic, t.slug AS topic_slug')
+            ->join('users u', 'u.id = p.user_id')
             ->where('p.status', 1)
             ->where('p.accessibility <=', $tier)
-            ->join('users u', 'u.id = p.user_id')
-            ->join('topics t', 't.id = p.topic_id');
+            ->join('topics t', 't.id = p.topic_id')
+            ->limit($amount);
 
     // Apply ranking logic
     switch ($type) {
         case 'popular':
-            $builder->join('stats_popular s', 's.post_id = p.id', 'inner');
-            if ($pagination) {
-                $totalRecordsQuery = clone $builder;
-            }
-            $builder->orderBy('s.hits_per_day', 'DESC');
+            $builder->join('stats_popular s', 's.post_id = p.id', 'inner')
+                    ->orderBy('s.hits_per_day', 'DESC');
             break;
         case 'trending':
-            $hours = setting('system.trendingRange') ?? 24;
+            $hours = setting('content.trendingRangeHours') ?? 24;
             $builder->join('stats_trending s', 's.post_id = p.id', 'inner')
                     ->where('s.created >=', "DATE_SUB(NOW(), INTERVAL {$hours} HOUR)", false)
-                    ->groupBy('s.post_id');
-            if ($pagination) {
-                $totalRecordsQuery = clone $builder;
-            }
-            $builder->orderBy('COUNT(s.id)', 'DESC');
+                    ->groupBy('s.post_id')
+                    ->orderBy('COUNT(s.id)', 'DESC');
             break;
     }
-
-    // Apply limit and offset
-    $offset = ($page - 1) * $amount;
-    $builder->limit($amount, $offset);
 
     $postData['posts'] = $builder->get()->getResultArray();
 
@@ -267,23 +256,57 @@ public function getRankingPosts(
         $row['ago'] = Time::parse($row['created'])->humanize(); // e.g. "3 hours ago"
     });
 
-    // Add pagination metadata
-    if ( $pagination ) {
-        $totalRecords = $totalRecordsQuery->countAllResults();
+    $postData['posts'] = $this->postsArrFiller($postData['posts'], $amount);
+    return $postData;
+}
 
-        // Prepare response data
-        $postData = array_merge($postData, [
-            'post_cur_min' => min(($page - 1) * $amount + 1, $totalRecords),
-            'post_cur_max' => min($page * $amount, $totalRecords),
-            'post_max'     => $totalRecords,
-            'page_cur'     => $page,
-            'page_max'     => max(ceil($totalRecords / $amount), 1),
-            'prev'         => $page - 1,
-            'next'         => $page + 1
-        ]);
+/**
+ * Fill a posts array up to the requested amount with random public posts.
+ *
+ * @param array $posts  Existing posts (each with an 'id' key).
+ * @param int   $amount Target amount of posts to return.
+ * @return array        Posts array padded with random posts if needed.
+ */
+public function postsArrFiller(array $posts, int $amount): array {
+    $currentCount = count($posts);
+
+    if ($currentCount >= $amount) {
+        return $posts;
     }
 
-    return $postData;
+    $remaining = $amount - $currentCount;
+    $existingIds = array_column($posts, 'id');
+    $tier = tier();
+
+    $builder = $this->db->table('posts p')
+                        ->select('p.id, p.title, p.subtitle, p.photo, p.created')
+                        ->select('DATE_FORMAT(p.created, "%b %d, %Y") AS f_created', false)
+                        ->select('CONCAT(u.first_name, " ", u.last_name) AS author', false)
+                        ->select('u.author AS author_handle')
+                        ->select('t.title AS topic, t.slug AS topic_slug')
+                        ->join('users u', 'u.id = p.user_id')
+                        ->join('topics t', 't.id = p.topic_id')
+                        ->where('p.status', 1)
+                        ->where('p.accessibility <=', $tier);
+
+    if (!empty($existingIds)) {
+        $builder->whereNotIn('p.id', $existingIds);
+    }
+
+    $filler = $builder->orderBy('RAND()')
+                      ->limit($remaining)
+                      ->get()
+                      ->getResultArray();
+
+    $merged = array_merge($posts, $filler);
+
+    // Ensure "ago" is present for any filler items when used elsewhere.
+    array_walk($merged, static function (&$row) {
+        $row['ago'] = Time::parse($row['created'])->humanize();
+    });
+
+    return $merged;
+
 }
 
 /**
@@ -627,7 +650,6 @@ public function countContent(string $type = 'total'): int {
 public function countSubscribers(): int {
     return $this->db->table('newsletter')->countAll();
 }
-
 
 /**
  * Performs a fulltext search on published posts.

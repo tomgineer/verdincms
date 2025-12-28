@@ -1,4 +1,4 @@
-<section class="bg-gradient-to-br from-primary via-primary/70 to-secondary text-base-content" data-theme="<?=setting('theme.dark')?>">
+<section class="bg-gradient-to-br from-primary via-primary/70 to-secondary text-base-content" data-theme="<?=setting('theme.darkBlocks')?>">
     <div class="max-w-5xl mx-auto px-8 py-16 flex flex-col md:flex-row items-center gap-12">
 
         <div class="flex-1 text-center md:text-left">

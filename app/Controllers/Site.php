@@ -43,7 +43,7 @@ public function index() {
     }
 
     // Fetch Data
-    $data = ['latest_updates' => $this->content->getPosts(pagination: true, page: $page, amount: 20)];
+    $data = ['latest_updates' => $this->content->getPosts(pagination: true, page: $page)];
 
     // Render the view
     $output = theme_view('frontend/pages/front', $data);
@@ -207,7 +207,7 @@ public function topic(string $slug) {
     // Prepare data
     $data = [
         'site_title' => $this->content->getTitleFromId($topic_id, 'topics'),
-        'post_data'  => $this->content->getPosts(topic_id: $topic_id, pagination: true, page: $page, amount: 20)
+        'post_data'  => $this->content->getPosts(topic_id: $topic_id, pagination: true, page: $page)
     ];
 
     // Render view
@@ -259,7 +259,7 @@ public function author(string $handle) {
     // Prepare data
     $data = [
         'site_title' => $this->content->getFullnameFromId($user_id, true),
-        'post_data'  => $this->content->getPosts(user_id: $user_id, pagination: true, page: $page, amount: 20)
+        'post_data'  => $this->content->getPosts(user_id: $user_id, pagination: true, page: $page)
     ];
 
     // Render view
@@ -348,7 +348,7 @@ public function featured() {
     // Fetch data
     $data = [
         'site_title' => 'Featured',
-        'post_data'  => $this->content->getPosts(featured: true, pagination: true, page: $page, amount: 20)
+        'post_data'  => $this->content->getPosts(featured: true, pagination: true, page: $page)
     ];
 
     // Render the view

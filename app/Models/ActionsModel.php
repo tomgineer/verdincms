@@ -384,15 +384,17 @@ private function applyTimezone(): void {
  * @param int $hours  Number of hours to keep in stats_trending table (default: 6)
  * @return void
  */
-private function optimizeStatsTables(int $days = 45, int $hours = 6): void {
+private function optimizeStatsTables(): void {
     // Delete old stats
+    $days = 45;
     $this->db->table('stats')
              ->where("created <", "CURDATE() - INTERVAL {$days} DAY", false)
              ->delete();
 
     // Delete old trending stats
+    $trendingRangeHours = setting('content.trendingRangeHours') ?? 24;
     $this->db->table('stats_trending')
-             ->where("created <", "NOW() - INTERVAL {$hours} HOUR", false)
+             ->where("created <", "NOW() - INTERVAL {$trendingRangeHours} HOUR", false)
              ->delete();
 }
 
