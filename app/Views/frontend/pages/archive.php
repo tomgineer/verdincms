@@ -11,7 +11,7 @@
         </section>
 
         <aside class="w-full lg:w-[30%]">
-            <div class="xl:sticky xl:top-8">
+            <div>
                 <?php if (!empty($stats)): ?>
                     <div class="stats grid grid-cols-2 grid-flow-row">
                         <?php foreach ($stats as $stat): ?>
