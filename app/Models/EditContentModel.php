@@ -207,8 +207,8 @@ public function ajaxUploadContentPhoto(?\CodeIgniter\HTTP\Files\UploadedFile $fi
     $file->move($tempDir, $tempName);
 
     if ($type==='post') {
-        // Create 1024x1024 image
-        $mainResult = $this->createThumbnail($tempPath, $mainPath, 1024, 1024);
+        // Create 512x512 image
+        $mainResult = $this->createThumbnail($tempPath, $mainPath, 512, 512);
     } else {
         // Create 2304x960 image -- 1536 x 640 Base x 1.5 Upscale = 2304 x 960
         $mainResult = $this->createThumbnail($tempPath, $mainPath, 2304, 960);
@@ -223,8 +223,8 @@ public function ajaxUploadContentPhoto(?\CodeIgniter\HTTP\Files\UploadedFile $fi
         // 1536 x 640 for pages
         $thumbResult = $this->createThumbnail($tempPath, $thumbPath, 1536, 640);
     } else {
-        // 512 x 512 for posts
-        $thumbResult = $this->createThumbnail($tempPath, $thumbPath, 512, 512);
+        // 350 x 350 for posts
+        $thumbResult = $this->createThumbnail($tempPath, $thumbPath, 350, 350);
     }
 
     if ($thumbResult !== true) {
@@ -388,7 +388,7 @@ private function createThumbnail(
             imagedestroy($scaled);
         }
 
-        $result = imagewebp($thumb, $destination, 75);
+        $result = imagewebp($thumb, $destination, 40);
         imagedestroy($img);
         imagedestroy($thumb);
 

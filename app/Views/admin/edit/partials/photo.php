@@ -12,7 +12,7 @@
 
 <div class="text-xs text-base-content/70 mt-2 mb-4 mx-4">
     <?php if ($type === 'post'): ?>
-        For best results, upload an image sized <span class="text-accent font-semibold">1024 × 1024</span> px
+        For best results, upload an image sized <span class="text-accent font-semibold">512 × 512</span> px
     <?php else: ?>
         For best results, upload an image sized <span class="text-accent font-semibold">2304 × 960</span> px<br>
         (<span class="text-info font-semibold">1536 × 640</span> px × 1.5 Upscale)

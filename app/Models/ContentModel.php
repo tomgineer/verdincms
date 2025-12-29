@@ -300,7 +300,7 @@ public function postsArrFiller(array $posts, int $amount): array {
 
     // Add human readable ago column
     array_walk($filler, static function (&$row) {
-        $row['ago'] = Time::parse($row['created'])->humanize() . '﹢';
+        $row['ago'] = Time::parse($row['created'])->humanize() . '+';
     });
 
     $merged = array_merge($posts, $filler);

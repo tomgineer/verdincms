@@ -4,7 +4,7 @@
 <article class="container mx-auto px-4 mt-8 lg:mt-16 mb-16 lg:mb-24">
 
     <div class="card lg:card-side bg-base-100 rounded-none">
-        <figure class="w-full lg:w-1/3">
+        <figure class="w-full lg:w-3/10">
             <img class="rounded-[25%_0_25%_0] shadow-sm aspect-square" src="<?= path_img() . esc($post['photo']) . '.webp' ?>" alt="<?= esc($post['title']) ?>">
         </figure>
 
