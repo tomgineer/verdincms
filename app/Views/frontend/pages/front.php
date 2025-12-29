@@ -8,13 +8,13 @@
     $restPosts = array_slice($latestPosts, $halfCount);
 ?>
 
-<div class="container mx-auto px-4 mt-12 lg:mt-24 mb-8 lg:mb-12">
-    <div class="flex flex-col lg:flex-row gap-8">
+<div class="xl:container mx-2 xl:mx-auto px-4 mt-8 lg:mt-12 xl:mt-24 mb-0 lg:mb-12">
+    <div class="flex flex-col lg:flex-row lg:gap-8">
         <section class="flex-1">
             <?= view('frontend/partials/post_list', ['posts' => $topPosts]) ?>
         </section>
 
-        <aside class="w-full lg:w-[30%]">
+        <aside class="w-full lg:w-[30%] hidden lg:block">
             <h2 class="text-3xl text-primary mt-8 mb-2">Trending</h2>
             <?=view_cell('FrontendCell::trending')?>
         </aside>
@@ -23,7 +23,7 @@
 
 <?=view_cell('FrontendCell::featuredBlock')?>
 
-<div class="container mx-auto px-4 mt-16 lg:mt-30 mb-12 lg:mb-24">
+<div class="xl:container mx-auto px-4 mt-0 lg:mt-30 mb-12 lg:mb-24">
     <div class="flex flex-col lg:flex-row gap-8">
         <section class="flex-1">
             <?= view('frontend/partials/post_list', ['posts' => $restPosts]) ?>

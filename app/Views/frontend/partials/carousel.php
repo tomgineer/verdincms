@@ -1,5 +1,5 @@
 <?php if (!empty($posts)): ?>
-    <section class="carousel-wrapper relative">
+    <section class="carousel-wrapper relative hidden lg:block">
         <div class="carousel gap-2 border-t-4 border-b-4 border-secondary py-2 flex max-w-full">
 
             <?php foreach ($posts as $post): ?>
