@@ -284,7 +284,7 @@ public function ajaxUploadInlinePhoto(?\CodeIgniter\HTTP\Files\UploadedFile $fil
     $file->move($tempDir, $tempName);
 
     // Create image
-    $mainResult = $this->createThumbnail($tempPath, $mainPath, 1600, 1600, true);
+    $mainResult = $this->createThumbnail($tempPath, $mainPath, 1024, 1024, true);
     if ($mainResult !== true) {
         return ['success' => false, 'error' => 'Main image error: ' . $mainResult];
     }

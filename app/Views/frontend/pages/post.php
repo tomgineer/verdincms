@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="w-full lg:max-w-[80ch] mx-auto mt-16 leading-relaxed text-xl prose prose-neutral">
+    <div class="w-full lg:max-w-[80ch] mx-auto mt-12 lg:mt-24 leading-relaxed text-xl prose prose-neutral">
         <?= esc($post['body'], 'raw') ?>
     </div>
 
