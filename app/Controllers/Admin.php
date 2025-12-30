@@ -85,6 +85,8 @@ public function moderate(string $type) {
     $data = [
         'site_title' => ucwords($type),
         'post_data'  => $post_data,
+        'public_posts' => $this->content->countContent('public'),
+        'total_posts'  => $this->content->countContent('total'),
         'stats' => [[
             'title' => ucfirst($type),
             'value' => $this->content->countContent($type),
