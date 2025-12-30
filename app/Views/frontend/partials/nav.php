@@ -1,4 +1,4 @@
-<nav class="navbar bg-base-300 z-999" data-theme="<?= (strpos(body_class(), 'admin-') === 0) ? 'dark' : setting('theme.darkBlocks') ?>">
+<nav class="navbar bg-base-300 z-999" data-theme="<?= ($isAdmin ?? false) ? 'dark' : setting('theme.darkBlocks') ?>">
     <div class="flex-1 flex items-center gap-2">
         <a class="btn btn-ghost text-xl px-1 lg:px-4" href="<?= base_url() ?>">
             <img
@@ -209,3 +209,4 @@
 
     </div>
 </nav>
+

@@ -1,4 +1,4 @@
-<?= $this->extend('frontend/layouts/default') ?>
+<?= $this->extend('admin/layouts/default') ?>
 <?= $this->section('main') ?>
 
 <div class="container mx-auto px-4 mt-8 lg:mt-18 mb-12 lg:mb-24">
@@ -11,17 +11,7 @@
         </section>
 
         <aside class="w-full lg:w-[30%]">
-
-            <?php if (empty($hideTrending)): ?>
-                <h2 class="text-3xl text-primary mt-8 mb-2">Trending</h2>
-                <?= view_cell('FrontendCell::trending') ?>
-            <?php endif; ?>
-
-            <?php if (empty($hidePopular)): ?>
-                <h2 class="text-3xl text-primary mt-8 mb-2">Featured</h2>
-                <?= view_cell('FrontendCell::featured') ?>
-            <?php endif; ?>
-
+            <?=view_cell('AdminCell::stats', ['statsType' => $type])?>
         </aside>
 
     </div>

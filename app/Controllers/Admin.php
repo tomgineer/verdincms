@@ -17,6 +17,7 @@ class Admin extends BaseController {
 
     public function __construct() {
         $this->content = new ContentModel();
+        service('renderer')->setVar('isAdmin', true);
     }
 
 /**
@@ -76,26 +77,15 @@ public function moderate(string $type) {
         ? $this->content->getPosts(status: 2, pagination: true, page: $page)
         : $this->content->getPosts(review: true, pagination: true, page: $page);
 
-    // Smarter descriptions
-    $descriptions = [
-        'drafts' => 'Unpublished or Deleted',
-        'review' => 'Awaiting Editorial Review'
-    ];
-
     $data = [
+        'title' => 'Moderate ' . ucwords($type),
         'site_title' => ucwords($type),
         'post_data'  => $post_data,
-        'public_posts' => $this->content->countContent('public'),
-        'total_posts'  => $this->content->countContent('total'),
-        'stats' => [[
-            'title' => ucfirst($type),
-            'value' => $this->content->countContent($type),
-            'desc'  => $descriptions[$type] ?? 'Pending'
-        ]]
+        'type' => $type
     ];
 
     // Render view
-    return view('frontend/pages/archive', $data);
+    return view('admin/pages/archive', $data);
 }
 
 /**
@@ -267,7 +257,7 @@ public function analytics(...$segments) {
     $path = implode('/', $segments);
     $data = [
         'path'  => $path,
-        'title' => 'Analytics'
+        'title' => 'Analytics',
     ];
 
     $this->dash = new DashboardModel();
