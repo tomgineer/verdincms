@@ -1,12 +1,12 @@
-<div class="w-full mx-auto px-4 lg:max-w-4xl mt-6">
+<div class="w-full mt-6 pr-[25%] 2xl:pr-0 2xl:mx-auto max-w-full 2xl:max-w-4xl">
 
     <div class="indicator w-full mb-6">
-        <span class="indicator-item badge font-semibold" data-indicator="60">12</span>
+        <span class="indicator-item badge badge-sm font-semibold translate-x-0 2xl:translate-x-1/2 -translate-y-1/2" data-indicator="60">12</span>
         <textarea class="textarea textarea-primary bg-base-200 w-full resize-none overflow-hidden text-2xl font-semibold" name="title" placeholder="Title" data-autogrow="true"><?=esc($post['title'])?></textarea>
     </div>
 
     <div class="indicator w-full mb-6">
-        <span class="indicator-item badge font-semibold" data-indicator="120">12</span>
+        <span class="indicator-item badge badge-sm font-semibold translate-x-0 2xl:translate-x-1/2 -translate-y-1/2" data-indicator="120">12</span>
         <textarea class="textarea textarea-secondary bg-base-200 w-full resize-none overflow-hidden text-xl" name="subtitle" placeholder="Subtitle" data-autogrow="true"><?=esc($post['subtitle'])?></textarea>
     </div>
 

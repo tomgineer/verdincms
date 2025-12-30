@@ -8,7 +8,7 @@
 
 <?= $this->section('main') ?>
 
-<main class="edit-main mb-32">
+<main class="edit-main mb-32 px-4">
     <?= $this->include('admin/edit/main') ?>
 </main>
 

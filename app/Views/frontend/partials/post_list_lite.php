@@ -11,7 +11,7 @@
                             <h2 class="card-title font-medium"><?= esc($post['title']) ?></h2>
                         </a>
                         <div>
-                            <figure class="w-16 xl:w-20 2xl:w-24 shrink-0 aspect-square rounded-full wrap-around">
+                            <figure class="w-20 2xl:w-24 shrink-0 aspect-square rounded-full wrap-around">
                                 <a href="<?= site_url('post/' . esc($post['id'])) ?>">
                                     <img
                                         src="<?= path_img_xs() . esc($post['photo']) . '.webp' ?>"

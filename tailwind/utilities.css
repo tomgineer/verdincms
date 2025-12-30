@@ -23,13 +23,13 @@
     .scrollbar-auto {
         scrollbar-gutter: auto !important; /* Add this via JS to HTML in a modal */
     }
-    /* .no-scrollbar {
+    .no-scrollbar {
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
     .no-scrollbar::-webkit-scrollbar {
         display: none;
-    } */
+    }
 
     /* Wrap text around image */
     .wrap-around {

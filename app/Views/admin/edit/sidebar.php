@@ -1,4 +1,4 @@
-<div class="fixed right-0 bottom-0 w-1/5 top-0 z-50 bg-base-200 p-2 pt-16 overflow-y-auto overscroll-contain">
+<div class="fixed right-0 bottom-0 w-1/4 2xl:w-1/5 top-0 z-50 bg-base-200 p-2 pt-16 overflow-y-auto overscroll-contain no-scrollbar">
     <?= $this->include('admin/edit/partials/menu') ?>
     <?= $this->include('admin/edit/partials/photo') ?>
     <?= $this->include('admin/edit/partials/essentials') ?>
