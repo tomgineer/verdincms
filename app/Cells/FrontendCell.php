@@ -38,7 +38,7 @@ public function footer(): string {
         'socials_list'      => $this->content->getSocialsList()
     ];
 
-    return view('frontend/partials/footer', $data, ['saveData' => false]);
+    return theme_view('frontend/partials/footer', $data, ['saveData' => false]);
 }
 
 /**
