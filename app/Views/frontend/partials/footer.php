@@ -1,4 +1,4 @@
-<section class="footer footer-horizontal footer-center text-base-content rounded p-10 pt-12 relative">
+<section class="footer footer-horizontal footer-center text-base-content rounded p-10 pt-12 relative bg-base-200">
     <a class="btn btn-lg btn-circle btn-soft absolute left-1/2 -translate-x-1/2 -top-6 shadow-md" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
@@ -12,7 +12,7 @@
     </nav>
 </section>
 
-<section class="footer sm:footer-horizontal text-base-content p-10 pt-1">
+<section class="footer sm:footer-horizontal text-base-content p-10 pt-1 bg-base-200">
 
     <nav>
         <ul class="menu w-full">
@@ -49,7 +49,7 @@
 
 </section>
 
-<section class="footer text-base-content border-base-200 border-t-2 px-10 py-8 pb-8 lg:gap-0">
+<section class="footer text-base-content border-base-200 border-t-2 px-10 py-8 pb-8 lg:gap-0 bg-base-200">
     <aside class="grid-flow-row lg:grid-flow-col gap-6 items-center">
         <a href="<?= base_url() ?>">
             <img
