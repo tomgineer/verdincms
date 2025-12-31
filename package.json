@@ -7,8 +7,14 @@
         "tailwindcss": "^4.1.11"
     },
     "scripts": {
-        "dev": "npx @tailwindcss/cli -i ./tailwind/input.css -o ./public/css/tailwind.css --watch",
+        "dev": "npx npm-run-all --parallel dev:css dev:js",
+        "dev:css": "npx @tailwindcss/cli -i ./tailwind/input.css -o ./public/css/tailwind.css --watch",
+        "dev:js": "esbuild public/js/app/app.js public/js/admin/admin.js --bundle --sourcemap --outdir=public/js --entry-names=[name]-dist --watch",
+
+        "build": "npx npm-run-all build:css build:js",
         "build:css": "npx @tailwindcss/cli -i ./tailwind/input.css -o ./public/css/tailwind.css --minify",
+        "build:js": "esbuild public/js/app/app.js public/js/admin/admin.js --bundle --minify --outdir=public/js --entry-names=[name]-dist",
+
         "copy:chart": "powershell Copy-Item node_modules/chart.js/dist/chart.umd.js public/js/chart.js",
         "copy:highlight:js": "powershell Copy-Item node_modules/highlight.js/lib/common.js public/js/highlight.js",
         "copy:highlight:css": "powershell Copy-Item node_modules/highlight.js/styles/*.css public/css/highlight/"
