@@ -12,6 +12,7 @@ export default function initSearch() {
     const searchInput = document.querySelector('[data-js-search]');
     if (!searchInput) return;
 
+    const resultsContainer = document.querySelector('[data-js-search-results]');
     let debounceTimer;
 
     searchInput.addEventListener('input', () => {
@@ -28,6 +29,20 @@ export default function initSearch() {
         debounceTimer = setTimeout(() => {
             displaySearchResults(query);
         }, 300); // tweak delay as you like
+    });
+
+    document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+
+        const clickedInput = target.closest('[data-js-search]');
+        const clickedResults = target.closest('[data-js-search-results]');
+
+        if (!clickedInput && !clickedResults) {
+            searchInput.value = '';
+            clearTimeout(debounceTimer);
+            hideSearchResults();
+        }
     });
 }
 
