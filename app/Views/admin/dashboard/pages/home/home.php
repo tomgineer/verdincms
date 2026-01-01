@@ -4,12 +4,12 @@
 </header>
 
 <section class="grid grid-cols-2 gap-8 mb-16">
-    <div class="chart-container h-[40vh]">
+    <div class="chart-container h-[30vh]">
         <h4>Visitors & Hits — Last 14 Days</h4>
         <canvas class="dash-chart" data-json="<?=chart_data($chart_visitors)?>" data-type="bar"></canvas>
     </div>
 
-    <div class="chart-container h-[40vh]">
+    <div class="chart-container h-[30vh]">
         <h4>Posting Activity — Last 14 Days</h4>
         <canvas class="dash-chart" data-json="<?=chart_data($posting_activity)?>" data-type="bar"></canvas>
     </div>
@@ -19,7 +19,7 @@
     <input type="radio" name="dashboard" class="tab" aria-label="Primary Actions" checked="checked" />
     <div class="tab-content border-0 p-8">
         <p class="mb-8">This section provides utilities for version control, manual Cron execution, and system maintenance, including cleanup of orphaned files, soft-deleted records, and cache.</p>
-        <nav class="grid grid-cols-[250px_1fr] items-center gap-4">
+        <nav class="grid grid-cols-[250px_1fr] items-center gap-y-2 gap-x-4 [&>button]:gap-x-2 [&>button>svg]:text-base-content/70">
             <?= $this->include('admin/dashboard/pages/home/actions_primary') ?>
         </nav>
     </div>
@@ -27,7 +27,7 @@
     <input type="radio" name="dashboard" class="tab" aria-label="System Utilities" />
     <div class="tab-content border-0 p-8">
         <p class="mb-8">This section provides utilities for SEO (robots and sitemap generation), statistics optimization, role-based testing, AI execution, and updating content-related data such as topics and popular posts.</p>
-        <nav class="grid grid-cols-[250px_1fr] items-center gap-4">
+        <nav class="grid grid-cols-[250px_1fr] items-center gap-y-2 gap-x-4 [&>button]:gap-x-2 [&>button>svg]:text-base-content/70">
             <?= $this->include('admin/dashboard/pages/home/actions_utilities') ?>
         </nav>
     </div>
@@ -35,7 +35,7 @@
     <input type="radio" name="dashboard" class="tab" aria-label="System Cleanup" />
     <div class="tab-content border-0 p-8">
         <p class="mb-8">This section provides maintenance utilities to purge logs, cache, expired session files, and orphaned media files, helping keep the system optimized and clutter-free.</p>
-        <nav class="grid grid-cols-[250px_1fr] items-center gap-4">
+        <nav class="grid grid-cols-[250px_1fr] items-center gap-y-2 gap-x-4 [&>button]:gap-x-2 [&>button>svg]:text-base-content/70">
             <?= $this->include('admin/dashboard/pages/home/actions_cleanup') ?>
         </nav>
     </div>
@@ -47,7 +47,7 @@
             Use them only if you fully understand their impact.
             <span class="font-bold text-error">Caution: These operations cannot be undone!</span>
         </p>
-        <nav class="grid grid-cols-[250px_1fr] items-center gap-4">
+        <nav class="grid grid-cols-[250px_1fr] items-center gap-y-2 gap-x-4 [&>button]:gap-x-2">
             <?= $this->include('admin/dashboard/pages/home/actions_critical') ?>
         </nav>
     </div>
@@ -55,7 +55,7 @@
     <input type="radio" name="dashboard" class="tab" aria-label="Administration Links" />
     <div class="tab-content border-0 p-8">
         <p class="mb-8">Useful links for quick access to system functions.</p>
-        <nav class="grid grid-cols-[250px_1fr] items-center gap-4">
+        <nav class="grid grid-cols-[250px_1fr] items-center gap-y-2 gap-x-4 [&>a]:gap-x-2 [&>a>svg]:text-base-content/70">
             <?= $this->include('admin/dashboard/pages/home/actions_links') ?>
         </nav>
     </div>

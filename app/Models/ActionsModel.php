@@ -94,6 +94,9 @@ class ActionsModel extends Model {
             case 'clearSessionFiles':
                 $this->deleteOldSessionFiles();
                 break;
+            case 'toggleCache':
+                $status = $this->toggleCache();
+                break;
             case 'generateSitemap':
                 (new SystemModel())->generateSitemap();
                 break;
@@ -169,7 +172,7 @@ function updateVersion(): bool {
     $settings['system']['version'] = implode('.', $segments);
 
     // Encode JSON with pretty-print and write it back
-    $encoded = json_encode($settings, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+    $encoded = json_encode($settings, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 
     return file_put_contents($path, $encoded) !== false;
 }
@@ -563,7 +566,7 @@ private function sanitizeResponse(?string $str): string {
  *
  * @return string        HTML string with each part wrapped in <p> tags.
  */
-function splitParagraph(string $text, int $parts = 2): string {
+private function splitParagraph(string $text, int $parts = 2): string {
     preg_match_all('/[.!?]/', $text, $m, PREG_OFFSET_CAPTURE);
     if ($parts < 2 || !$m[0]) return "<p>" . trim($text) . "</p>";
 
@@ -588,6 +591,45 @@ function splitParagraph(string $text, int $parts = 2): string {
 
     $out[] = "<p>" . trim(substr($text, $start)) . "</p>";
     return implode('', $out);
+}
+
+/**
+ * Toggles the cache enabled setting in config/config.json.
+ *
+ * Flips "cache.enabled" from true to false or false to true.
+ *
+ * @return string  New cache status: "enabled" or "disabled". Returns "error" on failure.
+ */
+private function toggleCache(): string {
+    $path = ROOTPATH . 'config/config.json';
+
+    if (!is_file($path)) {
+        return 'error';
+    }
+
+    $json = file_get_contents($path);
+    $settings = json_decode($json, true);
+
+    if (!is_array($settings) || !isset($settings['cache']['enabled'])) {
+        return 'error';
+    }
+
+    $settings['cache']['enabled'] = !$settings['cache']['enabled'];
+    $status = $settings['cache']['enabled'] ? 'Enabled' : 'Disabled';
+
+    $encoded = json_encode(
+        $settings,
+        JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+    );
+    if ($encoded === false) {
+        return 'error';
+    }
+
+    if (file_put_contents($path, $encoded) === false) {
+        return 'error';
+    }
+
+    return $status;
 }
 
 } // ─── End of Class ───
