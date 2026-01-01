@@ -441,19 +441,22 @@ public function getIdFromSlug(string $slug, string $table): ?int {
 }
 
 /**
- * Retrieves the title of a record by its ID from a given table.
+ * Retrieves a topic's title and description by its ID.
  *
- * @param int    $id    The record ID.
- * @param string $table The database table to query.
- * @return string|null  The title if found, or null if not found.
+ * @param int $id The topic ID.
+ * @return array{title:?string, description:?string} Topic details.
  */
-public function getTitleFromId(int $id, string $table): ?string {
-    return $this->db->table($table)
-                    ->select('title')
+public function getTopicDetails(int $id): array {
+    $row = $this->db->table('topics')
+                    ->select('title, description')
                     ->where('id', $id)
                     ->get()
-                    ->getRow()
-                    ->title ?? null;
+                    ->getRowArray();
+
+    return [
+        'title' => $row['title'] ?? '',
+        'description' => $row['description'] ?? '',
+    ];
 }
 
 /**
@@ -741,3 +744,6 @@ private function arrayGroupBy(array $array, string|int|callable $key, ...$nextKe
 }
 
 } // ─── End of Class ───
+
+
+

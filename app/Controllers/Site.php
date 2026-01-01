@@ -205,8 +205,10 @@ public function topic(string $slug) {
     }
 
     // Prepare data
+    $topic = $this->content->getTopicDetails($topic_id);
     $data = [
-        'site_title' => $this->content->getTitleFromId($topic_id, 'topics'),
+        'site_title' => $topic['title'] ?? '',
+        'site_desc' => $topic['description'] ?? '',
         'post_data'  => $this->content->getPosts(topic_id: $topic_id, pagination: true, page: $page)
     ];
 
@@ -422,4 +424,6 @@ public function setupPageRoutes() {
 }
 
 } // ─── End of Class ───
+
+
 

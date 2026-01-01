@@ -5,7 +5,12 @@
     <div class="flex flex-col lg:flex-row gap-8">
 
         <section class="flex-1">
-            <h1 class="text-4xl text-base-content/70 mb-8 text-shadow-lg"><?= esc($site_title) ?></h1>
+            <header class="mb-8 lg:mb-12">
+                <h1 class="text-4xl text-base-content/70 text-shadow-lg"><?= esc($site_title) ?></h1>
+                <?php if (!empty($site_desc)): ?>
+                    <div class="text-base-content/50 text-sm mt-1"><?= esc($site_desc) ?></div>
+                <?php endif; ?>
+            </header>
             <?= view('frontend/partials/post_list', ['posts' => $post_data['posts']]) ?>
             <?= isset($post_data['pagination']) ? view('frontend/partials/pagination', ['pagination' => $post_data['pagination']]) : '' ?>
         </section>
