@@ -1,30 +1,6 @@
-<section class="relative w-full min-h-[calc(100vh-64px)] flex items-center justify-center mb-24">
+<div class="hero min-h-[50vh] md:min-h-[65vh] overflow-hidden relative bg-black bg-left lg:bg-center" id="hero">
 
-    <div class="z-10 max-w-7xl text-center text-md lg:text-lg xl:text-xl leading-normal px-4 py-12">
-        <h1 class="text-5xl font-bold text-white text-center text-shadow-lg mb-2">
-            Χτίζοντας αξία στον ψηφιακό κόσμο
-        </h1>
-        <p class="py-4">Το να δημιουργείς περιεχόμενο στον ψηφιακό κόσμο είναι σαν να προσπαθείς να χτίσεις κάτι με άμμο, σε μια παραλία γεμάτη φωνές και ανέμους. Για χρόνια έγραφα. Έγραφα για την τεχνολογία, για την οικονομία, για τις ιδέες που με συνάρπαζαν. Μα ένιωθα ότι απλώς πρόσθετα κι άλλο θόρυβο.</p>
-        <p class="py-4">
-            Όλα αυτά ήταν αποσπασματικά, σαν σκόρπιες λέξεις σε ένα αχανές λεξικό. Δεν υπήρχε κανένα νήμα που να τις συνδέει, κανένας σκοπός πέρα από την ίδια την πράξη της δημιουργίας. Μου έλειπε κάτι. Ένα σύστημα, μια αρχιτεκτονική.
-            Εκείνο τον καιρό, μου ήρθε στο μυαλό η ιδέα του «μηχανικού». Όχι με την παραδοσιακή έννοια, αλλά ως ένας άνθρωπος που δεν χτίζει απλώς, αλλά σχεδιάζει. Που φιλτράρει, οργανώνει και τελικά δίνει μορφή σε κάτι χρήσιμο. Αυτή ήταν η λέξη που έψαχνα. Όχι «δημοσιογράφος», ούτε «blogger». Αλλά «μηχανικός της αξίας».
-        </p>
-        <p class="py-4">
-            Και έτσι γεννήθηκε το <strong>tomgineer.com</strong>.
-            Δεν είναι απλώς ένα site. Είναι ένα εργαλείο. Ένα μέρος όπου κάθε άρθρο, κάθε γραμμή κώδικα, κάθε ιδέα έχει έναν συγκεκριμένο σκοπό: να προσφέρει κάτι που μπορεί να χρησιμοποιηθεί, να εφαρμοστεί, να βελτιώσει. Είναι μια απόπειρα να φτιάξω έναν κόσμο όπου οι πληροφορίες δεν χάνονται, αλλά μετατρέπονται σε γνώση.
-        </p>
-        <p class="py-4">Η αποστολή μου είναι απλή, αλλά δύσκολη: να είμαι το φίλτρο ανάμεσα στον θόρυβο και την ουσία. Να μην προσφέρω απλώς πληροφορίες, αλλά να κατασκευάζω εργαλεία. Και να το κάνω αυτό μαζί με τους ανθρώπους που αναζητούν κάτι περισσότερο από clicks και εντυπώσεις.</p>
-        <p class="py-4 mb-8">Το Tomgineer είναι, τελικά, μια πρόταση για ένα ταξίδι. Ένα ταξίδι που δεν οδηγεί απλώς σε περισσότερα άρθρα, αλλά σε περισσότερες λύσεις. Γιατί στο τέλος, η πιο ενδιαφέρουσα ιστορία δεν είναι αυτή που διαβάζεις, αλλά αυτή που χτίζεις.</p>
-
-        <a href="<?= site_url('info/about') ?>" class="btn btn-secondary">
-            Θέλω Περισσότερα
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-            </svg>
-        </a>
-
-    </div>
-
+    <!-- background video -->
     <video
         autoplay muted playsinline loop
         preload="metadata"
@@ -32,7 +8,47 @@
         aria-hidden="true"
         disablepictureinpicture
         controlslist="nodownload noplaybackrate noremoteplayback"
-        class="absolute inset-0 z-0 w-full h-full object-cover brightness-70"
-        src="<?= path_gfx() ?>hero_sm.mp4">
+        class="absolute inset-0 z-0 w-full h-full object-cover"
+        data-src="<?= path_gfx() ?>hero.mp4">
     </video>
-</section>
+
+    <!-- background image -->
+    <img class="absolute inset-0 z-0 w-full h-full object-cover hidden" src="<?=path_gfx().'hero.webp'?>">
+
+    <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/10 to-black/55 z-1"></div>
+    <div class="absolute inset-0 pointer-events-none bg-gradient-to-l from-black/15 via-black/35 to-transparent z-2"></div>
+
+    <div class="hero-content relative z-10 w-full px-6 py-12">
+        <div class="flex w-full justify-end">
+            <div class="max-w-2xl text-left">
+                <p class="tracking-[0.25em] text-sm text-white/70 mb-2">
+                    <?= esc($frontpage['hero']['text1']) ?>
+                </p>
+
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight drop-shadow-lg text-white">
+                    <?= esc($frontpage['hero']['title']) ?>
+                </h1>
+
+                <div class="mt-6 prose prose-lg md:prose-xl text-white prose-p:leading-snug">
+                    <?= $frontpage['hero']['body'] ?>
+                </div>
+
+                <a
+                    href="<?= $frontpage['hero']['link1'] ?>"
+                    class="inline-flex items-center justify-center
+                            mt-8 px-10 py-4 text-lg font-semibold text-white
+                            rounded-full
+                            bg-gradient-to-r from-[#ff7a6c] via-[#ed5858] to-[#b53b3b]
+                            shadow-2xl shadow-[#ed5858]/30
+                            transition-all duration-300 ease-out
+                            hover:scale-[1.03]
+                            hover:shadow-[#ed5858]/50
+                            hover:brightness-110">
+                    <?= esc($frontpage['hero']['subtitle']) ?>
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+</div>

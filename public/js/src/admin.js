@@ -2,23 +2,23 @@
  * SYSTEM
  *****************************************************************************/
 
-import initDashboard from './system/dashboard.js'
+import initDashboard from './admin/system/dashboard.js'
 initDashboard();
 
-import { initBaloonEditor, initSimpleEditor } from './system/ckEditor.js';
+import { initBaloonEditor, initSimpleEditor } from './admin/system/ckEditor.js';
 initBaloonEditor();
 initSimpleEditor();
 
-import uploadAvatar from './system/avatar.js'
+import uploadAvatar from './admin/system/avatar.js'
 uploadAvatar();
 
-import initEditContent from './system/editContent.js'
+import initEditContent from './admin/system/editContent.js'
 initEditContent();
 
 /******************************************************************************
  * COMPONENTS
  *****************************************************************************/
 
-import initModals from './components/modals.js'
+import initModals from './admin/components/modals.js'
 initModals();
 
