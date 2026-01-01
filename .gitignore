@@ -155,6 +155,7 @@ node_modules/
 app/Config/App.php
 app/Config/Database.php
 app/Config/Email.php
+app/Config/Cookie.php
 
 # Local Tailwind overrides
 /tailwind/overrides.css
