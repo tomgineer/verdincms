@@ -218,3 +218,12 @@ if (!function_exists('meta_description')) {
     }
 }
 
+// Version
+if(!function_exists('ver')) {
+	function ver() {
+        $version = defined('VERDINCMS_VERSION') ? VERDINCMS_VERSION : 'dev';
+        $build = setting('system.build');
+        $build = is_numeric($build) ? (int) $build : 0;
+        return $version . '-b' . $build;
+    }
+}

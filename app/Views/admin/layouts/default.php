@@ -11,10 +11,10 @@
 
         <?= $this->renderSection('head') ?>
 
-        <link rel="stylesheet" href="<?=path_css()?>tailwind.css?v=<?=setting('system.version')?>">
+        <link rel="stylesheet" href="<?=path_css()?>tailwind.css?v=<?=ver()?>">
 
-        <script src="<?=path_js()?>app-dist.js?v=<?=setting('system.version')?>" defer></script>
-        <script src="<?=path_js()?>admin-dist.js?v=<?=setting('system.version')?>" defer></script>
+        <script src="<?=path_js()?>app-dist.js?v=<?=ver()?>" defer></script>
+        <script src="<?=path_js()?>admin-dist.js?v=<?=ver()?>" defer></script>
 
     </head>
 
@@ -32,3 +32,4 @@
     </body>
 
 </html>
+

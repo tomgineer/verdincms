@@ -46,8 +46,8 @@ class ActionsModel extends Model {
 
     try {
         switch ($action) {
-            case 'incrementVersion':
-                $this->updateVersion();
+            case 'incrementBuild':
+                $this->incrementBuild();
                 cache()->clean();
                 break;
             case 'generateRobots':
@@ -144,7 +144,7 @@ class ActionsModel extends Model {
  *
  * @return bool True on success, false on failure
  */
-function updateVersion(): bool {
+function incrementBuild(): bool {
     $path = ROOTPATH . 'settings.json';
 
     if (!is_file($path)) {
@@ -154,22 +154,12 @@ function updateVersion(): bool {
     $json = file_get_contents($path);
     $settings = json_decode($json, true);
 
-    if (!isset($settings['system']['version'])) {
+    if (!isset($settings['system']['build'])) {
         return false;
     }
 
-    $version = $settings['system']['version'];
-    $segments = explode('.', $version);
-
-    // Ensure it has at least 3 segments (major.minor.patch)
-    while (count($segments) < 3) {
-        $segments[] = '0';
-    }
-
-    // Increment the patch segment
-    $segments[2] = (string)((int)$segments[2] + 1);
-
-    $settings['system']['version'] = implode('.', $segments);
+    $build = (int)$settings['system']['build'];
+    $settings['system']['build'] = $build + 1;
 
     // Encode JSON with pretty-print and write it back
     $encoded = json_encode($settings, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);

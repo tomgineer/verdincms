@@ -35,7 +35,7 @@
         "trendingRangeHours": 24
     },
     "system": {
-        "version": "2.1.3",
+        "build": 104,
         "ip2location": false
     },
     "admin": {

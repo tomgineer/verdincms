@@ -23,7 +23,7 @@
         <meta name="description" content="<?= setting('meta.siteDescription') ?>" />
     <?php endif; ?>
 
-    <link rel="stylesheet" href="<?= path_css() ?>tailwind.css?v=<?= setting('system.version') ?>">
+    <link rel="stylesheet" href="<?= path_css() ?>tailwind.css?v=<?= ver() ?>">
 
     <?php foreach (setting('theme.extraFonts') ?: ['default'] as $font): ?>
         <link rel="stylesheet" href="<?= path_assets() ?>fonts/<?= esc($font) ?>/fonts.css">
@@ -34,7 +34,7 @@
         <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
     <?php endif; ?>
 
-    <script src="<?= path_js() ?>app-dist.js?v=<?= setting('system.version') ?>" defer></script>
+    <script src="<?= path_js() ?>app-dist.js?v=<?= ver() ?>" defer></script>
     <?= $this->include('frontend/partials/favicon') ?>
     <?= $this->renderSection('head') ?>
 
@@ -58,3 +58,4 @@
 </body>
 
 </html>
+

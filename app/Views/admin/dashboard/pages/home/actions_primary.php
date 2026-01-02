@@ -1,10 +1,13 @@
-<button class="btn btn-soft hover:btn-primary justify-start" data-dash-action="incrementVersion" type="button">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="m9 9 6-6m0 0 6 6m-6-6v12a6 6 0 0 1-12 0v-3" />
+<button class="btn btn-soft hover:btn-primary justify-start" data-dash-action="incrementBuild" type="button">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M3 12h6" />
+        <path d="M6 9v6" />
+        <path d="M18 19v-14l-4 4" />
     </svg>
-    Increment Version
+    Increment Build
 </button>
-<p class="text-base-content/70">Increases the version number by 0.1 to ensure browsers load the latest JS, CSS, fonts, and other assets.</p>
+<p class="text-base-content/70">Increases the build number by 1 to ensure browsers load the latest JS, CSS, fonts, and other assets.</p>
 
 <button class="btn btn-soft hover:btn-primary justify-start" data-dash-action="clearCache" type="button">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
@@ -31,7 +34,7 @@
 <p class="text-base-content/70">Runs the Cron Job, removes orphaned images from posts, blocks, and avatars, deletes soft-deleted posts, pages, and users, and clears the cache.</p>
 
 <button class="btn btn-soft hover:btn-primary justify-start" data-dash-action="toggleCache" type="button">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5">
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M20 4v.01" />
         <path d="M20 20v.01" />

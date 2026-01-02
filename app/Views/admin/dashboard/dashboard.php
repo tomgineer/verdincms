@@ -5,8 +5,8 @@
     <?php endif;?>
 
     <?php if ( !empty($useCKEditor) ):?>
-        <script src="<?=path_assets()?>ckeditor/ckeditor_lite.js?v=<?=setting('system.version')?>"></script>
-        <link rel="stylesheet" href="<?=path_assets()?>ckeditor/ckeditor.css?v=<?=setting('system.version')?>">
+        <script src="<?=path_assets()?>ckeditor/ckeditor_lite.js?v=<?=ver()?>"></script>
+        <link rel="stylesheet" href="<?=path_assets()?>ckeditor/ckeditor.css?v=<?=ver()?>">
     <?php endif;?>
 <?= $this->endSection() ?>
 
@@ -23,3 +23,4 @@
 </main>
 
 <?= $this->endSection() ?>
+

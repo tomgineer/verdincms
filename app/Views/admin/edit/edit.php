@@ -1,8 +1,8 @@
 <?= $this->extend('admin/layouts/default') ?>
 <?= $this->section('head') ?>
 
-    <script src="<?=path_assets()?>ckeditor/ckeditor.js?v=<?=setting('system.version')?>"></script>
-    <link rel="stylesheet" href="<?=path_assets()?>ckeditor/ckeditor.css?v=<?=setting('system.version')?>">
+    <script src="<?=path_assets()?>ckeditor/ckeditor.js?v=<?=ver()?>"></script>
+    <link rel="stylesheet" href="<?=path_assets()?>ckeditor/ckeditor.css?v=<?=ver()?>">
 
 <?= $this->endSection() ?>
 
@@ -19,3 +19,4 @@
 <?= $this->include('admin/edit/partials/toasts') ?>
 
 <?= $this->endSection() ?>
+
