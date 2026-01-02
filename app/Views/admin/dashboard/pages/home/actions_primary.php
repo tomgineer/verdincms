@@ -33,7 +33,7 @@
 </button>
 <p class="text-base-content/70">Runs the Cron Job, removes orphaned images from posts, blocks, and avatars, deletes soft-deleted posts, pages, and users, and clears the cache.</p>
 
-<button class="btn btn-soft hover:btn-primary justify-start" data-dash-action="toggleCache" type="button">
+<button class="btn justify-start <?=(setting('cache.enabled')===true?'btn-soft':'btn-secondary')?>" data-dash-action="toggleCache" type="button">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5">
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M20 4v.01" />

@@ -200,6 +200,9 @@ function initActions() {
                         if (label) {
                             label.textContent = 'Cache is: ' + data.status;
                         }
+                        const isEnabled = data.status === 'Enabled';
+                        button.classList.toggle('btn-soft', isEnabled);
+                        button.classList.toggle('btn-secondary', !isEnabled);
                         return;
                     }
 
