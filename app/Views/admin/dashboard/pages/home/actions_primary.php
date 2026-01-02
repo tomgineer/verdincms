@@ -47,4 +47,4 @@
     </svg>
     <span data-dash-label>Cache is: <?= (setting('cache.enabled') === true ? 'Enabled' : 'Disabled') ?></span>
 </button>
-<p class="text-base-content/70">Enables or disables the system cache setting in config.json</p>
+<p class="text-base-content/70">Enables or disables the system cache setting in settings.json</p>

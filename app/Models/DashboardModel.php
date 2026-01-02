@@ -553,7 +553,7 @@ public function bulk_delete(string $table, array $ids): array {
 }
 
 /**
- * Reads and returns the raw contents of /config/settings.json.
+ * Reads and returns the raw contents of /settings.json.
  *
  * Ensures UTF-8 compatibility and returns the JSON text exactly as stored.
  * If the file does not exist, a JSON-encoded error message is returned
@@ -562,7 +562,7 @@ public function bulk_delete(string $table, array $ids): array {
  * @return string The raw JSON contents of the settings file, or an error JSON string.
  */
 public function getSettings(): string {
-    $file = ROOTPATH . 'config/config.json';
+    $file = ROOTPATH . 'settings.json';
 
     if (!is_file($file)) {
         return json_encode(['error' => 'Settings file not found.'], JSON_UNESCAPED_UNICODE);
@@ -775,3 +775,4 @@ protected function getNewsletterContent(int $limit = 20): array {
 
 
 } // ─── End of Class ───
+

@@ -13,3 +13,11 @@
  *
  * @see: https://codeigniter.com/user_guide/extending/common.html
  */
+
+if (!defined('VERDINCMS_VERSION')) {
+    $versionFile = ROOTPATH . 'VERSION';
+    define(
+        'VERDINCMS_VERSION',
+        is_readable($versionFile) ? trim(file_get_contents($versionFile)) : 'dev'
+    );
+}

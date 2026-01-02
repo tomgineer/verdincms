@@ -21,7 +21,7 @@
                 <ul>
                     <li><div><?=lang('App.public_posts')?>: <span class="text-accent"><?= esc($public_posts) ?></span></div></li>
                     <li><div><?=lang('App.subscribers')?>: <span class="text-accent"><?= esc($total_subscribers) ?></span></div></li>
-                    <li><div><?=lang('App.cms_version')?>: <span class="text-accent"><?= setting('system.version') ?></span></div></li>
+                    <li><div><?=lang('App.cms_version')?>: <span class="text-accent"><?= VERDINCMS_VERSION ?></span></div></li>
                     <li><div>Rendered in: <span class="text-accent">{elapsed_time} sec</span></div></li>
                 </ul>
             </li>

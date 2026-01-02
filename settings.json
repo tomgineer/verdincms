@@ -1,0 +1,84 @@
+{
+    "site": {
+        "title": "Χάρτινο Τσίρκο",
+        "url": "https://xartinotsirko.com",
+        "language": "el",
+        "timezone": "Europe/Berlin"
+    },
+    "cache": {
+        "enabled": false,
+        "lifetime": 3600
+    },
+    "theme": {
+        "main": "dark",
+        "darkBlocks": "dark",
+        "logoHeight": 36,
+        "extraFonts": [],
+        "pageExtras": true,
+        "pageBadges": true,
+        "postExtras": true,
+        "postShare": true,
+        "newsletter": true,
+        "humanContent": true
+    },
+    "navbar": {
+        "displaySearch": true,
+        "displayContact": true,
+        "displayAbout": true,
+        "displayRanking": true,
+        "displayTopics": true,
+        "displayBlog": true
+    },
+    "content": {
+        "postsPerPage": 20,
+        "postsPerCell": 9,
+        "trendingRangeHours": 24
+    },
+    "system": {
+        "version": "2.1.3",
+        "ip2location": false
+    },
+    "admin": {
+        "email": "info@xartinotsirko.com",
+        "loginRequired": true
+    },
+    "socialMedia": {
+        "youtube": "",
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "tiktok": "",
+        "x": "",
+        "telegram": "",
+        "reddit": "",
+        "discord": "",
+        "linkedin": "",
+        "threads": "",
+        "github": "",
+        "stackoverflow": "",
+        "patreon": "",
+        "gitlab": "",
+        "vimeo": "",
+        "mastodon": "",
+        "codepen": "",
+        "jsfiddle": "",
+        "buymeacoffee": "",
+        "rumble": "",
+        "odysee": "",
+        "bitchute": "",
+        "gab": "",
+        "brighteon": "",
+        "xing": ""
+    },
+    "meta": {
+        "siteName": "Χάρτινο Τσίρκο",
+        "siteTitle": "Χάρτινο Τσίρκο — Η παράσταση συνεχίζεται",
+        "siteDescription": "Χάρτινο Τσίρκο — Η παράσταση συνεχίζεται",
+        "twitter": "@xartinotsirko"
+    },
+    "company": {
+        "name": "Χάρτινο Τσίρκο",
+        "email": "info@xartinotsirko.com",
+        "supportEmail": "support@xartinotsirko.com"
+    }
+}

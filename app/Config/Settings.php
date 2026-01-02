@@ -11,10 +11,10 @@ class Settings extends BaseConfig {
     protected $settings = [];
 
     /**
-     * Constructor: Load settings from ROOTPATH/config/config.json
+     * Constructor: Load settings from ROOTPATH/settings.json
      */
     public function __construct() {
-        $path = ROOTPATH . 'config/config.json';
+        $path = ROOTPATH . 'settings.json';
 
         if (file_exists($path)) {
             $json = file_get_contents($path);
@@ -52,3 +52,4 @@ class Settings extends BaseConfig {
         return $this->settings;
     }
 }
+

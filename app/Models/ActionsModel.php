@@ -145,7 +145,7 @@ class ActionsModel extends Model {
  * @return bool True on success, false on failure
  */
 function updateVersion(): bool {
-    $path = ROOTPATH . 'config/config.json';
+    $path = ROOTPATH . 'settings.json';
 
     if (!is_file($path)) {
         return false;
@@ -594,14 +594,14 @@ private function splitParagraph(string $text, int $parts = 2): string {
 }
 
 /**
- * Toggles the cache enabled setting in config/config.json.
+ * Toggles the cache enabled setting in settings.json.
  *
  * Flips "cache.enabled" from true to false or false to true.
  *
  * @return string  New cache status: "enabled" or "disabled". Returns "error" on failure.
  */
 private function toggleCache(): string {
-    $path = ROOTPATH . 'config/config.json';
+    $path = ROOTPATH . 'settings.json';
 
     if (!is_file($path)) {
         return 'error';
@@ -633,6 +633,7 @@ private function toggleCache(): string {
 }
 
 } // ─── End of Class ───
+
 
 
 
