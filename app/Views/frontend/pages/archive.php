@@ -8,7 +8,9 @@
             <header class="mb-8 lg:mb-12">
                 <h1 class="text-4xl text-base-content/70 text-shadow-lg"><?= esc($site_title) ?></h1>
                 <?php if (!empty($site_desc)): ?>
-                    <div class="text-base-content/50 text-sm mt-1"><?= esc($site_desc) ?></div>
+                    <div class="prose prose-sm max-w-none mt-3 opacity-85 rounded-lg p-4 lg:p-6 bg-base-200">
+                        <?=$site_desc?>
+                    </div>
                 <?php endif; ?>
             </header>
             <?= view('frontend/partials/post_list', ['posts' => $post_data['posts']]) ?>

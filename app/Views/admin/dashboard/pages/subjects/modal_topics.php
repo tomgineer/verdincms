@@ -25,7 +25,7 @@
                 </label>
 
                 <label class="label">Description</label>
-                <textarea class="textarea w-full resize-none" name="description" placeholder="Description" rows="5"></textarea>
+                <textarea class="textarea w-full simple-editor" name="description" placeholder="Description"></textarea>
                 <p class="label text-base-content/40">This field is optional</p>
             </fieldset>
 
