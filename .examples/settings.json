@@ -2,8 +2,8 @@
     "site": {
         "title": "",
         "url": "",
-        "language": "en",
-        "timezone": "UTC"
+        "language": "",
+        "timezone": ""
     },
     "cache": {
         "enabled": false,
@@ -35,7 +35,7 @@
         "trendingRangeHours": 24
     },
     "system": {
-        "version": "1.8.00",
+        "build": 104,
         "ip2location": false
     },
     "admin": {

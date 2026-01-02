@@ -129,13 +129,11 @@ _modules/*
 .local/
 
 # Public Files
-/public/prepros.config
 /public/robots.txt
 /public/sitemap.xml
 /public/sitemap.xml.gz
 /public/pnp.ini
 /public/favicon.ico
-/public/.htaccess-web
 
 # Allow example environment file
 !.env.example
@@ -160,5 +158,5 @@ app/Config/Cookie.php
 # Local Tailwind overrides
 /tailwind/overrides.css
 
-# Config File
-/config/config.json
+# Settings File
+/settings.json
