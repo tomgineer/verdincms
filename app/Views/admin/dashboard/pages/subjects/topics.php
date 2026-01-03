@@ -32,9 +32,13 @@
                     <td class="w-1"><input type="checkbox" class="checkbox" data-delete-id="<?= esc($topic['id']) ?>" data-table="topics" /></td>
                     <td class="text-info"><?= esc($topic['id']) ?></td>
                     <td class="font-semibold"><?= esc($topic['title']) ?></td>
-                    <td class="text-base-content/70"><?= strip_tags($topic['description']) ?></td>
+                    <td class="text-base-content/70">
+                        <div class="line-clamp-3">
+                            <?= strip_tags($topic['description']) ?>
+                        </div>
+                    </td>
                     <td>
-                        <span class="badge badge-dash badge-accent">
+                        <span class="badge badge-dash badge-accent whitespace-nowrap">
                             <?= esc($topic['slug']) ?>
                         </span>
                     </td>
