@@ -42,7 +42,7 @@
 </div>
 
 <?php if (setting('theme.newsletter')): ?>
-    <?= $this->include('frontend/partials/newsletter') ?>
+    <?=view_cell('FrontendCell::newsletterBlock')?>
 <?php endif; ?>
 
 <?= $this->endSection() ?>

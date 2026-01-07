@@ -97,4 +97,12 @@ public function featuredBlock(): string {
     return view('frontend/partials/carousel', $data, ['saveData' => false]);
 }
 
+/**
+ * Render the newsletter block content.
+ */
+public function newsletterBlock(): string {
+    $data = $this->content->getSingleBlock('newsletter.newsletter');
+    return theme_view('frontend/partials/newsletter', $data, ['saveData' => false]);
+}
+
 }

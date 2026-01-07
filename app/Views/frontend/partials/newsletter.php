@@ -3,12 +3,11 @@
 
         <div class="flex-1 text-center md:text-left">
             <h1 class="text-4xl md:text-5xl font-bold mb-6 text-base-content">
-                Newsletter
+                <?=esc($title)?>
             </h1>
-            <p class="text-lg leading-relaxed">
-                Εγγράψου δωρεάν στο Newsletter της σελίδας! <span class="font-semibold">Κάθε Σαββατοκύριακο</span> στέλνω μια επιλεγμένη σύνοψη με τα πιο πρόσφατα άρθρα,
-                μαζί με αποκλειστικό περιεχόμενο που δεν μπορώ να δημοσιεύσω εδώ λόγω λογοκρισίας.
-            </p>
+            <div class="text-lg leading-relaxed">
+               <?=$body?>
+            </div>
         </div>
 
         <form
@@ -19,17 +18,17 @@
             <input
                 type="email"
                 name="email"
-                placeholder="Ρίξε το email σου..."
+                placeholder="<?=esc($subtitle)?>"
                 class="input input-lg w-full bg-transparent border-0 border-b-2 border-base-content/30 rounded-none
                focus:border-accent focus:outline-none text-base-content placeholder:text-base-content/50 transition-all duration-200"
                 required />
 
             <button type="submit" class="btn btn-primary btn-lg w-full shadow-md hover:shadow-accent/30 transition-all duration-200">
-                Εγγραφή
+                <?=esc($text2)?>
             </button>
 
-            <p id="newsletter-message" class="text-sm text-center">
-                Χωρίς spam. Μπορείς να διαγραφείς <br>ανά πάσα στιγμή με ένα κλικ.
+            <p id="newsletter-message" class="text-sm text-center max-w-2xs mx-auto text-wrap">
+                <?=esc($text1)?>
             </p>
         </form>
 

@@ -516,6 +516,35 @@ public function getBlocks(array $groups = []): array {
 }
 
 /**
+ * Retrieve a single block by "group.alias" (e.g. "newsletter.newsletter").
+ *
+ * @param string $blockAlias A "group.alias" identifier.
+ * @return array Block row or empty array if not found/invalid.
+ */
+public function getSingleBlock(string $blockAlias): array {
+    $blockAlias = trim($blockAlias);
+    if ($blockAlias === '' || !str_contains($blockAlias, '.')) {
+        return [];
+    }
+
+    [$group, $alias] = array_map('trim', explode('.', $blockAlias, 2));
+    if ($group === '' || $alias === '') {
+        return [];
+    }
+
+    $row = $this->db->table('blocks b')
+                    ->select('b.*, g.title AS block_group')
+                    ->join('block_groups g', 'g.id = b.block_group_id', 'left')
+                    ->where('g.title', $group)
+                    ->where('b.alias', $alias)
+                    ->limit(1)
+                    ->get()
+                    ->getRowArray();
+
+    return $row ?? [];
+}
+
+/**
  * Returns blocks grouped by block group and indexed by alias.
  *
  * @param array $groups Block group titles to filter by.
