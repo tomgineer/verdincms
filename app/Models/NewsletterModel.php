@@ -91,7 +91,7 @@ protected function sendConfirmationEmail(string $email, string $token): bool {
 
     $emailService->setFrom($fromEmail, $fromName);
     $emailService->setTo($email);
-    $emailService->setSubject('Επιβεβαίωση εγγραφής στο newsletter του Χάρτινου Τσίρκου');
+    $emailService->setSubject('Επιβεβαίωση εγγραφής στο newsletter του ' . setting('site.title'));
 
     // HTML message
     $message = '
@@ -256,33 +256,5 @@ public function unsubscribeByToken(string $token): array {
         'email'   => $subscriber['email'],
     ];
 }
-
-// protected function buildNewsletterHtml(string $unsubscribeUrl): string {
-//     return '
-//     <html>
-//         <head><meta charset="UTF-8"></head>
-//         <body style="font-family: Arial, sans-serif; background:#f8f8f8; color:#333; padding:20px;">
-//             <div style="max-width:600px; margin:auto; background:#fff; border-radius:8px; padding:20px;">
-//                 <h2 style="color:#222;">🎪 Νέο από το Χάρτινο Τσίρκο</h2>
-//                 <p>...your content here...</p>
-
-//                 ' . $this->newsletterFooter($unsubscribeUrl) . '
-//             </div>
-//         </body>
-//     </html>';
-// }
-
-// protected function newsletterFooter(string $unsubscribeUrl): string {
-//     return '
-//         <hr style="border:none; border-top:1px solid #ddd; margin:30px 0;">
-//         <p style="font-size:13px; color:#777; line-height:1.5; text-align:center;">
-//             Λαμβάνεις αυτό το email επειδή έχεις εγγραφεί στο newsletter μας.<br>
-//             Αν δεν επιθυμείς να λαμβάνεις πλέον ενημερώσεις,
-//             μπορείς να <a href="' . esc($unsubscribeUrl) . '" style="color:#555;">διαγραφείς εδώ</a>.
-//         </p>
-//         <p style="font-size:11px; color:#999; text-align:center; margin-top:10px;">
-//             &copy; ' . date('Y') . ' Χάρτινο Τσίρκο — Όλα τα δικαιώματα διατηρούνται.
-//         </p>';
-// }
 
 } // ─── End of Class ───
