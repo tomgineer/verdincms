@@ -1,13 +1,6 @@
 <?= $this->extend('frontend/layouts/default') ?>
 <?= $this->section('main') ?>
 
-<?php
-    $latestPosts = $latest_updates['posts'] ?? [];
-    $halfCount = (int) ceil(count($latestPosts) / 2);
-    $topPosts = array_slice($latestPosts, 0, $halfCount);
-    $restPosts = array_slice($latestPosts, $halfCount);
-?>
-
 <div class="xl:container mx-2 xl:mx-auto px-4 mt-8 lg:mt-12 xl:mt-24 mb-0 lg:mb-12">
     <div class="flex flex-col lg:flex-row lg:gap-8">
         <section class="flex-1">
@@ -27,7 +20,7 @@
     <div class="flex flex-col lg:flex-row gap-8">
         <section class="flex-1">
             <?= view('frontend/partials/post_list', ['posts' => $restPosts]) ?>
-            <?= view('frontend/partials/pagination', ['pagination' => $latest_updates['pagination']]) ?>
+            <?= view('frontend/partials/pagination', ['pagination' => $pagination]) ?>
         </section>
 
         <aside class="w-full lg:w-[30%]">

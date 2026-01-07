@@ -639,15 +639,11 @@ public function updateOrder(string $table, array $ids): void {
  * @return array{active_subs: array, inactive_subs: array}
  */
 public function getSubscribers(): array {
-    $get = fn(int $status) => array_column(
-        $this->db->table('newsletter')
-            ->select('email')
-            ->where('confirmed', $status)
-            ->orderBy('email', 'ASC')
-            ->get()
-            ->getResultArray(),
-        'email'
-    );
+    $get = fn(int $status) => $this->db->table('newsletter')
+        ->where('confirmed', $status)
+        ->orderBy('subscribed_at', 'DESC')
+        ->get()
+        ->getResultArray();
 
     return [
         'active_subs'   => $get(1),

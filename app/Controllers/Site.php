@@ -43,7 +43,15 @@ public function index() {
     }
 
     // Fetch Data
-    $data = ['latest_updates' => $this->content->getPosts(pagination: true, page: $page)];
+    $latest_updates = $this->content->getPosts(pagination: true, page: $page);
+    $latestPosts    = $latest_updates['posts'];
+    $halfCount      = (int) ceil(count($latestPosts) / 2);
+
+    $data = [
+        'pagination' => $latest_updates['pagination'],
+        'topPosts'   => array_slice($latestPosts, 0, $halfCount),
+        'restPosts'  => array_slice($latestPosts, $halfCount)
+    ];
 
     // Render the view
     $output = theme_view('frontend/pages/front', $data);

@@ -119,7 +119,7 @@ protected function sendConfirmationEmail(string $email, string $token): bool {
         <body>
             <div class="container">
                 <h1>Επιβεβαίωση εγγραφής στο Newsletter</h1>
-                <p>Γεια σου,</p>
+                <p>Γειά σου,</p>
                 <p>Σε ευχαριστώ που έκανες εγγραφή στο newsletter μου. Για να ολοκληρώσεις την εγγραφή σου, κάνε κλικ στο παρακάτω κουμπί:</p>
                 <p><a href="' . $confirmUrl . '" class="button">Επιβεβαίωση Εγγραφής</a></p>
                 <p>Αν δεν έκανες εσύ αυτή την εγγραφή, μπορείς να αγνοήσεις αυτό το μήνυμα.</p>
