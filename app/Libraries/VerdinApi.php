@@ -77,6 +77,21 @@ public function getMonitoringData() {
                 'value' => $system['Photos'] ?? 0,
                 'desc'  => 'Total Photos'
             ],
+            'growthLast15d' => [
+                'title' => 'Current Period',
+                'value' => $growth['Visitors (Recent 15 Days)'] ?? 0,
+                'desc'  => 'Visitors in the last 15 days'
+            ],
+            'growthPrevious15d' => [
+                'title' => 'Previous Period',
+                'value' => $growth['Visitors (Previous 15 Days)'] ?? 0,
+                'desc'  => 'Visitors in the 15 days before the current period'
+            ],
+            'growth' => [
+                'title' => 'Growth Rate',
+                'value' => $growth['Growth Rate'] ?? 0,
+                'desc'  => 'Change vs previous 15-day period'
+            ],
         ]
     ];
 
