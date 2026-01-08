@@ -54,26 +54,11 @@ public function subscribe() {
  * @return \CodeIgniter\HTTP\ResponseInterface
  */
 public function csrf() {
-    $security = service('security');
-    $hash = $security->getHash();
-
-    $securityConfig = config('Security');
-    $cookieConfig = config('Cookie');
-    $this->response->setCookie([
-        'name'     => $securityConfig->cookieName,
-        'value'    => $hash,
-        'expire'   => $securityConfig->expires,
-        'domain'   => $cookieConfig->domain,
-        'path'     => $cookieConfig->path,
-        'prefix'   => $cookieConfig->prefix,
-        'secure'   => $cookieConfig->secure,
-        'httponly' => $cookieConfig->httponly,
-        'samesite' => $cookieConfig->samesite,
-    ]);
-
     return $this->response
         ->noCache()
-        ->setJSON(['token' => $hash]);
+        ->setJSON([
+            'token' => csrf_hash(),
+        ]);
 }
 
 /**
