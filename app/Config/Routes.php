@@ -75,6 +75,7 @@ $routes->get('ajax/search', 'Ajax::search');
 *****************************************************************************/
 
 $routes->post('newsletter/subscribe', 'Newsletter::subscribe');
+$routes->get('newsletter/csrf', 'Newsletter::csrf');
 $routes->get('newsletter/confirm', 'Newsletter::confirm');
 $routes->get('newsletter/unsubscribe', 'Newsletter::unsubscribe');
 

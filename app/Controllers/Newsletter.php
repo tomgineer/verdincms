@@ -49,6 +49,37 @@ public function subscribe() {
 }
 
 /**
+ * Provides a fresh CSRF token and cookie for newsletter AJAX requests.
+ *
+ * @return \CodeIgniter\HTTP\ResponseInterface
+ */
+public function csrf() {
+    $security = service('security');
+    $hash = $security->getHash();
+
+    $securityConfig = config('Security');
+    $cookieConfig = config('Cookie');
+    $expireAt = $securityConfig->expires > 0 ? time() + $securityConfig->expires : 0;
+
+    $this->response->setCookie(
+        $securityConfig->cookieName,
+        $hash,
+        $expireAt,
+        $cookieConfig->path,
+        $cookieConfig->domain,
+        $cookieConfig->secure,
+        $cookieConfig->httponly,
+        $cookieConfig->samesite
+    );
+
+    return $this->response
+        ->setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+        ->setHeader('Pragma', 'no-cache')
+        ->setHeader('Expires', '0')
+        ->setJSON(['token' => $hash]);
+}
+
+/**
  * Handles newsletter subscription confirmation.
  *
  * Retrieves the token and email from the query string,

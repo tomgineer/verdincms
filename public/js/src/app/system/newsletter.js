@@ -20,8 +20,6 @@ function newsletterSubscribe() {
     if (!form) return;
 
     const baseUrl = document.querySelector('meta[name="base-url"]')?.content;
-    const cookieName = document.querySelector('meta[name="csrf-cookie-name"]')?.content || 'csrf_cookie_name';
-    let csrfToken = getCookie(cookieName);
     if (!baseUrl) return;
 
     const msgEl      = document.getElementById('newsletter-message');
@@ -51,7 +49,10 @@ function newsletterSubscribe() {
         if (submitBtn) submitBtn.disabled = true;
 
         const payload = { email };
-        csrfToken = getCookie(cookieName);
+        const csrfToken = await fetchCsrfToken(baseUrl);
+        if (!csrfToken) {
+            throw new Error('Missing CSRF token');
+        }
 
         try {
             const response = await fetch(`${baseUrl}newsletter/subscribe`, {
@@ -59,7 +60,7 @@ function newsletterSubscribe() {
                 headers: {
                     'Content-Type': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRF-TOKEN': csrfToken, // from CSRF cookie
+                    'X-CSRF-TOKEN': csrfToken,
                 },
                 body: JSON.stringify(payload),
             });
@@ -87,12 +88,19 @@ function newsletterSubscribe() {
     });
 }
 
-function getCookie(name) {
-    const cookies = document.cookie ? document.cookie.split('; ') : [];
-    for (const cookie of cookies) {
-        if (cookie.startsWith(`${name}=`)) {
-            return cookie.substring(name.length + 1);
-        }
+// Get a fresh CSRF token from the server to avoid cached/stale values.
+async function fetchCsrfToken(baseUrl) {
+    const response = await fetch(`${baseUrl}newsletter/csrf?ts=${Date.now()}`, {
+        method: 'GET',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+        },
+    });
+
+    if (!response.ok) {
+        return '';
     }
-    return '';
+
+    const data = await response.json();
+    return data.token || '';
 }
