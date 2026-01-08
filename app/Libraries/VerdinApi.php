@@ -18,6 +18,7 @@ public function getMonitoringData() {
     $growth = $overview['growth'] ?? [];
     $content = $overview['content'] ?? [];
     $system = $overview['system'] ?? [];
+    $newsletterCount = $this->db->table('newsletter')->countAllResults();
 
     $data = [
         'server' => base_url(),
@@ -92,6 +93,11 @@ public function getMonitoringData() {
                 'value' => $growth['Growth Rate'] ?? 0,
                 'desc'  => 'Change vs previous 15-day period'
             ],
+            'newsletter' => [
+                'title' => 'Newsletter',
+                'value' => $newsletterCount ?? 0,
+                'desc'  => 'Subscribers'
+            ],
         ]
     ];
 
@@ -100,7 +106,6 @@ public function getMonitoringData() {
 }
 
 } // ─── End of Class ───
-
 
 
 
