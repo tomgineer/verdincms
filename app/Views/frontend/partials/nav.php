@@ -122,7 +122,7 @@
             <?php if (setting('navbar.displayBlog')): ?>
                 <li class="hidden lg:flex">
                     <details>
-                        <summary>Blog</summary>
+                        <summary><?=setting('theme.pagesLabel')?></summary>
                         <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
                             <?php foreach ($menu_items['pages'] as $page_items): ?>
                                 <li>

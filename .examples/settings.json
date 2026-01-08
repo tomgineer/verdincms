@@ -19,7 +19,8 @@
         "postExtras": true,
         "postShare": true,
         "newsletter": true,
-        "humanContent": true
+        "humanContent": true,
+        "pagesLabel": "Blog"
     },
     "navbar": {
         "displaySearch": true,
