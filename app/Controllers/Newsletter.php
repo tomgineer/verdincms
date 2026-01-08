@@ -23,7 +23,7 @@ public function subscribe() {
     // Manual CSRF validation (newsletter/* is excluded from the global CSRF filter)
     $security     = service('security');
     $sessionToken = $security->getHash();
-    $sentToken    = $this->request->getHeaderLine('X-CSRF-TOKEN'); // from csrf_meta() via JS
+    $sentToken    = $this->request->getHeaderLine('X-CSRF-TOKEN'); // from CSRF cookie via JS
 
     if ($sentToken === '' || ! hash_equals($sessionToken, $sentToken)) {
         return $this->failForbidden('Invalid CSRF token.');

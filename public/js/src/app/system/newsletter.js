@@ -19,8 +19,9 @@ function newsletterSubscribe() {
     const form = document.getElementById('newsletter-form');
     if (!form) return;
 
-    const baseUrl   = document.querySelector('meta[name="base-url"]')?.content;
-    const csrfToken = document.querySelector('meta[name="X-CSRF-TOKEN"]')?.content || '';
+    const baseUrl = document.querySelector('meta[name="base-url"]')?.content;
+    const cookieName = document.querySelector('meta[name="csrf-cookie-name"]')?.content || 'csrf_cookie_name';
+    let csrfToken = getCookie(cookieName);
     if (!baseUrl) return;
 
     const msgEl      = document.getElementById('newsletter-message');
@@ -50,6 +51,7 @@ function newsletterSubscribe() {
         if (submitBtn) submitBtn.disabled = true;
 
         const payload = { email };
+        csrfToken = getCookie(cookieName);
 
         try {
             const response = await fetch(`${baseUrl}newsletter/subscribe`, {
@@ -57,7 +59,7 @@ function newsletterSubscribe() {
                 headers: {
                     'Content-Type': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRF-TOKEN': csrfToken, // from csrf_meta()
+                    'X-CSRF-TOKEN': csrfToken, // from CSRF cookie
                 },
                 body: JSON.stringify(payload),
             });
@@ -83,4 +85,14 @@ function newsletterSubscribe() {
             if (submitBtn) submitBtn.disabled = false;
         }
     });
+}
+
+function getCookie(name) {
+    const cookies = document.cookie ? document.cookie.split('; ') : [];
+    for (const cookie of cookies) {
+        if (cookie.startsWith(`${name}=`)) {
+            return cookie.substring(name.length + 1);
+        }
+    }
+    return '';
 }
