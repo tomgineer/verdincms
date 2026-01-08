@@ -59,23 +59,20 @@ public function csrf() {
 
     $securityConfig = config('Security');
     $cookieConfig = config('Cookie');
-    $expireAt = $securityConfig->expires > 0 ? time() + $securityConfig->expires : 0;
-
-    $this->response->setCookie(
-        $securityConfig->cookieName,
-        $hash,
-        $expireAt,
-        $cookieConfig->path,
-        $cookieConfig->domain,
-        $cookieConfig->secure,
-        $cookieConfig->httponly,
-        $cookieConfig->samesite
-    );
+    $this->response->setCookie([
+        'name'     => $securityConfig->cookieName,
+        'value'    => $hash,
+        'expire'   => $securityConfig->expires,
+        'domain'   => $cookieConfig->domain,
+        'path'     => $cookieConfig->path,
+        'prefix'   => $cookieConfig->prefix,
+        'secure'   => $cookieConfig->secure,
+        'httponly' => $cookieConfig->httponly,
+        'samesite' => $cookieConfig->samesite,
+    ]);
 
     return $this->response
-        ->setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
-        ->setHeader('Pragma', 'no-cache')
-        ->setHeader('Expires', '0')
+        ->noCache()
         ->setJSON(['token' => $hash]);
 }
 
