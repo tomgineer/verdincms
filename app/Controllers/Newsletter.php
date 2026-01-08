@@ -112,8 +112,5 @@ public function unsubscribe() {
     return view('frontend/pages/newsletter_unsub', $data);
 }
 
-
-
-
 } // ─── End of Class ───
 

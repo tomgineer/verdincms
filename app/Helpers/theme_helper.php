@@ -7,7 +7,7 @@ if (! function_exists('theme_view')) {
      * - If a themed view exists under app/Views/themes/<site.type>/..., render it first.
      * - Otherwise fall back to the app view path passed in.
      */
-    function theme_view(string $view, array $data = []): string {
+    function theme_view(string $view, array $data = [], array $options = []): string {
         $theme = env('site.type') ?: 'app';
         $themeView = $view;
 
@@ -19,9 +19,9 @@ if (! function_exists('theme_view')) {
         $themeFile = $themeBase . $themeView . '.php';
 
         if (is_file($themeFile)) {
-            return view('themes/' . $theme . '/' . $themeView, $data);
+            return view('themes/' . $theme . '/' . $themeView, $data, $options);
         }
 
-        return view($view, $data);
+        return view($view, $data, $options);
     }
 }
