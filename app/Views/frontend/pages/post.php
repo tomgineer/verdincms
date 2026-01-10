@@ -43,7 +43,15 @@
         <h2 class="text-3xl mb-4 text-primary">Related</h2>
         <?= view_cell('FrontendCell::related', ['post_id' => (int)$post['id'], 'topic_id' => (int)$post['topic_id'], 'gridStyle' => 'columns']) ?>
     </section>
+<?php endif; ?>
 
+<?php if (setting('theme.newsletter')): ?>
+    <div class="pt-12 pb-20">
+        <?=view_cell('FrontendCell::newsletterBlock')?>
+    </div>
+<?php endif; ?>
+
+<?php if (setting('theme.postExtras')): ?>
     <section class="container mx-auto px-4 mb-24 lg:mb-36">
         <h2 class="text-3xl mb-4 text-primary">Trending</h2>
         <?= view_cell('FrontendCell::trending', ['gridStyle' => 'columns']) ?>

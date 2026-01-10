@@ -33,7 +33,15 @@
         <h2 class="text-3xl mb-4 text-primary">Featured</h2>
         <?= view_cell('FrontendCell::featured', ['gridStyle' => 'columns']) ?>
     </section>
+<?php endif; ?>
 
+<?php if (setting('theme.newsletter')): ?>
+    <div class="pt-12 pb-20">
+        <?= view_cell('FrontendCell::newsletterBlock') ?>
+    </div>
+<?php endif; ?>
+
+<?php if (setting('theme.pageExtras')): ?>
     <section class="container mx-auto px-4 mb-24 lg:mb-36">
         <h2 class="text-3xl mb-4 text-primary">Trending</h2>
         <?= view_cell('FrontendCell::trending', ['gridStyle' => 'columns']) ?>

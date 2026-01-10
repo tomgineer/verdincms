@@ -82,11 +82,6 @@ if (!function_exists('path_audio')) {
     function path_audio() { return path('audio'); }
 }
 
-// SVG
-// if (!function_exists('svg')) {
-//     function svg($id) { return '#'.$id;}
-// }
-
 // Tier
 if(!function_exists('tier')) {
 	function tier() { return session('tier') ?? 0; }
@@ -100,18 +95,6 @@ if (!function_exists('setting')) {
         return $settings->get($key); // or getSetting($key)
     }
 }
-
-// Number Format
-// if(!function_exists('nf')) {
-// 	function nf($number) { return number_format($number,0,'.',','); }
-// }
-
-// Read Time
-// if(!function_exists('read_time')) {
-//     function read_time($words) {
-//         return is_numeric($words) ? number_format((int) $words / 150, 1, '.', ',') : '0';
-// 	}
-// }
 
 // Route
 if(!function_exists('get_route')) {
@@ -130,42 +113,12 @@ if ( ! function_exists('body_class')) {
     }
 }
 
-// Database Timestamp
-// if (!function_exists('db_now')) {
-//     function db_now(): string {
-//         $db = db_connect();
-//         return $db->query('SELECT NOW() AS db_now')->getRow('db_now');
-//     }
-// }
-
 // Blocks
 if(!function_exists('block')) {
     function block($arr, $group, $alias, $element) {
         return $arr[$group][$alias][0][$element] ?? '';
     }
 }
-
-// Is Mobile
-// if (!function_exists('is_mobile')) {
-//     function is_mobile(): bool {
-//         $agent = \Config\Services::request()->getUserAgent();
-//         return $agent && $agent->isMobile();
-//     }
-// }
-
-// Empty Image
-// if(!function_exists('empty_img')) {
-// 	function empty_img() {
-// 		return 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
-// 	}
-// }
-
-// Module Exists
-// if(!function_exists('module_exists')) {
-// 	function module_exists($module) {
-//         return file_exists(APPPATH.'Views/modules/'.$module.'.php');
-// 	}
-// }
 
 // Chart Data
 if (!function_exists('chart_data')) {
