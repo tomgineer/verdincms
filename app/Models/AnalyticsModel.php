@@ -311,8 +311,8 @@ public function getOverviewData() {
     // Get the number of active members
     $members = 0; //$this->db->table('members')->where('status', 1)->countAllResults();
 
-    // Get uptime days (difference between the earliest 'created' date and today for pages)
-    $uptimeDays = $this->db->query("SELECT DATEDIFF(CURDATE(), MIN(created)) AS uptime_days FROM pages")->getRow()->uptime_days;
+    // Get uptime days (difference between the earliest 'created' date and today for posts)
+    $uptimeDays = $this->db->query("SELECT DATEDIFF(CURDATE(), MIN(created)) AS uptime_days FROM posts WHERE id != 0")->getRow()->uptime_days;
 
     // Get the date of the first post (excluding posts with id = 0)
     $firstPostDate = $this->db->table('posts')
@@ -388,7 +388,7 @@ public function getOverviewData() {
         'Latest Post Date' => $latestPostDate,
         'First Page Date'  => $firstPageDate,
         'Latest Page Date' => $latestPageDate,
-        'Awaiting Review'  => $awaitingReview
+        'Awaiting Review'  => $awaitingReview,
     ];
 
     // Users
@@ -396,7 +396,8 @@ public function getOverviewData() {
         'Users'                    => $this->db->table('users')->where('status', 1)->countAllResults(),
         'Members'                  => $members,
         'Estimated Monthly Profit' => '$' . ($members * 10),
-        'Estimated Yearly Profit'  => '$' . ($members * 10 * 12)
+        'Estimated Yearly Profit'  => '$' . ($members * 10 * 12),
+        'Newsletter Subscribers'   => $this->db->table('newsletter')->countAllResults(),
     ];
 
     // System
