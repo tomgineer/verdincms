@@ -1,9 +1,8 @@
 @import "tailwindcss";
-
 @source "./app/Views/**/*.php";
 @source "./public/js/**/*.js";
 @plugin "daisyui" {
-    themes: dark --default, corporate, dim, arc-dark;
+    themes: dark --default, corporate, dim;
 }
 @plugin "@tailwindcss/typography";
 

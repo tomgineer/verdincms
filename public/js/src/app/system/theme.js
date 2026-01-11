@@ -1,3 +1,4 @@
+// Initialize theme toggle: sync saved preference, apply theme, and wire change handler.
 export default function themeSwither() {
     let checkbox = document.querySelector('.theme-controller');
     if (!checkbox) return;
@@ -24,7 +25,7 @@ export default function themeSwither() {
         checkbox.classList.remove('transition-none');
     });
 
-    // From here on, theme changes are user-triggered → allow animation
+    // From here on, theme changes are user-triggered; allow animation
     checkbox.addEventListener('change', function () {
         let newTheme = this.checked ? darkTheme : 'corporate';
         localStorage.setItem('theme_mode', newTheme);
@@ -32,8 +33,8 @@ export default function themeSwither() {
     });
 }
 
+// Apply theme to <html> and sync toggle state.
 function applyTheme(theme, checkbox, darkTheme) {
-    // Apply theme to <html>
     document.documentElement.setAttribute('data-theme', theme);
 
     // Sync toggle
