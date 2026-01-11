@@ -2,6 +2,8 @@ export default function themeSwither() {
     let checkbox = document.querySelector('.theme-controller');
     if (!checkbox) return;
 
+    const darkTheme = document.documentElement.getAttribute('data-default-theme') || 'dark';
+
     // Disable animation just for the initial state sync
     checkbox.classList.add('transition-none');
 
@@ -9,12 +11,12 @@ export default function themeSwither() {
     let savedTheme = localStorage.getItem('theme_mode');
 
     // Apply saved theme (no animation) if it exists
-    if (savedTheme === 'dark' || savedTheme === 'corporate') {
-        applyTheme(savedTheme, checkbox);
+    if (savedTheme === darkTheme || savedTheme === 'corporate') {
+        applyTheme(savedTheme, checkbox, darkTheme);
     } else {
         // No saved theme: just sync the toggle to current DOM state
         const currentTheme = document.documentElement.getAttribute('data-theme');
-        checkbox.checked = (currentTheme === 'dark');
+        checkbox.checked = (currentTheme === darkTheme);
     }
 
     // Re-enable transition for user interactions
@@ -24,18 +26,18 @@ export default function themeSwither() {
 
     // From here on, theme changes are user-triggered → allow animation
     checkbox.addEventListener('change', function () {
-        let newTheme = this.checked ? 'dark' : 'corporate';
+        let newTheme = this.checked ? darkTheme : 'corporate';
         localStorage.setItem('theme_mode', newTheme);
-        applyTheme(newTheme, this);
+        applyTheme(newTheme, this, darkTheme);
     });
 }
 
-function applyTheme(theme, checkbox) {
+function applyTheme(theme, checkbox, darkTheme) {
     // Apply theme to <html>
     document.documentElement.setAttribute('data-theme', theme);
 
     // Sync toggle
     if (checkbox) {
-        checkbox.checked = (theme === 'dark');
+        checkbox.checked = (theme === darkTheme);
     }
 }

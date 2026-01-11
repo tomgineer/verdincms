@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?= setting('site.language') ?>" data-theme="<?= setting('theme.main') ?>">
+<html lang="<?= setting('site.language') ?>" data-theme="<?= setting('theme.main') ?>" data-default-theme="<?= setting('theme.main') ?>">
 
 <head>
     <meta charset="UTF-8">
