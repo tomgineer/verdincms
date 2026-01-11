@@ -22,6 +22,19 @@
         <meta name="description" content="<?= setting('meta.siteDescription') ?>" />
     <?php endif; ?>
 
+    <script>
+        (function () {
+            try {
+                var root = document.documentElement;
+                var saved = localStorage.getItem('theme_mode');
+                var defaultTheme = root.getAttribute('data-default-theme') || root.getAttribute('data-theme');
+                if (saved && (saved === defaultTheme || saved === 'corporate')) {
+                    root.setAttribute('data-theme', saved);
+                }
+            } catch (e) {}
+        })();
+    </script>
+
     <link rel="stylesheet" href="<?= path_css() ?>tailwind.css?v=<?= ver() ?>">
 
     <?php foreach (setting('theme.extraFonts') ?: ['default'] as $font): ?>
