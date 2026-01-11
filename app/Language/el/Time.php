@@ -27,7 +27,7 @@ return [
     'seconds'        => '{0, plural, =1{# δευτερόλεπτο} other{# δευτερόλεπτα}}', // '{0, plural, =1{# second} other{# seconds}}',
     'ago'            => '{0} πριν', // '{0} ago',
     'inFuture'       => 'σε {0}', // 'in {0}',
-    'yesterday'      => 'Εχθές', // 'Yesterday',
+    'yesterday'      => 'Χθες', // 'Yesterday',
     'tomorrow'       => 'Αύριο', // 'Tomorrow',
     'now'            => 'Μόλις τώρα', // 'Just now',
 ];
