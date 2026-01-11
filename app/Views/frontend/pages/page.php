@@ -46,10 +46,6 @@
             <?= view_cell('FrontendCell::trending', ['gridStyle' => 'columns']) ?>
         </section>
     <?php endif; ?>
-
-    <?php if (setting('theme.pageBadges') && $page['slug'] === 'about'): ?>
-        <?= $this->include('frontend/partials/badges') ?>
-    <?php endif; ?>
 </aside>
 
 <?= $this->endSection() ?>
