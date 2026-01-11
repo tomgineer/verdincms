@@ -14,7 +14,7 @@
     <input
         type="checkbox"
         class="toggle theme-controller"
-        value="dark"
+        value="<?= setting('theme.main') ?>"
         aria-label="Toggle dark mode" />
 
     <!-- moon icon -->
