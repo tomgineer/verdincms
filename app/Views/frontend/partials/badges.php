@@ -1,7 +1,19 @@
-<section class="bg-gradient-to-br from-sky-400 via-indigo-600 to-fuchsia-600">
-    <div class="max-w-5xl mx-auto py-12 lg:py-24 grid lg:grid-cols-3 gap-4 lg:gap-12 justify-center">
-        <img class="w-56 lg:w-full opacity-85" src="<?=path_gfx().'badge_1_2.svg'?>" alt="Badge 1" loading="lazy">
-        <img class="w-56 lg:w-full opacity-85" src="<?=path_gfx().'badge_2_2.svg'?>" alt="Badge 1" loading="lazy">
-        <img class="w-56 lg:w-full opacity-85" src="<?=path_gfx().'badge_3_2.svg'?>" alt="Badge 1" loading="lazy">
+<section class="hidden lg:block px-4">
+    <div class="grid grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="w-full aspect-video flex flex-col justify-center items-center
+            bg-gradient-to-br from-rose-600 via-rose-800 to-rose-300 rounded-full border-2 border-rose-600 shadow-2xl">
+            <span class="font-bebas text-6xl tracking-tight text-shadow-lg">10 XPONIA</span>
+            <span class="font-heading text-xl text-shadow-lg">ΧΩΡΙΣ ΚΟΙΝΩΝΙΚΑ ΔΙΚΤΥΑ</span>
+        </div>
+        <div class="w-full aspect-video flex flex-col justify-center items-center
+            bg-gradient-to-br from-purple-600 via-purple-800 to-purple-300 rounded-full border-2 border-purple-600 shadow-2xl">
+            <span class="font-bebas text-6xl tracking-tight text-shadow-lg">15 XPONIA</span>
+            <span class="font-heading text-xl text-shadow-lg">ΧΩΡΙΣ ΤΗΛΕΟΡΑΣΗ</span>
+        </div>
+        <div class="w-full aspect-video flex flex-col justify-center items-center
+            bg-gradient-to-br from-amber-600 via-amber-800 to-amber-300 rounded-full border-2 border-amber-600 shadow-2xl">
+            <span class="font-bebas text-6xl tracking-tight text-shadow-lg">30 XPONIA</span>
+            <span class="font-heading text-xl text-shadow-lg">ΓΡΑΦΗ</span>
+        </div>
     </div>
 </section>
