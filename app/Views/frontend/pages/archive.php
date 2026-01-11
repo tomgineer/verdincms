@@ -6,7 +6,7 @@
 
         <section class="flex-1">
             <header class="mb-8 lg:mb-12">
-                <h1 class="text-4xl text-base-content text-shadow-lg"><?= esc($site_title) ?></h1>
+                <h1 class="text-4xl text-base-content"><?= esc($site_title) ?></h1>
                 <?php if (!empty($site_desc)): ?>
                     <div class="prose prose-sm max-w-none mt-3 rounded-lg p-4 lg:p-6 bg-base-200">
                         <?=$site_desc?>
