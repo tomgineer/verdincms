@@ -20,5 +20,5 @@ newsletterInit();
 import initCarousel from './app/system/carousel.js'
 initCarousel();
 
-// import themeSwither from './app/system/theme.js'
-// themeSwither();
+import themeSwither from './app/system/theme.js'
+themeSwither();

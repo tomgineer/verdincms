@@ -5,19 +5,17 @@ export default function themeSwither() {
     // Disable animation just for the initial state sync
     checkbox.classList.add('transition-none');
 
-    // Load saved preference or follow system
+    // Load saved preference only; do not follow system/browser
     let savedTheme = localStorage.getItem('theme_mode');
-    let prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    let initialTheme;
-    if (savedTheme === 'dark' || savedTheme === 'autumn') {
-        initialTheme = savedTheme;
+    // Apply saved theme (no animation) if it exists
+    if (savedTheme === 'dark' || savedTheme === 'corporate') {
+        applyTheme(savedTheme, checkbox);
     } else {
-        initialTheme = prefersDark ? 'dark' : 'autumn';
+        // No saved theme: just sync the toggle to current DOM state
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        checkbox.checked = (currentTheme === 'dark');
     }
-
-    // Apply initial theme (no animation)
-    applyTheme(initialTheme, checkbox);
 
     // Re-enable transition for user interactions
     requestAnimationFrame(function () {
@@ -26,34 +24,18 @@ export default function themeSwither() {
 
     // From here on, theme changes are user-triggered → allow animation
     checkbox.addEventListener('change', function () {
-        let newTheme = this.checked ? 'dark' : 'autumn';
+        let newTheme = this.checked ? 'dark' : 'corporate';
         localStorage.setItem('theme_mode', newTheme);
         applyTheme(newTheme, this);
     });
 }
 
 function applyTheme(theme, checkbox) {
-    const baseUrl = document.querySelector('meta[name="base-url"]')?.content;
-    if (!baseUrl) return;
-
-    const basePath = `${baseUrl}gfx/`;
-
     // Apply theme to <html>
     document.documentElement.setAttribute('data-theme', theme);
 
     // Sync toggle
     if (checkbox) {
         checkbox.checked = (theme === 'dark');
-    }
-
-    // Update logo
-    let logos = document.querySelectorAll('[data-logo]');
-
-    if (logos.length) {
-        logos.forEach(el => {
-            el.src = theme === 'dark'
-                ? `${basePath}logo.svg`
-                : `${basePath}logo_light.svg`;
-        });
     }
 }

@@ -1,4 +1,7 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(html[data-theme="dark"], html[data-theme="dark"] *));
+
 @source "./app/Views/**/*.php";
 @source "./public/js/**/*.js";
 @plugin "daisyui" {

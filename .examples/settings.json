@@ -20,7 +20,8 @@
         "postShare": true,
         "newsletter": true,
         "humanContent": true,
-        "pagesLabel": "Blog"
+        "pagesLabel": "Blog",
+        "themeSwitcher": true
     },
     "navbar": {
         "displaySearch": true,

@@ -9,6 +9,7 @@
                 data-logo>
         </a>
 
+        <!-- Dashboard & Analytics Quick Access -->
         <?php if (tier() >= 10): ?>
             <ul class="flex gap-1 z-998">
                 <li>
@@ -31,6 +32,7 @@
         <?php endif; ?>
     </div>
 
+    <!-- Admin -->
     <div class="flex items-center gap-2">
         <ul class="menu menu-horizontal leading-5 z-998">
             <?php if (tier() >= 9): ?>
@@ -154,6 +156,11 @@
             <section class="hidden absolute top-16 left-1/2 -translate-x-1/2 z-900 max-w-6xl w-full bg-base-300 rounded-2xl shadow-2xl p-8 border-2 border-primary" data-js-search-results>No Results..</section>
         <?php endif; ?>
 
+        <!-- Theme Switch -->
+        <?php if (setting('theme.themeSwitcher')): ?>
+            <?= $this->include('frontend/partials/theme_switcher') ?>
+        <?php endif; ?>
+
         <!-- Profile -->
         <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost btn-square text-base-content/45 lg:text-base-content">
@@ -187,6 +194,7 @@
             </ul>
         </div>
 
+        <!-- Edit Buttons -->
         <ul class="flex gap-1 z-998">
             <?php if ($can_edit ?? false): ?>
                 <?php if (!empty($post)): ?>
