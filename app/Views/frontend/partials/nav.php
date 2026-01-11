@@ -88,31 +88,31 @@
                 </li>
             <?php endif; ?>
 
-            <!-- Ranking -->
-            <?php if (setting('navbar.displayRanking')): ?>
-                <li class="hidden <?= (tier() != 0 ? '2xl:flex' : 'lg:flex') ?>">
-                    <details>
-                        <summary>Ranking</summary>
-                        <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
-                            <li><a href="<?= site_url('ranking/trending') ?>">Trending</a></li>
-                            <li><a href="<?= site_url('ranking/popular') ?>">Popular</a></li>
-                            <li><a href="<?= site_url('featured') ?>">Featured</a></li>
-                        </ul>
-                    </details>
-                </li>
-            <?php endif; ?>
-
             <!-- Topics -->
             <?php if (setting('navbar.displayTopics')): ?>
                 <li class="hidden <?= (tier() != 0 ? '2xl:flex' : 'lg:flex') ?>">
                     <details>
-                        <summary>Topics</summary>
+                        <summary><?=lang('App.topics')?></summary>
                         <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
                             <?php foreach ($menu_items['topics'] as $topic): ?>
                                 <li>
                                     <a href="<?= site_url('topic/' . $topic['slug']) ?>"><?= esc($topic['title']) ?></a>
                                 </li>
                             <?php endforeach; ?>
+                        </ul>
+                    </details>
+                </li>
+            <?php endif; ?>
+
+            <!-- Ranking -->
+            <?php if (setting('navbar.displayRanking')): ?>
+                <li class="hidden <?= (tier() != 0 ? '2xl:flex' : 'lg:flex') ?>">
+                    <details>
+                        <summary><?=lang('App.ranking')?></summary>
+                        <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
+                            <li><a href="<?= site_url('ranking/trending') ?>"><?=lang('App.trending')?></a></li>
+                            <li><a href="<?= site_url('ranking/popular') ?>"><?=lang('App.popular')?></a></li>
+                            <li><a href="<?= site_url('featured') ?>"><?=lang('App.featured')?></a></li>
                         </ul>
                     </details>
                 </li>
@@ -148,7 +148,7 @@
         <?php if (setting('navbar.displaySearch')): ?>
             <input
                 type="search"
-                placeholder="Search"
+                placeholder="<?= lang('App.search') ?>"
                 class="input input-bordered w-52 2xl:w-96 text-base hidden lg:flex focus:border-none focus:outline-primary"
                 data-js-search />
             <section class="hidden absolute top-16 left-1/2 -translate-x-1/2 z-900 max-w-6xl w-full bg-base-300 rounded-2xl shadow-2xl p-8 border-2 border-primary" data-js-search-results>No Results..</section>

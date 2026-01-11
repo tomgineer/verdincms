@@ -28,28 +28,28 @@
 
 </article>
 
-<?php if (setting('theme.pageExtras')): ?>
-    <section class="container mx-auto px-4 mb-8">
-        <h2 class="text-3xl mb-4 text-primary">Featured</h2>
-        <?= view_cell('FrontendCell::featured', ['gridStyle' => 'columns']) ?>
-    </section>
-<?php endif; ?>
+<aside class="flex flex-col gap-24 lg:gap-36 mb-24 lg:mb-36">
+    <?php if (setting('theme.pageExtras')): ?>
+        <section class="container mx-auto px-4">
+            <h2 class="text-3xl lg:text-4xl mb-4 text-primary"><?=lang('App.featured')?></h2>
+            <?= view_cell('FrontendCell::featured', ['gridStyle' => 'columns']) ?>
+        </section>
+    <?php endif; ?>
 
-<?php if (setting('theme.newsletter')): ?>
-    <div class="pt-12 pb-20">
+    <?php if (setting('theme.newsletter')): ?>
         <?= view_cell('FrontendCell::newsletterBlock') ?>
-    </div>
-<?php endif; ?>
+    <?php endif; ?>
 
-<?php if (setting('theme.pageExtras')): ?>
-    <section class="container mx-auto px-4 mb-24 lg:mb-36">
-        <h2 class="text-3xl mb-4 text-primary">Trending</h2>
-        <?= view_cell('FrontendCell::trending', ['gridStyle' => 'columns']) ?>
-    </section>
-<?php endif; ?>
+    <?php if (setting('theme.pageExtras')): ?>
+        <section class="container mx-auto px-4">
+            <h2 class="text-3xl lg:text-4xl mb-4 text-primary"><?=lang('App.trending')?></h2>
+            <?= view_cell('FrontendCell::trending', ['gridStyle' => 'columns']) ?>
+        </section>
+    <?php endif; ?>
 
-<?php if (setting('theme.pageBadges') && $page['slug'] === 'about'): ?>
-    <?= $this->include('frontend/partials/badges') ?>
-<?php endif; ?>
+    <?php if (setting('theme.pageBadges') && $page['slug'] === 'about'): ?>
+        <?= $this->include('frontend/partials/badges') ?>
+    <?php endif; ?>
+</aside>
 
 <?= $this->endSection() ?>

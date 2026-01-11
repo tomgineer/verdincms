@@ -18,4 +18,11 @@ return [
     'public_posts' => 'Δημόσια Άρθρα',
     'cms_version' => 'Έκδοση VerdinCMS',
     'subscribers' => 'Συνδρομητές',
+    'related' => 'Σχετικά',
+    'trending' => 'Trending',
+    'featured' => 'Προτεινόμενα',
+    'popular' => 'Δημοφιλή',
+    'topics' => 'Θεματολογία',
+    'ranking' => 'Ξεχωρίζουν',
+    'search' => 'Αναζήτηση',
 ];

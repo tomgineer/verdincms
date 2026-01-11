@@ -34,28 +34,28 @@
 
 </article>
 
-<?php if (setting('theme.postShare')): ?>
-    <?= $this->include('frontend/partials/share') ?>
-<?php endif; ?>
+<aside class="flex flex-col gap-24 lg:gap-36 mb-24 lg:mb-36">
+    <?php if (setting('theme.postShare')): ?>
+        <?= $this->include('frontend/partials/share') ?>
+    <?php endif; ?>
 
-<?php if (setting('theme.postExtras')): ?>
-    <section class="container mx-auto px-4 mb-8">
-        <h2 class="text-3xl mb-4 text-primary">Related</h2>
-        <?= view_cell('FrontendCell::related', ['post_id' => (int)$post['id'], 'topic_id' => (int)$post['topic_id'], 'gridStyle' => 'columns']) ?>
-    </section>
-<?php endif; ?>
+    <?php if (setting('theme.postExtras')): ?>
+        <section class="container mx-auto px-4">
+            <h2 class="text-3xl lg:text-4xl mb-4 text-primary"><?=lang('App.related')?></h2>
+            <?= view_cell('FrontendCell::related', ['post_id' => (int)$post['id'], 'topic_id' => (int)$post['topic_id'], 'gridStyle' => 'columns']) ?>
+        </section>
+    <?php endif; ?>
 
-<?php if (setting('theme.newsletter')): ?>
-    <div class="pt-12 pb-20">
+    <?php if (setting('theme.newsletter')): ?>
         <?=view_cell('FrontendCell::newsletterBlock')?>
-    </div>
-<?php endif; ?>
+    <?php endif; ?>
 
-<?php if (setting('theme.postExtras')): ?>
-    <section class="container mx-auto px-4 mb-24 lg:mb-36">
-        <h2 class="text-3xl mb-4 text-primary">Trending</h2>
-        <?= view_cell('FrontendCell::trending', ['gridStyle' => 'columns']) ?>
-    </section>
-<?php endif; ?>
+    <?php if (setting('theme.postExtras')): ?>
+        <section class="container mx-auto px-4">
+            <h2 class="text-3xl lg:text-4xl mb-4 text-primary"><?=lang('App.trending')?></h2>
+            <?= view_cell('FrontendCell::trending', ['gridStyle' => 'columns']) ?>
+        </section>
+    <?php endif; ?>
+</aside>
 
 <?= $this->endSection() ?>

@@ -8,7 +8,7 @@
         </section>
 
         <aside class="w-full lg:w-[30%] hidden lg:block">
-            <h2 class="text-3xl text-primary mt-8 mb-2">Trending</h2>
+            <h2 class="text-3xl text-primary mt-8 mb-2"><?=lang('App.trending')?></h2>
             <?=view_cell('FrontendCell::trending')?>
         </aside>
     </div>
@@ -23,8 +23,13 @@
             <?= view('frontend/partials/pagination', ['pagination' => $pagination]) ?>
         </section>
 
+        <aside class="w-full lg:w-[30%] lg:hidden">
+            <h2 class="text-3xl text-primary mt-8 mb-2"><?=lang('App.trending')?></h2>
+            <?=view_cell('FrontendCell::trending')?>
+        </aside>
+
         <aside class="w-full lg:w-[30%]">
-            <h2 class="text-3xl text-primary mt-8 mb-2">Popular</h2>
+            <h2 class="text-3xl text-primary mt-8 mb-2"><?=lang('App.popular')?></h2>
             <?=view_cell('FrontendCell::popular')?>
         </aside>
     </div>

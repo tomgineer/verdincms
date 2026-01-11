@@ -18,4 +18,11 @@ return [
     'public_posts' => 'Public Posts',
     'cms_version' => 'Powered by VerdinCMS',
     'subscribers' => 'Subscribers',
+    'related' => 'Related',
+    'trending' => 'Trending',
+    'featured' => 'Featured',
+    'popular' => 'Popular',
+    'topics' => 'Topics',
+    'ranking' => 'Ranking',
+    'search' => 'Search',
 ];
