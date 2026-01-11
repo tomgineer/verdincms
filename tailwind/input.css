@@ -1,8 +1,10 @@
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=arc-dark], [data-theme=dark] *, [data-theme=arc-dark] *));
+
 @source "./app/Views/**/*.php";
 @source "./public/js/**/*.js";
 @plugin "daisyui" {
-    themes: dark --default, corporate, dim;
+    themes: dark --default, corporate;
 }
 @plugin "@tailwindcss/typography";
 
