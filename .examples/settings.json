@@ -37,7 +37,8 @@
     },
     "system": {
         "build": 104,
-        "ip2location": false
+        "ip2location": false,
+        "githubUser" : "tomgineer"
     },
     "admin": {
         "email": "",

@@ -345,6 +345,12 @@ public function getOverviewData() {
                               ->countAllResults();
     $awaitingReview = $postsAwaiting + $pagesAwaiting;
 
+    // GitHub Repos
+    $gitHubRepos = 0;
+    if ($this->db->tableExists('github_repos')) {
+        $gitHubRepos = $this->db->table('github_repos')->countAllResults();
+    }
+
     // Session Files
     $sessionPath     = ROOTPATH . 'writable' . DIRECTORY_SEPARATOR . 'session' . DIRECTORY_SEPARATOR;
     $sessionFiles    = glob($sessionPath . '*');
@@ -389,6 +395,7 @@ public function getOverviewData() {
         'First Page Date'  => $firstPageDate,
         'Latest Page Date' => $latestPageDate,
         'Awaiting Review'  => $awaitingReview,
+        'GitHub Repositories' => $gitHubRepos,
     ];
 
     // Users

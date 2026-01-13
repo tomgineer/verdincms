@@ -12,6 +12,11 @@ class Site extends BaseController {
         $this->content = new ContentModel();
     }
 
+public function test() {
+    return view('frontend/pages/test');
+}
+
+
 /**
  * Renders the front page of the site.
  *

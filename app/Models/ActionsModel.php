@@ -119,7 +119,7 @@ class ActionsModel extends Model {
                $this->removeOrphanAvatars();
                 break;
             case 'updateGitHubRepos':
-                (new GitHubSync())->syncGithubRepos('tomgineer');
+                (new GitHubSync())->syncGithubRepos(setting('system.githubUser'));
                 break;
             default:
                 break;
