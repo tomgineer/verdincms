@@ -94,7 +94,7 @@
             <?php if (setting('navbar.displayTopics')): ?>
                 <li class="hidden <?= (tier() != 0 ? '2xl:flex' : 'lg:flex') ?>">
                     <details>
-                        <summary><?=lang('App.topics')?></summary>
+                        <summary><?= lang('App.topics') ?></summary>
                         <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
                             <?php foreach ($menu_items['topics'] as $topic): ?>
                                 <li>
@@ -110,11 +110,11 @@
             <?php if (setting('navbar.displayRanking')): ?>
                 <li class="hidden <?= (tier() != 0 ? '2xl:flex' : 'lg:flex') ?>">
                     <details>
-                        <summary><?=lang('App.ranking')?></summary>
+                        <summary><?= lang('App.ranking') ?></summary>
                         <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
-                            <li><a href="<?= site_url('ranking/trending') ?>"><?=lang('App.trending')?></a></li>
-                            <li><a href="<?= site_url('ranking/popular') ?>"><?=lang('App.popular')?></a></li>
-                            <li><a href="<?= site_url('featured') ?>"><?=lang('App.featured')?></a></li>
+                            <li><a href="<?= site_url('ranking/trending') ?>"><?= lang('App.trending') ?></a></li>
+                            <li><a href="<?= site_url('ranking/popular') ?>"><?= lang('App.popular') ?></a></li>
+                            <li><a href="<?= site_url('featured') ?>"><?= lang('App.featured') ?></a></li>
                         </ul>
                     </details>
                 </li>
@@ -124,7 +124,7 @@
             <?php if (setting('navbar.displayBlog')): ?>
                 <li class="hidden lg:flex">
                     <details>
-                        <summary><?=setting('theme.pagesLabel')?></summary>
+                        <summary><?= setting('theme.pagesLabel') ?></summary>
                         <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
                             <?php foreach ($menu_items['pages'] as $page_items): ?>
                                 <li>
@@ -156,9 +156,20 @@
             <section class="hidden absolute top-16 left-1/2 -translate-x-1/2 z-900 max-w-6xl w-full bg-base-300 rounded-2xl shadow-2xl p-8 border-2 border-primary" data-js-search-results>No Results..</section>
         <?php endif; ?>
 
-        <!-- Theme Switch -->
+        <!-- Theme Switcher -->
         <?php if (setting('theme.themeSwitcher')): ?>
-            <?= $this->include('frontend/partials/theme_switcher') ?>
+            <label class="flex items-center cursor-pointer gap-2 mx-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5" />
+                    <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
+                </svg>
+
+                <input type="checkbox" class="toggle theme-controller" value="<?= setting('theme.main') ?>" aria-label="Toggle dark mode" />
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </label>
         <?php endif; ?>
 
         <!-- Profile -->
@@ -221,4 +232,3 @@
 
     </div>
 </nav>
-

@@ -16,64 +16,76 @@
 
 <body class="min-h-screen flex flex-col <?= body_class() ?>">
 
-    <header class="border-2 border-blue-800" data-region="header">
+    <header data-region="header">
         <?= view_cell('FrontendCell::nav') ?>
         <?= $this->renderSection('header') ?>
     </header>
 
-    <main class="flex flex-col gap-8 lg:gap-12 2xl:gap-16">
-        <div class="border-2 border-blue-800" data-region="hero">
-            <?= $this->renderSection('hero') ?>
-        </div>
+    <main class="flex flex-col gap-12 lg:gap-24 2xl:gap-36 my-12 lg:my-24">
 
-        <div class="px-4 xl:container xl:mx-auto border-2 border-blue-800" data-region="top">
-            <?= $this->renderSection('top') ?>
-        </div>
 
-        <div class="px-2 lg:px-4 xl:container xl:mx-auto border-2 border-blue-800">
-            <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 border-2 border-blue-800">
-                <section class="flex-1 border-2 border-blue-800" aria-label="Main top content">
+        <?php $heroSection = $this->renderSection('hero'); ?>
+        <?php if (trim($heroSection) !== ''): ?>
+            <div data-region="hero">
+                <?= $heroSection ?>
+            </div>
+        <?php endif; ?>
+
+        <?php $topSection = $this->renderSection('top'); ?>
+        <?php if (trim($topSection) !== ''): ?>
+            <div class="px-4 xl:container xl:mx-auto" data-region="top">
+                <?= $topSection ?>
+            </div>
+        <?php endif; ?>
+
+        <div class="px-4 xl:container xl:mx-auto">
+            <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+                <section class="flex-1" aria-label="Main top content">
                     <?= $this->renderSection('main_top') ?>
                 </section>
 
-                <aside class="w-full lg:w-[30%] hidden lg:block border-2 border-blue-800" aria-label="Sidebar top">
+                <aside class="hidden lg:flex flex-col gap-8 lg:gap-12 lg:w-[30%]" aria-label="Sidebar top">
                     <?= $this->renderSection('sidebar_top') ?>
                 </aside>
             </div>
         </div>
 
-        <div class="border-2 border-blue-800" data-region="middle">
+        <div data-region="middle">
             <?= $this->renderSection('middle') ?>
         </div>
 
-        <div class="px-2 lg:px-4 xl:container xl:mx-auto border-2 border-blue-800">
-            <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 border-2 border-blue-800">
-                <section class="flex-1 border-2 border-blue-800" aria-label="Main bottom content">
+        <div class="px-4 xl:container xl:mx-auto">
+            <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+                <section class="flex-1" aria-label="Main bottom content">
                     <?= $this->renderSection('main_bottom') ?>
                 </section>
 
-                <aside class="w-full lg:w-[30%] border-2 border-blue-800" aria-label="Sidebar bottom">
+                <aside class="flex flex-col gap-8 lg:gap-12 lg:w-[30%]" aria-label="Sidebar bottom">
                     <?= $this->renderSection('sidebar_bottom') ?>
                 </aside>
             </div>
         </div>
 
-        <div class="px-4 xl:container xl:mx-auto border-2 border-blue-800" data-region="bottom">
-            <?= $this->renderSection('bottom') ?>
-        </div>
+
+        <?php $bottomSection = $this->renderSection('bottom'); ?>
+        <?php if (trim($bottomSection) !== ''): ?>
+            <div class="px-4 xl:container xl:mx-auto" data-region="bottom">
+                <?= $bottomSection ?>
+            </div>
+        <?php endif; ?>
     </main>
 
-    <footer class="mt-auto flex flex-col border-2 border-blue-800">
-        <div class="border-2 border-blue-800" data-region="call-to-action">
+    <footer class="mt-auto flex flex-col">
+        <div data-region="call-to-action">
             <?= $this->renderSection('call_to_action') ?>
         </div>
 
-        <div class="border-2 border-blue-800" data-region="footer">
+        <div data-region="footer">
             <?= $this->renderSection('footer') ?>
+            <?= view_cell('FrontendCell::footer') ?>
         </div>
     </footer>
 
 </body>
 
 </html>
-

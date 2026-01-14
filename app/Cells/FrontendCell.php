@@ -22,7 +22,7 @@ class FrontendCell extends Cell {
  */
 public function nav(): string {
     $data = ['menu_items' => $this->content->getMenuItems()];
-    return view('frontend/partials/nav', $data, ['saveData' => false]);
+    return view('frontend/cells/nav', $data, ['saveData' => false]);
 }
 
 /**
@@ -38,7 +38,7 @@ public function footer(): string {
         'socials_list'      => $this->content->getSocialsList()
     ];
 
-    return theme_view('frontend/partials/footer', $data, ['saveData' => false]);
+    return theme_view('frontend/cells/footer', $data, ['saveData' => false]);
 }
 
 /**
@@ -94,7 +94,7 @@ public function related(): string {
  */
 public function featuredBlock(): string {
     $data = $this->content->getPosts(amount: $this->postsPerCell, featured: true) ?? [];
-    return view('frontend/partials/carousel', $data, ['saveData' => false]);
+    return view('frontend/cells/carousel', $data, ['saveData' => false]);
 }
 
 /**
@@ -102,7 +102,7 @@ public function featuredBlock(): string {
  */
 public function newsletterBlock(): string {
     $data = $this->content->getSingleBlock('newsletter.newsletter');
-    return theme_view('frontend/partials/newsletter', $data, ['saveData' => false]);
+    return theme_view('frontend/cells/newsletter', $data, ['saveData' => false]);
 }
 
 }

@@ -6,9 +6,9 @@
 
                 <div class="card lg:card-side rounded-none">
                     <figure class="w-full lg:w-1/3 my-1">
-                        <a href="<?= site_url('post/' . esc($post['id'])) ?>">
+                        <a class="w-full" href="<?= site_url('post/' . esc($post['id'])) ?>">
                             <img
-                                class="rounded-[25%_0_25%_0] shadow-sm transition-all duration-300 ease-in-out hover:scale-95 hover:brightness-110 hover:shadow-xl aspect-square"
+                                class="rounded-xl lg:rounded-[25%_0_25%_0] lg:shadow-sm transition-all duration-300 ease-in-out hover:scale-95 hover:brightness-110 hover:shadow-xl w-full aspect-video lg:aspect-square object-cover"
                                 src="<?= path_img_tn() . esc($post['photo']) . '.webp' ?>"
                                 alt="<?= esc($post['title']) ?>"
                                 loading="lazy">

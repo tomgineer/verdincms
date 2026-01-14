@@ -1,46 +1,44 @@
-<?= $this->extend('frontend/layouts/default') ?>
-<?= $this->section('main') ?>
+<?= $this->extend('frontend/layouts/layout_main') ?>
 
-<div class="xl:container mx-2 xl:mx-auto px-4 mt-8 lg:mt-12 xl:mt-24 mb-0 lg:mb-12">
-    <div class="flex flex-col lg:flex-row lg:gap-8">
-        <section class="flex-1">
-            <?= view('frontend/partials/post_list', ['posts' => $topPosts]) ?>
-        </section>
+<?= $this->section('main_top') ?>
+    <?= view('frontend/partials/post_list', ['posts' => $topPosts]) ?>
+<?= $this->endSection() ?>
 
-        <aside class="w-full lg:w-[30%] hidden lg:block">
-            <h2 class="text-3xl text-primary mt-8 mb-2"><?=lang('App.trending')?></h2>
-            <?=view_cell('FrontendCell::trending')?>
-        </aside>
+<?= $this->section('sidebar_top') ?>
+    <div>
+        <h2 class="text-3xl text-primary mt-8 mb-2"><?= lang('App.trending') ?></h2>
+        <?= view_cell('FrontendCell::trending') ?>
     </div>
-</div>
+<?= $this->endSection() ?>
 
-<?=view_cell('FrontendCell::featuredBlock')?>
+<?= $this->section('middle') ?>
+    <?= view_cell('FrontendCell::featuredBlock') ?>
+<?= $this->endSection() ?>
 
-<div class="xl:container mx-auto px-4 mt-0 lg:mt-30 mb-12 lg:mb-24">
-    <div class="flex flex-col lg:flex-row gap-8">
-        <section class="flex-1">
-            <?= view('frontend/partials/post_list', ['posts' => $restPosts]) ?>
-            <?= view('frontend/partials/pagination', ['pagination' => $pagination]) ?>
-        </section>
+<?= $this->section('main_bottom') ?>
+    <?= view('frontend/partials/post_list', ['posts' => $restPosts]) ?>
+    <?= view('frontend/partials/pagination', ['pagination' => $pagination]) ?>
+<?= $this->endSection() ?>
 
-        <aside class="w-full lg:w-[30%] lg:hidden">
-            <h2 class="text-3xl text-primary mt-8 mb-2"><?=lang('App.trending')?></h2>
-            <?=view_cell('FrontendCell::trending')?>
-        </aside>
-
-        <aside class="w-full lg:w-[30%]">
-            <h2 class="text-3xl text-primary mt-8 mb-2"><?=lang('App.popular')?></h2>
-            <?=view_cell('FrontendCell::popular')?>
-        </aside>
+<?= $this->section('sidebar_bottom') ?>
+    <div>
+        <h2 class="text-3xl text-primary mt-8 mb-2"><?= lang('App.trending') ?></h2>
+        <?= view_cell('FrontendCell::trending') ?>
     </div>
+    <div>
+        <h2 class="text-3xl text-primary mt-8 mb-2"><?= lang('App.popular') ?></h2>
+        <?= view_cell('FrontendCell::popular') ?>
+    </div>
+<?= $this->endSection() ?>
 
+<?= $this->section('bottom') ?>
     <?php if (setting('theme.humanContent')): ?>
-        <?= $this->include('frontend/partials/not_ai_badge') ?>
+        <?= $this->include('frontend/cells/not_ai') ?>
     <?php endif; ?>
-</div>
+<?= $this->endSection() ?>
 
-<?php if (setting('theme.newsletter')): ?>
-    <?=view_cell('FrontendCell::newsletterBlock')?>
-<?php endif; ?>
-
+<?= $this->section('call_to_action') ?>
+    <?php if (setting('theme.newsletter')): ?>
+        <?= view_cell('FrontendCell::newsletterBlock') ?>
+    <?php endif; ?>
 <?= $this->endSection() ?>

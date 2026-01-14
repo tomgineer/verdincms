@@ -36,6 +36,3 @@
     <span>Call to Action</span>
 <?= $this->endSection() ?>
 
-<?= $this->section('footer') ?>
-    <?= view_cell('FrontendCell::footer') ?>
-<?= $this->endSection() ?>

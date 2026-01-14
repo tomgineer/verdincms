@@ -1,4 +1,4 @@
-<div class="max-w-5xl mx-auto mt-20 flex justify-center">
+<div class="flex justify-center mb-12">
     <div class="animated-border font-heading text-sm tracking-wide bg-base-200">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
