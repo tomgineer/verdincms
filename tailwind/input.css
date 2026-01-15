@@ -20,6 +20,7 @@
     /* Background images */
     --bg-bg1: url("../gfx/login.svg");
     --bg-bg2: url("../gfx/hero.svg");
+    --bg-bg3: url("../gfx/testimonials.svg");
 }
 
 @import "./themes.css";

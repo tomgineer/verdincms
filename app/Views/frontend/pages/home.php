@@ -2,7 +2,7 @@
 
 <?= $this->section('hero') ?>
     <?php if (setting('theme.homeHero')): ?>
-        <?= $this->include('frontend/cells/hero') ?>
+        <?= view_cell('FrontendCell::heroBlock') ?>
     <?php endif; ?>
 <?= $this->endSection() ?>
 
@@ -19,6 +19,7 @@
 
 <?= $this->section('middle') ?>
     <?= view_cell('FrontendCell::featuredBlock') ?>
+    <?= view_cell('FrontendCell::testimonialsBlock') ?>
 <?= $this->endSection() ?>
 
 <?= $this->section('main_bottom') ?>

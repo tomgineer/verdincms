@@ -105,4 +105,17 @@ public function newsletterBlock(): string {
     return theme_view('frontend/cells/newsletter', $data, ['saveData' => false]);
 }
 
+/**
+ * Render the hero block content.
+ */
+public function heroBlock(): string {
+    $data = $this->content->getSingleBlock('frontpage.hero');
+    return view('frontend/cells/hero', $data, ['saveData' => false]);
 }
+
+public function testimonialsBlock(): string {
+    $data = [];
+    return view('frontend/cells/testimonials', $data, ['saveData' => false]);
+}
+
+} // END Class

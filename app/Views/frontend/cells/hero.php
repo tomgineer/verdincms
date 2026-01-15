@@ -2,11 +2,11 @@
     <div>
         <span class="text-rotate text-5xl lg:text-7xl">
             <span class="justify-items-center">
-                <span>ΤΥΡΙ</span>
-                <span>ΡΥΖΙ</span>
-                <span>ΚΑΦΕ</span>
-                <span>ΓΑΛΑ</span>
-                <span>ΚΑΜΠΑ</span>
+                <span><?=esc($text1)?></span>
+                <span><?=esc($text2)?></span>
+                <span><?=esc($text3)?></span>
+                <span><?=esc($text4)?></span>
+                <span><?=esc($text5)?></span>
             </span>
         </span>
     </div>

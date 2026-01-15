@@ -3,6 +3,7 @@
     /* Backgrounds */
     .custom-bg-1 {background-image: var(--bg-bg1);}
     .custom-bg-2 {background-image: var(--bg-bg2);}
+    .custom-bg-3 {background-image: var(--bg-bg3);}
     .custom-bg-1 {
         @apply bg-cover bg-bottom bg-no-repeat;
     }
