@@ -12,7 +12,7 @@
     </nav>
 </section>
 
-<section class="footer sm:footer-horizontal text-base-content p-10 pt-1 bg-base-200">
+<section class="footer sm:footer-horizontal text-base-content p-10 pt-1 bg-base-200" data-theme="<?=setting('theme.darkBlocks')?>">
 
     <nav>
         <ul class="menu w-full">
@@ -49,7 +49,7 @@
 
 </section>
 
-<section class="footer text-base-content border-base-200 border-t-2 px-10 py-8 pb-8 lg:gap-0 bg-base-200">
+<section class="footer text-base-content border-base-200 border-t-2 px-10 py-8 pb-8 lg:gap-0 bg-base-200" data-theme="<?=setting('theme.darkBlocks')?>">
     <aside class="grid-flow-row lg:grid-flow-col gap-6 items-center">
         <a href="<?= base_url() ?>">
             <img

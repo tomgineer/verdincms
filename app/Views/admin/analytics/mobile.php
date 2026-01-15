@@ -1,4 +1,4 @@
-<?= $this->extend('admin/layouts/default') ?>
+<?= $this->extend('admin/layouts/layout_bare') ?>
 <?= $this->section('main') ?>
 
 <header>
@@ -81,3 +81,4 @@
 </main>
 
 <?= $this->endSection() ?>
+

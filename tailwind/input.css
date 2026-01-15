@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=arc-dark], [data-theme=dark] *, [data-theme=arc-dark] *));
+/* @custom-variant admin (&:where(body[class*="admin-"], body[class*="admin-"] *)); */
 
 @source "./app/Views/**/*.php";
 @source "./public/js/**/*.js";

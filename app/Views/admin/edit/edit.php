@@ -1,4 +1,4 @@
-<?= $this->extend('admin/layouts/default') ?>
+<?= $this->extend('admin/layouts/layout_bare') ?>
 <?= $this->section('head') ?>
 
     <script src="<?=path_assets()?>ckeditor/ckeditor.js?v=<?=ver()?>"></script>
@@ -19,4 +19,5 @@
 <?= $this->include('admin/edit/partials/toasts') ?>
 
 <?= $this->endSection() ?>
+
 

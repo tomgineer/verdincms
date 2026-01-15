@@ -31,10 +31,4 @@
         display: none;
     }
 
-    /* Wrap text around image */
-    .wrap-around {
-        @apply float-left mr-4;
-        shape-outside: circle(50%);
-    }
-
 }

@@ -10,16 +10,14 @@
                         <a class="mb-1 link link-hover" href="<?= site_url('post/' . esc($post['id'])) ?>">
                             <h2 class="card-title font-medium"><?= esc($post['title']) ?></h2>
                         </a>
-                        <div>
-                            <figure class="w-20 2xl:w-24 shrink-0 aspect-square rounded-full wrap-around">
-                                <a href="<?= site_url('post/' . esc($post['id'])) ?>">
-                                    <img
-                                        src="<?= path_img_xs() . esc($post['photo']) . '.webp' ?>"
-                                        class="h-full w-full object-cover"
-                                        loading="lazy">
-                                </a>
-                            </figure>
-                            <p><?= esc($post['subtitle']) ?></p>
+                        <div class="flex gap-4">
+                            <a href="<?= site_url('post/' . esc($post['id'])) ?>">
+                                <img
+                                    src="<?= path_img_xs() . esc($post['photo']) . '.webp' ?>"
+                                    class="w-24 aspect-square rounded-full object-cover"
+                                    loading="lazy">
+                            </a>
+                            <p class="flex-1"><?= esc($post['subtitle']) ?></p>
                         </div>
 
                         <div class="card-actions justify-end">

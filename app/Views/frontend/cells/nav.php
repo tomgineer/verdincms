@@ -151,7 +151,7 @@
             <input
                 type="search"
                 placeholder="<?= lang('App.search') ?>"
-                class="input input-bordered w-52 2xl:w-96 text-base hidden lg:flex focus:border-none focus:outline-primary"
+                class="input input-bordered w-[15vw] text-base hidden lg:flex focus:border-none focus:outline-primary"
                 data-js-search />
             <section class="hidden absolute top-16 left-1/2 -translate-x-1/2 z-900 max-w-6xl w-full bg-base-300 rounded-2xl shadow-2xl p-8 border-2 border-primary" data-js-search-results>No Results..</section>
         <?php endif; ?>

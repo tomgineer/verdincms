@@ -1,4 +1,4 @@
-<?= $this->extend('admin/layouts/default') ?>
+<?= $this->extend('admin/layouts/layout_bare') ?>
 <?= $this->section('head') ?>
     <?php if ( !empty($useChartJS) ):?>
         <script src="<?= base_url('js/chart.js') ?>"></script>
@@ -18,3 +18,4 @@
 </main>
 
 <?= $this->endSection() ?>
+
