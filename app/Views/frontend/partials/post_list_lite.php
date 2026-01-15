@@ -4,14 +4,13 @@
             <li class="mb-4 flex flex-col">
 
                 <div class="card bg-base-200 card-md flex-1">
-
                     <div class="card-body">
-
                         <a class="mb-1 link link-hover" href="<?= site_url('post/' . esc($post['id'])) ?>">
                             <h2 class="card-title font-medium"><?= esc($post['title']) ?></h2>
                         </a>
-                        <div class="flex gap-4">
-                            <a href="<?= site_url('post/' . esc($post['id'])) ?>">
+
+                        <div>
+                            <a class="wrap-around" href="<?= site_url('post/' . esc($post['id'])) ?>">
                                 <img
                                     src="<?= path_img_xs() . esc($post['photo']) . '.webp' ?>"
                                     class="w-24 aspect-square rounded-full object-cover"
