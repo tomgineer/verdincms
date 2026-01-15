@@ -8,8 +8,6 @@ use CodeIgniter\Router\RouteCollection;
 //$routes->get('/', 'Site::index');
 $routes->set404Override('App\Controllers\Site::handle404');
 
-$routes->get('test', 'Site::test');
-
 /**
  * --------------------------------------------------------------------
  * Custom Routes

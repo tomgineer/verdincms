@@ -12,11 +12,6 @@ class Site extends BaseController {
         $this->content = new ContentModel();
     }
 
-public function test() {
-    return view('frontend/pages/test');
-}
-
-
 /**
  * Renders the front page of the site.
  *
@@ -59,7 +54,7 @@ public function index() {
     ];
 
     // Render the view
-    $output = theme_view('frontend/pages/front', $data);
+    $output = theme_view('frontend/pages/home', $data);
 
     // Store in cache if applicable (Cached is enabled && !logged_in)
     if ($shouldCache) {

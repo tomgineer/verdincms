@@ -1,4 +1,4 @@
-<?= $this->extend('frontend/layouts/layout_main') ?>
+<?= $this->extend('frontend/layouts/layout_home') ?>
 
 <?= $this->section('main_top') ?>
     <?= view('frontend/partials/post_list', ['posts' => $topPosts]) ?>
@@ -41,4 +41,8 @@
     <?php if (setting('theme.newsletter')): ?>
         <?= view_cell('FrontendCell::newsletterBlock') ?>
     <?php endif; ?>
+<?= $this->endSection() ?>
+
+<?= $this->section('footer') ?>
+    <?= view_cell('FrontendCell::footer') ?>
 <?= $this->endSection() ?>

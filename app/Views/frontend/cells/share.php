@@ -1,5 +1,5 @@
 <section>
-    <div class="max-w-4xl mx-auto rounded-2xl bg-primary text-primary-content px-6 py-8 lg:px-10 lg:py-10 shadow-lg" data-theme="<?=setting('theme.darkBlocks')?>">
+    <div class="max-w-4xl mx-auto rounded-2xl bg-primary text-primary-content px-6 py-8 lg:px-10 lg:py-10 lg:shadow-lg" data-theme="<?=setting('theme.darkBlocks')?>">
         <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div class="space-y-2 lg:max-w-md">
                 <h2 class="text-2xl lg:text-3xl font-semibold">

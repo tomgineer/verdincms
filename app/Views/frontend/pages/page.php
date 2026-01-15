@@ -1,8 +1,6 @@
-<?= $this->extend('frontend/layouts/default') ?>
-<?= $this->section('main') ?>
+<?= $this->extend('frontend/layouts/layout_single') ?>
 
-<article class="mb-16 lg:mb-24">
-
+<?= $this->section('hero') ?>
     <?php if ($page['disable_hero'] == 0): ?>
         <div class="relative w-full h-[350px] xl:h-[40vh] flex items-center justify-center overflow-hidden bg-black">
             <h1 class="z-10 text-5xl font-bold text-white text-center text-shadow-lg">
@@ -13,39 +11,47 @@
                 <img class="w-full h-full object-cover brightness-50" src="<?= path_img_tn() . esc($page['photo']) ?>.webp" alt="Post Photo">
             </picture>
         </div>
-
     <?php else: ?>
-        <h1 class="w-full lg:max-w-5xl lg:mx-auto text-5xl leading-tight mt-8"><?= esc($page['title']) ?></h1>
+        <div>
+            <h1 class="w-full lg:max-w-5xl lg:mx-auto text-5xl leading-tight mt-8"><?= esc($page['title']) ?></h1>
+        </div>
     <?php endif; ?>
+<?= $this->endSection() ?>
 
-    <section class="container mx-auto px-4 lg:py-8 mt-4 lg:mt-12">
+<?= $this->section('main') ?>
+    <article>
         <h2 class="w-full lg:max-w-5xl lg:mx-auto text-content text-3xl mt-8 leading-tight"><?= esc($page['subtitle']) ?></h2>
 
         <div class="w-full  lg:max-w-4xl mx-auto mt-4 lg:mt-8 leading-relaxed text-xl prose prose-neutral">
-            <?= esc($page['body'], 'raw') ?>
+            <?= $page['body'] ?>
         </div>
-    </section>
+    </article>
+<?= $this->endSection() ?>
 
-</article>
-
-<aside class="flex flex-col gap-24 lg:gap-36 mb-24 lg:mb-36">
+<?= $this->section('aside_top') ?>
     <?php if (setting('theme.pageExtras')): ?>
-        <section class="container mx-auto px-4">
+        <section>
             <h2 class="text-3xl lg:text-4xl mb-4 text-primary"><?=lang('App.featured')?></h2>
             <?= view_cell('FrontendCell::featured', ['gridStyle' => 'columns']) ?>
         </section>
     <?php endif; ?>
+<?= $this->endSection() ?>
 
+<?= $this->section('middle') ?>
     <?php if (setting('theme.newsletter')): ?>
         <?= view_cell('FrontendCell::newsletterBlock') ?>
     <?php endif; ?>
+<?= $this->endSection() ?>
 
+<?= $this->section('aside_bottom') ?>
     <?php if (setting('theme.pageExtras')): ?>
-        <section class="container mx-auto px-4">
+        <section class="mb-12 lg:mb-24">
             <h2 class="text-3xl lg:text-4xl mb-4 text-primary"><?=lang('App.trending')?></h2>
             <?= view_cell('FrontendCell::trending', ['gridStyle' => 'columns']) ?>
         </section>
     <?php endif; ?>
-</aside>
+<?= $this->endSection() ?>
 
+<?= $this->section('footer') ?>
+    <?= view_cell('FrontendCell::footer') ?>
 <?= $this->endSection() ?>

@@ -6,7 +6,6 @@
         <meta name="base-url" content="<?=base_url();?>">
         <title><?=$title?></title>
         <meta name="description" content="<?=setting('meta.siteDescription')?>"/>
-        <?= $this->include('frontend/partials/favicon') ?>
         <link rel="stylesheet" href="<?=path_assets()?>fonts/default/fonts.css">
 
         <?= $this->renderSection('head') ?>
