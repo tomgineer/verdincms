@@ -16,7 +16,7 @@ return [
     'contact' => 'Contact',
     'mini_stas' => 'Mini Stats',
     'public_posts' => 'Public Posts',
-    'cms_version' => 'Powered by VerdinCMS',
+    'version' => 'Powered by',
     'subscribers' => 'Subscribers',
     'related' => 'Related',
     'trending' => 'Trending',

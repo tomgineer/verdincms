@@ -19,6 +19,7 @@
         "postShare": true,
         "newsletter": true,
         "humanContent": true,
+        "homeHero": true,
         "pagesLabel": "Blog",
         "themeSwitcher": true
     },
@@ -38,7 +39,8 @@
     "system": {
         "build": 104,
         "ip2location": false,
-        "githubUser" : "tomgineer"
+        "githubUser" : "tomgineer",
+        "cms" : "VerdinCMS"
     },
     "admin": {
         "email": "",

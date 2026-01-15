@@ -1,5 +1,11 @@
 <?= $this->extend('frontend/layouts/layout_home') ?>
 
+<?= $this->section('hero') ?>
+    <?php if (setting('theme.homeHero')): ?>
+        <?= $this->include('frontend/cells/hero') ?>
+    <?php endif; ?>
+<?= $this->endSection() ?>
+
 <?= $this->section('main_top') ?>
     <?= view('frontend/partials/post_list', ['posts' => $topPosts]) ?>
 <?= $this->endSection() ?>
@@ -21,7 +27,7 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('sidebar_bottom') ?>
-    <div>
+    <div class="lg:hidden">
         <h2 class="text-3xl text-primary mt-8 mb-2"><?= lang('App.trending') ?></h2>
         <?= view_cell('FrontendCell::trending') ?>
     </div>
@@ -31,13 +37,11 @@
     </div>
 <?= $this->endSection() ?>
 
-<?= $this->section('bottom') ?>
+<?= $this->section('call_to_action') ?>
     <?php if (setting('theme.humanContent')): ?>
         <?= $this->include('frontend/cells/not_ai') ?>
     <?php endif; ?>
-<?= $this->endSection() ?>
 
-<?= $this->section('call_to_action') ?>
     <?php if (setting('theme.newsletter')): ?>
         <?= view_cell('FrontendCell::newsletterBlock') ?>
     <?php endif; ?>

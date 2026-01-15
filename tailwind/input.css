@@ -19,6 +19,7 @@
 
     /* Background images */
     --bg-bg1: url("../gfx/login.svg");
+    --bg-bg2: url("../gfx/hero.svg");
 }
 
 @import "./themes.css";
