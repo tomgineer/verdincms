@@ -18,8 +18,10 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('middle') ?>
-    <?= view_cell('FrontendCell::featuredBlock') ?>
-    <?= view_cell('FrontendCell::testimonialsBlock') ?>
+    <?php if (empty($pageNo) || (int) $pageNo === 1): ?>
+        <?= view_cell('FrontendCell::featuredBlock') ?>
+        <?= view_cell('FrontendCell::testimonialsBlock') ?>
+    <?php endif; ?>
 <?= $this->endSection() ?>
 
 <?= $this->section('main_bottom') ?>

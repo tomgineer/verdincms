@@ -114,7 +114,7 @@ public function heroBlock(): string {
 }
 
 public function testimonialsBlock(): string {
-    $data = [];
+    $data = $this->content->getBlocksByGroupAndAlias(['testimonials']);
     return view('frontend/cells/testimonials', $data, ['saveData' => false]);
 }
 

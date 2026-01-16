@@ -50,7 +50,8 @@ public function index() {
     $data = [
         'pagination' => $latest_updates['pagination'],
         'topPosts'   => array_slice($latestPosts, 0, $halfCount),
-        'restPosts'  => array_slice($latestPosts, $halfCount)
+        'restPosts'  => array_slice($latestPosts, $halfCount),
+        'pageNo'     => $page
     ];
 
     // Render the view
