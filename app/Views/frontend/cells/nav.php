@@ -173,7 +173,7 @@
         <?php endif; ?>
 
         <!-- Profile -->
-        <div class="dropdown dropdown-end">
+        <div class="dropdown dropdown-end hidden md:block">
             <div tabindex="0" role="button" class="btn btn-ghost btn-square text-base-content/45 lg:text-base-content">
                 <div class="h-full w-full flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
