@@ -43,8 +43,7 @@
         "build": 104,
         "ip2location": false,
         "githubUser" : "tomgineer",
-        "cms" : "VerdinCMS",
-        "extraJs": []
+        "cms" : "VerdinCMS"
     },
     "admin": {
         "email": "",

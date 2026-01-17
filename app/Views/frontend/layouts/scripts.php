@@ -12,7 +12,3 @@
 </script>
 
 <script src="<?= base_url('js/app-dist.js') . '?v=' . ver() ?>" defer></script>
-
-<?php foreach (setting('system.extraJs') ?: [] as $js): ?>
-    <script src="<?= base_url('js/' . $js . '-dist.js') . '?v=' . ver() ?>" defer></script>
-<?php endforeach; ?>
