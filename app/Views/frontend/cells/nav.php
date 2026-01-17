@@ -157,7 +157,7 @@
         <?php endif; ?>
 
         <!-- Theme Switcher -->
-        <?php if (setting('theme.themeSwitcher')): ?>
+        <?php if (setting('navbar.themeSwitcher')): ?>
             <label class="flex items-center cursor-pointer gap-2 mx-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="5" />
@@ -172,63 +172,27 @@
             </label>
         <?php endif; ?>
 
-        <!-- Profile -->
-        <div class="dropdown dropdown-end hidden md:block">
-            <div tabindex="0" role="button" class="btn btn-ghost btn-square text-base-content/45 lg:text-base-content">
-                <div class="h-full w-full flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                    </svg>
-                </div>
-            </div>
-            <ul tabindex="-1" class="menu dropdown-content bg-base-200 rounded-box z-1 mt-3 w-52 p-2 shadow-xl">
-                <?php if (tier() == 0): ?>
-                    <li>
-                        <a href="<?= site_url('login') ?>" class="flex items-center gap-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 text-accent">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
-                            </svg>
-                            <span>Sign in</span>
-                        </a>
-                    </li>
-                <?php else: ?>
-                    <li>
-                        <a href="<?= site_url('users/logout') ?>" class="flex items-center gap-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 text-red-500">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
-                            </svg>
-
-                            <span>Sign out</span>
-                        </a>
-                    </li>
-                <?php endif; ?>
-            </ul>
-        </div>
+        <!-- Sign in / out -->
+        <?php if (tier() === 0): ?>
+            <a class="btn btn-outline border-base-content/70 hover:btn-primary hover:border-primary hidden lg:flex"
+                href="<?= site_url('login') ?>">
+                Sign in
+            </a>
+        <?php else: ?>
+            <a class="btn btn-outline border-base-content/70 hover:btn-secondary hover:border-secondary hidden lg:flex"
+                href="<?= site_url('users/logout') ?>">
+                Sign out
+            </a>
+        <?php endif; ?>
 
         <!-- Edit Buttons -->
-        <ul class="flex gap-1 z-998">
-            <?php if ($can_edit ?? false): ?>
-                <?php if (!empty($post)): ?>
-                    <li>
-                        <a class="btn btn-primary" href="<?= site_url('admin/edit/post/' . $post['id']) ?>">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                            </svg>
-
-                        </a>
-                    </li>
-                <?php elseif (!empty($page)): ?>
-                    <li>
-                        <a class="btn btn-primary" href="<?= site_url('admin/edit/page/' . $page['id']) ?>">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                            </svg>
-
-                        </a>
-                    </li>
-                <?php endif; ?>
+        <?php if ($can_edit ?? false): ?>
+            <?php if (!empty($post)): ?>
+                <a class="btn btn-primary" href="<?= site_url('admin/edit/post/' . $post['id']) ?>">Edit</a>
+            <?php elseif (!empty($page)): ?>
+                <a class="btn btn-primary" href="<?= site_url('admin/edit/page/' . $page['id']) ?>">Edit</a>
             <?php endif; ?>
-        </ul>
+        <?php endif; ?>
 
     </div>
 </nav>

@@ -34,7 +34,7 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('follow_up') ?>
-    <?php if (setting('theme.postShare')): ?>
+    <?php if (setting('cells.share')): ?>
         <?= $this->include('frontend/cells/share') ?>
     <?php endif; ?>
 <?= $this->endSection() ?>
@@ -49,7 +49,7 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('middle') ?>
-    <?php if (setting('theme.newsletter')): ?>
+    <?php if (setting('cells.newsletter')): ?>
         <?=view_cell('FrontendCell::newsletterBlock')?>
     <?php endif; ?>
 <?= $this->endSection() ?>

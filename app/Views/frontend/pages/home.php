@@ -1,7 +1,7 @@
 <?= $this->extend('frontend/layouts/layout_home') ?>
 
 <?= $this->section('hero') ?>
-    <?php if (setting('theme.homeHero')): ?>
+    <?php if (setting('cells.textSlider')): ?>
         <?= view_cell('FrontendCell::heroBlock') ?>
     <?php endif; ?>
 <?= $this->endSection() ?>
@@ -20,7 +20,9 @@
 <?= $this->section('middle') ?>
     <?php if (empty($pageNo) || (int) $pageNo === 1): ?>
         <?= view_cell('FrontendCell::featuredBlock') ?>
-        <?= view_cell('FrontendCell::testimonialsBlock') ?>
+        <?php if (setting('cells.testimonials')): ?>
+            <?= view_cell('FrontendCell::testimonialsBlock') ?>
+        <?php endif; ?>
     <?php endif; ?>
 <?= $this->endSection() ?>
 
@@ -41,11 +43,11 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('call_to_action') ?>
-    <?php if (setting('theme.humanContent')): ?>
+    <?php if (setting('cells.humanContent')): ?>
         <?= $this->include('frontend/cells/not_ai') ?>
     <?php endif; ?>
 
-    <?php if (setting('theme.newsletter')): ?>
+    <?php if (setting('cells.newsletter')): ?>
         <?= view_cell('FrontendCell::newsletterBlock') ?>
     <?php endif; ?>
 <?= $this->endSection() ?>

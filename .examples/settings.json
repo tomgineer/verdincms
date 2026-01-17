@@ -16,12 +16,14 @@
         "extraFonts": [],
         "pageExtras": true,
         "postExtras": true,
-        "postShare": true,
+        "pagesLabel": "Blog"
+    },
+    "cells": {
+        "share": true,
         "newsletter": true,
         "humanContent": true,
-        "homeHero": true,
-        "pagesLabel": "Blog",
-        "themeSwitcher": true
+        "textSlider": true,
+        "testimonials": true
     },
     "navbar": {
         "displaySearch": true,
@@ -29,7 +31,8 @@
         "displayAbout": true,
         "displayRanking": true,
         "displayTopics": true,
-        "displayBlog": true
+        "displayBlog": true,
+        "themeSwitcher": true
     },
     "content": {
         "postsPerPage": 20,

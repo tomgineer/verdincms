@@ -1,13 +1,13 @@
-<section class="footer footer-horizontal footer-center text-base-content rounded p-10 pt-12 relative bg-base-200" data-theme="<?=setting('theme.darkBlocks')?>">
+<section class="footer footer-horizontal footer-center text-base-content p-10 pt-12 relative bg-base-200" data-theme="<?=setting('theme.darkBlocks')?>">
     <a class="btn btn-lg btn-circle btn-soft absolute left-1/2 -translate-x-1/2 -top-6 shadow-md" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
         </svg>
     </a>
 
-    <nav class="flex flex-wrap gap-1 justify-center">
+    <nav class="flex flex-wrap gap-2 justify-center">
         <?php foreach ($topics_list as $topic): ?>
-            <a class="btn btn-soft hover:btn-accent" href="<?= site_url('topic/' . $topic['slug']) ?>" data-match="<?= 'topic/' . $topic['slug'] ?>"><?= $topic['title'] ?></a>
+            <a class="btn btn-soft rounded-full hover:btn-secondary" href="<?= site_url('topic/' . $topic['slug']) ?>" data-match="<?= 'topic/' . $topic['slug'] ?>"><?= $topic['title'] ?></a>
         <?php endforeach; ?>
     </nav>
 </section>

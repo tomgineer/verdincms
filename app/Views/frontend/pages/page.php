@@ -38,7 +38,7 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('middle') ?>
-    <?php if (setting('theme.newsletter')): ?>
+    <?php if (setting('cells.newsletter')): ?>
         <?= view_cell('FrontendCell::newsletterBlock') ?>
     <?php endif; ?>
 <?= $this->endSection() ?>
