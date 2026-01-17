@@ -14,7 +14,7 @@ return [
     'in' => 'στο',
     'about' => 'Περί',
     'contact' => 'Επικοινωνία',
-    'mini_stas' => 'Νουμεράκια',
+    'mini_stas' => 'Τεχνικά',
     'public_posts' => 'Δημόσια Άρθρα',
     'version' => 'Έκδοση',
     'subscribers' => 'Συνδρομητές',
