@@ -22,7 +22,7 @@ class FrontendCell extends Cell {
  */
 public function nav(): string {
     $data = ['menu_items' => $this->content->getMenuItems()];
-    return view('frontend/cells/nav', $data, ['saveData' => false]);
+    return theme_view('frontend/cells/nav', $data, ['saveData' => false]);
 }
 
 /**
