@@ -1,7 +1,7 @@
 <?= $this->extend('frontend/layouts/layout_bare') ?>
 
 <?= $this->section('main') ?>
-    <div class="custom-bg-1 min-h-[calc(100vh-64px)] pt-24 lg:pt-36" data-theme="dark">
+    <div class="custom-bg-1 min-h-[800px] pt-24 lg:pt-36" data-theme="dark">
         <div class="mx-auto w-full max-w-2xl px-4">
             <?php if (empty($error)): ?>
                 <div class="card bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
@@ -76,4 +76,8 @@
             <?php endif; ?>
         </div>
     </div>
+<?= $this->endSection() ?>
+
+<?= $this->section('footer') ?>
+    <?= view_cell('FrontendCell::footer') ?>
 <?= $this->endSection() ?>

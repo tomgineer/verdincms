@@ -31,6 +31,16 @@
             </div>
         <?php endif; ?>
     </main>
+
+    <?php $footerSection = $this->renderSection('footer'); ?>
+    <?php if (trim($footerSection) !== ''): ?>
+        <footer class="mt-auto flex flex-col">
+            <div data-region="footer">
+                <?= $footerSection ?>
+            </div>
+        </footer>
+    <?php endif; ?>
+
 </body>
 
 </html>
