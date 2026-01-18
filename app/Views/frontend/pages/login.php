@@ -1,13 +1,13 @@
 <?= $this->extend('frontend/layouts/layout_bare') ?>
 
 <?= $this->section('main') ?>
-    <div class="custom-bg-1 min-h-[800px] pt-24 lg:pt-36" data-theme="dark">
+    <div class="custom-bg-1 flex-1 pt-[10vh]" data-theme="dark">
         <div class="mx-auto w-full max-w-2xl px-4">
             <?php if (empty($error)): ?>
                 <div class="card bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
                     <div class="card-body gap-4 sm:gap-6">
                         <div>
-                            <h1 class="card-title text-2xl sm:text-3xl">Welcome back!</h1>
+                            <h1 class="card-title text-2xl sm:text-3xl mb-2">Welcome back!</h1>
                             <p class="text-base-content/80">
                                 <span class="font-medium text-base-content">Please log in to continue accessing your account.</span><br>
                                 New here? Click <span class="font-medium">Sign Up</span> to create your account and get started in seconds.
@@ -79,5 +79,5 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('footer') ?>
-    <?= view_cell('FrontendCell::footer') ?>
+    <?= view_cell('FrontendCell::footerSm') ?>
 <?= $this->endSection() ?>

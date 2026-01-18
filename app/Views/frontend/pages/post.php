@@ -50,7 +50,7 @@
 
 <?= $this->section('middle') ?>
     <?php if (setting('cells.newsletter')): ?>
-        <?=view_cell('FrontendCell::newsletterBlock')?>
+        <?=view_cell('FrontendCell::newsletter')?>
     <?php endif; ?>
 <?= $this->endSection() ?>
 

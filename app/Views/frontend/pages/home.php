@@ -1,8 +1,8 @@
 <?= $this->extend('frontend/layouts/layout_home') ?>
 
 <?= $this->section('hero') ?>
-    <?php if (setting('cells.textSlider')): ?>
-        <?= view_cell('FrontendCell::heroBlock') ?>
+    <?php if (setting('cells.hero')): ?>
+        <?= view_cell('FrontendCell::hero') ?>
     <?php endif; ?>
 <?= $this->endSection() ?>
 
@@ -19,9 +19,9 @@
 
 <?= $this->section('middle') ?>
     <?php if (empty($pageNo) || (int) $pageNo === 1): ?>
-        <?= view_cell('FrontendCell::featuredBlock') ?>
+        <?= view_cell('FrontendCell::featuredCarousel') ?>
         <?php if (setting('cells.testimonials')): ?>
-            <?= view_cell('FrontendCell::testimonialsBlock') ?>
+            <?= view_cell('FrontendCell::testimonials') ?>
         <?php endif; ?>
     <?php endif; ?>
 <?= $this->endSection() ?>
@@ -48,7 +48,7 @@
     <?php endif; ?>
 
     <?php if (setting('cells.newsletter')): ?>
-        <?= view_cell('FrontendCell::newsletterBlock') ?>
+        <?= view_cell('FrontendCell::newsletter') ?>
     <?php endif; ?>
 <?= $this->endSection() ?>
 

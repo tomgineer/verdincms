@@ -11,30 +11,15 @@
 <body class="min-h-screen flex flex-col <?= body_class() ?>">
     <header data-region="header">
         <?= view_cell('FrontendCell::nav') ?>
-        <?= $this->renderSection('hero') ?>
     </header>
 
-    <main class="flex flex-col gap-12 lg:gap-24 2xl:gap-36">
-        <?php $topSection = $this->renderSection('top'); ?>
-        <?php if (trim($topSection) !== ''): ?>
-            <div class="px-4 xl:container xl:mx-auto" data-region="top">
-                <?= $topSection ?>
-            </div>
-        <?php endif; ?>
-
+    <main class="flex-1 flex flex-col">
         <?= $this->renderSection('main') ?>
-
-        <?php $bottomSection = $this->renderSection('bottom'); ?>
-        <?php if (trim($bottomSection) !== ''): ?>
-            <div class="px-4 xl:container xl:mx-auto" data-region="bottom">
-                <?= $bottomSection ?>
-            </div>
-        <?php endif; ?>
     </main>
 
     <?php $footerSection = $this->renderSection('footer'); ?>
     <?php if (trim($footerSection) !== ''): ?>
-        <footer class="mt-auto flex flex-col">
+        <footer>
             <div data-region="footer">
                 <?= $footerSection ?>
             </div>

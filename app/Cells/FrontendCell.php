@@ -42,6 +42,14 @@ public function footer(): string {
 }
 
 /**
+ * Small Footer for bare layouts
+ */
+public function footerSm(): string {
+    $data = [];
+    return theme_view('frontend/cells/footer_sm', $data, ['saveData' => false]);
+}
+
+/**
  * Fetch featured posts and render them with the selected grid style.
  */
 public function featured(): string {
@@ -92,7 +100,7 @@ public function related(): string {
 /**
  * Fetch featured posts and render the carousel partial.
  */
-public function featuredBlock(): string {
+public function featuredCarousel(): string {
     $data = $this->content->getPosts(amount: $this->postsPerCell, featured: true) ?? [];
     return view('frontend/cells/carousel', $data, ['saveData' => false]);
 }
@@ -100,7 +108,7 @@ public function featuredBlock(): string {
 /**
  * Render the newsletter block content.
  */
-public function newsletterBlock(): string {
+public function newsletter(): string {
     $data = $this->content->getSingleBlock('newsletter.newsletter');
     return theme_view('frontend/cells/newsletter', $data, ['saveData' => false]);
 }
@@ -108,12 +116,12 @@ public function newsletterBlock(): string {
 /**
  * Render the hero block content.
  */
-public function heroBlock(): string {
+public function hero(): string {
     $data = $this->content->getSingleBlock('frontpage.hero');
     return view('frontend/cells/hero', $data, ['saveData' => false]);
 }
 
-public function testimonialsBlock(): string {
+public function testimonials(): string {
     $data = $this->content->getBlocksByGroupAndAlias(['testimonials']);
     return view('frontend/cells/testimonials', $data, ['saveData' => false]);
 }
