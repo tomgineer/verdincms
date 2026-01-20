@@ -1,4 +1,4 @@
-<section class="bg-black h-48 flex justify-center items-center custom-bg-2" data-theme="<?=setting('theme.darkBlocks')?>">
+<section class="bg-black h-24 lg:h-48 flex justify-center items-center custom-bg-2" data-theme="<?=setting('theme.darkBlocks')?>">
     <div>
         <span class="text-rotate text-2xl md:text-4xl lg:text-5xl">
             <span class="justify-items-center">
