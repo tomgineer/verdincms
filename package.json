@@ -14,7 +14,7 @@
         "build:css": "npx @tailwindcss/cli -i ./tailwind/input.css -o ./public/css/tailwind.css --minify",
         "build:js": "esbuild public/js/src/*.js --bundle --minify --outdir=public/js --entry-names=[name]-dist",
         "copy:chart": "powershell Copy-Item node_modules/chart.js/dist/chart.umd.js public/js/chart.js",
-        "copy:highlight:js": "powershell Copy-Item node_modules/highlight.js/lib/common.js public/js/highlight.js",
+        "copy:highlight:js": "esbuild node_modules/highlight.js/lib/index.js --bundle --minify --format=iife --global-name=hljs --outfile=public/js/highlight.min.js",
         "copy:highlight:css": "powershell Copy-Item node_modules/highlight.js/styles/*.css public/css/highlight/"
     },
     "devDependencies": {

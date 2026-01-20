@@ -184,6 +184,8 @@ export function initBaloonEditor() {
                 { language: 'xml', label: 'HTML' },
                 { language: 'php', label: 'PHP' },
                 { language: 'javascript', label: 'Javascript' },
+                { language: 'bash', label: 'Bash' },
+                { language: 'powershell', label: 'PowerShell' },
                 { language: 'json', label: 'JSON' },
                 { language: 'plaintext', label: 'Plaitext' }
             ]

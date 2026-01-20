@@ -109,7 +109,7 @@ public function post(int|string $id) {
         'post'      => $postData,
         //'related'   => $this->content->getRelatedPosts(id: $id, topic_id: $postData['topic_id']),
         'can_edit'  => $tier >= 10 || ($tier == 9 && $postData['user_id'] == session('user_id')),
-        'highlight' => $postData['highlight'] == '1',
+        'highlight_js' => $postData['highlight'] == '1',
     ];
 
     // Render the view
@@ -166,7 +166,7 @@ public function page(string $slug) {
     $data = [
         'page'      => $pageData,
         'can_edit'  => tier() >= 10,
-        'highlight' => $pageData['highlight'] == '1',
+        'highlight_js' => $pageData['highlight'] == '1',
     ];
 
     // Render the view

@@ -1,5 +1,10 @@
 @layer components {
 
+    /* Code Boxes */
+    .prose pre {
+        --tw-prose-pre-bg: #0d1117;
+    }
+
     /* ckEditor */
     .ck-editor__editable {
         @apply prose max-w-none;
