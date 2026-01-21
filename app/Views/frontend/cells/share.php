@@ -3,7 +3,7 @@
         gap-4 px-4 lg:px-16 py-4 bg-gradient-to-br from-red-600 via-red-400 to-red-500">
 
         <div class="p-4">
-            <h2 class="text-9xl tracking-tighter lg:text-shadow-lg text-red-200">SHARE</h2>
+            <h2 class="text-9xl tracking-tighter text-red-200">SHARE</h2>
         </div>
 
         <div class="p-4 flex flex-col gap-1">
