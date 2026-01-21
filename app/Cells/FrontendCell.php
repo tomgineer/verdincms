@@ -126,4 +126,9 @@ public function testimonials(): string {
     return view('frontend/cells/testimonials', $data, ['saveData' => false]);
 }
 
+public function share(): string {
+    $data = $this->content->getSingleBlock('share.share');
+    return view('frontend/cells/share', $data, ['saveData' => false]);
+}
+
 } // END Class

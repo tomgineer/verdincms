@@ -25,4 +25,5 @@ return [
     'topics' => 'Topics',
     'ranking' => 'Ranking',
     'search' => 'Search',
+    'copy' => 'Copy',
 ];

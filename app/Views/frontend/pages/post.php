@@ -35,7 +35,7 @@
 
 <?= $this->section('follow_up') ?>
     <?php if (setting('cells.share')): ?>
-        <?= $this->include('frontend/cells/share') ?>
+        <?=view_cell('FrontendCell::share')?>
     <?php endif; ?>
 <?= $this->endSection() ?>
 

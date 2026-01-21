@@ -1,38 +1,36 @@
-<section>
-    <div class="max-w-4xl mx-auto rounded-2xl bg-primary text-primary-content px-6 py-8 lg:px-10 lg:py-10 lg:shadow-lg" data-theme="<?=setting('theme.darkBlocks')?>">
-        <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div class="space-y-2 lg:max-w-md">
-                <h2 class="text-2xl lg:text-3xl font-semibold">
-                    Μοιράσου το άρθρο με την παρέα σου!
-                </h2>
-                <p class="text-primary-content/80 text-sm lg:text-base">
-                    Αν σου άρεσε αυτό που διάβασες, στείλτο με ένα κλικ σε φίλους, συναδέλφους ή στα social.
-                </p>
+<section class="bg-transparent text-white" data-theme="<?= setting('theme.darkBlocks') ?>">
+    <div class="max-w-5xl mx-auto rounded lg:rounded-full overflow-hidden flex flex-col lg:flex-row items-center
+        gap-4 px-4 lg:px-16 py-4 bg-gradient-to-br from-red-600 via-red-400 to-red-500">
+
+        <div class="p-4">
+            <h2 class="text-9xl tracking-tighter lg:text-shadow-lg text-red-200">SHARE</h2>
+        </div>
+
+        <div class="p-4 flex flex-col gap-1">
+            <h2 class="text-2xl"><?= esc($title) ?></h2>
+            <div class="text-lg [&_p]:leading-snug"><?= $body ?></div>
+
+            <h4 class="mt-2 text-red-100"><?= esc($subtitle) ?></h4>
+
+            <div class="flex w-full">
+                <input
+                    type="text"
+                    class="input input-ghost w-full font-mono focus:outline-none
+                        bg-black/30 border-0 rounded-full rounded-r-none pl-5"
+                    value="<?= current_url() ?>"
+                    readonly>
+                <button
+                    type="button"
+                    class="btn btn-ghost bg-black/50 border-0 rounded-full rounded-l-none pr-5"
+                    data-js-copy-url>
+                    <?= lang('App.copy') ?>
+                </button>
             </div>
+            <p class="text-sm text-red-100">
+                <?= esc($text1) ?>
+            </p>
 
-            <div class="w-full lg:max-w-md space-y-2">
-                <label class="text-xs tracking-wide text-primary-content/70">
-                    ΣΥΝΔΕΣΜΟΣ ΑΡΘΡΟΥ
-                </label>
-
-                <div class="join w-full">
-                    <input
-                        type="text"
-                        class="input input-primary input-bordered join-item w-full text-sm font-mono focus:outline-none"
-                        value="<?= current_url() ?>"
-                        readonly>
-                    <button
-                        type="button"
-                        class="btn btn-secondary join-item whitespace-nowrap"
-                        data-js-copy-url>
-                        Αντιγραφή
-                    </button>
-                </div>
-
-                <p class="text-xs text-primary-content/70">
-                    Πάτα «Αντιγραφή» ή κάνε <span class="kbd kbd-xs">Ctrl</span>+<span class="kbd kbd-xs">C</span> για να μοιραστείς τον σύνδεσμο.
-                </p>
-            </div>
         </div>
     </div>
+
 </section>
