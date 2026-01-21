@@ -26,4 +26,5 @@ return [
     'ranking' => 'Ranking',
     'search' => 'Search',
     'copy' => 'Copy',
+    'share' => 'Share',
 ];
