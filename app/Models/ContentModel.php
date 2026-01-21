@@ -116,6 +116,76 @@ public function getPosts(
 }
 
 /**
+ * Fetches pages with optional moderation filtering and pagination.
+ *
+ * @param int|null $amount      Number of pages per page
+ * @param int      $page        Page number for pagination
+ * @param int      $status      Page status (1 = published, 2 = draft, 3 = deleted)
+ * @param bool     $pagination  Whether to include pagination logic
+ * @param bool     $review      Whether to fetch pages marked for review
+ * @return array               ['pages' => array, 'pagination' => array (optional)]
+ */
+public function getPagesModeration(
+    ?int $amount = null,
+    int $page = 1,
+    int $status = 1,
+    bool $pagination = false,
+    bool $review = false
+): array {
+    $tier = tier();
+    $amount = $amount ?? setting('content.postsPerPage', 20);
+    $builder = $this->db->table('pages p');
+    $builder->join('users u', 'u.id = p.user_id');
+    $builder->join('sections s', 's.id = p.section_id');
+
+    // Basic page fields
+    $builder->select('p.id, p.title, p.subtitle, p.photo, p.created');
+    $builder->select('DATE_FORMAT(p.created, "%b %d, %Y") AS f_created', false);
+    $builder->select('CONCAT(u.first_name, " ", u.last_name) AS author', false);
+    $builder->select('u.author AS author_handle');
+    $builder->select('s.title AS section, s.slug AS s_slug');
+
+    // Filter by status; limit visibility to current user's tier if status is public
+    $review ? $builder->whereIn('p.status', [1, 2]) : $builder->where('p.status', $status);
+    if ($status === 1) $builder->where('p.accessibility <=', $tier);
+    if ($review) $builder->where('p.review', 1);
+
+    // Apply sorting
+    $builder->orderBy('p.created', 'DESC');
+
+    // Handle pagination
+    $pageData = [];
+    if ($pagination) {
+        $totalRecordsQuery = clone $builder;
+        $totalRecords = $totalRecordsQuery->countAllResults(false);
+        $totalPages = (int) ceil($totalRecords / $amount);
+        $offset = ($page > 1) ? ($page - 1) * $amount : 0;
+        $builder->limit($amount, $offset);
+
+        $pageData['pagination'] = [
+            'page'         => $page,
+            'total_pages'  => $totalPages,
+            'older_exists' => $page < $totalPages,
+            'newer_exists' => $page > 1,
+            'per_page'     => $amount,
+            'total_items'  => $totalRecords,
+        ];
+    } else {
+        $builder->limit($amount);
+    }
+
+    // Fetch and return pages
+    $pageData['pages'] = $builder->get()->getResultArray();
+
+    // Add human readable ago column
+    array_walk($pageData['pages'], static function (&$row) {
+        $row['ago'] = Time::parse($row['created'])->humanize();
+    });
+
+    return $pageData;
+}
+
+/**
  * Gets related posts by topic, excluding the given post.
  * If not enough found, fills with posts from other topics.
  *
@@ -373,8 +443,9 @@ public function getMenuItems(): ?array {
  */
 public function getPages(
     bool $featured = false,
-    string $section = null,
+    ?string $section = null,
     int $section_id = 0,
+    int $status = 1,
     int $amount = PHP_INT_MAX,
     int $exclude = 0
 ): ?array {
@@ -383,7 +454,7 @@ public function getPages(
     $builder->select('p.title, p.subtitle, p.photo, p.label, p.slug, s.slug AS s_slug')
             ->select('DATE_FORMAT(p.created, "%b %d, %Y") AS f_created', false)
             ->join('sections s', 's.id = p.section_id')
-            ->where('p.status', 1)
+            ->where('p.status', $status)
             ->where('p.accessibility', 0)
             ->where('s.id !=', 1);
 
@@ -642,8 +713,10 @@ public function getTopicsList(): ?array {
  * @param string $type Filter type ('total', 'public', 'drafts', 'review').
  * @return int         Number of matching content items.
  */
-public function countContent(string $type = 'total'): int {
-    $tables = ['posts', 'pages'];
+public function countContent(
+    string $type = 'total',
+    array $tables = ['posts', 'pages']
+): int {
     $total  = 0;
     $type   = strtolower($type);
 

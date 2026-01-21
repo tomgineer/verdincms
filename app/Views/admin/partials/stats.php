@@ -8,13 +8,13 @@
             </div>
         <?php endforeach; ?>
         <div class="stat stat-lg place-items-center !border-r-0">
-            <div class="stat-title">Public Posts</div>
-            <div class="stat-value"><?= esc($public_posts) ?></div>
+            <div class="stat-title">Public <?= esc($content_label) ?></div>
+            <div class="stat-value"><?= esc($public_count) ?></div>
             <div class="stat-desc">Only Public</div>
         </div>
         <div class="stat stat-lg place-items-center !border-r-0">
-            <div class="stat-title">Total Posts</div>
-            <div class="stat-value"><?= esc($total_posts) ?></div>
+            <div class="stat-title">Total <?= esc($content_label) ?></div>
+            <div class="stat-value"><?= esc($total_count) ?></div>
             <div class="stat-desc">Regardless of status</div>
         </div>
     </div>

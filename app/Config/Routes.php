@@ -88,7 +88,7 @@ $routes->get('admin/dashboard/(:any)', 'Admin::dashboard/$1');
 $routes->get('admin/analytics', 'Admin::analytics');
 $routes->get('admin/mobile-analytics', 'Admin::mobileAnalytics');
 $routes->get('admin/analytics/(:any)', 'Admin::analytics/$1');
-$routes->get('admin/moderate/(:alpha)', 'Admin::moderate/$1');
+$routes->get('admin/moderate/(:alpha)/(:alpha)', 'Admin::moderate/$1/$2');
 
 /******************************************************************************
  * API

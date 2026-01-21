@@ -8,6 +8,7 @@ use App\Models\ContentModel;
 class AdminCell extends Cell {
     private ContentModel $content;
     public string $statsType = '';
+    public string $contentType = 'posts';
 
     public function __construct() {
         $this->content = new ContentModel();
@@ -22,19 +23,23 @@ public function stats(): string {
         'review' => 'Awaiting Editorial Review',
     ];
 
+    $table = $this->contentType === 'pages' ? 'pages' : 'posts';
+    $label = $this->contentType === 'pages' ? 'Pages' : 'Posts';
+
     $stats = [];
     if ($this->statsType !== '') {
         $stats[] = [
-            'title' => ucfirst($this->statsType),
-            'value' => $this->content->countContent($this->statsType),
+            'title' => ucfirst($this->statsType) . ' ' . $label,
+            'value' => $this->content->countContent($this->statsType, [$table]),
             'desc'  => $descriptions[$this->statsType] ?? 'Pending',
         ];
     }
 
     $data = [
-        'stats'        => $stats,
-        'public_posts' => $this->content->countContent('public'),
-        'total_posts'  => $this->content->countContent('total'),
+        'stats'         => $stats,
+        'content_label' => $label,
+        'public_count'  => $this->content->countContent('public', [$table]),
+        'total_count'   => $this->content->countContent('total', [$table]),
     ];
     return view('admin/partials/stats', $data, ['saveData' => false]);
 }

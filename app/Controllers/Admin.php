@@ -59,12 +59,20 @@ public function edit(string $type, int|string $id) {
  * Handles either "drafts" (status 2) or "review" (posts flagged for review).
  * Only accessible to users with tier >= 9.
  *
- * @param string $type Either 'drafts' or 'review'
+ * @param string $statuses Either 'drafts' or 'review'
+ * @param string $type     Either 'posts' or 'pages'
  * @return \CodeIgniter\HTTP\RedirectResponse|string Rendered view or redirect
  */
-public function moderate(string $type) {
+public function moderate(string $statuses, string $type = 'posts') {
     // Access check
-    if (tier() < 9 || !in_array($type, ['drafts', 'review'])) {
+    $statuses = strtolower($statuses);
+    $type = strtolower($type);
+
+    if (
+        tier() < 9
+        || !in_array($statuses, ['drafts', 'review'], true)
+        || !in_array($type, ['posts', 'pages'], true)
+    ) {
         return redirect()->to('/');
     }
 
@@ -73,15 +81,22 @@ public function moderate(string $type) {
     $page = ctype_digit($page) ? (int) $page : 1;
 
     // Fetch posts based on moderation type
-    $post_data = $type === 'drafts'
-        ? $this->content->getPosts(status: 2, pagination: true, page: $page)
-        : $this->content->getPosts(review: true, pagination: true, page: $page);
+    if ($type === 'posts') {
+        $content_data = $statuses === 'drafts'
+            ? $this->content->getPosts(status: 2, pagination: true, page: $page)
+            : $this->content->getPosts(review: true, pagination: true, page: $page);
+    } else {
+        $content_data = $statuses === 'drafts'
+            ? $this->content->getPagesModeration(status: 2, pagination: true, page: $page)
+            : $this->content->getPagesModeration(review: true, pagination: true, page: $page);
+    }
 
     $data = [
-        'title' => 'Moderate ' . ucwords($type),
-        'site_title' => ucwords($type),
-        'post_data'  => $post_data,
-        'type' => $type
+        'title' => 'Moderate ' . ucwords($statuses) . ' ' . ucwords($type),
+        'site_title' => ucwords($statuses) . ' ' . ucwords($type),
+        'content_data'  => $content_data,
+        'content_type' => $type,
+        'stats_type' => $statuses
     ];
 
     // Render view

@@ -58,14 +58,34 @@
                                 </a>
                             </li>
 
-                            <li class="my-1 border-t border-base-content/30"></li>
+                            <li class="my-1 border-t border-base-content"></li>
 
-                            <li><a href="<?= site_url('admin/moderate/drafts') ?>">Drafts</a></li>
+                            <li>
+                                <a href="<?= site_url('admin/moderate/drafts/posts') ?>">
+                                    Drafts <span class="text-info">Posts</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= site_url('admin/moderate/drafts/pages') ?>">
+                                    Drafts <span class="text-info">Pages</span>
+                                </a>
+                            </li>
+
+                            <li class="my-1 border-t border-base-content"></li>
 
                             <?php if (tier() >= 10): ?>
-                                <li><a href="<?= site_url('admin/moderate/review') ?>">Review Pending</a></li>
+                                <li>
+                                    <a href="<?= site_url('admin/moderate/review/posts') ?>">
+                                        Review <span class="text-info">Posts</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?= site_url('admin/moderate/review/pages') ?>">
+                                        Review <span class="text-info">Pages</span>
+                                    </a>
+                                </li>
 
-                                <li class="my-1 border-t border-base-content/30"></li>
+                                <li class="my-1 border-t border-base-content"></li>
 
                                 <li>
                                     <a href="<?= site_url('admin/dashboard') ?>" class="gap-2">
