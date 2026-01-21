@@ -12,7 +12,7 @@
         <section class="flex-1">
             <h1 class="text-4xl text-base-content/70 mb-8 text-shadow-lg"><?= esc($site_title) ?></h1>
             <?php if ($content_type === 'pages'): ?>
-                <?= view('admin/pages/moderate/pages_list', ['pages' => $items]) ?>
+                <?= view('admin/partials/pages_list', ['pages' => $items]) ?>
             <?php else: ?>
                 <?= view('frontend/partials/post_list', ['posts' => $items]) ?>
             <?php endif; ?>
