@@ -16,4 +16,10 @@
         <?= $this->include('admin/dashboard/pages/newsletter/composer') ?>
     </div>
 
+    <input type="radio" name="newsletter" class="tab" aria-label="Export" />
+    <div class="tab-content border-0 p-8">
+        <p class="mb-2">Export active subscribers list.</p>
+        <?= $this->include('admin/dashboard/pages/newsletter/export') ?>
+    </div>
+
 </section>
