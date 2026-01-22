@@ -12,6 +12,7 @@
  * Version : VerdinCMS 2026
  * Author  : Tom Papatolis
  * GitHub  : https://github.com/tomgineer/verdincms
+ * Portfolio: https://tompapatolis.com
  * License : MIT
  *
  * Notes:
@@ -110,6 +111,17 @@ if ( ! function_exists('body_class')) {
         $router     = service('router');
         $controller = str_replace('\\App\\Controllers\\', '', $router->controllerName());
         return strtolower("{$controller}-{$router->methodName()}");
+    }
+}
+
+// Is Admin
+if ( ! function_exists('isAdmin')) {
+    function isAdmin(): bool {
+        $router     = service('router');
+        $method     = strtolower($router->methodName());
+        $controller = strtolower(str_replace('\\App\\Controllers\\', '', $router->controllerName()));
+        $excludeMethods = [];
+        return $controller === 'admin' && !in_array($method, $excludeMethods, true);
     }
 }
 
