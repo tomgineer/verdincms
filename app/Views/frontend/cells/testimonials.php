@@ -1,7 +1,3 @@
-<?php
-    /** @var array $testimonials */
-    $intro = array_shift($testimonials);
-?>
 <section class="custom-bg-3 px-4 lg:px-12 py-12 lg:py-24" data-theme="<?= setting('theme.darkBlocks') ?>">
     <div class="max-w-7xl mx-auto">
         <div class="mb-8 max-w-3xl mx-auto">

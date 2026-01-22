@@ -125,7 +125,15 @@ public function hero(): string {
  * Testimonials.
  */
 public function testimonials(): string {
-    $data = $this->content->getBlockGroups(['testimonials']);
+    $block = $this->content->getBlockGroups(['testimonials']);
+    $testimonials = $block['testimonials'];
+    $intro = array_shift($testimonials);
+
+    $data = [
+        'intro'        => $intro,
+        'testimonials' => $testimonials
+    ];
+
     return view('frontend/cells/testimonials', $data, ['saveData' => false]);
 }
 
