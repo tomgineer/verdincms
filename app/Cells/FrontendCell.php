@@ -121,8 +121,11 @@ public function hero(): string {
     return view('frontend/cells/hero', $data, ['saveData' => false]);
 }
 
+/**
+ * Testimonials.
+ */
 public function testimonials(): string {
-    $data = $this->content->getBlocksByGroupAndAlias(['testimonials']);
+    $data = $this->content->getBlockGroups(['testimonials']);
     return view('frontend/cells/testimonials', $data, ['saveData' => false]);
 }
 

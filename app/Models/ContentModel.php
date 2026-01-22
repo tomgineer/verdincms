@@ -565,6 +565,8 @@ public function getFullnameFromId(int $userId, bool $showFullName = false): ?str
 }
 
 /**
+ * LEGACY (Deprecated)
+ *
  * Retrieves and groups blocks by group and alias.
  *
  * @param array $groups An array of block group names to filter by.
@@ -621,7 +623,7 @@ public function getSingleBlock(string $blockAlias): array {
  * @param array $groups Block group titles to filter by.
  * @return array Grouped blocks as [group][alias] => row.
  */
-public function getBlocksByGroupAndAlias(
+public function getBlockGroups(
     array $groups = [],
     string $sort = 'ASC'
 ): array {
@@ -640,7 +642,7 @@ public function getBlocksByGroupAndAlias(
         ->join('block_groups g', 'g.id = b.block_group_id', 'left')
         ->whereIn('g.title', $groups)
         ->orderBy('g.title', 'ASC')
-        ->orderBy('b.alias', $sort) // 👈 dynamic sort
+        ->orderBy('b.alias', $sort) // dynamic sort
         ->get()
         ->getResultArray();
 

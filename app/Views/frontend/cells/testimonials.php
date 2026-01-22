@@ -1,7 +1,13 @@
+<?php
+    /** @var array $testimonials */
+    $intro = array_shift($testimonials);
+?>
 <section class="custom-bg-3 px-4 lg:px-12 py-12 lg:py-24" data-theme="<?= setting('theme.darkBlocks') ?>">
     <div class="max-w-7xl mx-auto">
         <div class="mb-8 max-w-3xl mx-auto">
-            <h2 class="text-4xl text-center">Αγαπημένο από <span class="text-primary">10 εκατομμύρια</span> αναγνώστες παγκοσμίως που εκτιμούν το καλό τρολάρισμα</h2>
+            <div class="text-4xl text-center font-heading font-semibold [&_strong]:text-primary">
+                <?= $intro['body']?>
+            </div>
         </div>
 
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
