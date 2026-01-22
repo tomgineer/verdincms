@@ -7,7 +7,7 @@
         <?= $this->renderSection('head') ?>
     </head>
 
-    <body class="min-h-screen flex flex-col <?=body_class()?>" data-theme="dark" id="<?=body_class()?>" data-admin="true">
+    <body class="min-h-screen flex flex-col <?=body_class()?>" id="<?=body_class()?>" data-admin="true">
         <header>
             <?=view_cell('FrontendCell::nav')?>
             <?= $this->renderSection('header') ?>
