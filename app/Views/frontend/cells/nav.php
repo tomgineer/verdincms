@@ -132,11 +132,18 @@
 
         <!-- Edit Buttons -->
         <?php if ($can_edit ?? false): ?>
-            <?php if (!empty($post)): ?>
-                <a class="btn btn-primary" href="<?= site_url('admin/edit/post/' . $post['id']) ?>">Edit</a>
-            <?php elseif (!empty($page)): ?>
-                <a class="btn btn-primary" href="<?= site_url('admin/edit/page/' . $page['id']) ?>">Edit</a>
-            <?php endif; ?>
+            <?php
+                $edit_url = '';
+                if (!empty($post)) {
+                    $edit_url = site_url('admin/edit/post/' . $post['id']);
+                } elseif (!empty($page)) {
+                    $edit_url = site_url('admin/edit/page/' . $page['id']);
+                }
+            ?>
+
+            <a class="btn btn-primary" href="<?= $edit_url ?>">
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-pencil"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>
+            </a>
         <?php endif; ?>
 
     </div>

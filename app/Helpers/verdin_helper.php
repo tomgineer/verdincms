@@ -118,10 +118,8 @@ if ( ! function_exists('body_class')) {
 if ( ! function_exists('isAdmin')) {
     function isAdmin(): bool {
         $router     = service('router');
-        $method     = strtolower($router->methodName());
         $controller = strtolower(str_replace('\\App\\Controllers\\', '', $router->controllerName()));
-        $excludeMethods = [];
-        return $controller === 'admin' && !in_array($method, $excludeMethods, true);
+        return $controller === 'admin';
     }
 }
 
