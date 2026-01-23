@@ -29,13 +29,13 @@
                 </li>
             </ul>
         <?php endif; ?>
+
+        <!-- Admin -->
+        <?=$this->include('admin/partials/nav_admin')?>
     </div>
 
     <div class="flex items-center gap-2">
         <ul class="menu menu-horizontal leading-5 z-998">
-            <!-- Admin -->
-            <?=$this->include('admin/partials/nav_admin')?>
-
             <!-- Topics -->
             <?php if (setting('navbar.displayTopics')): ?>
                 <li class="hidden <?= (tier() != 0 ? '2xl:flex' : 'lg:flex') ?>">
@@ -89,7 +89,6 @@
             <?php if (setting('navbar.displayContact')): ?>
                 <li class="hidden lg:flex"><a href="<?= site_url('info/contact') ?>"><?= lang('App.contact') ?></a></li>
             <?php endif; ?>
-
         </ul>
 
         <!-- Search -->
