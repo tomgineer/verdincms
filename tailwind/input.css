@@ -18,7 +18,7 @@
     --font-heading-admin: "Fira Sans Extra Condensed", ui-sans-serif, system-ui, sans-serif;
 
     /* Background images */
-    --bg-bg1: url("../gfx/svg/login.svg");
+    --bg-bg1: url("../gfx/svg/topographic.svg");
     --bg-bg2: url("../gfx/svg/hero.svg");
     --bg-bg3: url("../gfx/svg/testimonials.svg");
 }

@@ -4,7 +4,7 @@
     <div class="custom-bg-1 flex-1 pt-[10vh]" data-theme="dark">
         <div class="mx-auto w-full max-w-2xl px-4">
             <?php if (empty($error)): ?>
-                <div class="card bg-black/40 backdrop-blur-md border border-white/10 shadow-lg">
+                <div class="card bg-black/30 backdrop-blur-md border border-white/10 shadow-lg">
                     <div class="card-body gap-4 sm:gap-6">
                         <div>
                             <h1 class="card-title text-2xl sm:text-3xl mb-2">Welcome back!</h1>
