@@ -425,6 +425,7 @@ public function getMenuItems(): ?array {
 
     $all_topics = $this->db->table('topics')
                            ->select('title, slug, featured')
+                           ->where('id !=', 1)
                            ->orderBy('position ASC')
                            ->get()->getResultArray();
 
