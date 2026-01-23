@@ -1,4 +1,4 @@
-<nav class="navbar bg-base-300 z-999" data-theme="<?=isAdmin()?'dark':setting('theme.darkBlocks')?>">
+<nav class="navbar bg-base-300 z-999" data-theme="<?= isAdmin() ? 'dark' : setting('theme.darkBlocks') ?>">
     <div class="flex-1 flex items-center gap-2">
         <a class="btn btn-ghost text-xl px-1 lg:px-4" href="<?= base_url() ?>">
             <img
@@ -30,76 +30,69 @@
             </ul>
         <?php endif; ?>
 
-        <!-- Admin -->
-        <?=$this->include('admin/partials/nav_admin')?>
     </div>
 
     <div class="flex items-center gap-2">
-        <ul class="menu menu-horizontal leading-5 z-998">
-            <!-- Topics -->
-            <?php if (setting('navbar.displayTopics')): ?>
-                <li class="hidden <?= (tier() != 0 ? '2xl:flex' : 'lg:flex') ?>">
-                    <details>
-                        <summary><?= lang('App.topics') ?></summary>
-                        <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
-                            <?php foreach ($menu_items['topics'] as $topic): ?>
-                                <li>
-                                    <a href="<?= site_url('topic/' . $topic['slug']) ?>"><?= esc($topic['title']) ?></a>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </details>
-                </li>
-            <?php endif; ?>
+        <?php if (tier() == 0): ?>
+            <ul class="menu menu-horizontal leading-5 z-998">
+                <!-- Ranking -->
+                <?php if (setting('navbar.displayRanking')): ?>
+                    <li class="hidden <?= (tier() != 0 ? '2xl:flex' : 'lg:flex') ?>">
+                        <details>
+                            <summary><?= lang('App.ranking') ?></summary>
+                            <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
+                                <li><a href="<?= site_url('ranking/trending') ?>"><?= lang('App.trending') ?></a></li>
+                                <li><a href="<?= site_url('ranking/popular') ?>"><?= lang('App.popular') ?></a></li>
+                                <li><a href="<?= site_url('featured') ?>"><?= lang('App.featured') ?></a></li>
+                            </ul>
+                        </details>
+                    </li>
+                <?php endif; ?>
 
-            <!-- Ranking -->
-            <?php if (setting('navbar.displayRanking')): ?>
-                <li class="hidden <?= (tier() != 0 ? '2xl:flex' : 'lg:flex') ?>">
-                    <details>
-                        <summary><?= lang('App.ranking') ?></summary>
-                        <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
-                            <li><a href="<?= site_url('ranking/trending') ?>"><?= lang('App.trending') ?></a></li>
-                            <li><a href="<?= site_url('ranking/popular') ?>"><?= lang('App.popular') ?></a></li>
-                            <li><a href="<?= site_url('featured') ?>"><?= lang('App.featured') ?></a></li>
-                        </ul>
-                    </details>
-                </li>
-            <?php endif; ?>
+                <!-- Topics -->
+                <?php if (setting('navbar.displayTopics')): ?>
+                    <li class="hidden <?= (tier() != 0 ? '2xl:flex' : 'lg:flex') ?>">
+                        <details>
+                            <summary><?= lang('App.topics') ?></summary>
+                            <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
+                                <?php foreach ($menu_items['topics'] as $topic): ?>
+                                    <li>
+                                        <a href="<?= site_url('topic/' . $topic['slug']) ?>"><?= esc($topic['title']) ?></a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </details>
+                    </li>
+                <?php endif; ?>
 
-            <!-- Blog -->
-            <?php if (setting('navbar.displayBlog')): ?>
-                <li class="hidden lg:flex">
-                    <details>
-                        <summary><?= setting('theme.pagesLabel') ?></summary>
-                        <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
-                            <?php foreach ($menu_items['pages'] as $page_items): ?>
-                                <li>
-                                    <a href="<?= site_url($page_items['s_slug'] . '/' . $page_items['slug']) ?>"><?= esc($page_items['label']) ?></a>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </details>
-                </li>
-            <?php endif; ?>
+                <!-- Pages -->
+                <?php if (setting('navbar.displayBlog')): ?>
+                    <li class="hidden lg:flex">
+                        <details>
+                            <summary><?= setting('theme.pagesLabel') ?></summary>
+                            <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
+                                <?php foreach ($menu_items['pages'] as $page_items): ?>
+                                    <li>
+                                        <a href="<?= site_url($page_items['s_slug'] . '/' . $page_items['slug']) ?>"><?= esc($page_items['label']) ?></a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </details>
+                    </li>
+                <?php endif; ?>
 
-            <?php if (setting('navbar.displayAbout')): ?>
-                <li class="hidden lg:flex"><a href="<?= site_url('info/about') ?>"><?= lang('App.about') ?></a></li>
-            <?php endif; ?>
+                <?php if (setting('navbar.displayAbout')): ?>
+                    <li class="hidden lg:flex"><a href="<?= site_url('info/about') ?>"><?= lang('App.about') ?></a></li>
+                <?php endif; ?>
 
-            <?php if (setting('navbar.displayContact')): ?>
-                <li class="hidden lg:flex"><a href="<?= site_url('info/contact') ?>"><?= lang('App.contact') ?></a></li>
-            <?php endif; ?>
-        </ul>
-
-        <!-- Search -->
-        <?php if (setting('navbar.displaySearch') && !isAdmin()): ?>
-            <input
-                type="search"
-                placeholder="<?= lang('App.search') ?>"
-                class="input input-bordered w-[15vw] text-base hidden lg:flex focus:border-none focus:outline-primary"
-                data-js-search />
-            <section class="hidden absolute top-16 left-1/2 -translate-x-1/2 z-900 max-w-6xl w-full bg-base-300 rounded-2xl shadow-2xl p-8 border-2 border-primary" data-js-search-results>No Results..</section>
+                <?php if (setting('navbar.displayContact')): ?>
+                    <li class="hidden lg:flex"><a href="<?= site_url('info/contact') ?>"><?= lang('App.contact') ?></a></li>
+                <?php endif; ?>
+            </ul>
         <?php endif; ?>
+
+        <!-- Admin -->
+        <?= $this->include('admin/partials/nav_admin') ?>
 
         <!-- Theme Switcher -->
         <?php if (setting('navbar.themeSwitcher') && !isAdmin()): ?>
@@ -117,14 +110,24 @@
             </label>
         <?php endif; ?>
 
+        <!-- Search -->
+        <?php if (setting('navbar.displaySearch') && !isAdmin()): ?>
+            <input
+                type="search"
+                placeholder="<?= lang('App.search') ?>"
+                class="input input-bordered w-[15vw] text-base hidden lg:flex focus:border-none focus:outline-primary"
+                data-js-search />
+            <section class="hidden absolute top-16 left-1/2 -translate-x-1/2 z-900 max-w-6xl w-full bg-base-300 rounded-2xl shadow-2xl p-8 border-2 border-primary" data-js-search-results>No Results..</section>
+        <?php endif; ?>
+
         <!-- Sign in / out -->
         <?php if (tier() === 0): ?>
-            <a class="btn btn-outline border-base-content/70 hover:btn-primary hover:border-primary hidden lg:flex"
+            <a class="btn btn-outline border-base-content/30 hover:btn-primary hover:border-primary hidden lg:flex"
                 href="<?= site_url('login') ?>">
                 Sign in
             </a>
         <?php else: ?>
-            <a class="btn btn-outline border-base-content/70 hover:btn-secondary hover:border-secondary hidden lg:flex"
+            <a class="btn btn-outline border-base-content/30 hover:btn-secondary hover:border-secondary hidden lg:flex"
                 href="<?= site_url('users/logout') ?>">
                 Sign out
             </a>
@@ -133,18 +136,21 @@
         <!-- Edit Buttons -->
         <?php if ($can_edit ?? false): ?>
             <?php
-                $edit_url = '';
-                if (!empty($post)) {
-                    $edit_url = site_url('admin/edit/post/' . $post['id']);
-                } elseif (!empty($page)) {
-                    $edit_url = site_url('admin/edit/page/' . $page['id']);
-                }
+            $edit_url = '';
+            if (!empty($post)) {
+                $edit_url = site_url('admin/edit/post/' . $post['id']);
+            } elseif (!empty($page)) {
+                $edit_url = site_url('admin/edit/page/' . $page['id']);
+            }
             ?>
 
             <a class="btn btn-primary" href="<?= $edit_url ?>">
-                <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-pencil"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+                    <path d="M13.5 6.5l4 4" />
+                </svg>
             </a>
         <?php endif; ?>
-
     </div>
 </nav>

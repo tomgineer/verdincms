@@ -403,30 +403,36 @@ public function getPagesList(): array {
 }
 
 /**
- * Retrieve featured menu items from pages and topics.
+ * Retrieve menu items from pages and topics.
  *
- * Only includes public, accessible, and featured entries.
+ * Returns featured items plus the full lists without extra queries.
  *
- * @return array|null Associative array with 'pages' and 'topics', or null if none found.
+ * @return array|null Associative array with 'pages', 'topics', 'all_pages', and 'all_topics'.
  */
 public function getMenuItems(): ?array {
-    $pages = $this->db->table('pages p')
-                      ->select('p.label, p.slug, s.slug AS s_slug')
-                      ->join('sections s', 's.id = p.section_id', 'inner')
-                      ->where('p.status', 1)
-                      ->where('p.accessibility', 0)
-                      ->where('p.featured', 1)
-                      ->where('s.id !=', 1)
-                      ->orderBy('p.position ASC')
-                      ->get()->getResultArray();
+    $all_pages = $this->db->table('pages p')
+                          ->select('p.label, p.slug, p.featured, s.slug AS s_slug')
+                          ->join('sections s', 's.id = p.section_id', 'inner')
+                          ->where('p.status', 1)
+                          ->where('p.accessibility', 0)
+                          ->where('s.id !=', 1)
+                          ->orderBy('p.position ASC')
+                          ->get()->getResultArray();
 
-    $topics = $this->db->table('topics')
-                       ->select('title, slug')
-                       ->where('featured', 1)
-                       ->orderBy('position ASC')
-                       ->get()->getResultArray();
+    $pages = array_values(array_filter($all_pages, static function (array $row): bool {
+        return (int) ($row['featured'] ?? 0) === 1;
+    }));
 
-    return compact('pages', 'topics');
+    $all_topics = $this->db->table('topics')
+                           ->select('title, slug, featured')
+                           ->orderBy('position ASC')
+                           ->get()->getResultArray();
+
+    $topics = array_values(array_filter($all_topics, static function (array $row): bool {
+        return (int) ($row['featured'] ?? 0) === 1;
+    }));
+
+    return compact('pages', 'topics', 'all_pages', 'all_topics');
 
 }
 
