@@ -69,5 +69,5 @@ Events::on('post_controller_constructor', function () {
     $offsetHours = $tz->getOffset($now) / 3600;
     $offsetFormatted = sprintf('%+03d:00', $offsetHours);
     $db = \Config\Database::connect();
-    $db->query("SET time_zone = '{$offsetFormatted}'");
+    // $db->query("SET time_zone = '{$offsetFormatted}'");
 });

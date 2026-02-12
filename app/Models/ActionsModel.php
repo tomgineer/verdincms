@@ -364,7 +364,7 @@ private function applyTimezone(): void {
     $tz = new \DateTimeZone(config('App')->appTimezone);
     $now = new \DateTime('now', $tz);
     $offsetFormatted = sprintf('%+03d:00', $tz->getOffset($now) / 3600);
-    $this->db->query("SET time_zone = '{$offsetFormatted}'");
+    // $this->db->query("SET time_zone = '{$offsetFormatted}'");
 }
 
 /**
