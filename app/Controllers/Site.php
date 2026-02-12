@@ -32,7 +32,7 @@ public function index() {
     $cacheName   = 'frontpage' . '_page_' . $page;
 
     // Serve from cache if available
-    if ($cachedView = cache($cacheName)) {
+    if (!session('logged_in') && ($cachedView = cache($cacheName))) {
         return $cachedView;
     }
 
@@ -51,8 +51,10 @@ public function index() {
     // Render the view
     $output = theme_view('frontend/pages/home', $data);
 
-    // Store in cache if applicable (Cached is enabled && !logged_in)
-    cache()->save($cacheName, $output, setting("cache.lifetime")); // 1 Hour
+    // Store in cache if applicable (!logged_in)
+    if (!session('logged_in')) {
+        cache()->save($cacheName, $output, setting("cache.lifetime")); // 1 Hour
+    }
 
     return $output;
 }
@@ -75,7 +77,7 @@ public function post(int|string $id) {
     $cacheName   = "post_{$id}_tier_{$tier}";
 
     // Serve from cache if available
-    if ($cachedView = cache($cacheName)) {
+    if (!session('logged_in') && ($cachedView = cache($cacheName))) {
         return $cachedView;
     }
 
@@ -104,7 +106,9 @@ public function post(int|string $id) {
     $output = theme_view('frontend/pages/post', $data);
 
     // Store in cache if applicable (cache different versions per tier)
-    cache()->save($cacheName, $output, setting("cache.lifetime")); // 1 Hour
+    if (!session('logged_in')) {
+        cache()->save($cacheName, $output, setting("cache.lifetime")); // 1 Hour
+    }
 
     return $output;
 }
@@ -125,7 +129,7 @@ public function page(string $slug) {
     $cacheName   = "page_{$slug}";
 
     // Serve from cache if available
-    if ($cachedView = cache($cacheName)) {
+    if (!session('logged_in') && ($cachedView = cache($cacheName))) {
         return $cachedView;
     }
 
@@ -153,7 +157,9 @@ public function page(string $slug) {
     $output = theme_view('frontend/pages/page', $data);
 
     // Store in cache if applicable (cache by page slug)
-    cache()->save($cacheName, $output, setting("cache.lifetime"));
+    if (!session('logged_in')) {
+        cache()->save($cacheName, $output, setting("cache.lifetime"));
+    }
 
     return $output;
 }
@@ -176,7 +182,7 @@ public function topic(string $slug) {
     $cacheKey    = 'topic_' . $slug . '_page_' . $page;
 
     // Serve from cache if available
-    if ($cachedView = cache($cacheKey)) {
+    if (!session('logged_in') && ($cachedView = cache($cacheKey))) {
         return $cachedView;
     }
 
@@ -199,7 +205,9 @@ public function topic(string $slug) {
     $output = theme_view('frontend/pages/archive', $data);
 
     // Store in cache if applicable
-    cache()->save($cacheKey, $output, setting("cache.lifetime"));
+    if (!session('logged_in')) {
+        cache()->save($cacheKey, $output, setting("cache.lifetime"));
+    }
 
     return $output;
 }
@@ -223,7 +231,7 @@ public function author(string $handle) {
     $cacheKey    = 'author_' . $handle . '_page_' . $page;
 
     // Serve from cache if available
-    if ($cachedView = cache($cacheKey)) {
+    if (!session('logged_in') && ($cachedView = cache($cacheKey))) {
         return $cachedView;
     }
 
@@ -244,7 +252,9 @@ public function author(string $handle) {
     $output = theme_view('frontend/pages/archive', $data);
 
     // Store in cache if applicable
-    cache()->save($cacheKey, $output, setting("cache.lifetime"));
+    if (!session('logged_in')) {
+        cache()->save($cacheKey, $output, setting("cache.lifetime"));
+    }
 
     return $output;
 }
@@ -267,7 +277,7 @@ public function ranking(string $type) {
     $cacheKey    = 'ranking_' . $type;
 
     // Serve from cache if available
-    if ($cachedView = cache($cacheKey)) {
+    if (!session('logged_in') && ($cachedView = cache($cacheKey))) {
         return $cachedView;
     }
 
@@ -283,7 +293,9 @@ public function ranking(string $type) {
     $output = theme_view('frontend/pages/archive', $data);
 
     // Store in cache if applicable
-    cache()->save($cacheKey, $output, setting("cache.lifetime"));
+    if (!session('logged_in')) {
+        cache()->save($cacheKey, $output, setting("cache.lifetime"));
+    }
 
     return $output;
 }
@@ -305,7 +317,7 @@ public function featured() {
     $cacheName   = 'featured_posts_page_' . $page;
 
     // Serve from cache if available
-    if ($cachedView = cache($cacheName)) {
+    if (!session('logged_in') && ($cachedView = cache($cacheName))) {
         return $cachedView;
     }
 
@@ -319,7 +331,9 @@ public function featured() {
     $output = theme_view('frontend/pages/archive', $data);
 
     // Store in cache if applicable
-    cache()->save($cacheName, $output, setting("cache.lifetime"));
+    if (!session('logged_in')) {
+        cache()->save($cacheName, $output, setting("cache.lifetime"));
+    }
 
     return $output;
 }
