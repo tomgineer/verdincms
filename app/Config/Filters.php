@@ -12,6 +12,9 @@ use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\PageCache;
 use CodeIgniter\Filters\PerformanceMetrics;
 use CodeIgniter\Filters\SecureHeaders;
+use App\Filters\TrackPageVisitor;
+use App\Filters\TrackPostVisitor;
+use App\Filters\TrackVisitor;
 
 class Filters extends BaseFilters
 {
@@ -34,6 +37,9 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'trackPageVisitor' => TrackPageVisitor::class,
+        'trackPostVisitor' => TrackPostVisitor::class,
+        'trackVisitor'  => TrackVisitor::class,
     ];
 
     /**

@@ -4,11 +4,11 @@ use CodeIgniter\Model;
 
 class NewsletterModel extends Model {
 
-    protected $db;
+    // protected $db;
 
-    public function __construct() {
-        $this->db = \Config\Database::connect();
-    }
+    // public function __construct() {
+    //     $this->db = \Config\Database::connect();
+    // }
 
 /**
  * Subscribe a user to the newsletter.

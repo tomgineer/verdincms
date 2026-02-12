@@ -26,11 +26,11 @@ use App\Libraries\GitHubSync;
 
 class ActionsModel extends Model {
 
-    protected $db;
+    // protected $db;
 
-    public function __construct() {
-        $this->db = \Config\Database::connect();
-    }
+    // public function __construct() {
+    //     $this->db = \Config\Database::connect();
+    // }
 
 /**
  * Executes a system-defined action by name.

@@ -24,11 +24,11 @@ use CodeIgniter\Model;
 
 class SystemModel extends Model {
 
-    protected $db;
+    // protected $db;
 
-    public function __construct() {
-        $this->db = \Config\Database::connect();
-    }
+    // public function __construct() {
+    //     $this->db = \Config\Database::connect();
+    // }
 
 /**
  * Identifies orphaned image filenames.

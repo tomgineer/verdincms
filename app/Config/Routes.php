@@ -24,19 +24,19 @@ $routes->set404Override('App\Controllers\Site::handle404');
 /******************************************************************************
  * SITE
  *****************************************************************************/
-$routes->get('post/(:num)', 'Site::post/$1');
+$routes->get('post/(:num)', 'Site::post/$1', ['filter' => 'trackPostVisitor']);
 $routes->get('print/(:num)', 'Site::print/$1');
-$routes->get('author/(:alpha)', 'Site::author/$1');
-$routes->get('ranking/(:alpha)', 'Site::ranking/$1');
+$routes->get('author/(:alpha)', 'Site::author/$1', ['filter' => 'trackVisitor']);
+$routes->get('ranking/(:alpha)', 'Site::ranking/$1', ['filter' => 'trackVisitor']);
 $routes->match(['GET','POST'],'search', 'Site::search');
-$routes->get('featured', 'Site::featured');
+$routes->get('featured', 'Site::featured', ['filter' => 'trackVisitor']);
 
 /******************************************************************************
  * USERS
  *****************************************************************************/
 $routes->post('users/login', 'Users::login');
 $routes->get('users/logout', 'Users::logout');
-$routes->get('login', 'Users::login_page');
+$routes->get('login', 'Users::login_page', ['filter' => 'trackVisitor']);
 
 /******************************************************************************
  * CRON
@@ -128,5 +128,5 @@ foreach ($extraRouteFiles as $routeFile) {
 $getRoutes = $routes->getRoutes('get');
 
 if (! isset($getRoutes['/'])) {
-    $routes->get('/', 'Site::index');
+    $routes->get('/', 'Site::index', ['filter' => 'trackVisitor']);
 }

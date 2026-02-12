@@ -27,11 +27,11 @@ use App\Models\AnalyticsModel;
 
 class DashboardModel extends Model {
 
-    protected $db;
+    // protected $db;
 
-    public function __construct() {
-        $this->db = \Config\Database::connect();
-    }
+    // public function __construct() {
+    //     $this->db = \Config\Database::connect();
+    // }
 
 /**
  * Retrieves hourly analytics data including raw statistics and formatted chart data.

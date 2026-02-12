@@ -1,14 +1,11 @@
 <?php namespace App\Controllers;
-use App\Models\StatsModel;
 use App\Models\ContentModel;
 
 class Site extends BaseController {
 
-    private StatsModel $stats;
     private ContentModel $content;
 
     function __construct() {
-        $this->stats   = new StatsModel();
         $this->content = new ContentModel();
     }
 
@@ -24,7 +21,7 @@ class Site extends BaseController {
  * Tracks:
  * - Frontpage visitor statistics.
  *
- * @return void
+ * @return string
  */
 public function index() {
     // Get Page
@@ -33,13 +30,10 @@ public function index() {
 
     // Cache settings
     $cacheName   = 'frontpage' . '_page_' . $page;
-    $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
     // Serve from cache if available
-    if ($shouldCache && ($cachedView = cache($cacheName))) {
-        echo $cachedView;
-        $this->stats->trackVisitor();
-        return;
+    if ($cachedView = cache($cacheName)) {
+        return $cachedView;
     }
 
     // Fetch Data
@@ -58,12 +52,9 @@ public function index() {
     $output = theme_view('frontend/pages/home', $data);
 
     // Store in cache if applicable (Cached is enabled && !logged_in)
-    if ($shouldCache) {
-        cache()->save($cacheName, $output, setting("cache.lifetime")); // 1 Hour
-    }
+    cache()->save($cacheName, $output, setting("cache.lifetime")); // 1 Hour
 
-    echo $output;
-    $this->stats->trackVisitor();
+    return $output;
 }
 
 /**
@@ -74,7 +65,7 @@ public function index() {
  * - Blocks access if the post is unpublished and the user is below tier 9.
  *
  * @param int|string $id The post ID.
- * @return \CodeIgniter\HTTP\RedirectResponse|void
+ * @return \CodeIgniter\HTTP\RedirectResponse|string
  */
 public function post(int|string $id) {
     // Get user tier
@@ -82,13 +73,10 @@ public function post(int|string $id) {
 
     // Cache settings (cache per post AND per tier)
     $cacheName   = "post_{$id}_tier_{$tier}";
-    $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
     // Serve from cache if available
-    if ($shouldCache && ($cachedView = cache($cacheName))) {
-        echo $cachedView;
-        $this->stats->trackVisitor($id);
-        return;
+    if ($cachedView = cache($cacheName)) {
+        return $cachedView;
     }
 
     // Fetch post data, ensuring it respects the user's tier
@@ -116,12 +104,9 @@ public function post(int|string $id) {
     $output = theme_view('frontend/pages/post', $data);
 
     // Store in cache if applicable (cache different versions per tier)
-    if ($shouldCache) {
-        cache()->save($cacheName, $output, setting("cache.lifetime")); // 1 Hour
-    }
+    cache()->save($cacheName, $output, setting("cache.lifetime")); // 1 Hour
 
-    echo $output;
-    $this->stats->trackVisitor($id);
+    return $output;
 }
 
 /**
@@ -132,21 +117,16 @@ public function post(int|string $id) {
  * - Blocks access if unpublished and user is below tier 9.
  *
  * @param string $slug The page slug.
- * @return \CodeIgniter\HTTP\RedirectResponse|void
+ * @return \CodeIgniter\HTTP\RedirectResponse|string
  */
 public function page(string $slug) {
     // Fetch page ID early
-    $id = $this->content->getIdFromSlug($slug, 'pages');
-
     // Cache settings (cache per page slug)
     $cacheName   = "page_{$slug}";
-    $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
     // Serve from cache if available
-    if ($shouldCache && ($cachedView = cache($cacheName))) {
-        echo $cachedView;
-        $this->stats->trackVisitor($id, 'page'); // Ensure ID is correctly passed
-        return;
+    if ($cachedView = cache($cacheName)) {
+        return $cachedView;
     }
 
     // Fetch page data
@@ -173,12 +153,9 @@ public function page(string $slug) {
     $output = theme_view('frontend/pages/page', $data);
 
     // Store in cache if applicable (cache by page slug)
-    if ($shouldCache) {
-        cache()->save($cacheName, $output, setting("cache.lifetime"));
-    }
+    cache()->save($cacheName, $output, setting("cache.lifetime"));
 
-    echo $output;
-    $this->stats->trackVisitor($id, 'page'); // Ensure ID is passed
+    return $output;
 }
 
 /**
@@ -188,7 +165,7 @@ public function page(string $slug) {
  * - Shows posts under that topic with pagination.
  *
  * @param string $slug The topic slug.
- * @return \CodeIgniter\HTTP\RedirectResponse|void
+ * @return \CodeIgniter\HTTP\RedirectResponse|string
  */
 public function topic(string $slug) {
     // Get Page
@@ -197,13 +174,10 @@ public function topic(string $slug) {
 
     // Cache settings
     $cacheKey    = 'topic_' . $slug . '_page_' . $page;
-    $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
     // Serve from cache if available
-    if ($shouldCache && ($cachedView = cache($cacheKey))) {
-        echo $cachedView;
-        $this->stats->trackVisitor();
-        return;
+    if ($cachedView = cache($cacheKey)) {
+        return $cachedView;
     }
 
     // Get topic ID
@@ -225,13 +199,9 @@ public function topic(string $slug) {
     $output = theme_view('frontend/pages/archive', $data);
 
     // Store in cache if applicable
-    if ($shouldCache) {
-        cache()->save($cacheKey, $output, setting("cache.lifetime"));
-    }
+    cache()->save($cacheKey, $output, setting("cache.lifetime"));
 
-    echo $output;
-
-    $this->stats->trackVisitor();
+    return $output;
 }
 
 
@@ -242,7 +212,7 @@ public function topic(string $slug) {
  * - Supports pagination.
  *
  * @param string $handle The author's handle.
- * @return \CodeIgniter\HTTP\RedirectResponse|void
+ * @return \CodeIgniter\HTTP\RedirectResponse|string
  */
 public function author(string $handle) {
     // Get Page
@@ -251,13 +221,10 @@ public function author(string $handle) {
 
     // Cache settings
     $cacheKey    = 'author_' . $handle . '_page_' . $page;
-    $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
     // Serve from cache if available
-    if ($shouldCache && ($cachedView = cache($cacheKey))) {
-        echo $cachedView;
-        $this->stats->trackVisitor();
-        return;
+    if ($cachedView = cache($cacheKey)) {
+        return $cachedView;
     }
 
     // Get user ID
@@ -277,13 +244,9 @@ public function author(string $handle) {
     $output = theme_view('frontend/pages/archive', $data);
 
     // Store in cache if applicable
-    if ($shouldCache) {
-        cache()->save($cacheKey, $output, setting("cache.lifetime"));
-    }
+    cache()->save($cacheKey, $output, setting("cache.lifetime"));
 
-    echo $output;
-
-    $this->stats->trackVisitor();
+    return $output;
 }
 
 /**
@@ -293,7 +256,7 @@ public function author(string $handle) {
  * - Supports pagination.
  *
  * @param string $type The ranking type: 'popular' or 'trending'.
- * @return \CodeIgniter\HTTP\RedirectResponse|void
+ * @return \CodeIgniter\HTTP\RedirectResponse|string
  */
 public function ranking(string $type) {
     if (!in_array($type, ['popular', 'trending'])) {
@@ -302,13 +265,10 @@ public function ranking(string $type) {
 
     // Cache settings
     $cacheKey    = 'ranking_' . $type;
-    $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
     // Serve from cache if available
-    if ($shouldCache && ($cachedView = cache($cacheKey))) {
-        echo $cachedView;
-        $this->stats->trackVisitor();
-        return;
+    if ($cachedView = cache($cacheKey)) {
+        return $cachedView;
     }
 
     // Prepare data
@@ -323,13 +283,9 @@ public function ranking(string $type) {
     $output = theme_view('frontend/pages/archive', $data);
 
     // Store in cache if applicable
-    if ($shouldCache) {
-        cache()->save($cacheKey, $output, setting("cache.lifetime"));
-    }
+    cache()->save($cacheKey, $output, setting("cache.lifetime"));
 
-    echo $output;
-
-    $this->stats->trackVisitor();
+    return $output;
 }
 
 /**
@@ -338,7 +294,7 @@ public function ranking(string $type) {
  * - Supports pagination.
  * - Uses the "Post.featured" language key for title.
  *
- * @return void
+ * @return string
  */
 public function featured() {
     // Get Page
@@ -347,13 +303,10 @@ public function featured() {
 
     // Cache settings
     $cacheName   = 'featured_posts_page_' . $page;
-    $shouldCache = setting('cache.enabled') === true && !session('logged_in');
 
     // Serve from cache if available
-    if ($shouldCache && ($cachedView = cache($cacheName))) {
-        echo $cachedView;
-        $this->stats->trackVisitor();
-        return;
+    if ($cachedView = cache($cacheName)) {
+        return $cachedView;
     }
 
     // Fetch data
@@ -366,13 +319,9 @@ public function featured() {
     $output = theme_view('frontend/pages/archive', $data);
 
     // Store in cache if applicable
-    if ($shouldCache) {
-        cache()->save($cacheName, $output, setting("cache.lifetime"));
-    }
+    cache()->save($cacheName, $output, setting("cache.lifetime"));
 
-    echo $output;
-
-    $this->stats->trackVisitor();
+    return $output;
 }
 
 /**
@@ -401,7 +350,7 @@ public function setupTopicRoutes() {
     $routes = service('routes');
 
     foreach ($topics as $topic) {
-        $routes->get('topic/' . $topic['slug'], 'Site::topic/' . $topic['slug']);
+        $routes->get('topic/' . $topic['slug'], 'Site::topic/' . $topic['slug'], ['filter' => 'trackVisitor']);
     }
 }
 
@@ -424,11 +373,11 @@ public function setupPageRoutes() {
     $routes = service('routes');
 
     // Manually add the 'preview' section
-    $routes->get('preview/(:segment)', 'Site::page/$1');
+    $routes->get('preview/(:segment)', 'Site::page/$1', ['filter' => 'trackPageVisitor']);
 
     // Dynamically add the other section routes
     foreach ($sections as $section) {
-        $routes->get($section['slug'].'/(:segment)', 'Site::page/$1');
+        $routes->get($section['slug'].'/(:segment)', 'Site::page/$1', ['filter' => 'trackPageVisitor']);
     }
 }
 

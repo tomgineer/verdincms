@@ -1,6 +1,5 @@
 <?php namespace App\Controllers;
 use App\Models\UserModel;
-use App\Models\StatsModel;
 use App\Models\ContentModel;
 
 class Users extends BaseController {
@@ -14,18 +13,17 @@ class Users extends BaseController {
     }
 
 /**
- * Renders the login page and tracks the visitor.
+ * Renders the login page.
  *
  * Prepares and passes data to the login view, then renders
- * the page. Also triggers visitor tracking using the StatsModel.
+ * the page.
  *
- * @return void Outputs the login page HTML directly.
+ * @return string
  */
 public function login_page() {
     $data = [];
     $data['blocks'] = $this->content->getBlocks(['login']);
-    echo view('frontend/pages/login',$data);
-    (new StatsModel)->trackVisitor();
+    return view('frontend/pages/login',$data);
 }
 
 /**

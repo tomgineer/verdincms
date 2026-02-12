@@ -25,11 +25,11 @@ use CodeIgniter\I18n\Time;
 
 class AnalyticsModel extends Model {
 
-    protected $db;
+    // protected $db;
 
-    public function __construct() {
-        $this->db = \Config\Database::connect();
-    }
+    // public function __construct() {
+    //     $this->db = \Config\Database::connect();
+    // }
 
 /**
  * Retrieves daily visitor and hit statistics.

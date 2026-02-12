@@ -26,11 +26,11 @@ use CodeIgniter\Model;
 
 class UserModel extends Model {
 
-    protected $db;
+    // protected $db;
 
-    public function __construct() {
-        $this->db = \Config\Database::connect();
-    }
+    // public function __construct() {
+    //     $this->db = \Config\Database::connect();
+    // }
 
 /**
  * Retrieves an active user's data by email address.
