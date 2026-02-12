@@ -333,11 +333,6 @@ private function systemMaintenance(): void {
  * @return void
  */
 public function runCron(string $type = 'Manualy'): void {
-
-    if (is_cli()) {
-        $this->applyTimezone(); // Only apply timezone in CLI context
-    }
-
     // Optimize stats and trending tables
     $this->optimizeStatsTables();
 
@@ -358,13 +353,6 @@ public function runCron(string $type = 'Manualy'): void {
 
     // Log successful cron run
     $this->db->table('cron_log')->insert(['type' => $type, 'log' => 'Success']);
-}
-
-private function applyTimezone(): void {
-    $tz = new \DateTimeZone(config('App')->appTimezone);
-    $now = new \DateTime('now', $tz);
-    $offsetFormatted = sprintf('%+03d:00', $tz->getOffset($now) / 3600);
-    // $this->db->query("SET time_zone = '{$offsetFormatted}'");
 }
 
 /**

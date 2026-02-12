@@ -53,21 +53,3 @@ Events::on('pre_system', static function (): void {
         }
     }
 });
-
-/**
- * Sets the MySQL session time zone based on the current PHP time zone.
- *
- * This ensures that MySQL date/time functions (e.g. NOW()) reflect the same offset as PHP,
- * including proper adjustment for daylight saving time (DST) when applicable.
- *
- * Applied automatically on each request after the controller is constructed.
- */
-Events::on('post_controller_constructor', function () {
-    $appConfig = new \Config\App();
-    $tz = new \DateTimeZone($appConfig->appTimezone);
-    $now = new \DateTime('now', $tz);
-    $offsetHours = $tz->getOffset($now) / 3600;
-    $offsetFormatted = sprintf('%+03d:00', $offsetHours);
-    $db = \Config\Database::connect();
-    // $db->query("SET time_zone = '{$offsetFormatted}'");
-});
