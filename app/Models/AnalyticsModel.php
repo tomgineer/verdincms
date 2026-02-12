@@ -504,8 +504,10 @@ public function getDailyAverages(int $range = 15): array {
  * @return array                Live stats
  */
 public function getLiveData($intervalMinutes = 10) {
+    $intervalMinutes = (int) $intervalMinutes;
+
     $usersOnline = $this->db->table('stats')
-                            ->where('updated >=', "NOW() - INTERVAL {$intervalMinutes} MINUTE", false) // Crucial: false disables escaping
+                            ->where("updated >= DATE_SUB(NOW(), INTERVAL {$intervalMinutes} MINUTE)", null, false)
                             ->countAllResults(); // Executes COUNT(*) based on the WHERE clause
 
     $visitorsToday = $this->db->table('stats')
