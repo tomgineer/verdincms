@@ -25,12 +25,6 @@ use CodeIgniter\Model;
 
 class StatsModel extends Model {
 
-    // protected $db;
-
-    // public function __construct() {
-    //     $this->db = \Config\Database::connect();
-    // }
-
 /**
  * Tracks a visitor interaction with a specific post or page.
  *

@@ -4,12 +4,6 @@ use CodeIgniter\Model;
 
 class ModalsModel extends Model {
 
-    // protected $db;
-
-    // public function __construct() {
-    //     $this->db = \Config\Database::connect();
-    // }
-
 /**
  * Retrieves id and a specified column from the given table.
  *

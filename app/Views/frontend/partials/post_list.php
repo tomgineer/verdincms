@@ -9,7 +9,7 @@
                         <a class="w-full" href="<?= site_url('post/' . esc($post['id'])) ?>">
                             <img
                                 class="rounded-[25%_0_25%_0] lg:shadow-sm w-full aspect-square hover:scale-95 hover:brightness-110 hover:shadow-xl hover:transition-all hover:duration-300 hover:ease-in-out"
-                                src="<?= path_img_tn() . esc($post['photo']) . '.webp' ?>"
+                                src="<?= base_url('images/tn/') . esc($post['photo']) . '.webp' ?>"
                                 alt="<?= esc($post['title']) ?>"
                                 loading="lazy">
                         </a>

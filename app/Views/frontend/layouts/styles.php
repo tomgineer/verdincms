@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?= path_css() ?>tailwind.css?v=<?= ver() ?>">
+<link rel="stylesheet" href="<?= base_url('css/') ?>tailwind.css?v=<?= ver() ?>">
 
 <?php foreach (setting('theme.extraFonts') ?: ['default'] as $font): ?>
     <link rel="stylesheet" href="<?= base_url('assets/fonts/' . $font) ?>/fonts.css">

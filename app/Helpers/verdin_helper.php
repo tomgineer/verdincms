@@ -23,66 +23,6 @@
  * ****************************************************
  */
 
-if (!function_exists('path')) {
-    /**
-     * Returns a base path for assets like CSS, JS, images, etc.
-    *
-    * @param string $type Valid options: css, js, gfx, img, img_tn, blocks, blocks_tn, avatar, assets
-    * @return string
-    */
-    function path(string $type): string {
-        return match ($type) {
-            'css'        => base_url('css/'),
-            'js'         => base_url('js/'),
-            'gfx'        => base_url('gfx/'),
-            'img'        => base_url('images/'),
-            'img_tn'     => base_url('images/tn/'),
-            'img_xs'     => base_url('images/xs/'),
-            'blocks'     => base_url('images/blocks/'),
-            'blocks_tn'  => base_url('images/blocks/tn/'),
-            'avatar'     => base_url('images/avatars/tn/'),
-            'assets'     => base_url('assets/'),
-            'audio'      => base_url('audio/'),
-            default      => base_url(),
-        };
-    }
- }
-
-// Backward-compatible wrappers
-if (!function_exists('path_css')) {
-    function path_css() { return path('css'); }
-}
-if (!function_exists('path_js')) {
-    function path_js() { return path('js'); }
-}
-if (!function_exists('path_gfx')) {
-    function path_gfx() { return path('gfx'); }
-}
-if (!function_exists('path_img')) {
-    function path_img() { return path('img'); }
-}
-if (!function_exists('path_img_tn')) {
-    function path_img_tn() { return path('img_tn'); }
-}
-if (!function_exists('path_img_xs')) {
-    function path_img_xs() { return path('img_xs'); }
-}
-if (!function_exists('path_blocks')) {
-    function path_blocks() { return path('blocks'); }
-}
-if (!function_exists('path_blocks_tn')) {
-    function path_blocks_tn() { return path('blocks_tn'); }
-}
-if (!function_exists('path_avatar')) {
-    function path_avatar() { return path('avatar'); }
-}
-if (!function_exists('path_assets')) {
-    function path_assets() { return path('assets'); }
-}
-if (!function_exists('path_audio')) {
-    function path_audio() { return path('audio'); }
-}
-
 // Tier
 if(!function_exists('tier')) {
 	function tier() { return session('tier') ?? 0; }

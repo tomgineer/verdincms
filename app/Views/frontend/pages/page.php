@@ -7,8 +7,8 @@
                 <?= esc($page['title']) ?>
             </h1>
             <picture class="absolute inset-0 z-0">
-                <source srcset="<?= path_img() . esc($page['photo']) ?>.webp" media="(min-width: 1921px)">
-                <img class="w-full h-full object-cover brightness-50" src="<?= path_img_tn() . esc($page['photo']) ?>.webp" alt="Post Photo">
+                <source srcset="<?= base_url('images/') . esc($page['photo']) ?>.webp" media="(min-width: 1921px)">
+                <img class="w-full h-full object-cover brightness-50" src="<?= base_url('images/tn/') . esc($page['photo']) ?>.webp" alt="Post Photo">
             </picture>
         </div>
     <?php else: ?>

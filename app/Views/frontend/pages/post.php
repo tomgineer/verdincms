@@ -4,7 +4,7 @@
     <article>
         <div class="card lg:card-side rounded-none">
             <figure class="w-full lg:w-3/10">
-                <img class="rounded-[25%_0_25%_0] shadow-sm aspect-square" src="<?= path_img() . esc($post['photo']) . '.webp' ?>" alt="<?= esc($post['title']) ?>">
+                <img class="rounded-[25%_0_25%_0] shadow-sm aspect-square" src="<?= base_url('images/') . esc($post['photo']) . '.webp' ?>" alt="<?= esc($post['title']) ?>">
             </figure>
 
             <div class="card-body w-full lg:w-2/3 px-2 lg:px-8">

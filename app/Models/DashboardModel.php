@@ -2,8 +2,6 @@
 
 use CodeIgniter\Model;
 use App\Models\AnalyticsModel;
-// use App\Models\SystemModel;
-// use App\Models\ActionsModel;
 
 /**
  * ****************************************************
@@ -26,12 +24,6 @@ use App\Models\AnalyticsModel;
  */
 
 class DashboardModel extends Model {
-
-    // protected $db;
-
-    // public function __construct() {
-    //     $this->db = \Config\Database::connect();
-    // }
 
 /**
  * Retrieves hourly analytics data including raw statistics and formatted chart data.
@@ -768,7 +760,6 @@ protected function getNewsletterContent(int $limit = 20): array {
         'pages' => $pages,
     ];
 }
-
 
 } // ─── End of Class ───
 

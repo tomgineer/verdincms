@@ -24,12 +24,6 @@ use CodeIgniter\Model;
 
 class SystemModel extends Model {
 
-    // protected $db;
-
-    // public function __construct() {
-    //     $this->db = \Config\Database::connect();
-    // }
-
 /**
  * Identifies orphaned image filenames.
  *

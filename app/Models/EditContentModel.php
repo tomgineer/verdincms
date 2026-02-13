@@ -29,12 +29,6 @@ use CodeIgniter\Model;
 
 class EditContentModel extends Model {
 
-    // protected $db;
-
-    // public function __construct() {
-    //     $this->db = \Config\Database::connect();
-    // }
-
 /**
  * Get a post or page by its ID.
  *

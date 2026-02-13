@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="<?=path_css()?>tailwind.css?v=<?=ver()?>">
-<link rel="stylesheet" href="<?=path_assets()?>fonts/default/fonts.css">
+<link rel="stylesheet" href="<?=base_url('css/')?>tailwind.css?v=<?=ver()?>">
+<link rel="stylesheet" href="<?=base_url('assets/')?>fonts/default/fonts.css">
 
 <link rel="icon" type="image/svg+xml" href="<?=base_url('gfx/favicon/favicon.svg')?>">
 <link rel="icon" type="image/png" sizes="32x32" href="<?=base_url('gfx/favicon/favicon-32.png')?>">

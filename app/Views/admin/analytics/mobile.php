@@ -3,7 +3,7 @@
 
 <header>
     <div class="container">
-        <a href="<?=base_url()?>"><img class="dash-header-inline__logo" src="<?=path_gfx().'verdincms.svg'?>" alt="VerdinCMS Logo"></a>
+        <a href="<?=base_url()?>"><img class="dash-header-inline__logo" src="<?=base_url('gfx/').'verdincms.svg'?>" alt="VerdinCMS Logo"></a>
         <h1 class="mobile-analytics__main-title">Mobile Analytics</h1>
         <p>Made with endless love for Vicky 💖</p>
     </div>

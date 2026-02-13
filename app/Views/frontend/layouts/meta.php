@@ -32,14 +32,14 @@
     <meta name="twitter:title" content="<?= esc($metaItem['title']) ?>">
     <meta name="twitter:description" content="<?= esc(meta_description($metaItem['subtitle'], $metaItem['body'])) ?>">
     <meta name="twitter:creator" content="<?= esc(setting('meta.twitter')) ?>">
-    <meta name="twitter:image" content="<?= esc(path_img_tn() . $metaItem['photo'] . '.webp') ?>">
+    <meta name="twitter:image" content="<?= esc(base_url('images/tn/') . $metaItem['photo'] . '.webp') ?>">
 
     <!-- Open Graph data -->
     <meta property="og:description" content="<?= esc(meta_description($metaItem['subtitle'], $metaItem['body'])) ?>" />
     <meta property="og:url" content="<?= esc($metaUrl) ?>" />
     <meta property="og:title" content="<?= esc($metaItem['title']) ?>" />
     <meta property="og:type" content="article" />
-    <meta property="og:image" content="<?= esc(path_img_tn() . $metaItem['photo'] . '.webp') ?>" />
+    <meta property="og:image" content="<?= esc(base_url('images/tn/') . $metaItem['photo'] . '.webp') ?>" />
     <meta property="og:image:width" content="<?= esc($metaImageWidth) ?>" />
     <meta property="og:image:height" content="<?= esc($metaImageHeight) ?>" />
     <meta property="og:site_name" content="<?= esc(setting('meta.siteName')) ?>" />

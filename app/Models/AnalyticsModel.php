@@ -25,12 +25,6 @@ use CodeIgniter\I18n\Time;
 
 class AnalyticsModel extends Model {
 
-    // protected $db;
-
-    // public function __construct() {
-    //     $this->db = \Config\Database::connect();
-    // }
-
 /**
  * Retrieves daily visitor and hit statistics.
  *

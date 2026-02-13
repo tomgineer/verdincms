@@ -5,8 +5,8 @@
     <?php endif;?>
 
     <?php if ( !empty($useCKEditor) ):?>
-        <script src="<?=path_assets()?>ckeditor/ckeditor_lite.js?v=<?=ver()?>"></script>
-        <link rel="stylesheet" href="<?=path_assets()?>ckeditor/ckeditor.css?v=<?=ver()?>">
+        <script src="<?=base_url('assets/')?>ckeditor/ckeditor_lite.js?v=<?=ver()?>"></script>
+        <link rel="stylesheet" href="<?=base_url('assets/')?>ckeditor/ckeditor.css?v=<?=ver()?>">
     <?php endif;?>
 <?= $this->endSection() ?>
 

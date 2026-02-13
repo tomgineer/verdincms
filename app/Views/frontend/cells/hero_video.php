@@ -4,16 +4,16 @@
     <video
         autoplay muted playsinline loop
         preload="metadata"
-        poster="<?= path_gfx() ?>hero.webp"
+        poster="<?= base_url('gfx/') ?>hero.webp"
         aria-hidden="true"
         disablepictureinpicture
         controlslist="nodownload noplaybackrate noremoteplayback"
         class="absolute inset-0 z-0 w-full h-full object-cover"
-        data-src="<?= path_gfx() ?>hero.mp4">
+        data-src="<?= base_url('gfx/') ?>hero.mp4">
     </video>
 
     <!-- background image -->
-    <img class="absolute inset-0 z-0 w-full h-full object-cover hidden" src="<?=path_gfx().'hero.webp'?>">
+    <img class="absolute inset-0 z-0 w-full h-full object-cover hidden" src="<?=base_url('gfx/').'hero.webp'?>">
 
     <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/10 to-black/55 z-1"></div>
     <div class="absolute inset-0 pointer-events-none bg-gradient-to-l from-black/15 via-black/35 to-transparent z-2"></div>

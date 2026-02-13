@@ -27,12 +27,6 @@ use CodeIgniter\I18n\Time;
 
 class ContentModel extends Model {
 
-    // protected $db;
-
-    // public function __construct() {
-    //     $this->db   = \Config\Database::connect();
-    // }
-
 /**
  * Fetches posts with optional filtering, sorting, and pagination.
  *

@@ -12,7 +12,7 @@
 
         <?php foreach ($photos as $photo):?>
             <li class="w-1/6 h-1/6 rounded overflow-hidden shadow-xl">
-                <img class="block w-full aspect-square object-cover" src="<?=path_img().$photo.'.webp'?>">
+                <img class="block w-full aspect-square object-cover" src="<?=base_url('images/').$photo.'.webp'?>">
             </li>
         <?php endforeach;?>
 

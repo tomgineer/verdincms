@@ -8,7 +8,7 @@
                             <a class="w-full" href="<?= site_url('admin/edit/page/' . esc($page['id'])) ?>">
                                 <img
                                     class="rounded-[25%_0_25%_0] lg:shadow-sm w-full aspect-square hover:scale-95 hover:brightness-110 hover:shadow-xl hover:transition-all hover:duration-300 hover:ease-in-out"
-                                    src="<?= path_img_tn() . esc($page['photo']) . '.webp' ?>"
+                                    src="<?= base_url('images/tn/') . esc($page['photo']) . '.webp' ?>"
                                     alt="<?= esc($page['title']) ?>"
                                     loading="lazy">
                             </a>

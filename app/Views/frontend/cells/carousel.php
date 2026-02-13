@@ -17,7 +17,7 @@
                         <figure class="absolute inset-0 -z-10">
                             <img
                                 class="h-full w-full object-cover"
-                                src="<?= path_img() . esc($post['photo']) . '.webp' ?>"
+                                src="<?= base_url('images/') . esc($post['photo']) . '.webp' ?>"
                                 alt="<?= esc($post['title']) ?>"
                                 loading="lazy">
                         </figure>

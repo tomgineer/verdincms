@@ -48,7 +48,7 @@
                         <tr>
                             <td>
                                 <img
-                                    src="<?= path_gfx().'flags/regular/'.strtolower($row['country_code']).'.svg' ?>"
+                                    src="<?= base_url('gfx/').'flags/regular/'.strtolower($row['country_code']).'.svg' ?>"
                                     alt="<?= esc($row['country']) ?> flag"
                                     loading="lazy">
                             </td>

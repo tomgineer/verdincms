@@ -12,7 +12,7 @@
                         <div>
                             <a class="wrap-around" href="<?= site_url('post/' . esc($post['id'])) ?>">
                                 <img
-                                    src="<?= path_img_xs() . esc($post['photo']) . '.webp' ?>"
+                                    src="<?= base_url('images/xs/') . esc($post['photo']) . '.webp' ?>"
                                     class="w-24 aspect-square rounded-full object-cover"
                                     loading="lazy">
                             </a>

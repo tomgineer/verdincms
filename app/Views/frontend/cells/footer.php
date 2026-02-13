@@ -55,7 +55,7 @@
             <img
                 style="height: <?= ((int) setting('theme.logoHeight') * 1.5) ?>px;"
                 class="w-auto"
-                src="<?= path_gfx() . 'logo.svg' ?>"
+                src="<?= base_url('gfx/') . 'logo.svg' ?>"
                 alt="Logo"
                 data-logo>
         </a>
@@ -66,7 +66,7 @@
 
     <?php if (empty($socials_list)):?>
         <div class="place-self-center md:justify-self-end">
-            <img class="h-15 w-auto opacity-65" src="<?=path_gfx().'svg/no_socials.svg'?>" alt="No Social Media" loading="lazy">
+            <img class="h-15 w-auto opacity-65" src="<?=base_url('gfx/').'svg/no_socials.svg'?>" alt="No Social Media" loading="lazy">
         </div>
     <?php else:?>
         <nav class="place-self-center md:justify-self-end">
@@ -80,7 +80,7 @@
                         aria-label="<?= esc($social['label']) ?>"
                         title="<?= esc($social['label']) ?>">
                         <svg class="w-6 h-6 fill-current" aria-hidden="true" focusable="false">
-                            <use href="<?= path_gfx() . 'svg/icons.svg#icon-' . esc($social['icon_id']) ?>"></use>
+                            <use href="<?= base_url('gfx/') . 'svg/icons.svg#icon-' . esc($social['icon_id']) ?>"></use>
                         </svg>
                     </a>
                 <?php endforeach; ?>

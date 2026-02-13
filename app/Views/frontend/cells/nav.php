@@ -4,7 +4,7 @@
             <img
                 style="height: <?= (int) setting('theme.logoHeight') ?>px;"
                 class="w-auto opacity-85 hover:opacity-100 transition-opacity duration-200 select-none"
-                src="<?= path_gfx() . 'logo.svg' ?>"
+                src="<?= base_url('gfx/') . 'logo.svg' ?>"
                 alt="Logo"
                 data-logo>
         </a>

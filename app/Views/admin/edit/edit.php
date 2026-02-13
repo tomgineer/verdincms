@@ -1,8 +1,8 @@
 <?= $this->extend('admin/layouts/layout_bare') ?>
 <?= $this->section('head') ?>
 
-    <script src="<?=path_assets()?>ckeditor/ckeditor.js?v=<?=ver()?>"></script>
-    <link rel="stylesheet" href="<?=path_assets()?>ckeditor/ckeditor.css?v=<?=ver()?>">
+    <script src="<?=base_url('assets/')?>ckeditor/ckeditor.js?v=<?=ver()?>"></script>
+    <link rel="stylesheet" href="<?=base_url('assets/')?>ckeditor/ckeditor.css?v=<?=ver()?>">
 
 <?= $this->endSection() ?>
 

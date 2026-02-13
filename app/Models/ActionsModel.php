@@ -18,19 +18,13 @@ use App\Libraries\GitHubSync;
  * License : MIT
  *
  * Notes:
- * - Optimized and refactored for the 2025 application architecture.
+ * - Optimized and refactored for the 2026 application architecture.
  * - Fully compatible with CodeIgniter 4.x and PHP 8.3.
  *
  * ****************************************************
  */
 
 class ActionsModel extends Model {
-
-    // protected $db;
-
-    // public function __construct() {
-    //     $this->db = \Config\Database::connect();
-    // }
 
 /**
  * Executes a system-defined action by name.
