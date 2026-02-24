@@ -6,7 +6,6 @@
         "timezone": ""
     },
     "cache": {
-        "enabled": false,
         "lifetime": 3600
     },
     "theme": {

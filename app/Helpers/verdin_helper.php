@@ -63,6 +63,17 @@ if ( ! function_exists('isAdmin')) {
     }
 }
 
+if (! function_exists('isDev')) {
+	/**
+	 * Determine whether the app runs in the development environment.
+	 *
+	 * @return bool `true` when `CI_ENVIRONMENT` equals `development`.
+	 */
+	function isDev(): bool {
+		return strtolower((string) env('CI_ENVIRONMENT')) === 'development';
+	}
+}
+
 // Blocks
 if(!function_exists('block')) {
     function block($arr, $group, $alias, $element) {

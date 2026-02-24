@@ -5,7 +5,6 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-//$routes->get('/', 'Site::index');
 $routes->set404Override('App\Controllers\Site::handle404');
 
 /**
@@ -24,19 +23,22 @@ $routes->set404Override('App\Controllers\Site::handle404');
 /******************************************************************************
  * SITE
  *****************************************************************************/
+$routes->group('', ['filter' => 'trackVisitor'], static function ($routes) {
+    $routes->get('/', 'Site::index');
+    $routes->get('author/(:alpha)', 'Site::author/$1');
+    $routes->get('ranking/(:alpha)', 'Site::ranking/$1');
+    $routes->get('featured', 'Site::featured');
+});
+
 $routes->get('post/(:num)', 'Site::post/$1', ['filter' => 'trackPostVisitor']);
 $routes->get('print/(:num)', 'Site::print/$1');
-$routes->get('author/(:alpha)', 'Site::author/$1', ['filter' => 'trackVisitor']);
-$routes->get('ranking/(:alpha)', 'Site::ranking/$1', ['filter' => 'trackVisitor']);
-$routes->match(['GET','POST'],'search', 'Site::search');
-$routes->get('featured', 'Site::featured', ['filter' => 'trackVisitor']);
 
 /******************************************************************************
  * USERS
  *****************************************************************************/
 $routes->post('users/login', 'Users::login');
 $routes->get('users/logout', 'Users::logout');
-$routes->get('login', 'Users::login_page', ['filter' => 'trackVisitor']);
+$routes->get('login', 'Users::login_page');
 
 /******************************************************************************
  * CRON
@@ -101,32 +103,3 @@ $routes->get('api/monitor', 'Api::monitor');
 $siteController = new \App\Controllers\Site();
 $siteController->setupTopicRoutes();
 $siteController->setupPageRoutes();
-
-/******************************************************************************
- * EXTRA ROUTE FILES (Routes*.php)
- *****************************************************************************/
-
-$extraRouteFiles = glob(APPPATH . 'Config/Routes*.php');
-
-foreach ($extraRouteFiles as $routeFile) {
-    // Skip the main routes file(s) to avoid recursion
-    $basename = basename($routeFile);
-
-    if ($basename === 'Routes.php') {
-        continue;
-    }
-
-    require $routeFile;
-}
-
-// -------------------------------------------------------------------------
-// Fallback default route
-// -------------------------------------------------------------------------
-// If no other route file (e.g., RoutesPortfolio.php) has defined a GET '/',
-// this will ensure that the site still has a homepage route defined.
-
-$getRoutes = $routes->getRoutes('get');
-
-if (! isset($getRoutes['/'])) {
-    $routes->get('/', 'Site::index', ['filter' => 'trackVisitor']);
-}

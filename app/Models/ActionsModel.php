@@ -88,9 +88,6 @@ class ActionsModel extends Model {
             case 'clearSessionFiles':
                 $this->deleteOldSessionFiles();
                 break;
-            case 'toggleCache':
-                $status = $this->toggleCache();
-                break;
             case 'generateSitemap':
                 (new SystemModel())->generateSitemap();
                 break;
@@ -563,45 +560,6 @@ private function splitParagraph(string $text, int $parts = 2): string {
 
     $out[] = "<p>" . trim(substr($text, $start)) . "</p>";
     return implode('', $out);
-}
-
-/**
- * Toggles the cache enabled setting in settings.json.
- *
- * Flips "cache.enabled" from true to false or false to true.
- *
- * @return string  New cache status: "enabled" or "disabled". Returns "error" on failure.
- */
-private function toggleCache(): string {
-    $path = ROOTPATH . 'settings.json';
-
-    if (!is_file($path)) {
-        return 'error';
-    }
-
-    $json = file_get_contents($path);
-    $settings = json_decode($json, true);
-
-    if (!is_array($settings) || !isset($settings['cache']['enabled'])) {
-        return 'error';
-    }
-
-    $settings['cache']['enabled'] = !$settings['cache']['enabled'];
-    $status = $settings['cache']['enabled'] ? 'Enabled' : 'Disabled';
-
-    $encoded = json_encode(
-        $settings,
-        JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
-    );
-    if ($encoded === false) {
-        return 'error';
-    }
-
-    if (file_put_contents($path, $encoded) === false) {
-        return 'error';
-    }
-
-    return $status;
 }
 
 } // ─── End of Class ───

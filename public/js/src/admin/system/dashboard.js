@@ -195,17 +195,6 @@ function initActions() {
                         return;
                     }
 
-                    if (data.status === 'Enabled' || data.status === 'Disabled') {
-                        const label = button.querySelector('[data-dash-label]');
-                        if (label) {
-                            label.textContent = 'Cache is: ' + data.status;
-                        }
-                        const isEnabled = data.status === 'Enabled';
-                        button.classList.toggle('btn-soft', isEnabled);
-                        button.classList.toggle('btn-secondary', !isEnabled);
-                        return;
-                    }
-
                     if (returnTo) {
                         window.location.href = `${baseUrl}admin/dashboard/${returnTo}`;
                     }

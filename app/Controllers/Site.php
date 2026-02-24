@@ -13,7 +13,7 @@ class Site extends BaseController {
  * Renders the front page of the site.
  *
  * Caching:
- * - Cached if caching is enabled and the user is not logged in.
+ * - Cached for guests outside development.
  *
  * Data Includes:
  * - Featured posts, latest updates, trending, and popular posts.
@@ -32,7 +32,7 @@ public function index() {
     $cacheName   = 'frontpage' . '_page_' . $page;
 
     // Serve from cache if available
-    if (!session('logged_in') && ($cachedView = cache($cacheName))) {
+    if (!session('logged_in') && !isDev() && ($cachedView = cache($cacheName))) {
         return $cachedView;
     }
 
@@ -52,7 +52,7 @@ public function index() {
     $output = theme_view('frontend/pages/home', $data);
 
     // Store in cache if applicable (!logged_in)
-    if (!session('logged_in')) {
+    if (!session('logged_in') && !isDev()) {
         cache()->save($cacheName, $output, setting("cache.lifetime")); // 1 Hour
     }
 
@@ -63,7 +63,7 @@ public function index() {
  * Displays a single post by ID.
  *
  * Behavior:
- * - Caches content per post and user tier if enabled.
+ * - Caches content per post and user tier for guests outside development.
  * - Blocks access if the post is unpublished and the user is below tier 9.
  *
  * @param int|string $id The post ID.
@@ -77,7 +77,7 @@ public function post(int|string $id) {
     $cacheName   = "post_{$id}_tier_{$tier}";
 
     // Serve from cache if available
-    if (!session('logged_in') && ($cachedView = cache($cacheName))) {
+    if (!session('logged_in') && !isDev() && ($cachedView = cache($cacheName))) {
         return $cachedView;
     }
 
@@ -97,7 +97,6 @@ public function post(int|string $id) {
     // Construct the data array
     $data = [
         'post'      => $postData,
-        //'related'   => $this->content->getRelatedPosts(id: $id, topic_id: $postData['topic_id']),
         'can_edit'  => $tier >= 10 || ($tier == 9 && $postData['user_id'] == session('user_id')),
         'highlight_js' => $postData['highlight'] == '1',
     ];
@@ -106,7 +105,7 @@ public function post(int|string $id) {
     $output = theme_view('frontend/pages/post', $data);
 
     // Store in cache if applicable (cache different versions per tier)
-    if (!session('logged_in')) {
+    if (!session('logged_in') && !isDev()) {
         cache()->save($cacheName, $output, setting("cache.lifetime")); // 1 Hour
     }
 
@@ -117,7 +116,7 @@ public function post(int|string $id) {
  * Displays a single static page by its slug.
  *
  * Behavior:
- * - Caches content by slug if enabled.
+ * - Caches content by slug for guests outside development.
  * - Blocks access if unpublished and user is below tier 9.
  *
  * @param string $slug The page slug.
@@ -129,7 +128,7 @@ public function page(string $slug) {
     $cacheName   = "page_{$slug}";
 
     // Serve from cache if available
-    if (!session('logged_in') && ($cachedView = cache($cacheName))) {
+    if (!session('logged_in') && !isDev() && ($cachedView = cache($cacheName))) {
         return $cachedView;
     }
 
@@ -157,7 +156,7 @@ public function page(string $slug) {
     $output = theme_view('frontend/pages/page', $data);
 
     // Store in cache if applicable (cache by page slug)
-    if (!session('logged_in')) {
+    if (!session('logged_in') && !isDev()) {
         cache()->save($cacheName, $output, setting("cache.lifetime"));
     }
 
@@ -182,7 +181,7 @@ public function topic(string $slug) {
     $cacheKey    = 'topic_' . $slug . '_page_' . $page;
 
     // Serve from cache if available
-    if (!session('logged_in') && ($cachedView = cache($cacheKey))) {
+    if (!session('logged_in') && !isDev() && ($cachedView = cache($cacheKey))) {
         return $cachedView;
     }
 
@@ -205,7 +204,7 @@ public function topic(string $slug) {
     $output = theme_view('frontend/pages/archive', $data);
 
     // Store in cache if applicable
-    if (!session('logged_in')) {
+    if (!session('logged_in') && !isDev()) {
         cache()->save($cacheKey, $output, setting("cache.lifetime"));
     }
 
@@ -231,7 +230,7 @@ public function author(string $handle) {
     $cacheKey    = 'author_' . $handle . '_page_' . $page;
 
     // Serve from cache if available
-    if (!session('logged_in') && ($cachedView = cache($cacheKey))) {
+    if (!session('logged_in') && !isDev() && ($cachedView = cache($cacheKey))) {
         return $cachedView;
     }
 
@@ -252,7 +251,7 @@ public function author(string $handle) {
     $output = theme_view('frontend/pages/archive', $data);
 
     // Store in cache if applicable
-    if (!session('logged_in')) {
+    if (!session('logged_in') && !isDev()) {
         cache()->save($cacheKey, $output, setting("cache.lifetime"));
     }
 
@@ -277,7 +276,7 @@ public function ranking(string $type) {
     $cacheKey    = 'ranking_' . $type;
 
     // Serve from cache if available
-    if (!session('logged_in') && ($cachedView = cache($cacheKey))) {
+    if (!session('logged_in') && !isDev() && ($cachedView = cache($cacheKey))) {
         return $cachedView;
     }
 
@@ -293,7 +292,7 @@ public function ranking(string $type) {
     $output = theme_view('frontend/pages/archive', $data);
 
     // Store in cache if applicable
-    if (!session('logged_in')) {
+    if (!session('logged_in') && !isDev()) {
         cache()->save($cacheKey, $output, setting("cache.lifetime"));
     }
 
@@ -317,7 +316,7 @@ public function featured() {
     $cacheName   = 'featured_posts_page_' . $page;
 
     // Serve from cache if available
-    if (!session('logged_in') && ($cachedView = cache($cacheName))) {
+    if (!session('logged_in') && !isDev() && ($cachedView = cache($cacheName))) {
         return $cachedView;
     }
 
@@ -331,7 +330,7 @@ public function featured() {
     $output = theme_view('frontend/pages/archive', $data);
 
     // Store in cache if applicable
-    if (!session('logged_in')) {
+    if (!session('logged_in') && !isDev()) {
         cache()->save($cacheName, $output, setting("cache.lifetime"));
     }
 
