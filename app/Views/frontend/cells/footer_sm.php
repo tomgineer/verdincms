@@ -1,4 +1,4 @@
-<footer class="bg-base-200">
+<footer class="bg-base-200" data-theme="<?= setting('theme.darkBlocks') ?>">
     <section class="flex p-6 items-center gap-4">
         <img class="size-12" src="<?= base_url('gfx/svg/vcms_icon.svg') ?>" alt="VerinCMS Icon" loading="lazy">
 
