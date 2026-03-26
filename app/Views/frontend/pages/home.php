@@ -11,11 +11,13 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('sidebar_top') ?>
-    <div>
-        <a href="https://x.com/tomgineer_" target="_blank" rel="noopener noreferrer">
-            <img src="<?= base_url('gfx/webp/' . 'twitter.webp') ?>" alt="Tomgineer on X" loading="lazy">
-        </a>
-    </div>
+    <?php if (setting('theme.socialsBanners')): ?>
+        <div>
+            <a href="https://x.com/tomgineer_" target="_blank" rel="noopener noreferrer">
+                <img src="<?= base_url('gfx/webp/' . 'twitter.webp') ?>" alt="Tomgineer on X" loading="lazy">
+            </a>
+        </div>
+    <?php endif; ?>
     <div>
         <h2 class="text-3xl text-primary mt-8 mb-2"><?= lang('App.trending') ?></h2>
         <?= view_cell('FrontendCell::trending') ?>
@@ -37,20 +39,24 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('sidebar_bottom') ?>
-    <div>
-        <a href="https://t.me/tomgineer" target="_blank" rel="noopener noreferrer">
-            <img src="<?= base_url('gfx/webp/' . 'telegram.webp') ?>" alt="Tomgineer on Telegram" loading="lazy">
-        </a>
-    </div>
+    <?php if (setting('theme.socialsBanners')): ?>
+        <div>
+            <a href="https://t.me/tomgineer" target="_blank" rel="noopener noreferrer">
+                <img src="<?= base_url('gfx/webp/' . 'telegram.webp') ?>" alt="Tomgineer on Telegram" loading="lazy">
+            </a>
+        </div>
+    <?php endif; ?>
     <div class="lg:hidden">
         <h2 class="text-3xl text-primary mt-8 mb-2"><?= lang('App.trending') ?></h2>
         <?= view_cell('FrontendCell::trending') ?>
     </div>
-    <div class="lg:hidden">
-        <a href="https://x.com/tomgineer_" target="_blank" rel="noopener noreferrer">
-            <img src="<?= base_url('gfx/webp/' . 'twitter.webp') ?>" alt="Tomgineer on X" loading="lazy">
-        </a>
-    </div>
+    <?php if (setting('theme.socialsBanners')): ?>
+        <div class="lg:hidden">
+            <a href="https://x.com/tomgineer_" target="_blank" rel="noopener noreferrer">
+                <img src="<?= base_url('gfx/webp/' . 'twitter.webp') ?>" alt="Tomgineer on X" loading="lazy">
+            </a>
+        </div>
+    <?php endif; ?>
     <div>
         <h2 class="text-3xl text-primary mt-8 mb-2"><?= lang('App.popular') ?></h2>
         <?= view_cell('FrontendCell::popular') ?>

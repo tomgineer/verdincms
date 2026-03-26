@@ -15,6 +15,7 @@
         "extraFonts": [],
         "pageExtras": true,
         "postExtras": true,
+        "socialsBanners": true,
         "pagesLabel": "Blog"
     },
     "cells": {
