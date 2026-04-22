@@ -14,7 +14,7 @@
     <?php if (setting('theme.socialsBanners')): ?>
         <div>
             <a href="https://x.com/tomgineer_" target="_blank" rel="noopener noreferrer">
-                <img src="<?= base_url('gfx/webp/' . 'twitter.webp') ?>" alt="Tomgineer on X" loading="lazy">
+                <img src="<?= base_url('gfx/webp/' . 'twitter.webp') ?>?v=<?= ver() ?>" alt="Tomgineer on X" loading="lazy">
             </a>
         </div>
     <?php endif; ?>
@@ -42,7 +42,7 @@
     <?php if (setting('theme.socialsBanners')): ?>
         <div>
             <a href="https://t.me/tomgineer" target="_blank" rel="noopener noreferrer">
-                <img src="<?= base_url('gfx/webp/' . 'telegram.webp') ?>" alt="Tomgineer on Telegram" loading="lazy">
+                <img src="<?= base_url('gfx/webp/' . 'telegram.webp') ?>?v=<?= ver() ?>" alt="Tomgineer on Telegram" loading="lazy">
             </a>
         </div>
     <?php endif; ?>
@@ -53,7 +53,7 @@
     <?php if (setting('theme.socialsBanners')): ?>
         <div class="lg:hidden">
             <a href="https://x.com/tomgineer_" target="_blank" rel="noopener noreferrer">
-                <img src="<?= base_url('gfx/webp/' . 'twitter.webp') ?>" alt="Tomgineer on X" loading="lazy">
+                <img src="<?= base_url('gfx/webp/' . 'twitter.webp') ?>?v=<?= ver() ?>" alt="Tomgineer on X" loading="lazy">
             </a>
         </div>
     <?php endif; ?>
