@@ -677,7 +677,7 @@ public function getSocialsList(): array {
     // icons available in your sprite (public/gfx/icons.svg)
     $availableIcons = [
         'rumble','youtube','instagram','x','whatsapp',
-        'tiktok','facebook','telegram','reddit','discord','github'
+        'tiktok','facebook','telegram','reddit','discord','github','bluesky'
     ];
 
     foreach ($socials as $key => $value) {

@@ -79,7 +79,7 @@
                         rel="noopener noreferrer nofollow"
                         aria-label="<?= esc($social['label']) ?>"
                         title="<?= esc($social['label']) ?>">
-                        <svg class="w-6 h-6 fill-current" aria-hidden="true" focusable="false">
+                        <svg class="w-7 h-7 fill-current" aria-hidden="true" focusable="false">
                             <use href="<?= base_url('gfx/') . 'svg/icons.svg#icon-' . esc($social['icon_id']) ?>"></use>
                         </svg>
                     </a>
