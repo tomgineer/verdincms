@@ -13,7 +13,7 @@
 <?= $this->section('sidebar_top') ?>
     <?php if (setting('theme.socialsBanners')): ?>
         <div>
-            <a href="https://bsky.app/profile/tomgineer.bsky.social" target="_blank" rel="noopener noreferrer">
+            <a href="https://bsky.app/profile/tomgineer.com" target="_blank" rel="noopener noreferrer">
                 <img src="<?= base_url('gfx/webp/' . 'twitter.webp') ?>?v=<?= ver() ?>" alt="Tomgineer on Bluesky" loading="lazy">
             </a>
         </div>
@@ -52,7 +52,7 @@
     </div>
     <?php if (setting('theme.socialsBanners')): ?>
         <div class="lg:hidden">
-            <a href="https://bsky.app/profile/tomgineer.bsky.social" target="_blank" rel="noopener noreferrer">
+            <a href="https://bsky.app/profile/tomgineer.com" target="_blank" rel="noopener noreferrer">
                 <img src="<?= base_url('gfx/webp/' . 'twitter.webp') ?>?v=<?= ver() ?>" alt="Tomgineer on Bluesky" loading="lazy">
             </a>
         </div>
