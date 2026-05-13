@@ -11,9 +11,9 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('sidebar_top') ?>
-    <?php if (setting('theme.socialsBanners')): ?>
+    <?php if (setting('theme.socialsBanners') && !empty($blueskyUrl)): ?>
         <div>
-            <a href="https://bsky.app/profile/tomgineer.com" target="_blank" rel="noopener noreferrer">
+            <a href="<?= esc($blueskyUrl) ?>" target="_blank" rel="noopener noreferrer">
                 <img src="<?= base_url('gfx/webp/' . 'twitter.webp') ?>?v=<?= ver() ?>" alt="Tomgineer on Bluesky" loading="lazy">
             </a>
         </div>
@@ -39,9 +39,9 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('sidebar_bottom') ?>
-    <?php if (setting('theme.socialsBanners')): ?>
+    <?php if (setting('theme.socialsBanners') && !empty($telegramUrl)): ?>
         <div>
-            <a href="https://t.me/tomgineer" target="_blank" rel="noopener noreferrer">
+            <a href="<?= esc($telegramUrl) ?>" target="_blank" rel="noopener noreferrer">
                 <img src="<?= base_url('gfx/webp/' . 'telegram.webp') ?>?v=<?= ver() ?>" alt="Tomgineer on Telegram" loading="lazy">
             </a>
         </div>
@@ -50,9 +50,9 @@
         <h2 class="text-3xl text-primary mt-8 mb-2"><?= lang('App.trending') ?></h2>
         <?= view_cell('FrontendCell::trending') ?>
     </div>
-    <?php if (setting('theme.socialsBanners')): ?>
+    <?php if (setting('theme.socialsBanners') && !empty($blueskyUrl)): ?>
         <div class="lg:hidden">
-            <a href="https://bsky.app/profile/tomgineer.com" target="_blank" rel="noopener noreferrer">
+            <a href="<?= esc($blueskyUrl) ?>" target="_blank" rel="noopener noreferrer">
                 <img src="<?= base_url('gfx/webp/' . 'twitter.webp') ?>?v=<?= ver() ?>" alt="Tomgineer on Bluesky" loading="lazy">
             </a>
         </div>

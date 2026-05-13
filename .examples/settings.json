@@ -16,7 +16,8 @@
         "pageExtras": true,
         "postExtras": true,
         "socialsBanners": true,
-        "pagesLabel": "Blog"
+        "pagesLabel": "Blog",
+        "showViewCount": true
     },
     "cells": {
         "share": true,

@@ -42,10 +42,12 @@ public function index() {
     $halfCount      = (int) ceil(count($latestPosts) / 2);
 
     $data = [
-        'pagination' => $latest_updates['pagination'],
-        'topPosts'   => array_slice($latestPosts, 0, $halfCount),
-        'restPosts'  => array_slice($latestPosts, $halfCount),
-        'pageNo'     => $page
+        'pagination'  => $latest_updates['pagination'],
+        'topPosts'    => array_slice($latestPosts, 0, $halfCount),
+        'restPosts'   => array_slice($latestPosts, $halfCount),
+        'pageNo'      => $page,
+        'blueskyUrl'  => setting('socialMedia.bluesky'),
+        'telegramUrl' => setting('socialMedia.telegram'),
     ];
 
     // Render the view

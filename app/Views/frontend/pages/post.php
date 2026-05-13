@@ -19,9 +19,9 @@
                     <a class="text-secondary hover:underline" href="<?= site_url('topic/' . esc($post['topic_slug'])) ?>"><?= esc($post['topic']) ?></a>
                 </div>
 
-                <?php if (tier() != 0): ?>
+                <?php if (setting('theme.showViewCount') || session('logged_in')): ?>
                     <div class="self-end">
-                        <div class="badge badge-sm badge-dash badge-info"><?= esc($post['hits']) ?> Hits</div>
+                        <div class="badge badge-sm badge-dash badge-info"><?= esc($post['hits']) ?> Views</div>
                     </div>
                 <?php endif; ?>
             </div>
