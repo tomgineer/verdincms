@@ -57,7 +57,7 @@ public function getPosts(
     $builder->join('topics t', 't.id = p.topic_id');
 
     // Basic post fields
-    $builder->select('p.id, p.title, p.subtitle, p.photo, p.created');
+    $builder->select('p.id, p.title, p.subtitle, p.photo, p.created, p.hits');
     $builder->select('DATE_FORMAT(p.created, "%b %d, %Y") AS f_created', false);
     $builder->select('CONCAT(u.first_name, " ", u.last_name) AS author', false);
     $builder->select('u.author AS author_handle');
@@ -287,7 +287,7 @@ public function getRankingPosts(
     $builder = $this->db->table('posts p');
 
     // Select core fields
-    $builder->select('p.id, p.title, p.subtitle, p.photo, p.created')
+    $builder->select('p.id, p.title, p.subtitle, p.photo, p.created, p.hits')
             ->select('DATE_FORMAT(p.created, "%b %d, %Y") AS f_created', false)
             ->select('CONCAT(u.first_name, " ", u.last_name) AS author', false)
             ->select('u.author AS author_handle')
@@ -343,7 +343,7 @@ public function postsArrFiller(array $posts, int $amount): array {
     $tier = tier();
 
     $builder = $this->db->table('posts p')
-                        ->select('p.id, p.title, p.subtitle, p.photo, p.created')
+                        ->select('p.id, p.title, p.subtitle, p.photo, p.created, p.hits')
                         ->select('DATE_FORMAT(p.created, "%b %d, %Y") AS f_created', false)
                         ->select('CONCAT(u.first_name, " ", u.last_name) AS author', false)
                         ->select('u.author AS author_handle')

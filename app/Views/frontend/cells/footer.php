@@ -28,6 +28,21 @@
         </ul>
     </nav>
 
+    <?php if (setting('navbar.displayRanking')): ?>
+        <nav>
+            <ul class="menu w-full">
+                <li>
+                    <h2 class="menu-title text-lg"><?= lang('App.ranking') ?></h2>
+                    <ul>
+                        <li><a href="<?= site_url('ranking/trending') ?>" data-match="ranking/trending"><?= lang('App.trending') ?></a></li>
+                        <li><a href="<?= site_url('ranking/popular') ?>" data-match="ranking/popular"><?= lang('App.popular') ?></a></li>
+                        <li><a href="<?= site_url('featured') ?>" data-match="featured"><?= lang('App.featured') ?></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    <?php endif; ?>
+
     <?php foreach ($pages_list as $sectionName => $pages): ?>
         <nav>
             <ul class="menu w-full">
