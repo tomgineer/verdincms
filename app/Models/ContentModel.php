@@ -269,10 +269,10 @@ public function getSinglePost(int $id): ?array {
 }
 
 /**
- * Retrieves ranked posts based on popularity or trending activity.
+ * Retrieves ranked posts based on popularity, trending activity, or all-time hits.
  *
  * @param int    $amount     Number of posts to retrieve (defaults to all).
- * @param string $type       Type of ranking ('popular' or 'trending').
+ * @param string $type       Type of ranking ('popular', 'trending', or 'classics').
  * @param int    $page       Current page number for pagination.
  * @param bool   $pagination Whether to apply pagination.
  *
@@ -283,7 +283,7 @@ public function getRankingPosts(
     string $type = 'popular'
 ): array {
     $tier = tier();
-    $amount = $amount ?? setting('content.postsPerPage', 20);
+    $amount = $amount ?? setting('content.postsPerPage', 30);
     $builder = $this->db->table('posts p');
 
     // Select core fields
@@ -310,6 +310,10 @@ public function getRankingPosts(
                     ->where('s.created >=', "DATE_SUB(NOW(), INTERVAL {$hours} HOUR)", false)
                     ->groupBy('s.post_id')
                     ->orderBy('COUNT(s.id)', 'DESC');
+            break;
+        case 'classics':
+            $builder->orderBy('p.hits', 'DESC')
+                    ->orderBy('p.created', 'DESC');
             break;
     }
 

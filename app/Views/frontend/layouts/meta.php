@@ -17,8 +17,8 @@
     } elseif (!empty($page)) {
         $metaItem = $page;
         $metaUrl = site_url($page['s_slug'] . '/' . $page['slug']);
-        $metaImageWidth = 1344;
-        $metaImageHeight = 768;
+        $metaImageWidth = 1536;
+        $metaImageHeight = 649;
     }
 ?>
 

@@ -270,7 +270,7 @@ public function author(string $handle) {
  * @return \CodeIgniter\HTTP\RedirectResponse|string
  */
 public function ranking(string $type) {
-    if (!in_array($type, ['popular', 'trending'])) {
+    if (!in_array($type, ['popular', 'trending', 'classics'])) {
         return redirect()->to('/');
     }
 
@@ -284,7 +284,7 @@ public function ranking(string $type) {
 
     // Prepare data
     $data = [
-        'site_title'   => ucfirst($type),
+        'site_title'   => lang('App.' . $type),
         'post_data'    => $this->content->getRankingPosts(type: $type),
         'hideTrending' => $type === 'trending',
         'hidePopular'  => $type === 'popular',
@@ -324,7 +324,7 @@ public function featured() {
 
     // Fetch data
     $data = [
-        'site_title' => 'Featured',
+        'site_title' => lang('App.featured'),
         'post_data'  => $this->content->getPosts(featured: true, pagination: true, page: $page)
     ];
 

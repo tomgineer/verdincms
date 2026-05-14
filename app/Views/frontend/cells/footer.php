@@ -1,4 +1,4 @@
-<section class="footer footer-horizontal footer-center text-base-content p-10 pt-12 relative bg-base-200" data-theme="<?=setting('theme.darkBlocks')?>">
+<section class="footer footer-horizontal footer-center text-base-content p-10 pt-12 relative bg-base-200" data-theme="<?=setting('theme.darkBlocks')?>" data-nav-active="<?= get_route() ?>">
     <a class="btn btn-lg btn-circle btn-soft absolute left-1/2 -translate-x-1/2 -top-6 shadow-md" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
@@ -12,7 +12,7 @@
     </nav>
 </section>
 
-<section class="footer sm:footer-horizontal text-base-content p-10 pt-1 bg-base-200" data-theme="<?=setting('theme.darkBlocks')?>">
+<section class="footer sm:footer-horizontal text-base-content p-10 pt-1 bg-base-200" data-theme="<?=setting('theme.darkBlocks')?>" data-nav-active="<?= get_route() ?>">
 
     <nav>
         <ul class="menu w-full">
@@ -37,6 +37,7 @@
                         <li><a href="<?= site_url('ranking/trending') ?>" data-match="ranking/trending"><?= lang('App.trending') ?></a></li>
                         <li><a href="<?= site_url('ranking/popular') ?>" data-match="ranking/popular"><?= lang('App.popular') ?></a></li>
                         <li><a href="<?= site_url('featured') ?>" data-match="featured"><?= lang('App.featured') ?></a></li>
+                        <li><a href="<?= site_url('ranking/classics') ?>" data-match="ranking/classics"><?= lang('App.classics') ?></a></li>
                     </ul>
                 </li>
             </ul>
