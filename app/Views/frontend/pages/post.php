@@ -13,17 +13,15 @@
 
                 <p class="text-2xl prose"><?= esc($post['subtitle']) ?></p>
 
-                <div class="card-actions justify-end">
+                <div class="card-actions justify-end items-center">
                     <a class="text-secondary hover:underline" href="<?= site_url('author/' . esc($post['author_handle'])) ?>"><?= esc($post['author']) ?></a>
                     <span class="text-base-content/50">/ <?= esc($post['ago']) ?> <?= lang('App.in') ?></span>
                     <a class="text-secondary hover:underline" href="<?= site_url('topic/' . esc($post['topic_slug'])) ?>"><?= esc($post['topic']) ?></a>
+                    <?php if (setting('theme.showViewCount') || session('logged_in')): ?>
+                        <div class="badge badge-sm badge-dash badge-info"><?= esc($post['hits']) ?> Views</div>
+                    <?php endif; ?>
                 </div>
 
-                <?php if (setting('theme.showViewCount') || session('logged_in')): ?>
-                    <div class="self-end">
-                        <div class="badge badge-sm badge-dash badge-info"><?= esc($post['hits']) ?> Views</div>
-                    </div>
-                <?php endif; ?>
             </div>
         </div>
 
