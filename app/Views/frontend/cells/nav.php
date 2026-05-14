@@ -44,7 +44,7 @@
                                 <li><a href="<?= site_url('ranking/trending') ?>"><?= lang('App.trending') ?></a></li>
                                 <li><a href="<?= site_url('ranking/popular') ?>"><?= lang('App.popular') ?></a></li>
                                 <li><a href="<?= site_url('featured') ?>"><?= lang('App.featured') ?></a></li>
-                                <li><a href="<?= site_url('ranking/classics') ?>"><?= lang('App.classics') ?></a></li>
+                                <li><a href="<?= site_url('ranking/top') ?>"><?= lang('App.top') ?></a></li>
                             </ul>
                         </details>
                     </li>

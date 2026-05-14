@@ -22,7 +22,7 @@ return [
     'trending' => 'Trending',
     'featured' => 'Featured',
     'popular' => 'Popular',
-    'classics' => 'Classics',
+    'top' => 'Top',
     'topics' => 'Topics',
     'ranking' => 'Ranking',
     'search' => 'Search',

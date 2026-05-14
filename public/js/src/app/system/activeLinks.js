@@ -2,7 +2,7 @@
  * Highlights active navigation links based on the `data-nav-active` attribute.
  *
  * Iterates through elements with `[data-nav-active]`, compares their value
- * against each child link's `data-match`, and applies a shared active class.
+ * against each child link's `data-match`, and applies the appropriate active class.
  */
 export default function activeNav() {
     const navActive = document.querySelectorAll('[data-nav-active]');
@@ -21,7 +21,12 @@ export default function activeNav() {
 
             const matchValues = matchCriteriaString.split(',').map(value => value.trim());
             if (matchValues.includes(navActiveSelected)) {
-                item.classList.add('bg-secondary');
+                if (item.closest('.menu')) {
+                    item.classList.add('menu-active');
+                } else if (item.classList.contains('btn')) {
+                    item.classList.add('bg-info');
+                }
+
                 item.classList.add('pointer-events-none');
             }
 

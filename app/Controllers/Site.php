@@ -261,16 +261,16 @@ public function author(string $handle) {
 }
 
 /**
- * Displays ranked posts by type (popular or trending).
+ * Displays ranked posts by type (popular, trending, or top).
  *
  * - Only allows valid types.
  * - Supports pagination.
  *
- * @param string $type The ranking type: 'popular' or 'trending'.
+ * @param string $type The ranking type: 'popular', 'trending', or 'top'.
  * @return \CodeIgniter\HTTP\RedirectResponse|string
  */
 public function ranking(string $type) {
-    if (!in_array($type, ['popular', 'trending', 'classics'])) {
+    if (!in_array($type, ['popular', 'trending', 'top'])) {
         return redirect()->to('/');
     }
 

@@ -37,7 +37,7 @@
                         <li><a href="<?= site_url('ranking/trending') ?>" data-match="ranking/trending"><?= lang('App.trending') ?></a></li>
                         <li><a href="<?= site_url('ranking/popular') ?>" data-match="ranking/popular"><?= lang('App.popular') ?></a></li>
                         <li><a href="<?= site_url('featured') ?>" data-match="featured"><?= lang('App.featured') ?></a></li>
-                        <li><a href="<?= site_url('ranking/classics') ?>" data-match="ranking/classics"><?= lang('App.classics') ?></a></li>
+                        <li><a href="<?= site_url('ranking/top') ?>" data-match="ranking/top"><?= lang('App.top') ?></a></li>
                     </ul>
                 </li>
             </ul>

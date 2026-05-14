@@ -272,7 +272,7 @@ public function getSinglePost(int $id): ?array {
  * Retrieves ranked posts based on popularity, trending activity, or all-time hits.
  *
  * @param int    $amount     Number of posts to retrieve (defaults to all).
- * @param string $type       Type of ranking ('popular', 'trending', or 'classics').
+ * @param string $type       Type of ranking ('popular', 'trending', or 'top').
  * @param int    $page       Current page number for pagination.
  * @param bool   $pagination Whether to apply pagination.
  *
@@ -311,7 +311,7 @@ public function getRankingPosts(
                     ->groupBy('s.post_id')
                     ->orderBy('COUNT(s.id)', 'DESC');
             break;
-        case 'classics':
+        case 'top':
             $builder->orderBy('p.hits', 'DESC')
                     ->orderBy('p.created', 'DESC');
             break;
