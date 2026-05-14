@@ -21,7 +21,7 @@ export default function activeNav() {
 
             const matchValues = matchCriteriaString.split(',').map(value => value.trim());
             if (matchValues.includes(navActiveSelected)) {
-                item.classList.add('bg-primary');
+                item.classList.add('bg-secondary');
                 item.classList.add('pointer-events-none');
             }
 
