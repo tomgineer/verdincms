@@ -199,7 +199,7 @@ public function topic(string $slug) {
     $data = [
         'site_title' => $topic['title'] ?? '',
         'site_desc' => $topic['description'] ?? '',
-        'post_data'  => $this->content->getPosts(topic_id: $topic_id, pagination: true, page: $page)
+        'post_data'  => $this->content->getPosts(topic_id: $topic_id, pagination: true, page: $page, unlisted: false)
     ];
 
     // Render view
