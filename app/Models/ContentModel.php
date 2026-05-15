@@ -422,9 +422,10 @@ public function getMenuItems(): ?array {
     }));
 
     $all_topics = $this->db->table('topics')
-                           ->select('title, slug, featured')
+                           ->select('title, slug, featured, posts')
                            ->where('id !=', 1)
-                           ->orderBy('position ASC')
+                           ->orderBy('posts', 'DESC')
+                           ->orderBy('position', 'ASC')
                            ->get()->getResultArray();
 
     $topics = array_values(array_filter($all_topics, static function (array $row): bool {
@@ -708,6 +709,7 @@ public function getTopicsList(): ?array {
                     ->select('title, slug, posts')
                     ->where('id !=', 1)
                     ->where('posts !=', 0)
+                    ->orderBy('posts', 'DESC')
                     ->orderBy('position', 'ASC')
                     ->get()->getResultArray();
 }

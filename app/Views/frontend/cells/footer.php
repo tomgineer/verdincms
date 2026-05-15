@@ -7,7 +7,9 @@
 
     <nav class="flex flex-wrap gap-2 justify-center">
         <?php foreach ($topics_list as $topic): ?>
-            <a class="btn btn-soft rounded-full hover:btn-secondary" href="<?= site_url('topic/' . $topic['slug']) ?>" data-match="<?= 'topic/' . $topic['slug'] ?>"><?= $topic['title'] ?></a>
+            <a class="btn btn-soft rounded-full hover:btn-secondary" href="<?= site_url('topic/' . $topic['slug']) ?>" data-match="<?= 'topic/' . $topic['slug'] ?>"><?= esc($topic['title']) ?>
+            <span class="badge badge-soft badge-info"><?= (int) ($topic['posts'] ?? 0) ?></span>
+        </a>
         <?php endforeach; ?>
     </nav>
 </section>

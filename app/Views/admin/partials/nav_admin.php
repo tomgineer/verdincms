@@ -116,7 +116,9 @@
                 <ul class="bg-base-200 rounded-t-none p-2 min-w-52 shadow-xl">
                     <?php foreach ($menu_items['all_topics'] as $topic): ?>
                         <li>
-                            <a href="<?= site_url('topic/' . $topic['slug']) ?>"><?= esc($topic['title']) ?></a>
+                            <a href="<?= site_url('topic/' . $topic['slug']) ?>"><?= esc($topic['title']) ?>
+                            <span class="badge badge-soft badge-info"><?= (int) ($topic['posts'] ?? 0) ?></span>
+                        </a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
