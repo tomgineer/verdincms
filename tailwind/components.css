@@ -5,6 +5,13 @@
         --tw-prose-pre-bg: #0d1117;
     }
 
+    /* Embedded videos */
+    .prose iframe {
+        @apply block w-full max-w-full rounded mb-4;
+        aspect-ratio: 16 / 9;
+        height: auto;
+    }
+
     /* ckEditor */
     .ck-editor__editable {
         @apply prose max-w-none;
