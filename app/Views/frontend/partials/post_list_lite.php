@@ -5,7 +5,7 @@
 
                 <div class="card bg-base-200 card-md flex-1">
                     <div class="card-body">
-                        <a class="mb-1 link link-hover" href="<?= site_url('post/' . esc($post['id'])) ?>">
+                        <a class="mb-1 link link-hover active:underline focus:underline" href="<?= site_url('post/' . esc($post['id'])) ?>">
                             <h2 class="card-title font-medium"><?= esc($post['title']) ?></h2>
                         </a>
 
@@ -13,7 +13,7 @@
                             <a class="wrap-around" href="<?= site_url('post/' . esc($post['id'])) ?>">
                                 <img
                                     src="<?= base_url('images/xs/') . esc($post['photo']) . '.webp' ?>"
-                                    class="w-24 aspect-square rounded-full object-cover"
+                                    class="w-24 aspect-square rounded-full object-cover active:brightness-75"
                                     loading="lazy">
                             </a>
                             <p class="flex-1"><?= esc($post['subtitle']) ?></p>
