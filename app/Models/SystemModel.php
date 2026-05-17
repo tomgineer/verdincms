@@ -125,83 +125,104 @@ private function findPicsInHTML($html) {
  * @return void
  */
 public function generateSitemap(): void {
-    // --- SEO Change Frequencies ---
     $changeFreq = [
-        'homepage' => 'daily',    // Homepage content updates frequently
-        'topics'   => 'weekly',   // Topics may change with new posts
-        'posts'    => 'weekly',   // Posts may be edited or refreshed
-        'pages'    => 'monthly',  // Static pages change less frequently
-    ];
-    // --- SEO Priorities ---
-    $priority = [
-        'homepage' => '1.0', // Homepage: most important, updated often
-        'topics'   => '0.8', // Category/topic listing pages
-        'posts'    => '0.7', // Individual blog posts
-        'pages'    => '0.6', // Static pages (about, contact, etc.)
+        'homepage' => 'daily',
+        'topics'   => 'weekly',
+        'posts'    => 'weekly',
+        'pages'    => 'monthly',
     ];
 
-    // Fetch content
+    $priority = [
+        'homepage' => '1.0',
+        'topics'   => '0.8',
+        'posts'    => '0.7',
+        'pages'    => '0.6',
+    ];
+
     $posts  = $this->getSitemapData('posts');
     $pages  = $this->getSitemapData('pages');
     $topics = $this->getSitemapData('topics');
 
-    $sitemapPath = ROOTPATH . 'public' . DIRECTORY_SEPARATOR . 'sitemap.xml';
-    $sitemapFile = fopen($sitemapPath, 'w') or die("Unable to open file!");
+    $lastmodDates = array_filter(array_merge(
+        array_column($posts, 'lastmod'),
+        array_column($pages, 'lastmod')
+    ));
+    $homepageLastmod = !empty($lastmodDates) ? max($lastmodDates) : date('Y-m-d H:i:s');
 
     $sm  = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
     $sm .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+    $sm .= $this->sitemapUrl(base_url(), $homepageLastmod, $changeFreq['homepage'], $priority['homepage']);
 
-    // Homepage
-    $sm .= "
-    <url>
-        <loc>" . base_url() . "</loc>
-        <lastmod>" . date('c') . "</lastmod>
-        <changefreq>{$changeFreq['homepage']}</changefreq>
-        <priority>{$priority['homepage']}</priority>
-    </url>\n";
-
-    // Topics
     foreach ($topics as $topic) {
-        $sm .= "
-    <url>
-        <loc>" . site_url('topic/' . $topic['slug']) . "</loc>
-        <lastmod>" . date('c') . "</lastmod>
-        <changefreq>{$changeFreq['topics']}</changefreq>
-        <priority>{$priority['topics']}</priority>
-    </url>\n";
+        $sm .= $this->sitemapUrl(
+            site_url('topic/' . $topic['slug']),
+            $topic['lastmod'],
+            $changeFreq['topics'],
+            $priority['topics']
+        );
     }
 
-    // Pages
     foreach ($pages as $page) {
-        $sm .= "
-    <url>
-        <loc>" . site_url($page['s_slug'] . '/' . $page['slug']) . "</loc>
-        <lastmod>" . date('c', strtotime($page['created'])) . "</lastmod>
-        <changefreq>{$changeFreq['pages']}</changefreq>
-        <priority>{$priority['pages']}</priority>
-    </url>\n";
+        $sm .= $this->sitemapUrl(
+            site_url($page['s_slug'] . '/' . $page['slug']),
+            $page['lastmod'],
+            $changeFreq['pages'],
+            $priority['pages']
+        );
     }
 
-    // Posts
     foreach ($posts as $post) {
-        $sm .= "
-    <url>
-        <loc>" . site_url('post/' . $post['id']) . "</loc>
-        <lastmod>" . date('c', strtotime($post['created'])) . "</lastmod>
-        <changefreq>{$changeFreq['posts']}</changefreq>
-        <priority>{$priority['posts']}</priority>
-    </url>\n";
+        $sm .= $this->sitemapUrl(
+            site_url('post/' . $post['id']),
+            $post['lastmod'],
+            $changeFreq['posts'],
+            $priority['posts']
+        );
     }
 
     $sm .= '</urlset>';
 
-    // Write plain XML
-    fwrite($sitemapFile, $sm);
-    fclose($sitemapFile);
+    $sitemapPath = ROOTPATH . 'public' . DIRECTORY_SEPARATOR . 'sitemap.xml';
+    if (file_put_contents($sitemapPath, $sm, LOCK_EX) === false) {
+        throw new \RuntimeException('Unable to write sitemap.xml');
+    }
 
-    // Also create gzipped version
-    $gzippedContent = gzencode($sm, 9); // Max compression
-    file_put_contents(ROOTPATH . 'public' . DIRECTORY_SEPARATOR . 'sitemap.xml.gz', $gzippedContent);
+    $gzippedContent = gzencode($sm, 9);
+    if ($gzippedContent === false) {
+        throw new \RuntimeException('Unable to compress sitemap.xml');
+    }
+
+    if (file_put_contents(ROOTPATH . 'public' . DIRECTORY_SEPARATOR . 'sitemap.xml.gz', $gzippedContent, LOCK_EX) === false) {
+        throw new \RuntimeException('Unable to write sitemap.xml.gz');
+    }
+}
+
+/**
+ * Builds one escaped sitemap URL entry.
+ */
+private function sitemapUrl(string $url, ?string $lastmod, string $changefreq, string $priority): string {
+    return "    <url>\n"
+        . '        <loc>' . $this->sitemapEscape($url) . "</loc>\n"
+        . '        <lastmod>' . $this->sitemapLastmod($lastmod) . "</lastmod>\n"
+        . '        <changefreq>' . $this->sitemapEscape($changefreq) . "</changefreq>\n"
+        . '        <priority>' . $this->sitemapEscape($priority) . "</priority>\n"
+        . "    </url>\n";
+}
+
+/**
+ * Formats database dates as W3C datetime values accepted by sitemaps.
+ */
+private function sitemapLastmod(?string $date): string {
+    $timestamp = $date ? strtotime($date) : false;
+
+    return date('c', $timestamp ?: time());
+}
+
+/**
+ * Escapes text for XML nodes.
+ */
+private function sitemapEscape(string $value): string {
+    return htmlspecialchars($value, ENT_XML1 | ENT_COMPAT, 'UTF-8');
 }
 
 /**
@@ -214,18 +235,21 @@ private function getSitemapData(string $type): array {
     switch ($type) {
         case 'posts':
             return $this->db->table('posts p')
-                            ->select('p.id, p.created')
+                            ->select('p.id, p.created AS lastmod')
                             ->where('p.status', 1)
                             ->where('p.accessibility', 0)
+                            ->where('p.unlisted !=', 1)
                             ->orderBy('p.created', 'DESC')
                             ->get()
                             ->getResultArray();
 
         case 'pages':
             return $this->db->table('pages p')
-                            ->select('p.id, p.slug, p.created, s.slug AS s_slug')
+                            ->select('p.id, p.slug, p.created AS lastmod, s.slug AS s_slug')
                             ->join('sections s', 's.id = p.section_id', 'inner')
                             ->where('p.status', 1)
+                            ->where('p.accessibility', 0)
+                            ->where('s.id !=', 1)
                             ->orderBy('p.created', 'DESC')
                             ->get()
                             ->getResultArray();
@@ -234,9 +258,10 @@ private function getSitemapData(string $type): array {
             return $this->db->table('topics t')
                             ->select('t.slug')
                             ->selectCount('p.topic_id', 'count')
-                            ->join('posts p', 'p.topic_id = t.id', 'left')
-                            ->where('p.status', 1)
-                            ->groupBy('t.id')
+                            ->selectMax('p.created', 'lastmod')
+                            ->join('posts p', 'p.topic_id = t.id AND p.status = 1 AND p.accessibility = 0 AND p.unlisted != 1', 'inner')
+                            ->where('t.id !=', 1)
+                            ->groupBy('t.id, t.slug')
                             ->having('count >', 0)
                             ->get()
                             ->getResultArray();

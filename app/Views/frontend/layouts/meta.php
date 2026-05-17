@@ -44,6 +44,7 @@
     <meta property="og:image:height" content="<?= esc($metaImageHeight) ?>" />
     <meta property="og:site_name" content="<?= esc(setting('meta.siteName')) ?>" />
 <?php else: ?>
+    <?php $archiveDescription = !empty($site_desc) ? trim(strip_tags($site_desc)) : setting('meta.siteDescription'); ?>
     <title><?= (!empty($site_title) ? $site_title . ' | ' . setting('meta.siteName') : setting('meta.siteTitle')) ?></title>
-    <meta name="description" content="<?= setting('meta.siteDescription') ?>" />
+    <meta name="description" content="<?= esc($archiveDescription) ?>" />
 <?php endif; ?>
